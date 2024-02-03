@@ -18,7 +18,7 @@ public class UI_Title : UI_Scene
     {
         if (base.Init() == false)
             return false;
-        
+        PreResourceLoad();
         //TODO : BIND End StartButton Event
         BindObject(typeof(GameObjects));
         BindButton(typeof(Buttons));
@@ -26,9 +26,7 @@ public class UI_Title : UI_Scene
         {
             if (isPreload)
             {
-                //Managers.Scene.LoadScene(Define.Scene.LobbyScene);
-                //// 씬 이동 할 필요없이 버튼만 추가하면 될 듯?
-                /// TEST
+                Managers.Scene.LoadScene(Define.Scene.ShipScene);
             }
         });
         return true;
@@ -41,6 +39,7 @@ public class UI_Title : UI_Scene
     {
         Managers.Resource.LoadAllAsync<Object>(Define.ResourceLabel.PreLoad.ToString(), (key, count, totalCount) =>
         {
+            Debug.Log(key);
             if (totalCount == count)
             {
                 isPreload = true;

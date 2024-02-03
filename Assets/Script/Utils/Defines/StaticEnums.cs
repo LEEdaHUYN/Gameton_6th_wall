@@ -2,9 +2,7 @@
 {
     public enum Scene
     {
-        Unknown,
         TitleScene,
-        LobbyScene,
         ShipScene,
         GameScene,
     }

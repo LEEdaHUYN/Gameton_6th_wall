@@ -27,6 +27,12 @@
               "type": "AddItemAction",
               "itemName": "Water",
               "amount" : 5
+            },
+            {
+              "type" : "AllCharacterSetStatusAction",
+              "calculate" : "Mod",
+              "status" : "Hungry",
+              "value" : 6
             }
           ]
         },

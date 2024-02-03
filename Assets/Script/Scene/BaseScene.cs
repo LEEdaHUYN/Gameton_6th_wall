@@ -9,6 +9,8 @@ public abstract class BaseScene : MonoBehaviour, IScene
     protected virtual void Init()
     {
         _uiScene = createUIScene();
+        Managers.Scene.SetCurrentScene(this);
+        
     }
     private void Start()
     {

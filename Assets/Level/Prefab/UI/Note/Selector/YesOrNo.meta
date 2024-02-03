@@ -1,0 +1,12 @@
+fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Level/Prefab/UI/Note/Selector/YesOrNo.meta
+guid: 85ff03ccf77609d4ea2b9588759eede7
+========
+guid: 711f3165540362b43a739404bd5d1557
+>>>>>>>> feature/DataLoadTrigger:Assets/Level/Prefab/UI/Note/Selector.meta
+folderAsset: yes
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,0 +1,95 @@
+{
+  "CharacterStatusDatas":[
+    {
+      "_comment" : "Hungry 수치가 5 미만 일 경우",
+      "id": 1,
+      "status": "Hungry",
+      "minValue": 2,
+      "maxValue": 5,
+      "Text" : "아무것도 못먹어서 배가 고파.",
+      "display" : "배고픔"
+    },
+    {
+      "_comment": "Hungry 수치가 1 이하 일 경우",
+      "id": 2,
+      "status": "Hungry",
+      "minValue": 0,
+      "maxValue": 1,
+      "Text": "더이상 말할 힘도 없어.",
+      "display": "굶주림"
+    },
+    {
+      "_comment" : "Thirsty 수치가 5 미만 일 경우",
+      "id": 3,
+      "status": "Thirsty",
+      "minValue": 2,
+      "maxValue": 5,
+      "Text" : "물을 마시고싶어.",
+      "display" : "목마름"
+    },
+    {
+      "_comment" : "Thirsty 수치가 1 이하, 일 경우",
+      "id": 4,
+      "status": "Thirsty",
+      "minValue": 0,
+      "maxValue": 1,
+      "Text" : "제발 물을 줘...",
+      "display" : "탈수"
+    },
+    {
+      "_comment" : "Panic 수치가 6 이하, 3초과  일 경우",
+      "id": 5,
+      "status": "Panic",
+      "minValue": 4,
+      "maxValue": 7,
+      "Text" : "아무것도 못하겠어 어지러워!",
+      "display" : "공황"
+    },
+    {
+      "_comment" : "Panic 수치가 3 이하 일 경우",
+      "id": 6,
+      "status": "Panic",
+      "minValue": 0,
+      "maxValue": 3,
+      "Text" : "이히힉 키키킥 헤헤헥 .",
+      "display" : "미쳤음"
+    },
+    {
+      "_comment" : "피곤함 수치가 1 이하 일 경우",
+      "id": 7,
+      "status": "Tiredness",
+      "minValue": 0,
+      "maxValue": 1,
+      "Text" : "나한테 아무것도 시키지마!.",
+      "display" : "피곤함"
+    },
+    {
+      "_comment" : "감기 수치가 2 이하 일 경우",
+      "id": 9,
+      "status": "Cold",
+      "minValue": 0,
+      "maxValue": 2,
+      "Text" : "나 감기 걸린거 같아 몸이 추워...  .",
+      "display" : "감기"
+    },
+    {
+      "_comment" : " 수치가 2 이하 일 경우",
+      "id": 10,
+      "status": "Addiction",
+      "minValue": 0,
+      "maxValue": 2,
+      "Text" : "몸이 흘러내리는거 같아! 뭐지? .",
+      "display" : "중독"
+    },
+    {
+      "_comment" : "상처 수치가 2 이하 일 경우",
+      "id": 11,
+      "status": "Wound",
+      "minValue": 0,
+      "maxValue": 2,
+      "Text" : "다친거 같아 치료해줘! .",
+      "display" : "상처"
+
+    }
+  ]
+}

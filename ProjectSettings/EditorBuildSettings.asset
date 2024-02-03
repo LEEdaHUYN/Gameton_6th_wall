@@ -12,9 +12,11 @@ EditorBuildSettings:
     path: Assets/3Dgameroom.unity
     guid: f2653cbb35df8e947bcee1318b7849dc
   - enabled: 1
-    path: Assets/waterandchar/TempAssets/Beach/URP/sample scene/Example.unity
+    path: Assets/Scene/3DInGame.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   - enabled: 1
-    path: Assets/waterandchar/TempAssets/Beach/URP/sample scene/AnimationScene.unity
+    path: Assets/Level/TempAsset/waterandchar/TempAssets/Beach/URP/sample scene/AnimationScene.unity
     guid: df129088072d6cb4293e2f792a351c46
-  m_configObjects: {}
+  m_configObjects:
+    com.unity.addressableassets: {fileID: 11400000, guid: c87745da88fc0b340bd094be49ea3550,
+      type: 2}

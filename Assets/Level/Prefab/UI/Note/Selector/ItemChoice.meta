@@ -1,0 +1,12 @@
+fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Level/Prefab/UI/Note/Selector/ItemChoice.meta
+guid: b24bae467836f014db62c4c58121d40c
+========
+guid: 85ff03ccf77609d4ea2b9588759eede7
+>>>>>>>> feature/DataLoadTrigger:Assets/Level/Prefab/UI/Note/Selector/YesOrNo.meta
+folderAsset: yes
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

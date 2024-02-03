@@ -1,0 +1,12 @@
+fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Level/Prefab/UI/Note/Selector/Food.meta
+guid: 15cf9dd7ef20ada4eb1d823174d26ccb
+========
+guid: b24bae467836f014db62c4c58121d40c
+>>>>>>>> feature/DataLoadTrigger:Assets/Level/Prefab/UI/Note/Selector/ItemChoice.meta
+folderAsset: yes
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

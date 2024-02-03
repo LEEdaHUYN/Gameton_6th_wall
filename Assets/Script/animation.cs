@@ -4,22 +4,27 @@ using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
 
-public class animation : MonoBehaviour
+namespace dahyeon
 {
-    [SerializeField]
-    private Image fadeout;
 
-    private void Awake()
-    {
-        //fadeout.gameObject.SetActive(false);
-        fadeout.DOFade(0f, 3f);
-        StartCoroutine(fade());
-    }
 
-    IEnumerator fade()
+    public class animation : MonoBehaviour
     {
-        yield return new WaitForSeconds(3f);
-        fadeout.gameObject.SetActive(true);
-        fadeout.DOFade(1f, 3f);
+        [SerializeField]
+        private Image fadeout;
+
+        private void Awake()
+        {
+            //fadeout.gameObject.SetActive(false);
+            fadeout.DOFade(0f, 3f);
+            StartCoroutine(fade());
+        }
+
+        IEnumerator fade()
+        {
+            yield return new WaitForSeconds(3f);
+            fadeout.gameObject.SetActive(true);
+            fadeout.DOFade(1f, 3f);
+        }
     }
 }

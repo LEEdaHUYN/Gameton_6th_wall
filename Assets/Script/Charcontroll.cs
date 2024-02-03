@@ -9,191 +9,193 @@ using UnityEngine.UI;
 using DG.Tweening;
 using UnityEngine.SceneManagement;
 
-public class Charcontroll : MonoBehaviour
+namespace dahyeon
 {
-   
-    [SerializeField]
-    private float walkSpeed;
-    [SerializeField]
-    private Inventory inventory;
-  //  [SerializeField]
-    //private Camera charCamera;
-    [SerializeField]
-    private Camera exitfalseCamera;
-    [SerializeField]
-    private GameObject exitfalsepos;
-
-    public Image clockimage;
-    Clock clockscript;
-
-    private CharacterController characterController;
-    public Animator Myanimator;
-    public ParticleSystem[] Particle;
-
-    [SerializeField]
-    private float lineSize = 16f;
-    private Outline outlinescript;
-
-    private float xmove;
-    private float ymove;
-    private float xrotation;
-
-    public Vector2 LockAxis; 
-    public FloatingJoystick Joystick;
-    public float MouseSensitivity = 20f;
-    Vector3 move;
-    bool grabbtnon;
-
-    public Vector3 sponposition;
-
-    private void Awake()
+    public class Charcontroll : MonoBehaviour
     {
-        Myanimator = this.transform.GetChild(0).GetComponent<Animator>();
-    }
-    void Start()
-    {
-        characterController = GetComponent<CharacterController>();
-        clockscript = clockimage.GetComponent<Clock>();
-        exitfalseCamera.gameObject.SetActive(false);
-        Particle[0].enableEmission = false;
-        Particle[1].enableEmission = false;
-        sponposition = this.transform.position;
-    }
 
-    [System.Obsolete]
+        [SerializeField]
+        private float walkSpeed;
+        [SerializeField]
+        private Inventory inventory;
+        //  [SerializeField]
+        //private Camera charCamera;
+        [SerializeField]
+        private Camera exitfalseCamera;
+        [SerializeField]
+        private GameObject exitfalsepos;
 
-    private void FixedUpdate()
-    {
-        CharacterMove();
-        CharTurn();
+        public Image clockimage;
+        Clock clockscript;
 
-        Debug.DrawRay(transform.position, transform.forward * lineSize, Color.yellow);
-       
-    }
+        private CharacterController characterController;
+        public Animator Myanimator;
+        public ParticleSystem[] Particle;
 
-    private void Update()
-    {
-        StartCoroutine("CameraOnOff");
-    }
+        [SerializeField]
+        private float lineSize = 16f;
+        private Outline outlinescript;
 
+        private float xmove;
+        private float ymove;
+        private float xrotation;
 
-    [System.Obsolete]
-    private void CharacterMove()
-    {
-        float x = Joystick.Horizontal;
-        float z = Joystick.Vertical;
+        public Vector2 LockAxis;
+        public FloatingJoystick Joystick;
+        public float MouseSensitivity = 20f;
+        Vector3 move;
+        bool grabbtnon;
 
-        move = transform.right * x + transform.forward * z;
-        characterController.Move(move * walkSpeed * Time.deltaTime); //이동
+        public Vector3 sponposition;
 
-        if (Joystick.background.gameObject.active == true) //조이스틱으로 이동할 땐 애니메이션
+        private void Awake()
         {
-            Myanimator.SetBool("move", true);
-            Particle[0].enableEmission = true;
-            Particle[1].enableEmission = true;
+            Myanimator = this.transform.GetChild(0).GetComponent<Animator>();
         }
-        else
+        void Start()
         {
-            Myanimator.SetBool("move", false);
+            characterController = GetComponent<CharacterController>();
+            clockscript = clockimage.GetComponent<Clock>();
+            exitfalseCamera.gameObject.SetActive(false);
             Particle[0].enableEmission = false;
             Particle[1].enableEmission = false;
+            sponposition = this.transform.position;
         }
 
-    }
+        [System.Obsolete]
 
-    private void CharTurn()
-    {
-        xmove = LockAxis.x* MouseSensitivity*Time.deltaTime;
-        ymove = LockAxis.y * MouseSensitivity * Time.deltaTime;
-        this.gameObject.transform.Rotate(Vector3.up * xmove);
-    }
-    IEnumerator CameraOnOff()
-    {
-        yield return new WaitForSeconds(3f);
-
-        RaycastHit hit; //ray로 잡히는 아이템 잡기
-        if (Physics.Raycast(transform.position, transform.forward, out hit, lineSize))
+        private void FixedUpdate()
         {
-            if (hit.collider.tag == "Item")
+            CharacterMove();
+            CharTurn();
+
+            Debug.DrawRay(transform.position, transform.forward * lineSize, Color.yellow);
+
+        }
+
+        private void Update()
+        {
+            StartCoroutine("CameraOnOff");
+        }
+
+
+        [System.Obsolete]
+        private void CharacterMove()
+        {
+            float x = Joystick.Horizontal;
+            float z = Joystick.Vertical;
+
+            move = transform.right * x + transform.forward * z;
+            characterController.Move(move * walkSpeed * Time.deltaTime); //이동
+
+            if (Joystick.background.gameObject.active == true) //조이스틱으로 이동할 땐 애니메이션
             {
-                outlinescript = hit.collider.transform.GetChild(1).GetComponent<Outline>();
-                //outlinescript = hit.collider.gameObject.GetComponent<Outline>();
-                outlinescript.OutlineColor = outlinescript.OutlineColorSelected;
-                Selectobject(hit.collider);
+                Myanimator.SetBool("move", true);
+                Particle[0].enableEmission = true;
+                Particle[1].enableEmission = true;
             }
             else
             {
-                if (outlinescript != null)
-                    outlinescript.OutlineColor = Color.white;
+                Myanimator.SetBool("move", false);
+                Particle[0].enableEmission = false;
+                Particle[1].enableEmission = false;
+            }
+
+        }
+
+        private void CharTurn()
+        {
+            xmove = LockAxis.x * MouseSensitivity * Time.deltaTime;
+            ymove = LockAxis.y * MouseSensitivity * Time.deltaTime;
+            this.gameObject.transform.Rotate(Vector3.up * xmove);
+        }
+        IEnumerator CameraOnOff()
+        {
+            yield return new WaitForSeconds(3f);
+
+            RaycastHit hit; //ray로 잡히는 아이템 잡기
+            if (Physics.Raycast(transform.position, transform.forward, out hit, lineSize))
+            {
+                if (hit.collider.tag == "Item")
+                {
+                    outlinescript = hit.collider.transform.GetChild(1).GetComponent<Outline>();
+                    //outlinescript = hit.collider.gameObject.GetComponent<Outline>();
+                    outlinescript.OutlineColor = outlinescript.OutlineColorSelected;
+                    Selectobject(hit.collider);
+                }
+                else
+                {
+                    if (outlinescript != null)
+                        outlinescript.OutlineColor = Color.white;
+                }
+            }
+            Debug.Log("isend값: " + clockscript.isEnded);
+            if (clockscript.isEnded == true)//시간 끝나면 ui삭제
+            {
+                Myanimator = this.transform.GetChild(0).GetComponent<Animator>();
+                //charCamera.gameObject.SetActive(false);
+                exitfalseCamera.gameObject.SetActive(true);
             }
         }
-        Debug.Log("isend값: " + clockscript.isEnded);
-        if (clockscript.isEnded == true)//시간 끝나면 ui삭제
+
+
+
+
+        public void garbbtnclick()//grap버튼 이벤트
+        {
+            grabbtnon = true;
+            Invoke("grabbtnoff", 0.5f);
+        }
+
+        void grabbtnoff()
+        {
+            grabbtnon = false;
+        }
+
+        private void Selectobject(Collider hit)
+        {
+            if (grabbtnon == true && inventory.Items.Count < inventory.Slots.Length)
+            {
+                Myanimator.SetTrigger("grap");
+                Objectitem objectitem = hit.GetComponent<Objectitem>();
+                Item item = objectitem.iteminObjectitem;
+                inventory.AddItem(item);
+                hit.gameObject.SetActive(false);
+
+            }
+            else if (inventory.Items.Count >= inventory.Slots.Length)
+            {
+                outlinescript.OutlineColor = Color.red;
+            }
+        }
+
+
+        void OnTriggerStay(Collider other) //마지막 끝났을 때 도착하면
         {
             Myanimator = this.transform.GetChild(0).GetComponent<Animator>();
-            //charCamera.gameObject.SetActive(false);
-            exitfalseCamera.gameObject.SetActive(true);
-        }
-    }
-
-
-
-
-    public void garbbtnclick()//grap버튼 이벤트
-    {
-        grabbtnon = true;
-        Invoke("grabbtnoff", 0.5f);
-    }
-
-    void grabbtnoff()
-    {
-        grabbtnon=false;
-    }
-
-    private void Selectobject(Collider hit)
-    {
-        if (grabbtnon == true && inventory.Items.Count < inventory.Slots.Length)
-        {
-            Myanimator.SetTrigger("grap");
-            Objectitem objectitem = hit.GetComponent<Objectitem>();
-            Item item = objectitem.iteminObjectitem;
-            inventory.AddItem(item);
-            hit.gameObject.SetActive(false);
-
-        }
-        else if(inventory.Items.Count >=inventory.Slots.Length)
-        {
-            outlinescript.OutlineColor = Color.red;
-        }
-    }
-
-
-    void OnTriggerStay(Collider other) //마지막 끝났을 때 도착하면
-    {
-        Myanimator = this.transform.GetChild(0).GetComponent<Animator>();
-        if (other.gameObject.tag == "Warming")
-        {
-            if (grabbtnon == true)
+            if (other.gameObject.tag == "Warming")
             {
-                inventory.ClearSlot();
-                Particle[2].Play();
-            }
+                if (grabbtnon == true)
+                {
+                    inventory.ClearSlot();
+                    Particle[2].Play();
+                }
 
-            clockscript.sucess = clockscript.isEnded;
-            if (clockscript.sucess == true)
-            {
-                this.transform.position = exitfalsepos.transform.position;
-                Myanimator.SetTrigger("Exit");
-                transform.DOMove(Particle[2].transform.position, 3).SetEase(Ease.Linear);
-                StartCoroutine(NextScene());
+                clockscript.sucess = clockscript.isEnded;
+                if (clockscript.sucess == true)
+                {
+                    this.transform.position = exitfalsepos.transform.position;
+                    Myanimator.SetTrigger("Exit");
+                    transform.DOMove(Particle[2].transform.position, 3).SetEase(Ease.Linear);
+                    StartCoroutine(NextScene());
+                }
             }
         }
-    }
 
-    IEnumerator NextScene()
-    {   
-        yield return new WaitForSeconds(3.5f);
-        SceneManager.LoadScene("AnimationScene");
+        IEnumerator NextScene()
+        {
+            yield return new WaitForSeconds(3.5f);
+            SceneManager.LoadScene("AnimationScene");
+        }
     }
-}  
-
+}

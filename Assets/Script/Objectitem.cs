@@ -5,26 +5,29 @@ using UniRx.Triggers;
 using UnityEditor;
 using UnityEngine;
 
-public class Objectitem : MonoBehaviour
+namespace dahyeon
 {
-    [Header("아이템")]
-    public Item iteminObjectitem;
-    Vector3 position;
-    Clock clockscript;
 
-    private void Start()
+    public class Objectitem : MonoBehaviour
     {
-        //outline 꺼야 함 시간 끝나면
+        [Header("아이템")]
+        public Item iteminObjectitem;
+        Vector3 position;
+        Clock clockscript;
 
-        //position = this.transform.GetChild(0).gameObject.transform.position;
-        //iteminObjectitem.itemPrefab.transform.parent = this.transform;
-        this.UpdateAsObservable().Select(_ => iteminObjectitem != null).DistinctUntilChanged().Subscribe(_ => ItemSetting());
-    }
-    private void ItemSetting()
-    {
-        this.transform.GetChild(0).gameObject.SetActive(false);
-        Instantiate(iteminObjectitem.itemPrefab, this.transform.GetChild(0).gameObject.transform).transform.parent = this.transform;
-        iteminObjectitem.itemPrefab.transform.position = Vector3.zero;
-    }
+        private void Start()
+        {
+            //outline 꺼야 함 시간 끝나면
 
+            //position = this.transform.GetChild(0).gameObject.transform.position;
+            //iteminObjectitem.itemPrefab.transform.parent = this.transform;
+            this.UpdateAsObservable().Select(_ => iteminObjectitem != null).DistinctUntilChanged().Subscribe(_ => ItemSetting());
+        }
+        private void ItemSetting()
+        {
+            this.transform.GetChild(0).gameObject.SetActive(false);
+            Instantiate(iteminObjectitem.itemPrefab, this.transform.GetChild(0).gameObject.transform).transform.parent = this.transform;
+            iteminObjectitem.itemPrefab.transform.position = Vector3.zero;
+        }
+    }
 }

@@ -24,7 +24,13 @@ namespace dahyeon
         {
             yield return new WaitForSeconds(3f);
             fadeout.gameObject.SetActive(true);
-            fadeout.DOFade(1f, 3f);
+            
+            fadeout.DOFade(1f, 3f).OnComplete(SceneChange);
+        }
+        private void SceneChange()
+        {
+            Managers.Scene.GetCurrentScene.GetUIScene().SceneChange();
         }
     }
+    
 }

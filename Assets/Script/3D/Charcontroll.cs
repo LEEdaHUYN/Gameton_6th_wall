@@ -195,7 +195,7 @@ namespace dahyeon
         IEnumerator NextScene()
         {
             yield return new WaitForSeconds(3.5f);
-            SceneManager.LoadScene("AnimationScene");
+            Managers.Scene.GetCurrentScene.GetUIScene().SceneChange();
         }
     }
 }

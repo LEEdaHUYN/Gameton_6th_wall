@@ -4,6 +4,7 @@
     {
         TitleScene,
         ShipScene,
+        AnimationScene,
         GameScene,
     }
 

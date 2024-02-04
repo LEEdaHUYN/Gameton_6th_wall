@@ -12,7 +12,7 @@ namespace dahyeon
     {
 
         public Objectitem[] Spots;
-        public Item[] ItemsList;
+        public NomalItem[] ItemsList;
 
         List<int> numberList = new List<int>();
 

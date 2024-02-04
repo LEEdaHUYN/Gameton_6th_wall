@@ -158,8 +158,8 @@ namespace dahyeon
             {
                 Myanimator.SetTrigger("grap");
                 Objectitem objectitem = hit.GetComponent<Objectitem>();
-                Item item = objectitem.iteminObjectitem;
-                inventory.AddItem(item);
+                NomalItem nomalItem = objectitem.iteminObjectitem;
+                inventory.AddItem(nomalItem);
                 hit.gameObject.SetActive(false);
 
             }

@@ -11,7 +11,7 @@ namespace dahyeon
     public class Objectitem : MonoBehaviour
     {
         [Header("æ∆¿Ã≈€")]
-        public Item iteminObjectitem;
+        public NomalItem iteminObjectitem;
         Vector3 position;
         Clock clockscript;
 
@@ -26,8 +26,8 @@ namespace dahyeon
         private void ItemSetting()
         {
             this.transform.GetChild(0).gameObject.SetActive(false);
-            Instantiate(iteminObjectitem.itemPrefab, this.transform.GetChild(0).gameObject.transform).transform.parent = this.transform;
-            iteminObjectitem.itemPrefab.transform.position = Vector3.zero;
+            Instantiate(iteminObjectitem.GetPrefab, this.transform.GetChild(0).gameObject.transform).transform.parent = this.transform;
+            iteminObjectitem.GetPrefab.transform.position = Vector3.zero;
         }
     }
 }

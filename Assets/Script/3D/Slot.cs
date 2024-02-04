@@ -28,9 +28,9 @@ namespace dahyeon
             image.color = new Color(1, 1, 1, 0);
             hand.color = new Color(1, 1, 1, 1);
         }
-        public void ShowItemSlot(Item item)
+        public void ShowItemSlot(NomalItem item)
         {
-            image.sprite = item.itemImage;
+            image.sprite = item.GetSprite;
             image.color = new Color(1, 1, 1, 1);
             hand.color = new Color(1, 1, 1, 0);
         }

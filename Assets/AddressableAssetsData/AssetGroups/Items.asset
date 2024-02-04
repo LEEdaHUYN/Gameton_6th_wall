@@ -12,11 +12,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
   m_Name: Items
   m_EditorClassIdentifier: 
-  m_GroupName: Packed Assets
+  m_GroupName: Items
   m_Data:
     m_SerializedData: []
   m_GUID: 2733c42b5011eb24c99822f533857b04
-  m_SerializeEntries: []
+  m_SerializeEntries:
+  - m_GUID: 6d09df563a99f57448d34d29dbba5773
+    m_Address: CanFood
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - PreLoad
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 79359d6c2d7a82444870b6d6f560ed36
+    m_Address: Water
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - PreLoad
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9d21d471b4ca31c41bea2a7c60745abc
+    m_Address: antidote
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - PreLoad
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 69cf7df5ef811b7419ecea629687d5c9, type: 2}
   m_SchemaSet:

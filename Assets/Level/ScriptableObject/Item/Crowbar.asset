@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 388a9805b15e435ba8863c3437282d15, type: 3}
-  m_Name: CanFood
+  m_Script: {fileID: 11500000, guid: e296f2213c6c4ab488da599154c9331f, type: 3}
+  m_Name: Crowbar
   m_EditorClassIdentifier: 
   serializationData:
     SerializedFormat: 2
@@ -21,10 +21,6 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes: []
-  _name: CanFood
-  _sprite: {fileID: 21300000, guid: 3cb545f2bf36aee439d855bd816690e1, type: 3}
-  _prefab: {fileID: 1896720402374228, guid: baa8d2066558c9a4ebcd1853c4c3ac4e, type: 3}
-  _useEffectSetStatus:
-    _value: 1
-    _setStatusAction: 0
-    _characterStatus: 0
+  _name: Crowbar
+  _sprite: {fileID: 21300000, guid: f59d691c6ac9f7842ba59b400a8244a4, type: 3}
+  _prefab: {fileID: 6747728150793998272, guid: 02714807eb5b84f41996f2f69d615bb0, type: 3}

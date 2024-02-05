@@ -179,6 +179,36 @@ MonoBehaviour:
     m_SerializedLabels:
     - PreLoad
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 57d303d6041d4ce4885302b7947b784b
+    m_Address: Compass
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - PreLoad
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9827abdac104b8949b2b5b6f761b1a5b
+    m_Address: Clock
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - PreLoad
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b6a959d080d20254e9dd9a82b1b923b5
+    m_Address: SurgicalKit
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - PreLoad
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8be5122a2809131438e6164a16c97832
+    m_Address: Guitar
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - PreLoad
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2b916a2a841862a43bd75294c6484118
+    m_Address: Hammer
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - PreLoad
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 69cf7df5ef811b7419ecea629687d5c9, type: 2}
   m_SchemaSet:

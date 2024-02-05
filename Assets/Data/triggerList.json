@@ -1,82 +1,604 @@
 {
-      "TriggerDatas": 
-      [
+  "TriggerDatas": [
+    {
+      "id": 1,
+      "ConditionList": [
         {
-<<<<<<< HEAD
-         "id" : 1, 
-			"ConditionList": [
-				{
-					
           "type": "DayCondition",
           "startDay": 1,
           "endDay": 1
-        
-				
-			}
-			],
-			"ActionList":[
-			      {
-          "type": "ShowTextAction",
-          "text": "배가 침몰하기 전에 보트를 탔"
         }
-
-				
-			
-			]
-=======
-          "id": 1,
-          "ConditionList": [
-            {
-              "type": "DayCondition",
-              "startDay" : 1,
-              "endDay" : 1
-            }
-          ],
-          "ActionList": [
-            {
-              "type": "AddItemAction",
-              "item": {
-                "itemName":"Bandage",
-                "amount" : 1
-              }
-            },
-            {
-              "type": "AddItemAction",
-              "item": {
-                "itemName":"Ax",
-                "amount" : 1
-              }
-            },
-            {
-              "type": "AddItemAction",
-              "item": {
-                "itemName":"antidote",
-                "amount" : 1
-              }
-            },
-            {
-              "type": "RandomItemAddAction",
-              "items": [
-                {
-                  "itemName": "Ax",
-                  "amount": 1,
-                  "weight" : 10
-                },
-                {
-                  "itemName": "antidote",
-                  "amount": 1,
-                  "weight" : 20
-                },
-                {
-                  "itemName": "Bandage",
-                  "amount": 3,
-                  "weight" : 30
-                }
-              ]
-            }
-          ]
->>>>>>> bf658d29cf93c8f85effba7c0962ebd1d0f4e15d
+      ],
+      "ActionList": [
+        {
+          "type": "ShowTextAction",
+          "text": "배가 침몰하기 전에 보트를 탔지만 보트가 찢어져 있는 줄은 몰랐어..\n다행이 보트도 가라앉기전에 섬이 보여서 섬으로 들어왔지\n근데 사람 사는 섬이 아닌거 같아 \n구조를 기다려야 겠지?\n\n이 식량으로 얼마나 버틸 수 있을까? \n정안되면 섬 내부로 들어가야 될거 같아"
         }
       ]
+    },
+    {
+      "id": 9,
+      "ConditionList": [
+        {
+          "type": "DayCondition",
+          "startDay": 1,
+          "endDay": 4
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "SetRandomFlag",
+          "flag": {
+            "name": "1-4DayRandomEventFlag",
+            "value": 0
+          },
+          "minValue": 1,
+          "maxValue": 6
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "1-4DayRandomEventFlag",
+            "value": 1
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "ShowTextAction",
+          "text": "소피아가 해변을 따라서 돌다가 해변에서 조금 떨어져 있는 암초에서 뭔가 발견했다고 우리한테 말했어\n괜히 위험한 행동은 안했으면 좋겠는데.."
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "1-4DayRandomEventFlag",
+            "value": 0
+          }
+        },
+        {
+          "type": "ShowYesOrNoAction",
+          "text": "가지러 가야 될까?",
+          "yesFlag": {
+            "name": "HaveFlag",
+            "value": 1
+          },
+          "noFlag": {
+            "name": "HaveFlag",
+            "value": 2
+          }
+        }
+      ]
+    },
+    {
+      "id": 11,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "HaveFlag",
+            "value": 1
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "ShowTextAction",
+          "text": "암초에서 빛나던게 이거였나봐\n도움이 되겠는걸?"
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "HaveFlag",
+            "value": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": 12,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "HaveFlag",
+            "value": 2
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "ShowTextAction",
+          "text": "어제 소피아가 발견한게 뭐였을까?\n궁금하긴 하지만 괜한 행동 안하는게 맞았을거야\n그 대신 다들 푹쉬어서 몸 상태가 좋은거 같아"
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "HaveFlag",
+            "value": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": 13,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "1-4DayRandomEventFlag",
+            "value": 2
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "ShowTextAction",
+          "text": "사고로 겨우겨우 섬에 도착해서 그런지 다들 불안하고 초조해하고 있어\n일단 충분한 물을 섭취하고 마음을 진정시켜볼까?\n근데 언제 구조될지 모르는데 지금 물을 왕창 마셨다가 나중에 없으면 어떡하지?"
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "1-4DayRandomEventFlag",
+            "value": 0
+          }
+        },
+        {
+          "type": "ShowYesOrNoAction",
+          "text": "물을 마실까?",
+          "yesFlag": {
+            "name": "DrinkFlag",
+            "value": 1
+          },
+          "noFlag": {
+            "name": "DrinkFlag",
+            "value": 2
+          }
+        }
+      ]
+    },
+    {
+      "id": 14,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "DrinkFlag",
+            "value": 1
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "ShowTextAction",
+          "text": "충분히 휴식한거 같아!\n당분간은 모두 건강 상태를 유지하겠지?"
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "DrinkFlag",
+            "value": 0
+          }
+        }
+      ]
+    },
+
+    {
+      "id": 15,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "DrinkFlag",
+            "value": 2
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "ShowTextAction",
+          "text": "우리가 너무 안일했나봐\n심적으로 다들 지친 상태라 다들 갈증을 호소하고 있어..\n이러다가 다 죽을지도 몰라\n어서 물을 마셔야해.."
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "HaveFlag",
+            "value": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": 16,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "1-4DayRandomEventFlag",
+            "value": 3
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "ShowTextAction",
+          "text": "하염없이 구조만 기다려야할까?\n아니면 섬 내부로 이동해서 뭔가를 찾아봐야 할까?\n이 섬이 무인도가 아닐수도 있잖아?\n내부로 이동해야 한다면 들어가기 전에 배를 든든히 채우고 이동해야겠지?"
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "1-4DayRandomEventFlag",
+            "value": 0
+          }
+        },
+        {
+          "type": "ShowYesOrNoAction",
+          "text": "음식을 먹을까?",
+          "yesFlag": {
+            "name": "EatFlag",
+            "value": 1
+          },
+          "noFlag": {
+            "name": "EatFlag",
+            "value": 2
+          }
+        }
+      ]
+    },
+    {
+      "id": 17,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "EatFlag",
+            "value": 1
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "ShowTextAction",
+          "text": "이제 배도 든든해서 아프더라도 몸 상태가 빠르게 나을것 같아!\n다행이야 아직 음식이 좀 있어서"
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "EatFlag",
+            "value": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": 18,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "EatFlag",
+            "value": 2
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "ShowTextAction",
+          "text": "너무 아끼려다 다 죽겠다..\n좀 먹고 살자.."
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "EatFlag",
+            "value": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": 19,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "1-4DayRandomEventFlag",
+            "value": 4
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "ShowTextAction",
+          "text": "배를 난파시킨 폭풍이 섬까지 오는거 같아\n점점 비바람이 거세지고 있어!\n여기 있다가는 감기에 다 걸리겠는데?"
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "1-4DayRandomEventFlag",
+            "value": 0
+          }
+        },
+        {
+          "type": "ShowYesOrNoAction",
+          "text": "나무가 있는쪽으로 일단 피신할까?\n아니면 물품들이 날라가지 않게 붙잡고 있어야 할까?",
+          "yesFlag": {
+            "name": "AvoidFlag",
+            "value": 1
+          },
+          "noFlag": {
+            "name": "AvoidFlag",
+            "value": 2
+          }
+        }
+      ]
+    },
+    {
+      "id": 20,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "AvoidFlag",
+            "value": 1
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "ShowTextAction",
+          "text": "아이템을 잃어버렸습니다"
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "AvoidFlag",
+            "value": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": 21,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "AvoidFlag",
+            "value": 2
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "ShowTextAction",
+          "text": "모두 감기에 걸렸습니다."
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "AvoidFlag",
+            "value": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": 22,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "1-4DayRandomEventFlag",
+            "value": 5
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "ShowTextAction",
+          "text": "지진이 났나?\n섬 깊은 곳에서 진동이 느껴져\n그 진동으로 인해 숲 안쪾의 생물들이 기어나오고 있어!\n거미, 뱀, 개미 등 다양한데 왠지 근처에 있으면 물릴거 같은데?\n어떻게 하지?"
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "1-4DayRandomEventFlag",
+            "value": 0
+          }
+        },
+        {
+          "type": "ShowYesOrNoAction",
+          "text": "물건들 위에 올라간다",
+          "yesFlag": {
+            "name": "ClimbFlag",
+            "value": 1
+          },
+          "noFlag": {
+            "name": "ClimbFlag",
+            "value": 2
+          }
+        }
+      ]
+    },
+    {
+      "id": 23,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "ClimbFlag",
+            "value": 1
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "ShowTextAction",
+          "text": "곤충들한테 산성이 있었나봐\n우리가 밟고 선 물품들이 순식간에 녹슬었어!\n만약 곤충들이 우리 몸을 지나갔다면..\n생각만 해도 끔찍해!"
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "AvoidFlag",
+            "value": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": 24,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "AvoidFlag",
+            "value": 2
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "ShowTextAction",
+          "text": "곤충들이 스쳐지나갔는데도 엄청나게 따가워!\n뭐야 언제 이렇게 많이 물렸지??\n중독된 애들은 더 심각해보여\n독성이 있는 곤충한테 물렸나봐!"
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "AvoidFlag",
+            "value": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": 25,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "1-4DayRandomEventFlag",
+            "value": 6
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "ShowTextAction",
+          "text": "아니 아까 동료가 배고프다고 약초나 버섯 같은거 가져와서 먹으려고 하길래 그거 잘못먹으면 큰일난다고 먹지말라 했더니 이자식이 글쎄 구워먹으면 괜찮다고 신나서 구워먹더니 지금 토하고 난리났어..\n이러다가 황천길 가는거 아니야? "
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "1-4DayRandomEventFlag",
+            "value": 0
+          }
+        },
+        {
+          "type": "ShowItemChoiceAction",
+          "text": "아이템을 사용한다",
+          "itemFlagList": [
+            {
+              "itemName": "Antidotes",
+              "flag": {
+                "name": "HealFlag",
+                "value": 1
+              }
+            },
+            {
+              "itemName": "FirstAidKit",
+              "flag": {
+                "name": "FirstAidKitFlag",
+                "value": 1
+              }
+            },
+            {
+              "itemName": "Hand",
+              "flag": {
+                "name": "HandFlag",
+                "value": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 26,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "HealFlag",
+            "value": 1
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "ShowTextAction",
+          "text": "동료가 다 나았어!\n다음부턴 배고프다고 아무거나 먹지마라..."
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "HealFlag",
+            "value": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": 27,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "FirstAidKitFlag",
+            "value": 1
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "ShowTextAction",
+          "text": "동료가 다 나았어!\n당분간은 그냥 통조림만 먹겠지?"
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "FirstAidKitFlag",
+            "value": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": 28,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "HandFlag",
+            "value": 1
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "ShowTextAction",
+          "text": "이제 동료는 움직이기도 힘들어하고 있어!\n이대로 가다가 정말 큰일 나겠어\n빨리 방법을 찾아야해"
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "HandFlag",
+            "value": 0
+          }
+        }
+      ]
+    }
+  ]
 }
-        

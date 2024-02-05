@@ -8,7 +8,7 @@ namespace dahyeon
 
     public class Inventory : MonoBehaviour
     {
-        public List<NomalItem> Items;
+        public List<Item> Items = new List<Item>();
 
         [SerializeField]
         private Transform slotParent;
@@ -20,7 +20,7 @@ namespace dahyeon
         {
             Slots = slotParent.GetComponentsInChildren<Slot>();
         }
-        public void AddItem(NomalItem _item)
+        public void AddItem(Item _item)
         {
             if (Items.Count < Slots.Length)
             {
@@ -36,11 +36,17 @@ namespace dahyeon
 
         internal void ClearSlot()
         {
-            Items.Clear();
+       
             foreach (var slot in Slots)
             {
+                if (slot.item == null)
+                {
+                    continue;
+                }
+                Managers.Game.AddItem(slot.item.GetName, 1);
                 slot.ShowHandSlot();
             }
+            Items.Clear();
         }
     }
 }

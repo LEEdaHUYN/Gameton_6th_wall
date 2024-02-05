@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace dahyeon
-{
 
     public class Slot : MonoBehaviour
     {
@@ -28,8 +26,9 @@ namespace dahyeon
             image.color = new Color(1, 1, 1, 0);
             hand.color = new Color(1, 1, 1, 1);
         }
-        public void ShowItemSlot(NomalItem item)
+        public void ShowItemSlot(Item item)
         {
+            _item = item;
             image.sprite = item.GetSprite;
             image.color = new Color(1, 1, 1, 1);
             hand.color = new Color(1, 1, 1, 0);
@@ -44,4 +43,4 @@ namespace dahyeon
             }
         }
     }
-}
+

@@ -11,6 +11,11 @@ public class UI_TestScene :UI_Scene
         
         Managers.Game.SetUiCanvas(this.gameObject);
         PreResourceLoad();
+        for (int i = 0; i< Managers.Game.GetInventoryList().Count;i++)
+        {
+            Debug.Log(Managers.Game.GetInventoryList()[i].GetName);
+      
+        }
         return true;
     }
 

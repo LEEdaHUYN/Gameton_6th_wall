@@ -129,7 +129,7 @@ namespace dahyeon
                         outlinescript.OutlineColor = Color.white;
                 }
             }
-            Debug.Log("isend값: " + clockscript.isEnded);
+            //Debug.Log("isend값: " + clockscript.isEnded);
             if (clockscript.isEnded == true)//시간 끝나면 ui삭제
             {
                 Myanimator = this.transform.GetChild(0).GetComponent<Animator>();

@@ -18,14 +18,15 @@ namespace dahyeon
 
         private Transform CameraArm;
         private Transform player;
-        [SerializeField]
-        private float dist = 10.0f;
-        [SerializeField]
-        private float height = 5.0f;
-        [SerializeField]
-        private float damptrace = 20.0f;
+
         [SerializeField]
         private GameObject[] map;
+
+        float offsetX = 0.0f;
+        float offsetY = 8.8f;
+        float offsetZ = -3.3f;
+
+        Vector3 targetPos;
 
         private void Start()
         {
@@ -33,12 +34,14 @@ namespace dahyeon
             Instantiate(map[RandomNumber]);
             CameraArm = GameObject.FindWithTag("CameraArm").gameObject.transform;
             player = GameObject.FindWithTag("Player").gameObject.transform;
+            //offset = transform.position - player.transform.position;
         }
         private void FixedUpdate()
         {
+            targetPos = new Vector3(player.transform.position.x + offsetX, player.transform.position.y + offsetY, player.transform.position.z + offsetZ);
 
-            transform.position = Vector3.Lerp(transform.position, CameraArm.position - (CameraArm.forward * dist) + (Vector3.up * height), Time.deltaTime * damptrace);
-            transform.LookAt(player);
+            transform.position = targetPos;
+            //transform.rotation.y = Quaternion.Euler(player.transform.rotation.y);
         }
     }
 }

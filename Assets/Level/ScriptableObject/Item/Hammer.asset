@@ -23,4 +23,4 @@ MonoBehaviour:
     SerializationNodes: []
   _name: Hammer
   _sprite: {fileID: 21300000, guid: b1bd9520c1825e642bcfb532ec409ea6, type: 3}
-  _prefab: {fileID: 919132149155446097, guid: 8975891141231b84a9826ad1d6d170f0, type: 3}
+  _prefab: {fileID: 4565430046570743815, guid: 99f9fe96967300943b740f70c31396d5, type: 3}

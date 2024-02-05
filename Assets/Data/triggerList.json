@@ -12,22 +12,43 @@
           ],
           "ActionList": [
             {
+              "type": "AddItemAction",
+              "item": {
+                "itemName":"Bandage",
+                "amount" : 1
+              }
+            },
+            {
+              "type": "AddItemAction",
+              "item": {
+                "itemName":"Ax",
+                "amount" : 1
+              }
+            },
+            {
+              "type": "AddItemAction",
+              "item": {
+                "itemName":"antidote",
+                "amount" : 1
+              }
+            },
+            {
               "type": "RandomItemAddAction",
               "items": [
                 {
-                  "itemName": "Item1",
-                  "amount": 2,
+                  "itemName": "Ax",
+                  "amount": 1,
                   "weight" : 10
                 },
                 {
-                  "itemName": "Item2",
+                  "itemName": "antidote",
                   "amount": 1,
                   "weight" : 20
                 },
                 {
-                  "itemName": "Item5",
+                  "itemName": "Bandage",
                   "amount": 3,
-                  "weight" : 50
+                  "weight" : 30
                 }
               ]
             }

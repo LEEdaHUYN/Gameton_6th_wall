@@ -12,7 +12,7 @@ using UnityEngine.UI;
 public class GameManager
 {
     #region  Inventory
-
+    
     private Inventory _inventory = new Inventory();
 
     public List<Item> GetInventoryList()

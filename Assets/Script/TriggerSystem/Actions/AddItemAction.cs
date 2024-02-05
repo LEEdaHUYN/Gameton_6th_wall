@@ -1,10 +1,9 @@
 ﻿
     public class AddItemAction : TriggerAction
     {
-        public string itemName;
-        public float amount; 
+        public ItemInfo item;
         public override void RunAction()
         { 
-            Managers.Game.AddItem(itemName,amount);
+            Managers.Game.AddItem(item.itemName,item.amount);
         }
     }

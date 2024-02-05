@@ -12,7 +12,7 @@ using UnityEngine.UI;
 public class GameManager
 {
     #region  Inventory
-
+    
     private Inventory _inventory = new Inventory();
 
     public List<Item> GetInventoryList()
@@ -30,6 +30,14 @@ public class GameManager
         
         _inventory.AddCountableItem(item,amount);
 
+    }
+
+    public void SubItem(string itemName, float amount = 0)
+    {
+        Managers.Resource.Load<Item>(itemName, (success) =>
+        {
+            _inventory.SubItem(success,amount);
+        });
     }
 
     public void AddItem(string itemName, float amount = 0)

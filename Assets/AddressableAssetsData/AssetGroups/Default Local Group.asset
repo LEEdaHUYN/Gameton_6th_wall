@@ -59,18 +59,6 @@ MonoBehaviour:
     m_SerializedLabels:
     - PreLoad
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 6d09df563a99f57448d34d29dbba5773
-    m_Address: CanFood
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - PreLoad
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 79359d6c2d7a82444870b6d6f560ed36
-    m_Address: Water
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - PreLoad
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: c4254db4dce2e2c4bb40685970550b2c
     m_Address: YesOrNoBox
     m_ReadOnly: 0

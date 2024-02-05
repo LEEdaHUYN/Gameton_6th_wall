@@ -1,6 +1,8 @@
 {
-      "TriggerDatas": [
+      "TriggerDatas": 
+      [
         {
+<<<<<<< HEAD
          "id" : 1, 
 			"ConditionList": [
 				{
@@ -21,6 +23,60 @@
 				
 			
 			]
+=======
+          "id": 1,
+          "ConditionList": [
+            {
+              "type": "DayCondition",
+              "startDay" : 1,
+              "endDay" : 1
+            }
+          ],
+          "ActionList": [
+            {
+              "type": "AddItemAction",
+              "item": {
+                "itemName":"Bandage",
+                "amount" : 1
+              }
+            },
+            {
+              "type": "AddItemAction",
+              "item": {
+                "itemName":"Ax",
+                "amount" : 1
+              }
+            },
+            {
+              "type": "AddItemAction",
+              "item": {
+                "itemName":"antidote",
+                "amount" : 1
+              }
+            },
+            {
+              "type": "RandomItemAddAction",
+              "items": [
+                {
+                  "itemName": "Ax",
+                  "amount": 1,
+                  "weight" : 10
+                },
+                {
+                  "itemName": "antidote",
+                  "amount": 1,
+                  "weight" : 20
+                },
+                {
+                  "itemName": "Bandage",
+                  "amount": 3,
+                  "weight" : 30
+                }
+              ]
+            }
+          ]
+>>>>>>> bf658d29cf93c8f85effba7c0962ebd1d0f4e15d
         }
       ]
-    }
+}
+        

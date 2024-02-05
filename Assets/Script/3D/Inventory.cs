@@ -8,7 +8,7 @@ namespace dahyeon
 
     public class Inventory : MonoBehaviour
     {
-        public List<Item> Items;
+        public List<NomalItem> Items;
 
         [SerializeField]
         private Transform slotParent;
@@ -20,7 +20,7 @@ namespace dahyeon
         {
             Slots = slotParent.GetComponentsInChildren<Slot>();
         }
-        public void AddItem(Item _item)
+        public void AddItem(NomalItem _item)
         {
             if (Items.Count < Slots.Length)
             {

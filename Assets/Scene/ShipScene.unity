@@ -8462,9 +8462,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89e399541b4331d4c9ed086324e4e216, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dist: 5
-  height: 10
-  damptrace: 20
   map:
   - {fileID: 2932633533316671638, guid: 916846f3260f20445b25e0ecfaa8e089, type: 3}
   - {fileID: 1405036349834125808, guid: 1c343928de90b4548b35a331bee60962, type: 3}

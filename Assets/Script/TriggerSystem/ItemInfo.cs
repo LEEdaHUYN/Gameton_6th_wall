@@ -5,5 +5,5 @@
     {
         public string itemName;
         public float amount;
-        public float randomValue;
+        public int weight;
     }

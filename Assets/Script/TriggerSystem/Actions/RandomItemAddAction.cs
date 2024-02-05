@@ -1,24 +1,19 @@
 ﻿
     using System.Collections.Generic;
+    using System.Linq;
     using UnityEngine;
 
     public class RandomItemAddAction : TriggerAction
     {
-        public List<ItemInfo> items = new List<ItemInfo>();
+        public List<ItemInfo> items = new ();
         public override void RunAction()
         {
-            //50 , 25 , 25
-            float random = Random.Range(0,100);
-            ItemInfo selectItem = new ItemInfo();
-            foreach (var item in items)
-            {
-                if (random <= item.randomValue)
-                {
-                    selectItem = item;
-                    break;
-                }
-            }
-            Managers.Game.AddItem(selectItem.itemName,selectItem.amount);
-           
+            Dictionary<ItemInfo, int> weightItem = 
+                items.ToDictionary(key => key,
+                    value => value.weight);
+
+                var item = WeightedRandomizer.From(weightItem).TakeOne();
+                Managers.Game.AddItem(item.itemName,item.amount);
+
         }
     }

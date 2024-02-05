@@ -12,205 +12,27 @@
           ],
           "ActionList": [
             {
-              "type": "ShowTextAction",
-              "text" : "\n하루에만 뜨는 텍스트 입니다."
+              "type": "RandomItemAddAction",
+              "items": [
+                {
+                  "itemName": "Item1",
+                  "amount": 2,
+                  "weight" : 10
+                },
+                {
+                  "itemName": "Item2",
+                  "amount": 1,
+                  "weight" : 20
+                },
+                {
+                  "itemName": "Item5",
+                  "amount": 3,
+                  "weight" : 50
+                }
+              ]
             }
-          ]
-        },
-        {
-          "id" : 2,
-          "ConditionList" : [
-            {
-              "type" : "DayCondition",
-              "startDay" : 1,
-              "endDay": 2
-            }
-          ],
-          "ActionList" : [
-            {
-              "type":"SetRandomFlag",
-              "flag": {
-                "name": "RandomEvent",
-                "value": 0
-              },
-              "minValue" : 1,
-              "maxValue" : 2
-            }
-          ]
-        },
-        {
-          "id": 3,
-          "ConditionList": [
-            {
-              "type":"FlagCondition",
-              "flag" : {
-                "name" : "haveEvent",
-                "value" : 1
-              }
-            }
-          ],
-          "ActionList": [
-            {
-              "type": "ShowTextAction",
-              "text" : "당신은 Yes를 선택했다."
-            },
-            {
-              "type" : "SetFlag",
-              "flag": {
-                "name" : "haveEvent",
-                "value" : 0
-              }
-            }
-          ]
-        },
-        {
-          "id": 4,
-          "ConditionList": [
-            {
-              "type":"FlagCondition",
-              "flag" : {
-                "name" : "haveEvent",
-                "value" : 2
-              }
-            }
-          ],
-          "ActionList": [
-            {
-              "type": "ShowTextAction",
-              "text" : "당신은 No를 선택했다."
-            },
-            {
-              "type": "SetFlag",
-              "flag": {
-                "name": "haveEvent",
-                "value": 0
-              }
-            }
-            
-          ]
-        },
-        {
-          "id" : 5,
-          "ConditionList" : [
-            {
-              "type": "FlagCondition",
-              "flag": {
-                "name": "RandomEvent",
-                "value": 1
-              }
-            }
-          ],
-          "ActionList" : [
-            {
-              "type": "SetActiveShowCharacterStatusAction",
-              "active" : true
-            },
-            {
-              "type" : "ShowYesOrNoAction",
-              "text": "b가 해변을 따라서 돌다가 해변에서 조금 떨어져있는 \n암초에서 뭔가 발견했다고 우리한테 말했어 \n괜히 위험한행동은 안했으면 좋겠는데..가지러 가야 될까?",
-              "yesFlag": {
-                "name" : "haveEvent",
-                "value": "1"
-              },
-              "noFlag": {
-                "name" : "haveEvent",
-                "value": "2"
-              }
-            },
-            {
-              "type" : "SetFlag",
-              "flag": {
-                "name" : "RandomEvent",
-                "value" : 0
-              }
-            }
-          ]
-        },
-        {
-          "id" : 6,
-          "ConditionList" : [
-            {
-              "type": "FlagCondition",
-              "flag": {
-                "name": "RandomEvent",
-                "value": 2
-              }
-            }
-          ],
-          "ActionList" : [
-            {
-              "type": "SetActiveShowCharacterStatusAction",
-              "active" : true
-            },
-            {
-              "type" : "ShowYesOrNoAction",
-              "text": "사고로 겨우겨우 섬에 도착해서 그런지 다들 불안하고 초조해하고 있어\n일단 충분한 물을 섭취하고 마음을 진정시켜볼까? 근데 언제 구조될지 모르는데\n지금 물을 왕창 마셨다가 나중에 없으면 어떡하지?",
-              "yesFlag": {
-                "name" : "waterEatFlag",
-                "value": "1"
-              },
-              "noFlag": {
-                "name" : "waterEatFlag",
-                "value": "2"
-              }
-            },
-            {
-              "type" : "SetFlag",
-              "flag": {
-                "name" : "RandomEvent",
-                "value" : 0
-              }
-            }
-          ]
-        },
-        {
-          "id": 7,
-          "ConditionList" : [
-            {
-              "type":"FlagCondition",
-              "flag": {
-                "name" : "waterEatFlag",
-                "value": 1
-              }
-            }
-          ],
-          "ActionList": [{
-            "type": "ShowTextAction",
-            "text": "물을 마셨습니다."
-          },
-            {
-              "type" : "SetFlag",
-              "flag": {
-                "name" : "waterEatFlag",
-                "value" : 0
-              }
-            }
-          ]
-        },
-        {
-          "id": 8,
-          "ConditionList" : [
-            {
-              "type":"FlagCondition",
-              "flag": {
-                "name" : "waterEatFlag",
-                "value": 2
-              }
-            }
-          ],
-          "ActionList": [{
-            "type": "ShowTextAction",
-            "text": "물을 마시지 않았습니다."
-          },
-            {
-              "type" : "SetFlag",
-              "flag": {
-                "name" : "waterEatFlag",
-                "value" : 0
-              }
-            }
-            
           ]
         }
       ]
 }
+        

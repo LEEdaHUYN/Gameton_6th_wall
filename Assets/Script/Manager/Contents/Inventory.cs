@@ -15,6 +15,26 @@ public class Inventory
         GetItemList[Item.GetName] = Item;
     }
 
+    public void SubItem(Item item,float amount)
+    {
+        if (!GetItemList.ContainsKey(item.GetName))
+        {
+            return;
+        }
+
+        var currentItem = GetItemList[item.GetName];
+        float calculateAmount = currentItem.GetAmount() - amount;
+        if (calculateAmount <= 0)
+        {
+            GetItemList.Remove(currentItem.GetName);
+        }
+        else
+        {
+            GetItemList[item.GetName].SetAmount(calculateAmount);
+        }
+      
+    }
+
     public void AddCountableItem(Item item, float amount)
     {
         if (!GetItemList.ContainsKey(item.GetName))

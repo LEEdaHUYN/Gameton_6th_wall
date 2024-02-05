@@ -32,6 +32,14 @@ public class GameManager
 
     }
 
+    public void SubItem(string itemName, float amount = 0)
+    {
+        Managers.Resource.Load<Item>(itemName, (success) =>
+        {
+            _inventory.SubItem(success,amount);
+        });
+    }
+
     public void AddItem(string itemName, float amount = 0)
     {
         Managers.Resource.Load<Item>(itemName, (success) =>

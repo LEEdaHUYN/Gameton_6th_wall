@@ -78,8 +78,6 @@ namespace dahyeon
             StartCoroutine("CameraOnOff");
         }
 
-
-        [System.Obsolete]
         private void CharacterMove()
         {
             float x = Joystick.Horizontal;
@@ -125,11 +123,10 @@ namespace dahyeon
                 }
                 else
                 {
-                    if (outlinescript != null)
+                    if(outlinescript != null)
                         outlinescript.OutlineColor = Color.white;
-                }
+                } 
             }
-            //Debug.Log("isend값: " + clockscript.isEnded);
             if (clockscript.isEnded == true)//시간 끝나면 ui삭제
             {
                 Myanimator = this.transform.GetChild(0).GetComponent<Animator>();
@@ -185,10 +182,12 @@ namespace dahyeon
                 if (clockscript.sucess == true)
                 {
                     this.transform.position = exitfalsepos.transform.position;
+                    this.transform.LookAt(Particle[2].transform.position, Vector3.up);
                     Myanimator.SetTrigger("Exit");
-                    transform.DOMove(Particle[2].transform.position, 3).SetEase(Ease.Linear);
+                    transform.DOMove(Particle[2].transform.position, 2).SetEase(Ease.Linear);
                     StartCoroutine(NextScene());
                 }
+               
             }
         }
 
@@ -197,5 +196,6 @@ namespace dahyeon
             yield return new WaitForSeconds(3.5f);
             Managers.Scene.GetCurrentScene.GetUIScene().SceneChange();
         }
+
     }
 }

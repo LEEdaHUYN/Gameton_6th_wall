@@ -46,6 +46,7 @@ namespace dahyeon
 
         public void OnPointerDown(PointerEventData eventData)
         {
+            
             Pressed = true;
             PointerId = eventData.pointerId;
             PointerOld = eventData.position;

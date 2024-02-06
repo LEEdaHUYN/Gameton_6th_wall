@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 26935774034559197}
   serializedVersion: 2
   m_LocalRotation: {x: -0.6154344, y: 0.34819606, z: 0.34819603, w: 0.6154344}
-  m_LocalPosition: {x: -0.0044, y: 0.0512, z: -0.0387}
+  m_LocalPosition: {x: -0.0044, y: -0.0076, z: -0.0387}
   m_LocalScale: {x: 100, y: 100, z: 100}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -110,7 +110,7 @@ Transform:
   m_GameObject: {fileID: 4784511672033004222}
   serializedVersion: 2
   m_LocalRotation: {x: -0.5572077, y: -0.43533844, z: -0.43533838, w: 0.5572078}
-  m_LocalPosition: {x: -0.0025, y: 0.0512, z: -0.01}
+  m_LocalPosition: {x: -0.0025, y: -0.0076, z: -0.01}
   m_LocalScale: {x: 99.99999, y: 99.99999, z: 100}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -175,6 +175,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6496618328612984020}
+  - component: {fileID: 22828746147111949}
   m_Layer: 0
   m_Name: Battery
   m_TagString: Untagged
@@ -192,7 +193,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 50, y: 50, z: 50}
+  m_LocalScale: {x: 23, y: 23, z: 23}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 3888048131794243379}
@@ -200,6 +201,25 @@ Transform:
   - {fileID: 2056522144989066207}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &22828746147111949
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6589859902623828231}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  OutlineColorSelected: {r: 0, g: 1, b: 0, a: 1}
+  outlineWidth: 5
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1 &7491328074647185922
 GameObject:
   m_ObjectHideFlags: 0
@@ -227,7 +247,7 @@ Transform:
   m_GameObject: {fileID: 7491328074647185922}
   serializedVersion: 2
   m_LocalRotation: {x: 0.18896604, y: 0.68138975, z: 0.6813896, w: -0.18896608}
-  m_LocalPosition: {x: 0, y: 0.0512, z: -0.024999999}
+  m_LocalPosition: {x: 0, y: -0.0076, z: -0.024999999}
   m_LocalScale: {x: 99.99999, y: 99.99999, z: 100}
   m_ConstrainProportionsScale: 1
   m_Children: []

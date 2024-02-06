@@ -28,7 +28,7 @@ namespace dahyeon
 
             for (int i = 0; i < numberList.Count; i++)
             {
-                Debug.Log("현재 랜덤숫자 : " + numberList[i]);
+                //Debug.Log("현재 랜덤숫자 : " + numberList[i]);
                 Spots[i].iteminObjectitem = ItemsList[numberList[i]];
             }
         }

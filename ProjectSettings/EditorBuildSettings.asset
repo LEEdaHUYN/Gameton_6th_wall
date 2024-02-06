@@ -9,6 +9,12 @@ EditorBuildSettings:
     path: Assets/Scene/TitleScene.unity
     guid: 5c81041a12b56784cb6f65f6e2817061
   - enabled: 1
+    path: Assets/Scene/Test.unity
+    guid: 475c8ab07eccb3d45803e3375c4a1486
+  - enabled: 1
+    path: Assets/Scene/LoadingScene.unity
+    guid: a144ab85bd68829459cb93fd956dbd26
+  - enabled: 1
     path: Assets/Scene/ShipScene.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   - enabled: 1

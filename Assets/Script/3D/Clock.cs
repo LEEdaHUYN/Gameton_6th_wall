@@ -83,6 +83,7 @@ namespace dahyeon
             {
                 charcontrollscript.Myanimator.SetTrigger("exitfalse");
                 fadeout.DOFade(1f, 2.2f);
+                StartCoroutine(GoToTitleScene());
             }
             else if (sucess == true)
             {
@@ -91,6 +92,12 @@ namespace dahyeon
                 fadeout.DOFade(1f, 2.2f);
             }
 
+        }
+
+        IEnumerator GoToTitleScene()
+        {
+            yield return new WaitForSeconds(3.5f);
+            Managers.Scene.GetCurrentScene.GetUIScene().SceneChange();
         }
 
 

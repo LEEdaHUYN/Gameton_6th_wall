@@ -11,14 +11,12 @@
       ],
       "ActionList": [
         {
-          "type": "ShowTextAction",
-          "text": "이제 동료는 움직이기도 힘들어하고 있어!\n이대로 가다가 정말 큰일 나겠어\n빨리 방법을 찾아야해"
-        },
-        {
-          "type": "ShowPictureAndTextAction",
-          "text": "Test test test !"
+          "type": "RandomCharacterSetStatusAction",
+          "calculate": "Mod",
+          "status" : "Hungry",
+          "value" : 10,
+          "count": 2
         }
-        
       ]
     }
   ]

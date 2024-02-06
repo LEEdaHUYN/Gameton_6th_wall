@@ -15,7 +15,7 @@
                     items.Where(item => Managers.Game.GetInventoryList().All(invItem => invItem.GetName == item.itemName)).
                         ToList();
 
-                if (availableItems.Count != 0)
+                if (availableItems.Count == 0)
                 {
                     Managers.Game.RemoveItem("CanFood");
                     Managers.Game.RemoveItem("Water");

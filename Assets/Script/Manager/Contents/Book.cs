@@ -160,8 +160,8 @@ public class Book : MonoBehaviour
         
         if (_selectors.ContainsKey("PictureAndText"))
         {
-            Selector itemChoiceBox = _selectors["PictureAndText"];
-            itemChoiceBox.gameObject.SetActive(false);
+            Selector pictureAndTextBox = _selectors["PictureAndText"];
+            pictureAndTextBox.gameObject.SetActive(false);
             _selectors.Remove("PictureAndText");
         }
     }

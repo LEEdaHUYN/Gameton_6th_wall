@@ -32,6 +32,10 @@ public class GameManager
 
     }
 
+    public void RemoveItem(string itemName)
+    {
+        _inventory.RemoveItem(itemName);
+    }
     public void SubItem(string itemName, float amount = 0)
     {
         Managers.Resource.Load<Item>(itemName, (success) =>

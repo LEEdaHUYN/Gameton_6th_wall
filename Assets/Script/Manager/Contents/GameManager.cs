@@ -92,13 +92,19 @@ public class GameManager
         FadeInOut();
         _triggerEvent.StartTrigger(()=>
         {
-            if (_activeShowStatus)
-            {
-                ShowCharacterText();
-            }
+            CharacterNextDayStatus();
+            ShowCharacterText();
             EndNote();
         });
 
+    }
+
+    private void CharacterNextDayStatus()
+    {
+        foreach (var character in Characters)
+        {
+            character.NextDayStatus();
+        }
     }
 
     #endregion
@@ -147,20 +153,19 @@ public class GameManager
             character.DisplayStatusText.Clear();
         }
     }
+
     private void ShowCharacterText()
     {
         InitCharacterText();
         CheckStatus();
-        foreach (var character in Characters)
+        if (_activeShowStatus)
         {
-            if (!character.GetIsAlive)
+            foreach (var character in Characters)
             {
-                continue;
-            }
-
-            foreach (var statusText in character.StatusText)
-            {
-                AddTextNote(statusText);
+                foreach (var statusText in character.StatusText)
+                {
+                    AddTextNote(statusText);
+                }
             }
         }
     }
@@ -182,9 +187,9 @@ public class GameManager
                 {
                     character.StatusText.Add(character.GetName() + noteText);
                     character.DisplayStatusText.Add(displayText);
-                    
+
                 }
-             
+                
             }
         }
     }
@@ -355,4 +360,8 @@ public class GameManager
     
     #endregion
 
+    public void DeathCharacter(Character character)
+    {
+        Characters.Remove(character);
+    }
 }

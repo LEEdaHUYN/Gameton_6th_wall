@@ -282,15 +282,16 @@ public class GameManager
         _book.AddYesOrNoBox(text,yesFlag,noFlag);
     }
 
-    #endregion
-
-
-
     public void ShowItemChoice(string text, List<ItemFlag> itemFlagList)
     {
         _book.AddItemChoiceBox(text, itemFlagList);
     }
 
+    public void ShowPictureAndText(string text, Sprite sprite = null)
+    {
+        _book.AddPictureTextBox(text,sprite);
+    }
+    #endregion
     #region FadeInOut
 
     private UI_Fade _fadeUI;

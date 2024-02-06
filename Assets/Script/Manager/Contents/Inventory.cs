@@ -64,5 +64,15 @@ public class Inventory
 
         return GetItemList[name];
     }
-    
+
+    public void RemoveItem(string itemName)
+    {
+        if (!GetItemList.ContainsKey(itemName))
+        {
+            return;
+        }
+
+        GetItemList.Remove(itemName);
+
+    }
 }

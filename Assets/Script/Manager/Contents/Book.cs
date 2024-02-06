@@ -24,6 +24,7 @@ public class Book : MonoBehaviour
 
     private YesOrNoSelector _yesOrNoSelector;
     private ItemChoiceSelector _itemChoiceSelector;
+    private PictureAndText _pictureAndText;
     private void Awake()
     {
         Managers.Resource.Load<GameObject>("FoodBox", (success) =>
@@ -43,9 +44,23 @@ public class Book : MonoBehaviour
             _itemChoiceSelector = selectorGameObject;
             _itemChoiceSelector.gameObject.SetActive(false);
         });
+        
+        Managers.Resource.Load<GameObject>("PictureAndText", (success) =>
+        {
+            var selectorGameObject = Object.Instantiate(success, this.transform.parent).GetComponent<PictureAndText>();
+            _pictureAndText = selectorGameObject;
+            _pictureAndText.gameObject.SetActive(false);
+        });
        
     }
 
+
+    public void AddPictureTextBox(string text, Sprite sprite)
+    {
+        _pictureAndText.gameObject.SetActive(true);
+        _selectors.Add("PictureAndText",_pictureAndText);
+        _pictureAndText.Init(text,sprite);
+    }
     public void AddYesOrNoBox(string text,Flag yesFlag, Flag noFlag)
     { 
         _yesOrNoSelector.gameObject.SetActive(true);
@@ -141,6 +156,13 @@ public class Book : MonoBehaviour
             Selector itemChoiceBox = _selectors["ItemChoiceBox"];
             itemChoiceBox.gameObject.SetActive(false);
             _selectors.Remove("ItemChoiceBox");
+        }
+        
+        if (_selectors.ContainsKey("PictureAndText"))
+        {
+            Selector pictureAndTextBox = _selectors["PictureAndText"];
+            pictureAndTextBox.gameObject.SetActive(false);
+            _selectors.Remove("PictureAndText");
         }
     }
     public void NextPage()

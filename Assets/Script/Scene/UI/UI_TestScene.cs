@@ -47,6 +47,7 @@ public class UI_TestScene :UI_Scene
                         Managers.Game.AddCharacter(character);
                     
                     });   
+                    
                 }
                 //
                 // CanFood eatItemFood = new CanFood();

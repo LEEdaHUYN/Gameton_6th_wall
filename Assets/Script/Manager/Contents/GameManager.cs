@@ -91,6 +91,12 @@ public class GameManager
         CurrentDay++;
         FadeInOut();
         CharacterNextDayStatus();
+        if (isGameOver)
+        {
+            AddTextNote("Game Over....");
+            EndNote();
+            return;
+        }
         _triggerEvent.StartTrigger(()=>
         {
             ShowCharacterText();
@@ -111,12 +117,20 @@ public class GameManager
 
         foreach (var character in deathCharacter)
         {
+            if (character.isPlayer)
+            {
+                isGameOver = true;
+            }
             DeathCharacter(character);
         }
     }
 
     #endregion
 
+
+    public bool isGameOver { get; private set; } = false;
+
+    
     #region Book
 
     private Book _book;
@@ -371,5 +385,14 @@ public class GameManager
     public void DeathCharacter(Character character)
     {
         Characters.Remove(character);
+    }
+
+    public void GameOver()
+    {
+        isGameOver = false;
+        _inventory.ClearInventory();
+        Characters.Clear();
+        FlagList.Clear();
+        Managers.Scene.LoadScene(Define.Scene.TitleScene);
     }
 }

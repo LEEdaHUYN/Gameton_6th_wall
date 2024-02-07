@@ -14,6 +14,7 @@ public class Character : SerializedMonoBehaviour
     public Sprite GetCharacterSprite => _sprite;
     private Sprite _portrait;
 
+    public bool isPlayer = false;
     public Sprite GetCharacterPortrait => _portrait;
     public void SetPortrait(Sprite sprite) => _portrait = sprite;
     
@@ -81,6 +82,7 @@ public class Character : SerializedMonoBehaviour
 
     private void DeathEvent()
     {
+        if (_isAlive == false) return;
         _isAlive = false;
         Managers.Game.AddTextNote($"{_name} 이(가) 사망하였습니다.");
     }

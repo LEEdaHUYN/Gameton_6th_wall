@@ -5,6 +5,10 @@ public class Inventory
 {
     public Dictionary<string, Item> GetItemList { get; private set; } = new Dictionary<string, Item>();
 
+    public void ClearInventory()
+    {
+        GetItemList.Clear();
+    }
     public void AddItem(Item Item)
     {
         if (!GetItemList.ContainsKey(Item.GetName))

@@ -112,7 +112,7 @@ public class Book : MonoBehaviour
                     ShowSelector(currentSelector.gameObject, result); // 역순으로 계산
                 }
                 
-            });
+            }); 
        Managers.Game.CloseUiCanvas();
     }
 
@@ -167,7 +167,13 @@ public class Book : MonoBehaviour
     }
     public void NextPage()
     {
-      
+
+        if (Managers.Game.isGameOver)
+        {
+            Managers.Game.GameOver();
+            return;
+        }
+        
         if (rightSide.pageToDisplay >= _maxPageCount) //rightSide.textInfo.pageCount 이미 마지막페이지라면 넘어가지 않음
         {
             ClearText();

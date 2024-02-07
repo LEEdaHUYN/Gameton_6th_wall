@@ -90,9 +90,9 @@ public class GameManager
       
         CurrentDay++;
         FadeInOut();
+        CharacterNextDayStatus();
         _triggerEvent.StartTrigger(()=>
         {
-            CharacterNextDayStatus();
             ShowCharacterText();
             EndNote();
         });
@@ -101,9 +101,17 @@ public class GameManager
 
     private void CharacterNextDayStatus()
     {
+        var deathCharacter = new List<Character>();
         foreach (var character in Characters)
         {
             character.NextDayStatus();
+            if(character.GetIsAlive == false)
+                deathCharacter.Add(character);
+        }
+
+        foreach (var character in deathCharacter)
+        {
+            DeathCharacter(character);
         }
     }
 

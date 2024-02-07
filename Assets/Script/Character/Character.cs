@@ -54,13 +54,13 @@ public class Character : SerializedMonoBehaviour
             case Define.CharacterStatus.Hungry or Define.CharacterStatus.Thirsty:
             {
                 if (_status[status] >= 5)
-                    _isAlive = false;
+                    DeathEvent();
                 break;
             }
             default:
             {
                 if (_status[status] >= 7)
-                    _isAlive = false;
+                    DeathEvent();
                 break;
             }
         }
@@ -77,14 +77,13 @@ public class Character : SerializedMonoBehaviour
             _status.Add(status,0);
         }
 
-        this.ObserveEveryValueChanged(_ => _isAlive)
-            .Where(x => x == false).Subscribe(_ =>
-            {
-                Managers.Game.AddTextNote($"{_name} 이가 사망하였습니다.");
-                Managers.Game.DeathCharacter(this);    
-            });
     }
 
+    private void DeathEvent()
+    {
+        _isAlive = false;
+        Managers.Game.AddTextNote($"{_name} 이(가) 사망하였습니다.");
+    }
     public string SetName(string value) => this._name = value;
     
 

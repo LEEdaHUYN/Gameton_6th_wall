@@ -4,6 +4,6 @@
         public int aliveCount;
         public override bool CheckCondition()
         {
-            return Managers.Game.Characters.Count <= aliveCount;
+            return Managers.Game.Characters.Count >= aliveCount;
         }
     }

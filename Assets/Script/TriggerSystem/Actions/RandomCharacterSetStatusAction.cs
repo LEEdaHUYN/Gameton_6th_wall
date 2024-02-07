@@ -12,7 +12,7 @@
         public override void RunAction()
         {
             var charaters = Managers.Game.Characters.ToList();
-            for (int i = 0; i < count || i < charaters.Count; i++)
+            for (int i = 0; i < count && i < charaters.Count; i++)
             {
                 var randIdx = Random.Range(0, charaters.Count);
                 Managers.Game.CharacterStatusCalculate(charaters[randIdx],status,calculate,value);

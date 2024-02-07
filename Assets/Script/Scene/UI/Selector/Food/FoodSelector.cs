@@ -56,13 +56,23 @@ using Object = UnityEngine.Object;
         public override void ShowCurrentDay()
         {
             //TODO 현재 식량 , 현재 캐릭터 상태값 표기.
-            foreach (var info in _characterList.Values)
+            var deathCharacter = new List<Character>();
+            foreach (var info in _characterList)
             {
-                info.SetEatToggle(FoodType.CanFood, false);
-                info.SetEatToggle(FoodType.Water, false);
+                if (!Managers.Game.Characters.Contains(info.Key))
+                {
+                    info.Value.gameObject.SetActive(false);
+                    deathCharacter.Add(info.Key);
+                }
+                info.Value.SetEatToggle(FoodType.CanFood, false);
+                info.Value.SetEatToggle(FoodType.Water, false);
             }
            ShowDisplayStatusText();
            CurrentFoodBarUpdate();
+           foreach (var character in deathCharacter)
+           {
+               _characterList.Remove(character);
+           }
         }
 
         private void CurrentFoodBarUpdate()

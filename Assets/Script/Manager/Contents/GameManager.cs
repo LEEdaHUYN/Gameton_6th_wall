@@ -90,19 +90,47 @@ public class GameManager
       
         CurrentDay++;
         FadeInOut();
+        CharacterNextDayStatus();
+        if (isGameOver)
+        {
+            AddTextNote("Game Over....");
+            EndNote();
+            return;
+        }
         _triggerEvent.StartTrigger(()=>
         {
-            if (_activeShowStatus)
-            {
-                ShowCharacterText();
-            }
+            ShowCharacterText();
             EndNote();
         });
 
     }
 
+    private void CharacterNextDayStatus()
+    {
+        var deathCharacter = new List<Character>();
+        foreach (var character in Characters)
+        {
+            character.NextDayStatus();
+            if(character.GetIsAlive == false)
+                deathCharacter.Add(character);
+        }
+
+        foreach (var character in deathCharacter)
+        {
+            if (character.isPlayer)
+            {
+                isGameOver = true;
+            }
+            DeathCharacter(character);
+        }
+    }
+
     #endregion
 
+
+    public bool isGameOver { get; private set; } = false;
+
+    
     #region Book
 
     private Book _book;
@@ -147,20 +175,19 @@ public class GameManager
             character.DisplayStatusText.Clear();
         }
     }
+
     private void ShowCharacterText()
     {
         InitCharacterText();
         CheckStatus();
-        foreach (var character in Characters)
+        if (_activeShowStatus)
         {
-            if (!character.GetIsAlive)
+            foreach (var character in Characters)
             {
-                continue;
-            }
-
-            foreach (var statusText in character.StatusText)
-            {
-                AddTextNote(statusText);
+                foreach (var statusText in character.StatusText)
+                {
+                    AddTextNote(statusText);
+                }
             }
         }
     }
@@ -182,9 +209,9 @@ public class GameManager
                 {
                     character.StatusText.Add(character.GetName() + noteText);
                     character.DisplayStatusText.Add(displayText);
-                    
+
                 }
-             
+                
             }
         }
     }
@@ -355,4 +382,17 @@ public class GameManager
     
     #endregion
 
+    public void DeathCharacter(Character character)
+    {
+        Characters.Remove(character);
+    }
+
+    public void GameOver()
+    {
+        isGameOver = false;
+        _inventory.ClearInventory();
+        Characters.Clear();
+        FlagList.Clear();
+        Managers.Scene.LoadScene(Define.Scene.TitleScene);
+    }
 }

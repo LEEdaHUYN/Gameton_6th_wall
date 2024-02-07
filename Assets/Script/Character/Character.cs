@@ -33,6 +33,19 @@ public class Character : SerializedMonoBehaviour
     {
         foreach (Define.CharacterStatus status in Enum.GetValues(typeof(Define.CharacterStatus)))
         {
+            if (status == Define.CharacterStatus.Panic && _status[status] >= 7)
+            {
+                Managers.Game.AllCharacterStatusCalculate(status,Define.SetStatusAction.Add,1);
+                continue;
+            }
+            //피곤함 줄여줌
+            if (status == Define.CharacterStatus.Tiredness && _status[status] != 0)
+            {
+                _status[status]--;
+                continue;
+            }
+            
+            //질병 스텟 올려줌
             if (status != Define.CharacterStatus.Hungry && status != Define.CharacterStatus.Thirsty)
             {
                 if (_status[status] == 0)
@@ -40,6 +53,7 @@ public class Character : SerializedMonoBehaviour
                     continue;
                 }
             }
+            //배고픔 & 목마름 수치 증가
             _status[status]++;
             DeathCheck(status);
 
@@ -51,6 +65,8 @@ public class Character : SerializedMonoBehaviour
         switch (status)
         {
             case Define.CharacterStatus.Panic:
+                return;
+            case Define.CharacterStatus.Tiredness:
                 return;
             case Define.CharacterStatus.Hungry or Define.CharacterStatus.Thirsty:
             {

@@ -33,7 +33,7 @@
 
         private void CreateItemBox(Item item,Flag flagAction,bool haveItem)
         {
-            Managers.Resource.Load<GameObject>("ItemBox", (success) =>
+            Managers.Resource.Load<GameObject>("itemList", (success) =>
             {
                var itemBox = Object.Instantiate(success, _content.transform).GetComponent<ItemBox>();
                itemBox.Init(item.GetSprite,_nextPageAction,flagAction,haveItem);

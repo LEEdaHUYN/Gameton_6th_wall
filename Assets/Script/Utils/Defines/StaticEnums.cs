@@ -3,6 +3,7 @@
     public enum Scene
     {
         TitleScene,
+        LoadingScene,
         ShipScene,
         AnimationScene,
         GameScene,

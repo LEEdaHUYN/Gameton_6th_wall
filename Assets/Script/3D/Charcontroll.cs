@@ -41,8 +41,9 @@ namespace dahyeon
         private float xrotation;
 
         public Vector2 LockAxis;
-        public FloatingJoystick Joystick;
-        public float MouseSensitivity = 20f;
+        public FloatingJoystick Joystick_left;
+        public FloatingJoystick Joystick_right;
+       float MouseSensitivity = 80f;
         Vector3 move;
         bool grabbtnon;
 
@@ -62,7 +63,6 @@ namespace dahyeon
             sponposition = this.transform.position;
         }
 
-        [System.Obsolete]
 
         private void FixedUpdate()
         {
@@ -80,13 +80,13 @@ namespace dahyeon
 
         private void CharacterMove()
         {
-            float x = Joystick.Horizontal;
-            float z = Joystick.Vertical;
+            float x = Joystick_left.Horizontal;
+            float z = Joystick_left.Vertical;
 
             move = transform.right * x + transform.forward * z;
             characterController.Move(move * walkSpeed * Time.deltaTime); //이동
 
-            if (Joystick.background.gameObject.active == true) //조이스틱으로 이동할 땐 애니메이션
+            if (Joystick_left.background.gameObject.active == true) //조이스틱으로 이동할 땐 애니메이션
             {
                 Myanimator.SetBool("move", true);
                 Particle[0].enableEmission = true;
@@ -103,8 +103,11 @@ namespace dahyeon
 
         private void CharTurn()
         {
-            xmove = LockAxis.x * MouseSensitivity * Time.deltaTime;
-            ymove = LockAxis.y * MouseSensitivity * Time.deltaTime;
+            float x = Joystick_right.Horizontal;
+            float z = Joystick_right.Vertical;
+
+            xmove = x * MouseSensitivity * Time.deltaTime;
+            //ymove = y * MouseSensitivity * Time.deltaTime;
             this.gameObject.transform.Rotate(Vector3.up * xmove);
         }
         IEnumerator CameraOnOff()
@@ -130,7 +133,6 @@ namespace dahyeon
             if (clockscript.isEnded == true)//시간 끝나면 ui삭제
             {
                 Myanimator = this.transform.GetChild(0).GetComponent<Animator>();
-                //charCamera.gameObject.SetActive(false);
                 exitfalseCamera.gameObject.SetActive(true);
             }
         }

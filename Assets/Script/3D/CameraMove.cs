@@ -37,16 +37,14 @@ namespace dahyeon
             Instantiate(map[RandomNumber]);
             CameraArm = GameObject.FindWithTag("CameraArm").gameObject.transform;
             player = GameObject.FindWithTag("CameraLookat").gameObject.transform;
-            //offset = transform.position - player.transform.position;
+
         }
         private void FixedUpdate()
         {
-            //targetPos = new Vector3(player.transform.position.x + offsetX, player.transform.position.y + offsetY, player.transform.position.z + offsetZ);
-            //transform.position = targetPos; 
+
             transform.position = CameraArm.transform.position;
             transform.LookAt(player);
             
-            //this.transform.eulerAngles = new Vector3(50,player.transform.rotation.y * 3f, 0);
         }
     }
 }

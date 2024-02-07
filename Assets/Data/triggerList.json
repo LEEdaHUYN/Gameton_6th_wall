@@ -1,6 +1,18 @@
 {"TriggerDatas": [
   {
-
+    "id": 1,
+    "ConditionList": [{
+      "type": "DayCondition",
+      "startDay": 2,
+      "endDay": 2
+    }],
+    "ActionList": [      {
+      "type": "ShowTextAction",
+      "text": "ddd"
+    }
+    ]
+  }
+  ,{
     "id" : 16,
     "ConditionList" : [
       {
@@ -10,9 +22,20 @@
       }
     ],
     "ActionList": [
+
       {
-        "type": "ShowTextAction",
-        "text": ""
+        "type": "AddItemAction",
+        "item": {
+          "itemName" :"CanFood",
+          "amount": 2
+        }
+      },
+      {
+        "type": "AddItemAction",
+        "item": {
+          "itemName" :"Water",
+          "amount": 1
+        }
       },
       {
         "type": "ShowItemChoiceAction",
@@ -40,13 +63,6 @@
             }
           }
         ]
-      },
-      {
-        "type" : "SetFlag",
-        "flag": {
-          "name" : "1-4DayRandomEventFlag",
-          "value" : 0
-        }
       }
     ]
   }

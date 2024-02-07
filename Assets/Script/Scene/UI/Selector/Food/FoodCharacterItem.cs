@@ -18,8 +18,6 @@ public class FoodCharacterItem : SerializedMonoBehaviour
 
         private List<IFoodDistribute> _foodBarDistributes = new List<IFoodDistribute>();
 
-        private bool _isAlive = true;
-
         [SerializeField] private Dictionary<FoodType, Toggle> _foodToggles = new Dictionary<FoodType, Toggle>();
         
         //TODO Item Image Show
@@ -66,7 +64,7 @@ public class FoodCharacterItem : SerializedMonoBehaviour
         {  
             var foodDistribute = _foodBarDistributes.Find(x => x.GetFoodType() == foodType);
 
-            if (foodDistribute.CheckFoodDistribute())
+            if (foodDistribute.CheckFoodDistribute() || toggle.isOn == false)
             {
                 if (toggle.isOn)
                 {
@@ -99,8 +97,4 @@ public class FoodCharacterItem : SerializedMonoBehaviour
             _personInfo.SetPersonInfo(sprite);
         }
 
-        public void SetAliveCharacterInfo(bool isAlive)
-        {
-            _isAlive = isAlive;
-        }
     }

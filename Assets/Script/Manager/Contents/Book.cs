@@ -96,7 +96,6 @@ public class Book : MonoBehaviour
         this.UpdateAsObservable()
             .Select(_ => leftSide.textInfo.pageCount)
             .DistinctUntilChanged()
-            .Where(x => x != 0)
             .Subscribe(x =>
             {
                 UpdatePagination();

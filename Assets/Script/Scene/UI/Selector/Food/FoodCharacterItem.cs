@@ -64,7 +64,7 @@ public class FoodCharacterItem : SerializedMonoBehaviour
         {  
             var foodDistribute = _foodBarDistributes.Find(x => x.GetFoodType() == foodType);
 
-            if (foodDistribute.CheckFoodDistribute() || toggle.isOn == false)
+            if (foodDistribute.CheckFoodDistribute())
             {
                 if (toggle.isOn)
                 {

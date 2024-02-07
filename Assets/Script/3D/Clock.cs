@@ -97,7 +97,7 @@ namespace dahyeon
         IEnumerator GoToTitleScene()
         {
             yield return new WaitForSeconds(3.5f);
-            Managers.Scene.GetCurrentScene.GetUIScene().SceneChange();
+            Managers.Game.GameOver();
         }
 
 

@@ -1,23 +1,54 @@
-{
-  "TriggerDatas": [
-    {
-      "id": 1,
-      "ConditionList": [
-        {
-          "type": "DayCondition",
-          "startDay": 1,
-          "endDay": 1
+{"TriggerDatas": [
+  {
+
+    "id" : 16,
+    "ConditionList" : [
+      {
+        "type": "DayCondition",
+        "startDay" :1,
+        "endDay":1
+      }
+    ],
+    "ActionList": [
+      {
+        "type": "ShowTextAction",
+        "text": ""
+      },
+      {
+        "type": "ShowItemChoiceAction",
+        "text" : "\n부랴부랴 배에서 최소한의 물품만 가지고 탈출했는데 배가 침몰한 쪽에서 상자가 천천히 떠밀려 오고 있네??\n제발 생존에 필요한 물품이면 좋겠다!\n상자를 뭐로 열어야 할까?",
+        "itemFlagList": [
+          {
+            "itemName" : "Knife",
+            "flag" : {
+              "name": "KnifeFlag",
+              "value": 1
+            }
+          },
+          {
+            "itemName" : "Hammer",
+            "flag" : {
+              "name": "HammerFlag",
+              "value": 1
+            }
+          },
+          {
+            "itemName" : "Crowbar",
+            "flag" : {
+              "name": "CrowbarFlag",
+              "value": 1
+            }
+          }
+        ]
+      },
+      {
+        "type" : "SetFlag",
+        "flag": {
+          "name" : "1-4DayRandomEventFlag",
+          "value" : 0
         }
-      ],
-      "ActionList": [
-        {
-          "type": "RandomCharacterSetStatusAction",
-          "calculate": "Mod",
-          "status" : "Hungry",
-          "value" : 10,
-          "count": 2
-        }
-      ]
-    }
-  ]
+      }
+    ]
+  }
+]
 }

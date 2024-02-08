@@ -34,23 +34,26 @@ public class GameManager
 
     public void RemoveItem(string itemName)
     {
-        AddTextNote($"{itemName} 을 전부 잃어버렸어!");
-        _inventory.RemoveItem(itemName);
+        Managers.Resource.Load<Item>(itemName, (success) =>
+        {
+            AddTextNote($"-{success.GetItemIconIndex} {itemName} 을 전부 잃어버렸어!");
+            _inventory.RemoveItem(itemName);
+        });
     }
     public void SubItem(string itemName, float amount = 0)
     {
         Managers.Resource.Load<Item>(itemName, (success) =>
         {
-            AddTextNote($"{itemName}을 {amount}만큼 잃었어!");
+            AddTextNote($"-{success.GetItemIconIndex} {itemName}을 {amount}만큼 잃었어!");
             _inventory.SubItem(success,amount);
         });
     }
 
-    public void AddItem(string itemName, float amount = 0)
+    public void AddItem(string itemName, float amount = 0, bool isShowText = true)
     {
         Managers.Resource.Load<Item>(itemName, (success) =>
         {
-            Debug.Log(itemName);
+            AddTextNote($"+{success.GetItemIconIndex} {itemName} 을 얻었어!");
             _inventory.AddCountableItem(success,amount);
         });
     }

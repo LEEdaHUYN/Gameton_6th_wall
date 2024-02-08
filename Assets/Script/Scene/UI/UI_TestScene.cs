@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class UI_TestScene :UI_Scene
 {
+
+
     public override bool Init()
     {
         if (base.Init() == false)

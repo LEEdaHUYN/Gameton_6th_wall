@@ -42,6 +42,8 @@ public class UI_Title : UI_Scene
             Debug.Log(key);
             if (totalCount == count)
             {
+                //Managers.Sound.PlayBGM("TitleBGM");
+           
                 isPreload = true;
             }
         });

@@ -9,4 +9,8 @@ public class ShipScene : BaseScene
         return Utils.GetOrAddComponent<UI_ShipScene>(this.gameObject);
     }
 
+    private void Start()
+    {
+        Managers.Sound.PlayBGM("ShipBGM");
+    }
 }

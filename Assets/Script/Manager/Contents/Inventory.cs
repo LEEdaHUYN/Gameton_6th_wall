@@ -11,7 +11,7 @@ public class Inventory
     }
     public void AddItem(Item Item)
     {
-        if (!GetItemList.ContainsKey(Item.GetName))
+        if ( Item == null||!GetItemList.ContainsKey(Item.GetName))
         {
             GetItemList.Add(Item.GetName,Item);
             return;
@@ -21,7 +21,7 @@ public class Inventory
 
     public void SubItem(Item item,float amount)
     {
-        if (!GetItemList.ContainsKey(item.GetName))
+        if ( item == null||!GetItemList.ContainsKey(item.GetName))
         {
             return;
         }
@@ -52,7 +52,7 @@ public class Inventory
 
     public void UseCountableItem(Item item, float amount,Character character)
     {
-        if (!GetItemList.ContainsKey(item.GetName))
+        if ( item == null||!GetItemList.ContainsKey(item.GetName))
         {
             return;
         }

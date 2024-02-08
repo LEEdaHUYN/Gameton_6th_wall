@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -387,12 +387,14 @@ MonoBehaviour:
     \uD68C\uBCF5\uD569\uB2C8\uB2E4"
   - "\uC0C1\uD0DC\uC774\uC0C1\uC774 \uAC78\uB9AC\uC9C0 \uC54A\uC544\uB3C4 \uC544\uC774\uD15C\uC774
     \uC120\uD0DD \uAC00\uB2A5\uD558\uB2C8 \uC8FC\uC758\uD558\uC138\uC694!"
-  - "4\uD300\uC5D0\uB294 3\uB300500\uC744 \uCE58\uB294 \uD0B9\uAC13\uC81C\uB124\uB7F4
-    \uAC1C\uBC1C\uC790\uAC00 \uC788\uC2B5\uB2C8\uB2E4. \uADF8\uB140\uB97C \uC808\uB300
-    \uD654\uB098\uAC8C \uB9CC\uB4E4\uC9C0 \uB9C8\uC138\uC694!"
+  - "4\uD300\uC5D0\uB294 3\uB300500\uC744 \uCE58\uB294 \uD0B9\uAC13 \uAC1C\uBC1C\uC790\uAC00
+    \uC788\uC2B5\uB2C8\uB2E4. \uADF8\uB140\uB97C \uC808\uB300 \uD654\uB098\uAC8C
+    \uB9CC\uB4E4\uC9C0 \uB9C8\uC138\uC694!"
   - "4\uD300\uC5D0\uB294 \uC0AC\uC2E4 \uD604\uC9C1 \uC0AC\uC5C5 PM\uC774 \uD55C \uBA85
     \uB354 \uC788\uC2B5\uB2C8\uB2E4!"
-  - "4\uD300\uC5D0\uB294 \uC601\uD63C\uC758 "
+  - "4\uD300\uC5D0\uB294 \uC608\uBE44 \uAC1C\uBC1C\uC790\uAC00 \uB418\uC2E4 \uC601\uD63C\uC758
+    \uB2E8\uC9DD\uC774 \uC788\uC2B5\uB2C8\uB2E4. \uC774\uB458\uC758 \uC774\uC9C1\uC744
+    \uC751\uC6D0\uD574\uC8FC\uC138\uC694!"
 --- !u!1 &1296564101
 GameObject:
   m_ObjectHideFlags: 0
@@ -441,8 +443,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:

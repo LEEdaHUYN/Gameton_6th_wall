@@ -61,6 +61,11 @@ public class UI_TestScene :UI_Scene
                     Managers.Data.Init();
                     Managers.Game.NextDay();
                 });
+
+                Managers.Resource.Load<Item>("Hand", (success) =>
+                {
+                    Managers.Game.GetInventoryList().Add(success);
+                });
             }
             
         });

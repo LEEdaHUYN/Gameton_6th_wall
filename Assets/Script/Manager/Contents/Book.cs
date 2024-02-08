@@ -87,17 +87,22 @@ public class Book : MonoBehaviour
         rightSide.pageToDisplay = leftSide.pageToDisplay + 1;
         UpdatePagination();
     }
+    bool _isEndText = false;
     
     public void EndText() 
     {
         leftSide.text = content;
         rightSide.text = content;
+        _isEndText = true;
 
         this.UpdateAsObservable()
             .Select(_ => leftSide.textInfo.pageCount)
             .DistinctUntilChanged()
             .Subscribe(x =>
             {
+                if (_isEndText == false)
+                    return;
+                
                 UpdatePagination();
                 int pageCount = _selectors.Count;
                 foreach (var selector in _selectors.Select((value, index) => new { Value = value, Index = index }))
@@ -110,7 +115,9 @@ public class Book : MonoBehaviour
                     int result = _maxPageCount - 2 * reversedIndex - (_maxPageCount >= 2 && _maxPageCount % 2 == 0 ? 1 : 0);
                     ShowSelector(currentSelector.gameObject, result); // 역순으로 계산
                 }
-                
+
+                _isEndText = false;
+
             }); 
        Managers.Game.CloseUiCanvas();
     }

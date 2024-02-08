@@ -22,6 +22,10 @@ public abstract class Item : SerializedScriptableObject
   protected GameObject _prefab;
   public GameObject GetPrefab => _prefab;
 
+  [SerializeField] private int _itemIconIndex;
+
+  public int GetItemIconIndex => _itemIconIndex;
+
   #endregion
 
   protected UseEffect useEffect;

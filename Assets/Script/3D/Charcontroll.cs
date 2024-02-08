@@ -84,9 +84,9 @@ namespace dahyeon
             float z = Joystick_left.Vertical;
 
             move = transform.right * x + transform.forward * z;
-            characterController.Move(move * walkSpeed * Time.deltaTime); //ÀÌµ¿
+            characterController.Move(move * walkSpeed * Time.deltaTime); //ì´ë™
 
-            if (Joystick_left.background.gameObject.active == true) //Á¶ÀÌ½ºÆ½À¸·Î ÀÌµ¿ÇÒ ¶© ¾Ö´Ï¸ŞÀÌ¼Ç
+            if (Joystick_left.background.gameObject.active == true) //ì¡°ì´ìŠ¤í‹±ìœ¼ë¡œ ì´ë™í•  ë• ì• ë‹ˆë©”ì´ì…˜
             {
                 Myanimator.SetBool("move", true);
                 Particle[0].enableEmission = true;
@@ -114,7 +114,7 @@ namespace dahyeon
         {
             yield return new WaitForSeconds(3f);
 
-            RaycastHit hit; //ray·Î ÀâÈ÷´Â ¾ÆÀÌÅÛ Àâ±â
+            RaycastHit hit; //rayë¡œ ì¡íˆëŠ” ì•„ì´í…œ ì¡ê¸°
             if (Physics.Raycast(transform.position, transform.forward, out hit, lineSize))
             {
                 if (hit.collider.tag == "Item")
@@ -130,7 +130,7 @@ namespace dahyeon
                         outlinescript.OutlineColor = Color.white;
                 } 
             }
-            if (clockscript.isEnded == true)//½Ã°£ ³¡³ª¸é ui»èÁ¦
+            if (clockscript.isEnded == true)//ì‹œê°„ ëë‚˜ë©´ uiì‚­ì œ
             {
                 Myanimator = this.transform.GetChild(0).GetComponent<Animator>();
                 exitfalseCamera.gameObject.SetActive(true);
@@ -140,7 +140,7 @@ namespace dahyeon
 
 
 
-        public void garbbtnclick()//grap¹öÆ° ÀÌº¥Æ®
+        public void garbbtnclick()//grapë²„íŠ¼ ì´ë²¤íŠ¸
         {
             grabbtnon = true;
             Invoke("grabbtnoff", 0.5f);
@@ -169,7 +169,7 @@ namespace dahyeon
         }
 
 
-        void OnTriggerStay(Collider other) //¸¶Áö¸· ³¡³µÀ» ¶§ µµÂøÇÏ¸é
+        void OnTriggerStay(Collider other) //ë§ˆì§€ë§‰ ëë‚¬ì„ ë•Œ ë„ì°©í•˜ë©´
         {
             Myanimator = this.transform.GetChild(0).GetComponent<Animator>();
             if (other.gameObject.tag == "Warming")

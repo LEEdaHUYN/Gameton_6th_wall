@@ -18,7 +18,12 @@ public class UI_TestScene :UI_Scene
             Debug.Log(Managers.Game.GetInventoryList()[i].GetName);
       
         }
+        
         return true;
+    }
+    private void Start()
+    {
+        Managers.Sound.PlayBGM("MainBGM");
     }
 
     #region ResourceLoad

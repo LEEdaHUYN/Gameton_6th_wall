@@ -53,7 +53,10 @@ public class GameManager
     {
         Managers.Resource.Load<Item>(itemName, (success) =>
         {
-            AddTextNote($"+{success.GetItemIconIndex} {itemName} 을 얻었어!");
+            if (isShowText)
+            {
+                AddTextNote($"+{success.GetItemIconIndex} {itemName} 을 얻었어!");
+            }
             _inventory.AddCountableItem(success,amount);
         });
     }

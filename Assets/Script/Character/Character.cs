@@ -101,6 +101,7 @@ public class Character : SerializedMonoBehaviour
         if (_isAlive == false) return;
         _isAlive = false;
         Managers.Game.AddTextNote($"{_name} 이(가) 사망하였습니다.");
+        Destroy(this.gameObject);
     }
     public string SetName(string value) => this._name = value;
     

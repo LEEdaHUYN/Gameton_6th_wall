@@ -24,7 +24,7 @@ MonoBehaviour:
   _name: Bandage
   _sprite: {fileID: 21300000, guid: c1a33f861fbb9e047856055cb15aa673, type: 3}
   _prefab: {fileID: 5442798751416656645, guid: 3dd369f1cb59c544fac138eee3bc70be, type: 3}
-  _itemIconIndex: 0
+  _itemIconIndex: 3
   _useEffectSetStatus:
     _value: 2
     _setStatusAction: 2

@@ -45,6 +45,7 @@ using Object = UnityEngine.Object;
             var waterClickAmount = _foodBars.First(x => x.GetFoodType == FoodType.Water).GetClickAmount;
             foreach (var infoItem in _characterList)
             {
+                infoItem.Value.isNextDay = true;
                 if(infoItem.Value.GetIsEat(FoodType.CanFood))
                     Managers.Game.UseItem(canFood,infoItem.Key,canFoodClickAmount);
                 if(infoItem.Value.GetIsEat(FoodType.Water))

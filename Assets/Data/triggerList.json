@@ -64,21 +64,6 @@
       }
     ],
     "ActionList": [
-
-      {
-        "type": "AddItemAction",
-        "item": {
-          "itemName" :"CanFood",
-          "amount": 2
-        }
-      },
-      {
-        "type": "AddItemAction",
-        "item": {
-          "itemName" :"Water",
-          "amount": 1
-        }
-      },
       {
         "type": "ShowItemChoiceAction",
         "text" : "\n부랴부랴 배에서 최소한의 물품만 가지고 탈출했는데 배가 침몰한 쪽에서 상자가 천천히 떠밀려 오고 있네??\n제발 생존에 필요한 물품이면 좋겠다!\n상자를 뭐로 열어야 할까?",

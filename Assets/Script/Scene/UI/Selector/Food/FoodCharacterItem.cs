@@ -60,27 +60,40 @@ public class FoodCharacterItem : SerializedMonoBehaviour
             var foodDistribute = _foodBarDistributes.Find(x => x.GetFoodType() == foodType);
             foodDistribute.AddCharacterInfo(toggle);
         }
+
+        public bool isNextDay = false;
+        public bool isChoice = false;
         private void OnFoodToggle(FoodType foodType, Toggle toggle)
-        {  
+        {
+            if (isNextDay)
+            {
+                isNextDay = false;
+                isChoice = false;
+                return;
+            }
+               
             var foodDistribute = _foodBarDistributes.Find(x => x.GetFoodType() == foodType);
 
+         
             if (foodDistribute.CheckFoodDistribute())
             {
                 if (toggle.isOn)
                 {
                     foodDistribute.CharacterFoodDistribute();
-                }
-                else 
-                {
-                    foodDistribute.CharacterFoodBackIn();
+                    isChoice = true;
+                    return;
                 }
             }
-            else
+            
+            if (!toggle.isOn && isChoice)
             {
-                toggle.isOn = false;
+                foodDistribute.CharacterFoodBackIn();
+                isChoice = false;
+                return;
             }
-      
-
+          
+            toggle.isOn = false;
+            
         }
         public void SetFoodBarDistribute(List<IFoodDistribute> foodDistributes)
         {

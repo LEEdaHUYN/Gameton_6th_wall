@@ -24,3 +24,4 @@ MonoBehaviour:
   _name: Ax
   _sprite: {fileID: 21300000, guid: 8951215414e55fc4ebd8433227e3b519, type: 3}
   _prefab: {fileID: 4388694800061094808, guid: 822bcce9cc62cc843925c7bc50a045af, type: 3}
+  _itemIconIndex: 1

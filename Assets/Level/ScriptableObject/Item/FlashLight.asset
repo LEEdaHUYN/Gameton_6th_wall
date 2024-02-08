@@ -24,3 +24,4 @@ MonoBehaviour:
   _name: FlashLight
   _sprite: {fileID: 21300000, guid: 74f23b86bcbb9314b8724910b8474c7d, type: 3}
   _prefab: {fileID: 50067328891192815, guid: c816a19644abdcf409ff5105a54912d8, type: 3}
+  _itemIconIndex: 34

@@ -24,3 +24,4 @@ MonoBehaviour:
   _name: WarFood
   _sprite: {fileID: 21300000, guid: 905c34a2adcb8dc4f806190e856969ca, type: 3}
   _prefab: {fileID: 3084316633979401953, guid: aba85a6ea2a5dea4faeaad22a46066b7, type: 3}
+  _itemIconIndex: 36

@@ -36,6 +36,9 @@ public class GameManager
     {
         Managers.Resource.Load<Item>(itemName, (success) =>
         {
+            if (success.GetAmount() == 0)
+                return;
+            
             AddTextNote($"-{success.GetItemIconIndex} {itemName} 을 전부 잃어버렸어!");
             _inventory.RemoveItem(itemName);
         });

@@ -68,7 +68,7 @@ public class UI_TestScene :UI_Scene
 
                 Managers.Resource.Load<Item>("Hand", (success) =>
                 {
-                    Managers.Game.AddItem(success);
+                    Managers.Game.AddItem(success,1);
                 });
             }
             

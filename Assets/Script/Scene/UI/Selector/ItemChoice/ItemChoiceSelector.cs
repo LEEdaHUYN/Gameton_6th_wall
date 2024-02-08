@@ -50,7 +50,6 @@
         {
             foreach (var itemBox in _itemBoxList)
             {
-                Debug.Log("eeee");
                 Destroy(itemBox.gameObject);
             }
             _itemBoxList.Clear();

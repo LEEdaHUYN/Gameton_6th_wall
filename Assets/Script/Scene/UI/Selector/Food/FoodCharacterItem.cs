@@ -22,8 +22,15 @@ public class FoodCharacterItem : SerializedMonoBehaviour
         [SerializeField] private Dictionary<FoodType, Toggle> _foodToggles = new Dictionary<FoodType, Toggle>();
 
         [SerializeField] private Button _handButton;
-        
-        private Item _selectItem = null;
+
+        public Item GetSelectItem { get; private set; }
+
+        public void InitSelectItem()
+        {
+            _selectCountIdx = Hand;
+            GetSelectItem = _inventoryList[Hand];
+            _handButton.GetComponent<Image>().sprite = GetSelectItem.GetSprite;
+        }
 
         private List<Item> _inventoryList;
         public void SetInventory(List<Item> inventory)
@@ -37,7 +44,7 @@ public class FoodCharacterItem : SerializedMonoBehaviour
         private void OnSelectItem()
         {
             if(_selectCountIdx != Hand)
-                _selectItem.SetAmount(_selectItem.GetAmount() + 1);
+                GetSelectItem.SetAmount(GetSelectItem.GetAmount() + 1);
 
             while (true)
             {
@@ -50,14 +57,14 @@ public class FoodCharacterItem : SerializedMonoBehaviour
 
                 if (_inventoryList[_selectCountIdx].GetAmount() > 0)
                 {
-                    _selectItem = _inventoryList[_selectCountIdx];
+                    GetSelectItem = _inventoryList[_selectCountIdx];
                     _inventoryList[_selectCountIdx].SetAmount(_inventoryList[_selectCountIdx].GetAmount() - 1);
                     break;
                 }
             }
             
-            _selectItem = _inventoryList[_selectCountIdx];
-            _handButton.GetComponent<Image>().sprite = _selectItem.GetSprite;
+            GetSelectItem = _inventoryList[_selectCountIdx];
+            _handButton.GetComponent<Image>().sprite = GetSelectItem.GetSprite;
 
 
         }

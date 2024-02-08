@@ -42,7 +42,11 @@ using Object = UnityEngine.Object;
         {
             foreach (var character in _characterList)
             {
-               
+                Item useItem = character.Value.GetSelectItem;
+                if ( useItem == null||useItem.GetName == "Hand")
+                    continue;
+                Managers.Game.UseItem(useItem,character.Key,1);
+                character.Value.InitSelectItem();
             }
         }
 

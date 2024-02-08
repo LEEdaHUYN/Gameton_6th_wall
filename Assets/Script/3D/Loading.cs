@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
@@ -10,9 +11,15 @@ public class Loading : MonoBehaviour
     [SerializeField]
     Image progressBar;
 
+    [SerializeField] private TMP_Text tooltipText;
+    
+    [SerializeField]
+    private List<string> _tooltipMessage;
     private void Start()
     {
         StartCoroutine(LoadScene());
+        int randomToolTipIdx = Random.Range(0, _tooltipMessage.Count);
+        tooltipText.text = $"Tip : {_tooltipMessage[randomToolTipIdx]}";
     }
     
     IEnumerator LoadScene()

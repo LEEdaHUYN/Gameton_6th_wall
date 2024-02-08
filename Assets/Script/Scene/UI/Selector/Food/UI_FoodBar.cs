@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using Script.Scene.UI.Selector.Food;
 using Sirenix.OdinInspector;
@@ -36,6 +37,8 @@ using UnityEngine.UI;
 
         private Button _button;
 
+        [SerializeField] private TMP_Text _amountText;
+        
         #endregion
 
 
@@ -70,6 +73,9 @@ using UnityEngine.UI;
         private void ShowAmountUpdate()
         {
             _image.fillAmount = _currentFood / MaxValue;
+            float showTextCalculate = _currentFood-6;
+            string showText = showTextCalculate > 0 ? "+" + Math.Round(showTextCalculate,1) : "";
+            _amountText.text = showText;
         }
 
 

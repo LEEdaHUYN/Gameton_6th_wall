@@ -102,7 +102,7 @@ MonoBehaviour:
     - PreLoad
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 9417f8685491f9b40a174cd5f9339724
-    m_Address: 3.srpite
+    m_Address: 3.sprite
     m_ReadOnly: 0
     m_SerializedLabels:
     - PreLoad

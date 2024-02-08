@@ -390,6 +390,7 @@ public class GameManager
     public void GameOver()
     {
         isGameOver = false;
+        CurrentDay = 0;
         _inventory.ClearInventory();
         Characters.Clear();
         FlagList.Clear();

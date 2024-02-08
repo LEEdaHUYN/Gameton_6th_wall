@@ -174,7 +174,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2951583185180409759}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1aa08ab6e0800fa44ae55d278d1423e3, type: 3}
   m_Name: 
@@ -1330,6 +1330,7 @@ MonoBehaviour:
   _itemName: CanFood
   _clickAmount: 0.3
   _foodType: 0
+  _amountText: {fileID: 7711042309655335393}
 --- !u!1 &7711042309582455801
 GameObject:
   m_ObjectHideFlags: 0
@@ -2990,6 +2991,7 @@ MonoBehaviour:
   _itemName: Water
   _clickAmount: 0.3
   _foodType: 1
+  _amountText: {fileID: 7711042309247402170}
 --- !u!1001 &7873922568888781342
 PrefabInstance:
   m_ObjectHideFlags: 0

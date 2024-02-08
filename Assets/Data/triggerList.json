@@ -15,7 +15,7 @@
         "type": "AddItemAction",
         "item": {
           "itemName" :"CanFood",
-          "amount": 2
+          "amount": 7
         }
       },
       {

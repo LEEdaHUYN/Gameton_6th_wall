@@ -11,7 +11,7 @@ namespace dahyeon
     public class Objectitem : MonoBehaviour
     {
         [Header("æ∆¿Ã≈€")]
-        public NomalItem iteminObjectitem;
+        public Item iteminObjectitem;
         Vector3 position;
         Clock clockscript;
 

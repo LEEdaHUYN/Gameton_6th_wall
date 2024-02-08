@@ -24,3 +24,4 @@ MonoBehaviour:
   _name: Bodyboard
   _sprite: {fileID: 21300000, guid: 6525815cf0f01ea4f8bb82a4707d4bea, type: 3}
   _prefab: {fileID: 1391264739003710, guid: 2f7e3a30e7afcbe4ab5f0d09711efb3d, type: 3}
+  _itemIconIndex: 38

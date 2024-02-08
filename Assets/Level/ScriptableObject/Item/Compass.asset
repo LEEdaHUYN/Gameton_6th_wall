@@ -24,3 +24,4 @@ MonoBehaviour:
   _name: Compass
   _sprite: {fileID: 21300000, guid: ea558de0bbc3e1a4297ede484d762b19, type: 3}
   _prefab: {fileID: 2570618751872969728, guid: 247935783ce8b304e8910fa6aa397b55, type: 3}
+  _itemIconIndex: 8

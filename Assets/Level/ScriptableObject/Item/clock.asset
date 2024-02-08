@@ -24,3 +24,4 @@ MonoBehaviour:
   _name: Clock
   _sprite: {fileID: 21300000, guid: 2a79a7b1d3e0dde4f8d92b788bc9f21d, type: 3}
   _prefab: {fileID: 6547459116292454204, guid: d0e934b1d52dec14a90555a086361c1e, type: 3}
+  _itemIconIndex: 7

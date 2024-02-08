@@ -24,3 +24,4 @@ MonoBehaviour:
   _name: Scope
   _sprite: {fileID: 21300000, guid: d3f6a015b5355104bbe6657a5a77ee08, type: 3}
   _prefab: {fileID: 7441506027379636919, guid: 92409155adc3b82448fabdd2560468f9, type: 3}
+  _itemIconIndex: 2

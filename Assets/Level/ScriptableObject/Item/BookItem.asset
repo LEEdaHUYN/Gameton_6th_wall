@@ -24,3 +24,4 @@ MonoBehaviour:
   _name: BookItem
   _sprite: {fileID: 21300000, guid: dc6e8ee20517fb647b93567925751b76, type: 3}
   _prefab: {fileID: 100000, guid: cba00f75539bc564fabb9136fccfac6c, type: 3}
+  _itemIconIndex: 24

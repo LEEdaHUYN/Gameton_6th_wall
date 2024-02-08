@@ -24,3 +24,4 @@ MonoBehaviour:
   _name: Signal
   _sprite: {fileID: 21300000, guid: 0c8f3eafc54281542a2787286240055b, type: 3}
   _prefab: {fileID: 2788555298905311758, guid: 8ab6b43181e1dd24494b5d3a49b72106, type: 3}
+  _itemIconIndex: 39

@@ -24,6 +24,7 @@ using Object = UnityEngine.Object;
                     var infoItem = Object.Instantiate(success, _characterContent.transform).GetComponent<FoodCharacterItem>();
                     infoItem.SetFoodBarDistribute(_foodBars.Select(bar => (IFoodDistribute)bar).ToList());
                     infoItem.SetPersonInfoSprite(character.GetCharacterPortrait);
+                    infoItem.SetInventory(_itemInventory);
                      _characterList.Add(character,infoItem);
                 });
             }
@@ -34,7 +35,15 @@ using Object = UnityEngine.Object;
         {
                //TODO FOOD 정산, Character Status 정산 ect ..
                 FoodAdjustment();
+                ItemAdjustment();
+        }
 
+        private void ItemAdjustment()
+        {
+            foreach (var character in _characterList)
+            {
+               
+            }
         }
 
         private void FoodAdjustment()
@@ -70,10 +79,31 @@ using Object = UnityEngine.Object;
             }
            ShowDisplayStatusText();
            CurrentFoodBarUpdate();
+           CurrentInventory();
            foreach (var character in deathCharacter)
            {
                _characterList.Remove(character);
            }
+        }
+
+        private List<Item> _itemInventory = new List<Item>();
+        private void CurrentInventory()
+        {
+            _itemInventory.Clear();
+            Managers.Resource.Load<Item>("Hand", (success) =>
+            {
+                _itemInventory.Add(success);
+                foreach (var item in  Managers.Game.GetInventoryList().OfType<EatItem>())
+                {
+                    if (item.GetName is "CanFood" or "Water")
+                    {
+                        continue;
+                    }
+                
+                    _itemInventory.Add(item);
+                }
+            });
+         
         }
 
         private void CurrentFoodBarUpdate()

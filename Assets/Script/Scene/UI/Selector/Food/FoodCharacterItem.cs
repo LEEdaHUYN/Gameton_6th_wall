@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Script.Scene.UI.Selector.Food;
 using Sirenix.OdinInspector;
 using TMPro;
@@ -19,6 +20,47 @@ public class FoodCharacterItem : SerializedMonoBehaviour
         private List<IFoodDistribute> _foodBarDistributes = new List<IFoodDistribute>();
 
         [SerializeField] private Dictionary<FoodType, Toggle> _foodToggles = new Dictionary<FoodType, Toggle>();
+
+        [SerializeField] private Button _handButton;
+        
+        private Item _selectItem = null;
+
+        private List<Item> _inventoryList;
+        public void SetInventory(List<Item> inventory)
+        {
+            _inventoryList = inventory;
+        }
+
+
+        private const int Hand = 0;
+        private int _selectCountIdx = Hand;
+        private void OnSelectItem()
+        {
+            if(_selectCountIdx != Hand)
+                _selectItem.SetAmount(_selectItem.GetAmount() + 1);
+
+            while (true)
+            {
+                _selectCountIdx++;
+                if (_selectCountIdx >= _inventoryList.Count)
+                {
+                    _selectCountIdx = Hand;
+                    break;
+                }
+
+                if (_inventoryList[_selectCountIdx].GetAmount() > 0)
+                {
+                    _selectItem = _inventoryList[_selectCountIdx];
+                    _inventoryList[_selectCountIdx].SetAmount(_inventoryList[_selectCountIdx].GetAmount() - 1);
+                    break;
+                }
+            }
+            
+            _selectItem = _inventoryList[_selectCountIdx];
+            _handButton.GetComponent<Image>().sprite = _selectItem.GetSprite;
+
+
+        }
         
         //TODO Item Image Show
         //isEatFood isEatWater
@@ -52,6 +94,7 @@ public class FoodCharacterItem : SerializedMonoBehaviour
                     });
             }
           
+            _handButton.onClick.AddListener(OnSelectItem);
         }
 
 

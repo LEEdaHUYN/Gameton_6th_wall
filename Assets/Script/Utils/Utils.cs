@@ -74,7 +74,14 @@ public static class Utils
             calculateValue = value;
             break;
             case Define.SetStatusAction.Sub:
-            calculateValue -= value;
+                if (calculateValue > 0)
+                {
+                    calculateValue -= value;
+                }
+                else
+                {
+                    calculateValue = 0;
+                }
             break;
         }
         character.SetStatusValue(status, calculateValue);

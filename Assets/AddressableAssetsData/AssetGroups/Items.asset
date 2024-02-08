@@ -29,7 +29,7 @@ MonoBehaviour:
     m_SerializedLabels:
     - PreLoad
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 9d21d471b4ca31c41bea2a7c60745abc
+  - m_GUID: edeb97ca1cd5ae047ab951c8dde292a6
     m_Address: antidote
     m_ReadOnly: 0
     m_SerializedLabels:
@@ -205,6 +205,12 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 2b916a2a841862a43bd75294c6484118
     m_Address: Hammer
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - PreLoad
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5763e8ffee3677e4e859565f9ef28c40
+    m_Address: Hand
     m_ReadOnly: 0
     m_SerializedLabels:
     - PreLoad

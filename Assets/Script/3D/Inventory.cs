@@ -30,7 +30,7 @@ namespace dahyeon
             }
             else
             {
-                print("½½·ÔÀÌ °¡µæ Â÷ ÀÖ½À´Ï´Ù.");
+                print("ìŠ¬ë¡¯ì´ ê°€ë“ ì°¨ ìˆìŠµë‹ˆë‹¤.");
             }
         }
 
@@ -43,7 +43,7 @@ namespace dahyeon
                 {
                     continue;
                 }
-                Managers.Game.AddItem(slot.item.GetName, 1);
+                Managers.Game.AddItem(slot.item.GetName, 1,false);
                 slot.ShowHandSlot();
             }
             Items.Clear();

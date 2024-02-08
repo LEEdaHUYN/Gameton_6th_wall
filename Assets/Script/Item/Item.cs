@@ -24,7 +24,7 @@ public abstract class Item : SerializedScriptableObject
 
   [SerializeField] private int _itemIconIndex;
 
-  public int GetItemIconIndex => _itemIconIndex;
+  public string GetItemIconIndex =>  "<sprite="+ _itemIconIndex + ">";
 
   #endregion
 

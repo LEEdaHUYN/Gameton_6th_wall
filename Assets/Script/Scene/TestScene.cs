@@ -5,4 +5,9 @@ public class TestScene : BaseScene
     {
         return Utils.GetOrAddComponent<UI_TestScene>(this.gameObject);
     }
+
+    private void Start()
+    {
+        Managers.Sound.PlayBGM("MainBGM");
+    }
 }

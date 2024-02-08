@@ -45,11 +45,17 @@ public class Managers : Singleton<Managers>
         get { return Instance?._dataManager; }
     }
 
+    private SoundManager _sound;
+    public static SoundManager Sound
+    {
+        get { return instance?._sound; }
+    }
     // TODO : GPGS 연결 이후 ADMOB Manager 
 
-    protected void Start()
+    protected override void Awake()
     {
-        // Data.Init();
+        base.Awake();
+        _sound = Utils.GetOrAddComponent<SoundManager>(this.gameObject);
     }
 }        
 

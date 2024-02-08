@@ -7,4 +7,5 @@ public class TitleScene : BaseScene
     {
         return Utils.GetOrAddComponent<UI_Title>(this.gameObject);
     }
+  
 }

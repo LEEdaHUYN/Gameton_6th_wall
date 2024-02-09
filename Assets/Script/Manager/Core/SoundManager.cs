@@ -7,8 +7,8 @@ using UnityEngine;
 using UnityEngine.Audio;
 
 /// <summary>
-/// »ç¿îµå ¸Å´ÏÀú v1.05.0 made by JJSmith (Curookie)
-/// FixÁß, ¾îµå·¹¼­ºí·Î ºÒ·¯¿ÍÁà¾ß ÇÏ°í ½Ì±ÛÅæÀº ÀüºÎ Manager ¿¡¼­ °ü¸® ÇØ¾ßÇÔ.
+/// ì‚¬ìš´ë“œ ë§¤ë‹ˆì € v1.05.0 made by JJSmith (Curookie)
+/// Fixì¤‘, ì–´ë“œë ˆì„œë¸”ë¡œ ë¶ˆëŸ¬ì™€ì¤˜ì•¼ í•˜ê³  ì‹±ê¸€í†¤ì€ ì „ë¶€ Manager ì—ì„œ ê´€ë¦¬ í•´ì•¼í•¨.
 /// </summary>
 [RequireComponent(typeof(AudioSource))]
 public class SoundManager : MonoBehaviour
@@ -16,80 +16,80 @@ public class SoundManager : MonoBehaviour
 
     [SerializeField]
     [TextArea(5, 10)]
-    string _»ç¿ë¹ı =
-@"1) Playlist¿¡ Àç»ıÇÒ ¹è°æÀ½/È¿°úÀ½µéÀ» ³Ö´Â´Ù. (Resources, URL Áö¿ø)
-2) ¾î¶² ½ºÅ©¸³Æ®¿¡¼­µç Àç»ıÇÏ·Á¸é AudioManager.Inst.PlayBGM(""Å¬¸³ÀÌ¸§""); AudioManager.Inst.PlaySFX(""Å¬¸³ÀÌ¸§""); (¹İº¹Àç»ı, OneShot µî Áö¿ø)
-3) ¹è°æÀ½Àº ÆäÀÌµå ¾øÀ½(Swift), ÆäÀÌµå ¾Æ¿ô/ÀÎ(LinearFade), Å©·Î½º ÆäÀÌµå(CrossFade) 3°¡Áö ÆäÀÌµå ¼³Á¤ÀÌ ÀÖ´Ù. (playback ¾²·Á¸é Swift·Î ÇØ¾ßÇÔ)
-4) PlayerPrefabsÀ¸·Î ¼³Á¤À» ÀúÀåÇÏ¸ç Åä±Û ¼Ó¼º ÀÖ´Ù. ex)IsMusicOn ¹è°æÀ½, IsSoundOn È¿°úÀ½";
+    string _ì‚¬ìš©ë²• =
+@"1) Playlistì— ì¬ìƒí•  ë°°ê²½ìŒ/íš¨ê³¼ìŒë“¤ì„ ë„£ëŠ”ë‹¤. (Resources, URL ì§€ì›)
+2) ì–´ë–¤ ìŠ¤í¬ë¦½íŠ¸ì—ì„œë“  ì¬ìƒí•˜ë ¤ë©´ AudioManager.Inst.PlayBGM(""í´ë¦½ì´ë¦„""); AudioManager.Inst.PlaySFX(""í´ë¦½ì´ë¦„""); (ë°˜ë³µì¬ìƒ, OneShot ë“± ì§€ì›)
+3) ë°°ê²½ìŒì€ í˜ì´ë“œ ì—†ìŒ(Swift), í˜ì´ë“œ ì•„ì›ƒ/ì¸(LinearFade), í¬ë¡œìŠ¤ í˜ì´ë“œ(CrossFade) 3ê°€ì§€ í˜ì´ë“œ ì„¤ì •ì´ ìˆë‹¤. (playback ì“°ë ¤ë©´ Swiftë¡œ í•´ì•¼í•¨)
+4) PlayerPrefabsìœ¼ë¡œ ì„¤ì •ì„ ì €ì¥í•˜ë©° í† ê¸€ ì†ì„± ìˆë‹¤. ex)IsMusicOn ë°°ê²½ìŒ, IsSoundOn íš¨ê³¼ìŒ";
 
 
-    [Header("¹è°æÀ½ ¼³Á¤")]
+    [Header("ë°°ê²½ìŒ ì„¤ì •")]
 
-    [Tooltip("¹è°æÀ½ On/Off")]
+    [Tooltip("ë°°ê²½ìŒ On/Off")]
     [SerializeField] bool _musicOn = true;
 
-    [Tooltip("¹è°æÀ½ º¼·ı")]
+    [Tooltip("ë°°ê²½ìŒ ë³¼ë¥¨")]
     [Range(0, 1)]
     [SerializeField] float _musicVolume = 1f;
 
-    [Tooltip("½ÃÀÛ ½Ã ¹è°æÀ½ »ç¿ë¿©ºÎ")]
+    [Tooltip("ì‹œì‘ ì‹œ ë°°ê²½ìŒ ì‚¬ìš©ì—¬ë¶€")]
     [SerializeField] bool _useMusicVolOnStart = false;
 
-    [Tooltip("Target Group ¹è°æÀ½ ½ÅÈ£¸¦ À§ÇÑ ¼³Á¤, »ç¿ë ¾È ÇÒ°æ¿ì ºñ¿ö³õÀ¸¸é µÊ.")]
+    [Tooltip("Target Group ë°°ê²½ìŒ ì‹ í˜¸ë¥¼ ìœ„í•œ ì„¤ì •, ì‚¬ìš© ì•ˆ í• ê²½ìš° ë¹„ì›Œë†“ìœ¼ë©´ ë¨.")]
     [SerializeField] AudioMixerGroup _musicMixerGroup = null;
 
-    [Tooltip("¹è°æÀ½ º¼·ı¹Í¼­ ¸í")]
+    [Tooltip("ë°°ê²½ìŒ ë³¼ë¥¨ë¯¹ì„œ ëª…")]
     [SerializeField] string _volumeOfMusicMixer = string.Empty;
 
     [Space(3)]
 
-    [Header("È¿°úÀ½ ¼³Á¤")]
+    [Header("íš¨ê³¼ìŒ ì„¤ì •")]
 
-    [Tooltip("È¿°úÀ½ On/Off")]
+    [Tooltip("íš¨ê³¼ìŒ On/Off")]
     [SerializeField] bool _soundFxOn = true;
 
-    [Tooltip("È¿°úÀ½ º¼·ı")]
+    [Tooltip("íš¨ê³¼ìŒ ë³¼ë¥¨")]
     [Range(0, 1)]
     [SerializeField] float _soundFxVolume = 1f;
 
-    [Tooltip("½ÃÀÛ ½Ã È¿°úÀ½ »ç¿ë¿©ºÎ")]
+    [Tooltip("ì‹œì‘ ì‹œ íš¨ê³¼ìŒ ì‚¬ìš©ì—¬ë¶€")]
     [SerializeField] bool _useSfxVolOnStart = false;
 
-    [Tooltip("Target Group È¿°úÀ½ ½ÅÈ£¸¦ À§ÇÑ ¼³Á¤, »ç¿ë ¾È ÇÒ°æ¿ì ºñ¿ö³õÀ¸¸é µÊ.")]
+    [Tooltip("Target Group íš¨ê³¼ìŒ ì‹ í˜¸ë¥¼ ìœ„í•œ ì„¤ì •, ì‚¬ìš© ì•ˆ í• ê²½ìš° ë¹„ì›Œë†“ìœ¼ë©´ ë¨.")]
     [SerializeField] AudioMixerGroup _soundFxMixerGroup = null;
 
-    [Tooltip("È¿°úÀ½ º¼·ı¹Í¼­ ¸í")]
+    [Tooltip("íš¨ê³¼ìŒ ë³¼ë¥¨ë¯¹ì„œ ëª…")]
     [SerializeField] string _volumeOfSFXMixer = string.Empty;
 
     [Space(3)]
 
-    [Tooltip("¸ğµç ¿Àµğ¿À Å¬¸³Àº ¿©±â¿¡ ³ÖÀ¸¸é µÊ.")]
+    [Tooltip("ëª¨ë“  ì˜¤ë””ì˜¤ í´ë¦½ì€ ì—¬ê¸°ì— ë„£ìœ¼ë©´ ë¨.")]
     [SerializeField] List<AudioClip> _playlist = new List<AudioClip>();
 
-    // È¿°úÀ½ Ç®¸µÀ» À§ÇÑ ¸®½ºÆ®
+    // íš¨ê³¼ìŒ í’€ë§ì„ ìœ„í•œ ë¦¬ìŠ¤íŠ¸
     List<SoundEffect> sfxPool = new List<SoundEffect>();
-    // ¿Àµğ¿À ¸Å´ÏÀú ¹è°æÀ½
+    // ì˜¤ë””ì˜¤ ë§¤ë‹ˆì € ë°°ê²½ìŒ
     static BackgroundMusic backgroundMusic;
-    // ÇöÀç ¿Àµğ¿À¼Ò½º¿Í ÆäÀÌµå¸¦ À§ÇÑ ´ÙÀ½ ¿Àµğ¿À¼Ò½º
+    // í˜„ì¬ ì˜¤ë””ì˜¤ì†ŒìŠ¤ì™€ í˜ì´ë“œë¥¼ ìœ„í•œ ë‹¤ìŒ ì˜¤ë””ì˜¤ì†ŒìŠ¤
     static AudioSource musicSource = null, crossfadeSource = null;
-    // ÇöÀç º¼·ıµé°ú Á¦ÇÑ ¼öÄ¡¿ë º¯¼ö
+    // í˜„ì¬ ë³¼ë¥¨ë“¤ê³¼ ì œí•œ ìˆ˜ì¹˜ìš© ë³€ìˆ˜
     static float currentMusicVol = 0, currentSfxVol = 0, musicVolCap = 0, savedPitch = 1f;
-    // On/Off º¯¼ö
+    // On/Off ë³€ìˆ˜
     static bool musicOn = false, sfxOn = false;
-    // ÀüÈ¯½Ã°£ º¯¼ö
+    // ì „í™˜ì‹œê°„ ë³€ìˆ˜
     static float transitionTime;
 
-    // PlayerPrefabs ÀúÀåÀ» À§ÇÑ Å°
+    // PlayerPrefabs ì €ì¥ì„ ìœ„í•œ í‚¤
     static readonly string BgMusicVolKey = "BGMVol";
     static readonly string SoundFxVolKey = "SFXVol";
     static readonly string BgMusicMuteKey = "BGMMute";
     static readonly string SoundFxMuteKey = "SFXMute";
 
-    // ¾Û ÄÑÁ³´ÂÁö ¿©ºÎ¿ë
+    // ì•± ì¼œì¡ŒëŠ”ì§€ ì—¬ë¶€ìš©
     private static bool alive = true;
 
     /// <summary>
-    /// ¼Ó¼º ½Ì±ÛÅæ ÆĞÅÏÀ¸·Î ±¸Çö
+    /// ì†ì„± ì‹±ê¸€í†¤ íŒ¨í„´ìœ¼ë¡œ êµ¬í˜„
     /// </summary>
 
     void OnDestroy()
@@ -103,40 +103,38 @@ public class SoundManager : MonoBehaviour
         alive = false;
     }
 
-    private void Awake()
+
+    public void Init(Action callback)
     {
-        Initialise().Forget();
+        Initialise(callback).Forget();
     }
 
-
     /// <summary>
-    /// ¿Àµğ¿À¸Å´ÏÀú ÃÊ±âÈ­ ÇÔ¼ö
+    /// ì˜¤ë””ì˜¤ë§¤ë‹ˆì € ì´ˆê¸°í™” í•¨ìˆ˜
     /// </summary>
 
     private const string SoundDataScriptableName = "SoundData";
-    async UniTaskVoid Initialise()
+    async UniTaskVoid Initialise(Action callBack)
     {
-        //gameObject.name = "AudioManager";
-
         bool isRegister = false;
-        Managers.Resource.Load<ScriptableObject>(SoundDataScriptableName, (success) =>
+        Managers.Resource.Load<SoundData>(SoundDataScriptableName, (success) =>
         {
-            SoundData data = (SoundData)success;
+            SoundData data = success;
             _playlist = data.Playlist;
             isRegister = true;
         });
         await UniTask.WaitUntil(() => { return isRegister == true; });
 
-        // PlayerPrefs¿¡¼­ °ª °¡Á®¿À±â
+        // PlayerPrefsì—ì„œ ê°’ ê°€ì ¸ì˜¤ê¸°
         _musicOn = LoadBGMMuteStatus();
         _musicVolume = _useMusicVolOnStart ? _musicVolume : LoadBGMVolume();
         _soundFxOn = LoadSFXMuteStatus();
         _soundFxVolume = _useSfxVolOnStart ? _soundFxVolume : LoadSFXVolume();
 
-        // ±âÁ¸ ¿Àµğ¿À¼Ò½º ÄÄÆ÷³ÍÆ® ÀåÂø
+        // ê¸°ì¡´ ì˜¤ë””ì˜¤ì†ŒìŠ¤ ì»´í¬ë„ŒíŠ¸ ì¥ì°©
         musicSource = gameObject.GetOrAddComponent<AudioSource>();
         musicSource = ConfigureAudioSource(musicSource);
-
+        callBack.Invoke();
         StartCoroutine(OnUpdate());
 
     }
@@ -144,7 +142,7 @@ public class SoundManager : MonoBehaviour
 
 
     /// <summary>
-    /// ³»ºÎ ¼³Á¤¿¡ ±â¹İÇØ¼­ 2D¿ë ¿Àµğ¿À¼Ò½º »ı¼ºÇÏ´Â ÇÔ¼ö
+    /// ë‚´ë¶€ ì„¤ì •ì— ê¸°ë°˜í•´ì„œ 2Dìš© ì˜¤ë””ì˜¤ì†ŒìŠ¤ ìƒì„±í•˜ëŠ” í•¨ìˆ˜
     /// </summary>
     /// <returns>An AudioSource with 2D features</returns>
     AudioSource ConfigureAudioSource(AudioSource audioSource)
@@ -154,7 +152,7 @@ public class SoundManager : MonoBehaviour
         audioSource.spatialBlend = 0;   //2D
         audioSource.rolloffMode = AudioRolloffMode.Linear;
         audioSource.loop = true;
-        // PlayerPrefs¿¡¼­ °ª °¡Á®¿À±â
+        // PlayerPrefsì—ì„œ ê°’ ê°€ì ¸ì˜¤ê¸°
         audioSource.volume = LoadBGMVolume();
         audioSource.mute = !_musicOn;
 
@@ -163,42 +161,42 @@ public class SoundManager : MonoBehaviour
     }
 
     /// <summary>
-    /// È¿°úÀ½ Ç®¿¡ ÀÖ´Â È¿°úÀ½À» °ü¸®ÇÏ´Â ÇÔ¼ö  
-    /// OnUpdateÇÔ¼ö¿¡¼­ ºÒ·¯¿Â´Ù.
+    /// íš¨ê³¼ìŒ í’€ì— ìˆëŠ” íš¨ê³¼ìŒì„ ê´€ë¦¬í•˜ëŠ” í•¨ìˆ˜  
+    /// OnUpdateí•¨ìˆ˜ì—ì„œ ë¶ˆëŸ¬ì˜¨ë‹¤.
     /// </summary>
     private void ManageSoundEffects()
     {
         for (int i = sfxPool.Count - 1; i >= 0; i--)
         {
             SoundEffect sfx = sfxPool[i];
-            // Àç»ı Áß
+            // ì¬ìƒ ì¤‘
             if (sfx.Source.isPlaying && !float.IsPositiveInfinity(sfx.Time))
             {
                 sfx.Time -= Time.deltaTime;
                 sfxPool[i] = sfx;
             }
 
-            // ³¡³µÀ» ¶§
+            // ëë‚¬ì„ ë•Œ
             if (sfxPool[i].Time <= 0.0001f || HasPossiblyFinished(sfxPool[i]))
             {
                 sfxPool[i].Source.Stop();
-                // Äİ¹éÇÔ¼ö ½ÇÇà
+                // ì½œë°±í•¨ìˆ˜ ì‹¤í–‰
                 if (sfxPool[i].Callback != null)
                 {
                     sfxPool[i].Callback.Invoke();
                 }
 
-                // Å¬¸³ Á¦°Å ÈÄ
+                // í´ë¦½ ì œê±° í›„
                 Destroy(sfxPool[i].gameObject);
 
-                // Ç®¿¡¼­ Ç×¸ñ»©±â
+                // í’€ì—ì„œ í•­ëª©ë¹¼ê¸°
                 sfxPool.RemoveAt(i);
                 break;
             }
         }
     }
 
-    // ¿ÏÀüÈ÷ ³¡³µ´Â Áö Ã¼Å©¿ë ÇÔ¼ö
+    // ì™„ì „íˆ ëë‚¬ëŠ” ì§€ ì²´í¬ìš© í•¨ìˆ˜
     bool HasPossiblyFinished(SoundEffect soundEffect)
     {
         return !soundEffect.Source.isPlaying && FloatEquals(soundEffect.PlaybackPosition, 0) && soundEffect.Time <= 0.09f;
@@ -210,13 +208,13 @@ public class SoundManager : MonoBehaviour
     }
 
     /// <summary>
-    /// ¹è°æÀ½ º¼·ı »óÅÂ°¡ º¯Çß´ÂÁö Ã¼Å©ÇÏ´Â ÇÔ¼ö
+    /// ë°°ê²½ìŒ ë³¼ë¥¨ ìƒíƒœê°€ ë³€í–ˆëŠ”ì§€ ì²´í¬í•˜ëŠ” í•¨ìˆ˜
     /// </summary>
     private bool IsMusicAltered()
     {
         bool flag = musicOn != _musicOn || musicOn != !musicSource.mute || !FloatEquals(currentMusicVol, _musicVolume);
 
-        // ¹Í¼­ ±×·ìÀ» »ç¿ëÇÒ °æ¿ì
+        // ë¯¹ì„œ ê·¸ë£¹ì„ ì‚¬ìš©í•  ê²½ìš°
         if (_musicMixerGroup != null && !string.IsNullOrEmpty(_volumeOfMusicMixer.Trim()))
         {
             float vol;
@@ -230,13 +228,13 @@ public class SoundManager : MonoBehaviour
     }
 
     /// <summary>
-    /// È¿°úÀ½ º¼·ı »óÅÂ°¡ º¯Çß´ÂÁö Ã¼Å©ÇÏ´Â ÇÔ¼ö
+    /// íš¨ê³¼ìŒ ë³¼ë¥¨ ìƒíƒœê°€ ë³€í–ˆëŠ”ì§€ ì²´í¬í•˜ëŠ” í•¨ìˆ˜
     /// </summary>
     private bool IsSoundFxAltered()
     {
         bool flag = _soundFxOn != sfxOn || !FloatEquals(currentSfxVol, _soundFxVolume);
 
-        // ¹Í¼­ ±×·ìÀ» »ç¿ëÇÒ °æ¿ì
+        // ë¯¹ì„œ ê·¸ë£¹ì„ ì‚¬ìš©í•  ê²½ìš°
         if (_soundFxMixerGroup != null && !string.IsNullOrEmpty(_volumeOfSFXMixer.Trim()))
         {
             float vol;
@@ -250,13 +248,13 @@ public class SoundManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Å©·Î½º ÆäÀÌµå ÀÎ ¾Æ¿ô ÇÔ¼ö
+    /// í¬ë¡œìŠ¤ í˜ì´ë“œ ì¸ ì•„ì›ƒ í•¨ìˆ˜
     /// </summary>
     private void CrossFadeBackgroundMusic()
     {
         if (backgroundMusic.MusicTransition == MusicTransition.CrossFade)
         {
-            // ÀüÈ¯ÀÌ ÁøÇàÁßÀÏ °æ¿ì
+            // ì „í™˜ì´ ì§„í–‰ì¤‘ì¼ ê²½ìš°
             if (musicSource.clip.name != backgroundMusic.NextClip.name)
             {
                 transitionTime -= Time.deltaTime;
@@ -276,13 +274,13 @@ public class SoundManager : MonoBehaviour
     }
 
     /// <summary>
-    /// ÆäÀÌµå ÀÎ/¾Æ¿ô ÇÔ¼ö
+    /// í˜ì´ë“œ ì¸/ì•„ì›ƒ í•¨ìˆ˜
     /// </summary>
     private void FadeOutFadeInBackgroundMusic()
     {
         if (backgroundMusic.MusicTransition == MusicTransition.LinearFade)
         {
-            // ÆäÀÌµå ÀÎ
+            // í˜ì´ë“œ ì¸
             if (musicSource.clip.name == backgroundMusic.NextClip.name)
             {
                 transitionTime += Time.deltaTime;
@@ -295,14 +293,14 @@ public class SoundManager : MonoBehaviour
                     PlayBackgroundMusic(backgroundMusic.NextClip, musicSource.time, savedPitch);
                 }
             }
-            // ÆäÀÌµå ¾Æ¿ô
+            // í˜ì´ë“œ ì•„ì›ƒ
             else
             {
                 transitionTime -= Time.deltaTime;
 
                 musicSource.volume = Mathf.Lerp(0, musicVolCap, transitionTime / backgroundMusic.TransitionDuration);
 
-                // ÆäÀÌµå ¾Æ¿ô ³¡³ª´Â ½ÃÁ¡ ÆäÀÌµå ÀÎ ½ÃÀÛ
+                // í˜ì´ë“œ ì•„ì›ƒ ëë‚˜ëŠ” ì‹œì  í˜ì´ë“œ ì¸ ì‹œì‘
                 if (musicSource.volume <= 0.00f)
                 {
                     musicSource.volume = transitionTime = 0;
@@ -313,7 +311,7 @@ public class SoundManager : MonoBehaviour
     }
 
     /// <summary>
-    /// ¾÷µ¥ÀÌÆ® ÇÔ¼ö ¿ë Enumerator
+    /// ì—…ë°ì´íŠ¸ í•¨ìˆ˜ ìš© Enumerator
     /// </summary>
     IEnumerator OnUpdate()
     {
@@ -321,7 +319,7 @@ public class SoundManager : MonoBehaviour
         {
             ManageSoundEffects();
 
-            // ¹è°æÀ½ º¼·ı ¹Ù²î¾ú³ª Ã¼Å©
+            // ë°°ê²½ìŒ ë³¼ë¥¨ ë°”ë€Œì—ˆë‚˜ ì²´í¬
             if (IsMusicAltered())
             {
                 ToggleBGMMute(!musicOn);
@@ -342,7 +340,7 @@ public class SoundManager : MonoBehaviour
                 SetBGMVolume(currentMusicVol);
             }
 
-            // È¿°úÀ½ º¼·ı ¹Ù²î¾ú³ª Ã¼Å©
+            // íš¨ê³¼ìŒ ë³¼ë¥¨ ë°”ë€Œì—ˆë‚˜ ì²´í¬
             if (IsSoundFxAltered())
             {
                 ToggleSFXMute(!sfxOn);
@@ -363,7 +361,7 @@ public class SoundManager : MonoBehaviour
                 SetSFXVolume(currentSfxVol);
             }
 
-            // Å©·Î½º ÆäÀÌµåÀÏ °æ¿ì
+            // í¬ë¡œìŠ¤ í˜ì´ë“œì¼ ê²½ìš°
             if (crossfadeSource != null)
             {
                 CrossFadeBackgroundMusic();
@@ -372,7 +370,7 @@ public class SoundManager : MonoBehaviour
             }
             else
             {
-                // ÆäÀÌµå ÀÎ/ ¾Æ¿ôÀÏ °æ¿ì
+                // í˜ì´ë“œ ì¸/ ì•„ì›ƒì¼ ê²½ìš°
                 if (backgroundMusic.NextClip != null)
                 {
                     FadeOutFadeInBackgroundMusic();
@@ -385,80 +383,80 @@ public class SoundManager : MonoBehaviour
         }
     }
 
-    #region ½ºÆ®¸µ Ã³¸®
+    #region ìŠ¤íŠ¸ë§ ì²˜ë¦¬
 
     /// <summary>
-    /// ¹è°æÀ½ Àç»ı
-    /// ¹è°æÀ½Àº ÇÑ ¹ø¿¡ ÇÑ °³¸¸ Àç»ı.
+    /// ë°°ê²½ìŒ ì¬ìƒ
+    /// ë°°ê²½ìŒì€ í•œ ë²ˆì— í•œ ê°œë§Œ ì¬ìƒ.
     /// </summary>
-    /// <param name="clip">Àç»ıÇÒ Å¬¸³</param>
-    /// <param name="transition">ÀüÈ¯¹æ¹ı </param>
-    /// <param name="transition_duration">ÀüÈ¯½Ã°£</param>
-    /// <param name="volume">»ç¿îµå Å©±â</param>
-    /// <param name="pitch">Å¬¸³ÀÇ ÇÇÄ¡ ·¹º§ ¼³Á¤</param>
-    /// <param name="playback_position">½ÃÀÛ½ÃÁ¡</param>
+    /// <param name="clip">ì¬ìƒí•  í´ë¦½</param>
+    /// <param name="transition">ì „í™˜ë°©ë²• </param>
+    /// <param name="transition_duration">ì „í™˜ì‹œê°„</param>
+    /// <param name="volume">ì‚¬ìš´ë“œ í¬ê¸°</param>
+    /// <param name="pitch">í´ë¦½ì˜ í”¼ì¹˜ ë ˆë²¨ ì„¤ì •</param>
+    /// <param name="playback_position">ì‹œì‘ì‹œì </param>
     public void PlayBGM(string clip, MusicTransition transition, float transition_duration, float volume, float pitch, float playback_position = 0)
     {
         PlayBGM(GetClipFromPlaylist(clip), transition, transition_duration, volume, pitch, playback_position);
     }
 
     /// <summary>
-    /// ¹è°æÀ½ Àç»ı
-    /// ¹è°æÀ½Àº ÇÑ ¹ø¿¡ ÇÑ °³¸¸ Àç»ı.
+    /// ë°°ê²½ìŒ ì¬ìƒ
+    /// ë°°ê²½ìŒì€ í•œ ë²ˆì— í•œ ê°œë§Œ ì¬ìƒ.
     /// </summary>
-    /// <param name="clip">Àç»ıÇÒ Å¬¸³</param>
-    /// <param name="transition">ÀüÈ¯¹æ¹ı</param>
-    /// <param name="transition_duration">ÀüÈ¯½Ã°£</param>
-    /// <param name="volume">»ç¿îµå Å©±â</param>
+    /// <param name="clip">ì¬ìƒí•  í´ë¦½</param>
+    /// <param name="transition">ì „í™˜ë°©ë²•</param>
+    /// <param name="transition_duration">ì „í™˜ì‹œê°„</param>
+    /// <param name="volume">ì‚¬ìš´ë“œ í¬ê¸°</param>
     public void PlayBGM(string clip, MusicTransition transition, float transition_duration, float volume)
     {
         PlayBGM(GetClipFromPlaylist(clip), transition, transition_duration, volume, 1f);
     }
 
     /// <summary>
-    /// ¹è°æÀ½ Àç»ı
-    /// ¹è°æÀ½Àº ÇÑ ¹ø¿¡ ÇÑ °³¸¸ Àç»ı.
+    /// ë°°ê²½ìŒ ì¬ìƒ
+    /// ë°°ê²½ìŒì€ í•œ ë²ˆì— í•œ ê°œë§Œ ì¬ìƒ.
     /// </summary>
-    /// <param name="clip">Àç»ıÇÒ Å¬¸³</param>
-    /// <param name="transition">ÀüÈ¯¹æ¹ı</param>
-    /// <param name="transition_duration">ÀüÈ¯½Ã°£</param>
+    /// <param name="clip">ì¬ìƒí•  í´ë¦½</param>
+    /// <param name="transition">ì „í™˜ë°©ë²•</param>
+    /// <param name="transition_duration">ì „í™˜ì‹œê°„</param>
     public void PlayBGM(string clip, MusicTransition transition, float transition_duration)
     {
         PlayBGM(GetClipFromPlaylist(clip), transition, transition_duration, _musicVolume, 1f);
     }
 
     /// <summary>
-    /// ¹è°æÀ½ Àç»ı
-    /// ¹è°æÀ½Àº ÇÑ ¹ø¿¡ ÇÑ °³¸¸ Àç»ı.
+    /// ë°°ê²½ìŒ ì¬ìƒ
+    /// ë°°ê²½ìŒì€ í•œ ë²ˆì— í•œ ê°œë§Œ ì¬ìƒ.
     /// </summary>
-    /// <param name="clip">Àç»ıÇÒ Å¬¸³</param>
-    /// <param name="transition">ÀüÈ¯¹æ¹ı</param>
+    /// <param name="clip">ì¬ìƒí•  í´ë¦½</param>
+    /// <param name="transition">ì „í™˜ë°©ë²•</param>
     public void PlayBGM(string clip, MusicTransition transition)
     {
         PlayBGM(GetClipFromPlaylist(clip), transition, 1f, _musicVolume, 1f);
     }
 
     /// <summary>
-    /// ¹è°æÀ½ ¹Ù·Î Àç»ı
-    /// ¹è°æÀ½Àº ÇÑ ¹ø¿¡ ÇÑ °³¸¸ Àç»ı.
+    /// ë°°ê²½ìŒ ë°”ë¡œ ì¬ìƒ
+    /// ë°°ê²½ìŒì€ í•œ ë²ˆì— í•œ ê°œë§Œ ì¬ìƒ.
     /// </summary>
-    /// <param name="clip">Àç»ıÇÒ Å¬¸³</param>
+    /// <param name="clip">ì¬ìƒí•  í´ë¦½</param>
     public void PlayBGM(string clip)
     {
         PlayBGM(GetClipFromPlaylist(clip), MusicTransition.Swift, 1f, _musicVolume, 1f);
     }
 
     /// <summary>
-    /// ¿ùµå ½ºÆäÀÌ½º(2D)¿¡¼­ ÁöÁ¤µÈ ½Ã°£¸¸Å­ È¿°úÀ½À» »ı¼ºÇØ Àç»ıÇÏ°í ³¡³ª¸é ÁöÁ¤µÈ Äİ¹é ÇÔ¼ö¸¦ È£ÃâÇÏ´Â ÇÔ¼ö
+    /// ì›”ë“œ ìŠ¤í˜ì´ìŠ¤(2D)ì—ì„œ ì§€ì •ëœ ì‹œê°„ë§Œí¼ íš¨ê³¼ìŒì„ ìƒì„±í•´ ì¬ìƒí•˜ê³  ëë‚˜ë©´ ì§€ì •ëœ ì½œë°± í•¨ìˆ˜ë¥¼ í˜¸ì¶œí•˜ëŠ” í•¨ìˆ˜
     /// </summary>
     /// <returns>An audiosource</returns>
-    /// <param name="clip">Àç»ıÇÒ Å¬¸³</param>
-    /// <param name="location">Å¬¸³ÀÇ »ı¼º À§Ä¡ (2D)</param>
-    /// <param name="duration">Àç»ı½Ã°£</param>
-    /// <param name="volume">»ç¿îµå Å©±â</param>
-    /// <param name="singleton">È¿°úÀ½ÀÌ ½Ì±ÛÅæÀÎÁö ¿©ºÎ</param>
-    /// <param name="pitch">Å¬¸³ÀÇ ÇÇÄ¡ ·¹º§ ¼³Á¤</param>
-    /// <param name="callback">Àç»ıÀÌ ³¡³ª¸é Äİ¹éÇÒ ¾×¼Ç</param>
+    /// <param name="clip">ì¬ìƒí•  í´ë¦½</param>
+    /// <param name="location">í´ë¦½ì˜ ìƒì„± ìœ„ì¹˜ (2D)</param>
+    /// <param name="duration">ì¬ìƒì‹œê°„</param>
+    /// <param name="volume">ì‚¬ìš´ë“œ í¬ê¸°</param>
+    /// <param name="singleton">íš¨ê³¼ìŒì´ ì‹±ê¸€í†¤ì¸ì§€ ì—¬ë¶€</param>
+    /// <param name="pitch">í´ë¦½ì˜ í”¼ì¹˜ ë ˆë²¨ ì„¤ì •</param>
+    /// <param name="callback">ì¬ìƒì´ ëë‚˜ë©´ ì½œë°±í•  ì•¡ì…˜</param>
     public AudioSource PlaySFX(string clip, Vector2 location, float duration, float volume, bool singleton = false, float pitch = 1f, Action callback = null)
     {
         try
@@ -474,39 +472,39 @@ public class SoundManager : MonoBehaviour
     }
 
     /// <summary>
-    /// ¿ùµå ½ºÆäÀÌ½º(2D)¿¡¼­ ÁöÁ¤µÈ ½Ã°£¸¸Å­ È¿°úÀ½À» »ı¼ºÇØ Àç»ıÇÏ°í ³¡³ª¸é ÁöÁ¤µÈ Äİ¹é ÇÔ¼ö¸¦ È£ÃâÇÏ´Â ÇÔ¼ö
+    /// ì›”ë“œ ìŠ¤í˜ì´ìŠ¤(2D)ì—ì„œ ì§€ì •ëœ ì‹œê°„ë§Œí¼ íš¨ê³¼ìŒì„ ìƒì„±í•´ ì¬ìƒí•˜ê³  ëë‚˜ë©´ ì§€ì •ëœ ì½œë°± í•¨ìˆ˜ë¥¼ í˜¸ì¶œí•˜ëŠ” í•¨ìˆ˜
     /// </summary>
     /// <returns>An audiosource</returns>
-    /// <param name="clip">Àç»ıÇÒ Å¬¸³</param>
-    /// <param name="location">Å¬¸³ÀÇ »ı¼º À§Ä¡ (2D)</param>
-    /// <param name="duration">Àç»ı½Ã°£</param>
-    /// <param name="singleton">È¿°úÀ½ÀÌ ½Ì±ÛÅæÀÎÁö ¿©ºÎ</param>
-    /// <param name="callback">Àç»ıÀÌ ³¡³ª¸é Äİ¹éÇÒ ¾×¼Ç</param>
+    /// <param name="clip">ì¬ìƒí•  í´ë¦½</param>
+    /// <param name="location">í´ë¦½ì˜ ìƒì„± ìœ„ì¹˜ (2D)</param>
+    /// <param name="duration">ì¬ìƒì‹œê°„</param>
+    /// <param name="singleton">íš¨ê³¼ìŒì´ ì‹±ê¸€í†¤ì¸ì§€ ì—¬ë¶€</param>
+    /// <param name="callback">ì¬ìƒì´ ëë‚˜ë©´ ì½œë°±í•  ì•¡ì…˜</param>
     public AudioSource PlaySFX(string clip, Vector2 location, float duration, bool singleton = false, Action callback = null)
     {
         return PlaySFX(GetClipFromPlaylist(clip), location, duration, _soundFxVolume, singleton, 1.0f, callback);
     }
 
     /// <summary>
-    /// ¿ùµå ½ºÆäÀÌ½º(2D)¿¡¼­ ÁöÁ¤µÈ ½Ã°£¸¸Å­ È¿°úÀ½À» »ı¼ºÇØ Àç»ıÇÏ°í ³¡³ª¸é ÁöÁ¤µÈ Äİ¹é ÇÔ¼ö¸¦ È£ÃâÇÏ´Â ÇÔ¼ö
+    /// ì›”ë“œ ìŠ¤í˜ì´ìŠ¤(2D)ì—ì„œ ì§€ì •ëœ ì‹œê°„ë§Œí¼ íš¨ê³¼ìŒì„ ìƒì„±í•´ ì¬ìƒí•˜ê³  ëë‚˜ë©´ ì§€ì •ëœ ì½œë°± í•¨ìˆ˜ë¥¼ í˜¸ì¶œí•˜ëŠ” í•¨ìˆ˜
     /// </summary>
     /// <returns>An audiosource</returns>
-    /// <param name="clip">Àç»ıÇÒ Å¬¸³</param>
-    /// <param name="duration">Àç»ı½Ã°£</param>
-    /// <param name="singleton">È¿°úÀ½ÀÌ ½Ì±ÛÅæÀÎÁö ¿©ºÎ</param>
-    /// <param name="callback">Àç»ıÀÌ ³¡³ª¸é Äİ¹éÇÒ ¾×¼Ç</param>
+    /// <param name="clip">ì¬ìƒí•  í´ë¦½</param>
+    /// <param name="duration">ì¬ìƒì‹œê°„</param>
+    /// <param name="singleton">íš¨ê³¼ìŒì´ ì‹±ê¸€í†¤ì¸ì§€ ì—¬ë¶€</param>
+    /// <param name="callback">ì¬ìƒì´ ëë‚˜ë©´ ì½œë°±í•  ì•¡ì…˜</param>
     public AudioSource PlaySFX(string clip, float duration, bool singleton = false, Action callback = null)
     {
         return PlaySFX(GetClipFromPlaylist(clip), Vector2.zero, duration, _soundFxVolume, singleton, 1f, callback);
     }
 
     /// <summary>
-    /// ¿ùµå ½ºÆäÀÌ½º(2D)¿¡¼­ ÁöÁ¤µÈ ½Ã°£¸¸Å­ È¿°úÀ½À» »ı¼ºÇØ Àç»ıÇÏ°í ³¡³ª¸é ÁöÁ¤µÈ Äİ¹é ÇÔ¼ö¸¦ È£ÃâÇÏ´Â ÇÔ¼ö
+    /// ì›”ë“œ ìŠ¤í˜ì´ìŠ¤(2D)ì—ì„œ ì§€ì •ëœ ì‹œê°„ë§Œí¼ íš¨ê³¼ìŒì„ ìƒì„±í•´ ì¬ìƒí•˜ê³  ëë‚˜ë©´ ì§€ì •ëœ ì½œë°± í•¨ìˆ˜ë¥¼ í˜¸ì¶œí•˜ëŠ” í•¨ìˆ˜
     /// </summary>
     /// <returns>An audiosource</returns>
-    /// <param name="clip">Àç»ıÇÒ Å¬¸³</param>
-    /// <param name="singleton">È¿°úÀ½ÀÌ ½Ì±ÛÅæÀÎÁö ¿©ºÎ</param>
-    /// <param name="callback">Àç»ıÀÌ ³¡³ª¸é Äİ¹éÇÒ ¾×¼Ç</param>
+    /// <param name="clip">ì¬ìƒí•  í´ë¦½</param>
+    /// <param name="singleton">íš¨ê³¼ìŒì´ ì‹±ê¸€í†¤ì¸ì§€ ì—¬ë¶€</param>
+    /// <param name="callback">ì¬ìƒì´ ëë‚˜ë©´ ì½œë°±í•  ì•¡ì…˜</param>
     public AudioSource PlaySFX(string clip, bool singleton = false, Action callback = null)
     {
         var aClip = GetClipFromPlaylist(clip);
@@ -514,91 +512,91 @@ public class SoundManager : MonoBehaviour
     }
 
     /// <summary>
-    /// ¿ùµå ½ºÆäÀÌ½º(2D)¿¡¼­ ÁöÁ¤µÈ È½¼ö¸¸Å­ È¿°úÀ½À» »ı¼ºÇØ Àç»ıÇÏ°í ³¡³ª¸é ÁöÁ¤µÈ Äİ¹é ÇÔ¼ö¸¦ È£ÃâÇÏ´Â ÇÔ¼ö
+    /// ì›”ë“œ ìŠ¤í˜ì´ìŠ¤(2D)ì—ì„œ ì§€ì •ëœ íšŸìˆ˜ë§Œí¼ íš¨ê³¼ìŒì„ ìƒì„±í•´ ì¬ìƒí•˜ê³  ëë‚˜ë©´ ì§€ì •ëœ ì½œë°± í•¨ìˆ˜ë¥¼ í˜¸ì¶œí•˜ëŠ” í•¨ìˆ˜
     /// </summary>
     /// <returns>An audiosource</returns>
-    /// <param name="clip">Àç»ıÇÒ Å¬¸³</param>
-    /// <param name="location">Å¬¸³ÀÇ »ı¼º À§Ä¡ (2D)</param>
-    /// <param name="repeat">Å¬¸³À» ¾ó¸¶³ª ¹İº¹ÇÒÁö Á¤ÇÑ´Ù. ¹«ÇÑÀº À½¼ö¸¦ ÀÔ·ÂÇÏ¸é µÊ.</param>
-    /// <param name="volume">»ç¿îµå Å©±â</param>
-    /// <param name="singleton">È¿°úÀ½ÀÌ ½Ì±ÛÅæÀÎÁö ¿©ºÎ</param>
-    /// <param name="pitch">Å¬¸³ÀÇ ÇÇÄ¡ ·¹º§ ¼³Á¤</param>
-    /// <param name="callback">Àç»ıÀÌ ³¡³ª¸é Äİ¹éÇÒ ¾×¼Ç</param>
+    /// <param name="clip">ì¬ìƒí•  í´ë¦½</param>
+    /// <param name="location">í´ë¦½ì˜ ìƒì„± ìœ„ì¹˜ (2D)</param>
+    /// <param name="repeat">í´ë¦½ì„ ì–¼ë§ˆë‚˜ ë°˜ë³µí• ì§€ ì •í•œë‹¤. ë¬´í•œì€ ìŒìˆ˜ë¥¼ ì…ë ¥í•˜ë©´ ë¨.</param>
+    /// <param name="volume">ì‚¬ìš´ë“œ í¬ê¸°</param>
+    /// <param name="singleton">íš¨ê³¼ìŒì´ ì‹±ê¸€í†¤ì¸ì§€ ì—¬ë¶€</param>
+    /// <param name="pitch">í´ë¦½ì˜ í”¼ì¹˜ ë ˆë²¨ ì„¤ì •</param>
+    /// <param name="callback">ì¬ìƒì´ ëë‚˜ë©´ ì½œë°±í•  ì•¡ì…˜</param>
     public AudioSource RepeatSFX(string clip, Vector2 location, int repeat, float volume, bool singleton = false, float pitch = 1f, Action callback = null)
     {
         return RepeatSFX(GetClipFromPlaylist(clip), location, repeat, volume, singleton, pitch, callback);
     }
 
     /// <summary>
-    /// ¿ùµå ½ºÆäÀÌ½º(2D)¿¡¼­ ÁöÁ¤µÈ È½¼ö¸¸Å­ È¿°úÀ½À» »ı¼ºÇØ Àç»ıÇÏ°í ³¡³ª¸é ÁöÁ¤µÈ Äİ¹é ÇÔ¼ö¸¦ È£ÃâÇÏ´Â ÇÔ¼ö
+    /// ì›”ë“œ ìŠ¤í˜ì´ìŠ¤(2D)ì—ì„œ ì§€ì •ëœ íšŸìˆ˜ë§Œí¼ íš¨ê³¼ìŒì„ ìƒì„±í•´ ì¬ìƒí•˜ê³  ëë‚˜ë©´ ì§€ì •ëœ ì½œë°± í•¨ìˆ˜ë¥¼ í˜¸ì¶œí•˜ëŠ” í•¨ìˆ˜
     /// </summary>
     /// <returns>An audiosource</returns>
-    /// <param name="clip">Àç»ıÇÒ Å¬¸³</param>
-    /// <param name="location">Å¬¸³ÀÇ »ı¼º À§Ä¡ (2D)</param>
-    /// <param name="repeat">Å¬¸³À» ¾ó¸¶³ª ¹İº¹ÇÒÁö Á¤ÇÑ´Ù. ¹«ÇÑÀº À½¼ö¸¦ ÀÔ·ÂÇÏ¸é µÊ.</param>
-    /// <param name="singleton">È¿°úÀ½ÀÌ ½Ì±ÛÅæÀÎÁö ¿©ºÎ</param>
-    /// <param name="callback">Àç»ıÀÌ ³¡³ª¸é Äİ¹éÇÒ ¾×¼Ç</param>
+    /// <param name="clip">ì¬ìƒí•  í´ë¦½</param>
+    /// <param name="location">í´ë¦½ì˜ ìƒì„± ìœ„ì¹˜ (2D)</param>
+    /// <param name="repeat">í´ë¦½ì„ ì–¼ë§ˆë‚˜ ë°˜ë³µí• ì§€ ì •í•œë‹¤. ë¬´í•œì€ ìŒìˆ˜ë¥¼ ì…ë ¥í•˜ë©´ ë¨.</param>
+    /// <param name="singleton">íš¨ê³¼ìŒì´ ì‹±ê¸€í†¤ì¸ì§€ ì—¬ë¶€</param>
+    /// <param name="callback">ì¬ìƒì´ ëë‚˜ë©´ ì½œë°±í•  ì•¡ì…˜</param>
     public AudioSource RepeatSFX(string clip, Vector2 location, int repeat, bool singleton = false, Action callback = null)
     {
         return RepeatSFX(GetClipFromPlaylist(clip), location, repeat, _soundFxVolume, singleton, 1f, callback);
     }
 
     /// <summary>
-    /// ¿ùµå ½ºÆäÀÌ½º(2D)¿¡¼­ ÁöÁ¤µÈ È½¼ö¸¸Å­ È¿°úÀ½À» »ı¼ºÇØ Àç»ıÇÏ°í ³¡³ª¸é ÁöÁ¤µÈ Äİ¹é ÇÔ¼ö¸¦ È£ÃâÇÏ´Â ÇÔ¼ö
+    /// ì›”ë“œ ìŠ¤í˜ì´ìŠ¤(2D)ì—ì„œ ì§€ì •ëœ íšŸìˆ˜ë§Œí¼ íš¨ê³¼ìŒì„ ìƒì„±í•´ ì¬ìƒí•˜ê³  ëë‚˜ë©´ ì§€ì •ëœ ì½œë°± í•¨ìˆ˜ë¥¼ í˜¸ì¶œí•˜ëŠ” í•¨ìˆ˜
     /// </summary>
     /// <returns>An audiosource</returns>
-    /// <param name="clip">Àç»ıÇÒ Å¬¸³</param>
-    /// <param name="repeat">Å¬¸³À» ¾ó¸¶³ª ¹İº¹ÇÒÁö Á¤ÇÑ´Ù. ¹«ÇÑÀº À½¼ö¸¦ ÀÔ·ÂÇÏ¸é µÊ.</param>
-    /// <param name="singleton">È¿°úÀ½ÀÌ ½Ì±ÛÅæÀÎÁö ¿©ºÎ</param>
-    /// <param name="callback">Àç»ıÀÌ ³¡³ª¸é Äİ¹éÇÒ ¾×¼Ç</param>
+    /// <param name="clip">ì¬ìƒí•  í´ë¦½</param>
+    /// <param name="repeat">í´ë¦½ì„ ì–¼ë§ˆë‚˜ ë°˜ë³µí• ì§€ ì •í•œë‹¤. ë¬´í•œì€ ìŒìˆ˜ë¥¼ ì…ë ¥í•˜ë©´ ë¨.</param>
+    /// <param name="singleton">íš¨ê³¼ìŒì´ ì‹±ê¸€í†¤ì¸ì§€ ì—¬ë¶€</param>
+    /// <param name="callback">ì¬ìƒì´ ëë‚˜ë©´ ì½œë°±í•  ì•¡ì…˜</param>
     public AudioSource RepeatSFX(string clip, int repeat, bool singleton = false, Action callback = null)
     {
         return RepeatSFX(GetClipFromPlaylist(clip), Vector2.zero, repeat, _soundFxVolume, singleton, 1f, callback);
     }
 
     /// <summary>
-    /// ¿ùµå ½ºÆäÀÌ½º(2D)¿¡¼­ È¿°úÀ½À» »ı¼ºÇØ Àç»ıÇÏ°í ³¡³ª¸é ÁöÁ¤µÈ Äİ¹é ÇÔ¼ö¸¦ È£ÃâÇÏ´Â ÇÔ¼ö
+    /// ì›”ë“œ ìŠ¤í˜ì´ìŠ¤(2D)ì—ì„œ íš¨ê³¼ìŒì„ ìƒì„±í•´ ì¬ìƒí•˜ê³  ëë‚˜ë©´ ì§€ì •ëœ ì½œë°± í•¨ìˆ˜ë¥¼ í˜¸ì¶œí•˜ëŠ” í•¨ìˆ˜
     /// </summary>
     /// <returns>An AudioSource</returns>
-    /// <param name="clip">Àç»ıÇÒ Å¬¸³</param>
-    /// <param name="location">Å¬¸³ÀÇ »ı¼º À§Ä¡ (2D)</param>
-    /// <param name="volume">»ç¿îµå Å©±â</param>
-    /// <param name="pitch">Å¬¸³ÀÇ ÇÇÄ¡ ·¹º§ ¼³Á¤</param>
-    /// <param name="callback">Àç»ıÀÌ ³¡³ª¸é Äİ¹éÇÒ ¾×¼Ç</param>
+    /// <param name="clip">ì¬ìƒí•  í´ë¦½</param>
+    /// <param name="location">í´ë¦½ì˜ ìƒì„± ìœ„ì¹˜ (2D)</param>
+    /// <param name="volume">ì‚¬ìš´ë“œ í¬ê¸°</param>
+    /// <param name="pitch">í´ë¦½ì˜ í”¼ì¹˜ ë ˆë²¨ ì„¤ì •</param>
+    /// <param name="callback">ì¬ìƒì´ ëë‚˜ë©´ ì½œë°±í•  ì•¡ì…˜</param>
     public AudioSource PlayOneShot(string clip, Vector2 location, float volume, float pitch = 1f, Action callback = null)
     {
         return PlayOneShot(GetClipFromPlaylist(clip), location, volume, pitch, callback);
     }
 
     /// <summary>
-    /// ¿ùµå ½ºÆäÀÌ½º(2D)¿¡¼­ È¿°úÀ½À» »ı¼ºÇØ Àç»ıÇÏ°í ³¡³ª¸é ÁöÁ¤µÈ Äİ¹é ÇÔ¼ö¸¦ È£ÃâÇÏ´Â ÇÔ¼ö
+    /// ì›”ë“œ ìŠ¤í˜ì´ìŠ¤(2D)ì—ì„œ íš¨ê³¼ìŒì„ ìƒì„±í•´ ì¬ìƒí•˜ê³  ëë‚˜ë©´ ì§€ì •ëœ ì½œë°± í•¨ìˆ˜ë¥¼ í˜¸ì¶œí•˜ëŠ” í•¨ìˆ˜
     /// </summary>
     /// <returns>An AudioSource</returns>
-    /// <param name="clip">Àç»ıÇÒ Å¬¸³</param>
-    /// <param name="location">Å¬¸³ÀÇ »ı¼º À§Ä¡ (2D)</param>
-    /// <param name="callback">Àç»ıÀÌ ³¡³ª¸é Äİ¹éÇÒ ¾×¼Ç</param>
+    /// <param name="clip">ì¬ìƒí•  í´ë¦½</param>
+    /// <param name="location">í´ë¦½ì˜ ìƒì„± ìœ„ì¹˜ (2D)</param>
+    /// <param name="callback">ì¬ìƒì´ ëë‚˜ë©´ ì½œë°±í•  ì•¡ì…˜</param>
     public AudioSource PlayOneShot(string clip, Vector2 location, Action callback = null)
     {
         return PlayOneShot(GetClipFromPlaylist(clip), location, _soundFxVolume, 1f, callback);
     }
 
     /// <summary>
-    /// ¿ùµå ½ºÆäÀÌ½º(2D)¿¡¼­ È¿°úÀ½À» »ı¼ºÇØ Àç»ıÇÏ°í ³¡³ª¸é ÁöÁ¤µÈ Äİ¹é ÇÔ¼ö¸¦ È£ÃâÇÏ´Â ÇÔ¼ö
+    /// ì›”ë“œ ìŠ¤í˜ì´ìŠ¤(2D)ì—ì„œ íš¨ê³¼ìŒì„ ìƒì„±í•´ ì¬ìƒí•˜ê³  ëë‚˜ë©´ ì§€ì •ëœ ì½œë°± í•¨ìˆ˜ë¥¼ í˜¸ì¶œí•˜ëŠ” í•¨ìˆ˜
     /// </summary>
     /// <returns>An AudioSource</returns>
-    /// <param name="clip">Àç»ıÇÒ Å¬¸³</param>
-    /// <param name="callback">Àç»ıÀÌ ³¡³ª¸é Äİ¹éÇÒ ¾×¼Ç</param>
+    /// <param name="clip">ì¬ìƒí•  í´ë¦½</param>
+    /// <param name="callback">ì¬ìƒì´ ëë‚˜ë©´ ì½œë°±í•  ì•¡ì…˜</param>
     public AudioSource PlayOneShot(string clip, Action callback = null)
     {
         return PlayOneShot(GetClipFromPlaylist(clip), Vector2.zero, _soundFxVolume, 1f, callback);
     }
 
     /// <summary>
-    /// Æ¯Á¤À§Ä¡ ¿ùµå ½ºÆäÀÌ½º(2D)¿¡¼­ È¿°úÀ½À» Àç»ıÇÏ°í ³¡³ª¸é ÁöÁ¤µÈ Äİ¹é ÇÔ¼ö¸¦ È£ÃâÇÏ´Â ÇÔ¼ö
+    /// íŠ¹ì •ìœ„ì¹˜ ì›”ë“œ ìŠ¤í˜ì´ìŠ¤(2D)ì—ì„œ íš¨ê³¼ìŒì„ ì¬ìƒí•˜ê³  ëë‚˜ë©´ ì§€ì •ëœ ì½œë°± í•¨ìˆ˜ë¥¼ í˜¸ì¶œí•˜ëŠ” í•¨ìˆ˜
     /// </summary>
     /// <returns>An AudioSource</returns>
-    /// <param name="clip">Àç»ıÇÒ Å¬¸³</param>
-    /// <param name="callback">Àç»ıÀÌ ³¡³ª¸é Äİ¹éÇÒ ¾×¼Ç</param>
+    /// <param name="clip">ì¬ìƒí•  í´ë¦½</param>
+    /// <param name="callback">ì¬ìƒì´ ëë‚˜ë©´ ì½œë°±í•  ì•¡ì…˜</param>
     public AudioSource PlayClipAtPoint(string clip, Vector3 location, Action callback = null)
     {
         return PlayClipAtPoint(GetClipFromPlaylist(clip), location, _soundFxVolume, 1f, callback);
@@ -608,12 +606,12 @@ public class SoundManager : MonoBehaviour
 
 
     /// <summary>
-    /// Æ¯Á¤ÇÑ ¿Àµğ¿À¼Ò½º¿¡¼­ Å¬¸³À» Àç»ıÇÏ´Â ÇÔ¼ö   
+    /// íŠ¹ì •í•œ ì˜¤ë””ì˜¤ì†ŒìŠ¤ì—ì„œ í´ë¦½ì„ ì¬ìƒí•˜ëŠ” í•¨ìˆ˜   
     /// </summary>
-    /// <param name="audio_source">ÂüÁ¶ÇÏ´Â ¿Àµğ¿À¼Ò½º/ Ã¤³Î</param>
-    /// <param name="clip">Àç»ıÇÒ Å¬¸³</param>
-    /// <param name="playback_position">½ÃÀÛ½ÃÁ¡</param>
-    /// <param name="pitch">Å¬¸³ÀÇ ÇÇÄ¡ ·¹º§ ¼³Á¤</param>
+    /// <param name="audio_source">ì°¸ì¡°í•˜ëŠ” ì˜¤ë””ì˜¤ì†ŒìŠ¤/ ì±„ë„</param>
+    /// <param name="clip">ì¬ìƒí•  í´ë¦½</param>
+    /// <param name="playback_position">ì‹œì‘ì‹œì </param>
+    /// <param name="pitch">í´ë¦½ì˜ í”¼ì¹˜ ë ˆë²¨ ì„¤ì •</param>
     private void PlayMusicFromSource(ref AudioSource audio_source, AudioClip clip, float playback_position, float pitch)
     {
         try
@@ -634,19 +632,19 @@ public class SoundManager : MonoBehaviour
     }
 
     /// <summary>
-    /// ÇöÀç ¿Àµğ¿À¼Ò½º¿¡¼­ ¹è°æÀ½ Å¬¸³À» Àç»ıÇÏ´Â ÇÔ¼ö (³»ÀåÇÔ¼ö)
+    /// í˜„ì¬ ì˜¤ë””ì˜¤ì†ŒìŠ¤ì—ì„œ ë°°ê²½ìŒ í´ë¦½ì„ ì¬ìƒí•˜ëŠ” í•¨ìˆ˜ (ë‚´ì¥í•¨ìˆ˜)
     /// </summary>
-    /// <param name="clip">Àç»ıÇÒ Å¬¸³</param>
-    /// <param name="playback_position">½ÃÀÛ½ÃÁ¡</param>
-    /// <param name="pitch">Å¬¸³ÀÇ ÇÇÄ¡ ·¹º§ ¼³Á¤</param>
+    /// <param name="clip">ì¬ìƒí•  í´ë¦½</param>
+    /// <param name="playback_position">ì‹œì‘ì‹œì </param>
+    /// <param name="pitch">í´ë¦½ì˜ í”¼ì¹˜ ë ˆë²¨ ì„¤ì •</param>
     private void PlayBackgroundMusic(AudioClip clip, float playback_position, float pitch)
     {
         PlayMusicFromSource(ref musicSource, clip, playback_position, pitch);
-        // ´ÙÀ½ Å¬¸³º¯¼ö¿¡ ÀÖ´Â Å¬¸³ Á¦°Å
+        // ë‹¤ìŒ í´ë¦½ë³€ìˆ˜ì— ìˆëŠ” í´ë¦½ ì œê±°
         backgroundMusic.NextClip = null;
-        // ÇöÀç Å¬¸³º¯¼ö¿¡ ³Ö¾îµÎ±â
+        // í˜„ì¬ í´ë¦½ë³€ìˆ˜ì— ë„£ì–´ë‘ê¸°
         backgroundMusic.CurrentClip = clip;
-        // Å©·Î½ºÆäÀÌµå¿¡ ÀÖ´Â Å¬¸³µµ ºñ¿ì±â
+        // í¬ë¡œìŠ¤í˜ì´ë“œì— ìˆëŠ” í´ë¦½ë„ ë¹„ìš°ê¸°
         if (crossfadeSource != null)
         {
             Destroy(crossfadeSource);
@@ -655,30 +653,30 @@ public class SoundManager : MonoBehaviour
     }
 
     /// <summary>
-    /// ¹è°æÀ½ Àç»ı
-    /// ¹è°æÀ½Àº ÇÑ ¹ø¿¡ ÇÑ °³¸¸ Àç»ı.
+    /// ë°°ê²½ìŒ ì¬ìƒ
+    /// ë°°ê²½ìŒì€ í•œ ë²ˆì— í•œ ê°œë§Œ ì¬ìƒ.
     /// </summary>
-    /// <param name="clip">Àç»ıÇÒ Å¬¸³</param>
-    /// <param name="transition">ÀüÈ¯¹æ¹ı </param>
-    /// <param name="transition_duration">ÀüÈ¯½Ã°£</param>
-    /// <param name="volume">»ç¿îµå Å©±â</param>
-    /// <param name="pitch">Å¬¸³ÀÇ ÇÇÄ¡ ·¹º§ ¼³Á¤</param>
-    /// <param name="playback_position">½ÃÀÛ½ÃÁ¡</param>
+    /// <param name="clip">ì¬ìƒí•  í´ë¦½</param>
+    /// <param name="transition">ì „í™˜ë°©ë²• </param>
+    /// <param name="transition_duration">ì „í™˜ì‹œê°„</param>
+    /// <param name="volume">ì‚¬ìš´ë“œ í¬ê¸°</param>
+    /// <param name="pitch">í´ë¦½ì˜ í”¼ì¹˜ ë ˆë²¨ ì„¤ì •</param>
+    /// <param name="playback_position">ì‹œì‘ì‹œì </param>
     public void PlayBGM(AudioClip clip, MusicTransition transition, float transition_duration, float volume, float pitch, float playback_position = 0)
     {
-        // ¿ä±¸Å¬¸³ÀÌ ¾ø°Å³ª ¶È°°Àº Å¬¸³ÀÌ¸é Àç»ıÇÏÁö ¾ÊÀ½.
+        // ìš”êµ¬í´ë¦½ì´ ì—†ê±°ë‚˜ ë˜‘ê°™ì€ í´ë¦½ì´ë©´ ì¬ìƒí•˜ì§€ ì•ŠìŒ.
         if (clip == null || backgroundMusic.CurrentClip == clip)
         {
             return;
         }
 
-        // Ã¹ ¹øÂ°·Î ÇÃ·¹ÀÌÇÑ À½¾ÇÀÌ°Å³ª ÀüÈ¯½Ã°£ÀÌ 0ÀÌ¸é - ÀüÈ¯È¿°ú ¾ø´Â ÄÉÀÌ½º
+        // ì²« ë²ˆì§¸ë¡œ í”Œë ˆì´í•œ ìŒì•…ì´ê±°ë‚˜ ì „í™˜ì‹œê°„ì´ 0ì´ë©´ - ì „í™˜íš¨ê³¼ ì—†ëŠ” ì¼€ì´ìŠ¤
         if (backgroundMusic.CurrentClip == null || transition_duration <= 0)
         {
             transition = MusicTransition.Swift;
         }
 
-        // ÀüÈ¯È¿°ú ¾ø´Â ÄÉÀÌ½º ½ÃÀÛ
+        // ì „í™˜íš¨ê³¼ ì—†ëŠ” ì¼€ì´ìŠ¤ ì‹œì‘
         if (transition == MusicTransition.Swift)
         {
             PlayBackgroundMusic(clip, playback_position, pitch);
@@ -686,30 +684,30 @@ public class SoundManager : MonoBehaviour
         }
         else
         {
-            // ÀüÈ¯È¿°ú ÁøÇàÁßÀÏ ¶§ ¸·À½
+            // ì „í™˜íš¨ê³¼ ì§„í–‰ì¤‘ì¼ ë•Œ ë§‰ìŒ
             if (backgroundMusic.NextClip != null)
             {
                 Debug.LogWarning("Trying to perform a transition on the background music while one is still active");
                 return;
             }
 
-            // ÀüÈ¯È¿°ú º¯¼ö¿¡ ÀüÈ¯¹æ¹ı´ë·Î ÁöÁ¤, ±× ¿Ü º¯¼öµéµµ..
+            // ì „í™˜íš¨ê³¼ ë³€ìˆ˜ì— ì „í™˜ë°©ë²•ëŒ€ë¡œ ì§€ì •, ê·¸ ì™¸ ë³€ìˆ˜ë“¤ë„..
             backgroundMusic.MusicTransition = transition;
             transitionTime = backgroundMusic.TransitionDuration = transition_duration;
             musicVolCap = _musicVolume;
             backgroundMusic.NextClip = clip;
 
-            // Å©·Î½ºÆäÀÌµå Ã³¸®
+            // í¬ë¡œìŠ¤í˜ì´ë“œ ì²˜ë¦¬
             if (backgroundMusic.MusicTransition == MusicTransition.CrossFade)
             {
-                // ÀüÈ¯È¿°ú ÁøÇàÁßÀÏ ¶§ ¸·À½
+                // ì „í™˜íš¨ê³¼ ì§„í–‰ì¤‘ì¼ ë•Œ ë§‰ìŒ
                 if (crossfadeSource != null)
                 {
                     Debug.LogWarning("Trying to perform a transition on the background music while one is still active");
                     return;
                 }
 
-                // Å©·Î½ºÆäÀÌµå ¿Àµğ¿À ÃÊ±âÈ­
+                // í¬ë¡œìŠ¤í˜ì´ë“œ ì˜¤ë””ì˜¤ ì´ˆê¸°í™”
                 crossfadeSource = ConfigureAudioSource(gameObject.AddComponent<AudioSource>());
 
                 crossfadeSource.volume = Mathf.Clamp01(musicVolCap - currentMusicVol);
@@ -721,114 +719,114 @@ public class SoundManager : MonoBehaviour
     }
 
     /// <summary>
-    /// ¹è°æÀ½ Àç»ı
-    /// ¹è°æÀ½Àº ÇÑ ¹ø¿¡ ÇÑ °³¸¸ Àç»ı.
+    /// ë°°ê²½ìŒ ì¬ìƒ
+    /// ë°°ê²½ìŒì€ í•œ ë²ˆì— í•œ ê°œë§Œ ì¬ìƒ.
     /// </summary>
-    /// <param name="clip">Àç»ıÇÒ Å¬¸³</param>
-    /// <param name="transition">ÀüÈ¯¹æ¹ı</param>
-    /// <param name="transition_duration">ÀüÈ¯½Ã°£</param>
-    /// <param name="volume">»ç¿îµå Å©±â</param>
+    /// <param name="clip">ì¬ìƒí•  í´ë¦½</param>
+    /// <param name="transition">ì „í™˜ë°©ë²•</param>
+    /// <param name="transition_duration">ì „í™˜ì‹œê°„</param>
+    /// <param name="volume">ì‚¬ìš´ë“œ í¬ê¸°</param>
     public void PlayBGM(AudioClip clip, MusicTransition transition, float transition_duration, float volume)
     {
         PlayBGM(clip, transition, transition_duration, volume, 1f);
     }
 
     /// <summary>
-    /// ¹è°æÀ½ Àç»ı
-    /// ¹è°æÀ½Àº ÇÑ ¹ø¿¡ ÇÑ °³¸¸ Àç»ı.
+    /// ë°°ê²½ìŒ ì¬ìƒ
+    /// ë°°ê²½ìŒì€ í•œ ë²ˆì— í•œ ê°œë§Œ ì¬ìƒ.
     /// </summary>
-    /// <param name="clip">Àç»ıÇÒ Å¬¸³</param>
-    /// <param name="transition">ÀüÈ¯¹æ¹ı</param>
-    /// <param name="transition_duration">ÀüÈ¯½Ã°£</param>
+    /// <param name="clip">ì¬ìƒí•  í´ë¦½</param>
+    /// <param name="transition">ì „í™˜ë°©ë²•</param>
+    /// <param name="transition_duration">ì „í™˜ì‹œê°„</param>
     public void PlayBGM(AudioClip clip, MusicTransition transition, float transition_duration)
     {
         PlayBGM(clip, transition, transition_duration, _musicVolume, 1f);
     }
 
     /// <summary>
-    /// ¹è°æÀ½ Àç»ı
-    /// ¹è°æÀ½Àº ÇÑ ¹ø¿¡ ÇÑ °³¸¸ Àç»ı.
+    /// ë°°ê²½ìŒ ì¬ìƒ
+    /// ë°°ê²½ìŒì€ í•œ ë²ˆì— í•œ ê°œë§Œ ì¬ìƒ.
     /// </summary>
-    /// <param name="clip">Àç»ıÇÒ Å¬¸³</param>
-    /// <param name="transition">ÀüÈ¯¹æ¹ı</param>
+    /// <param name="clip">ì¬ìƒí•  í´ë¦½</param>
+    /// <param name="transition">ì „í™˜ë°©ë²•</param>
     public void PlayBGM(AudioClip clip, MusicTransition transition)
     {
         PlayBGM(clip, transition, 1f, _musicVolume, 1f);
     }
 
     /// <summary>
-    /// ¹è°æÀ½ ¹Ù·Î Àç»ı
-    /// ¹è°æÀ½Àº ÇÑ ¹ø¿¡ ÇÑ °³¸¸ Àç»ı.
+    /// ë°°ê²½ìŒ ë°”ë¡œ ì¬ìƒ
+    /// ë°°ê²½ìŒì€ í•œ ë²ˆì— í•œ ê°œë§Œ ì¬ìƒ.
     /// </summary>
-    /// <param name="clip">Àç»ıÇÒ Å¬¸³</param>
+    /// <param name="clip">ì¬ìƒí•  í´ë¦½</param>
     public void PlayBGM(AudioClip clip)
     {
         PlayBGM(clip, MusicTransition.Swift, 1f, _musicVolume, 1f);
     }
 
     /// <summary>
-    /// ¹è°æÀ½ Àç»ı
-    /// ¹è°æÀ½Àº ÇÑ ¹ø¿¡ ÇÑ °³¸¸ Àç»ı.
+    /// ë°°ê²½ìŒ ì¬ìƒ
+    /// ë°°ê²½ìŒì€ í•œ ë²ˆì— í•œ ê°œë§Œ ì¬ìƒ.
     /// </summary>
-    /// <param name="clip_path">Resources Æú´õ¿¡ ÀÖ´Â Å¬¸³ °æ·Î</param>
-    /// <param name="transition">ÀüÈ¯¹æ¹ı </param>
-    /// <param name="transition_duration">ÀüÈ¯½Ã°£</param>
-    /// <param name="volume">»ç¿îµå Å©±â</param>
-    /// <param name="pitch">Å¬¸³ÀÇ ÇÇÄ¡ ·¹º§ ¼³Á¤</param>
-    /// <param name="playback_position">½ÃÀÛ½ÃÁ¡</param>
+    /// <param name="clip_path">Resources í´ë”ì— ìˆëŠ” í´ë¦½ ê²½ë¡œ</param>
+    /// <param name="transition">ì „í™˜ë°©ë²• </param>
+    /// <param name="transition_duration">ì „í™˜ì‹œê°„</param>
+    /// <param name="volume">ì‚¬ìš´ë“œ í¬ê¸°</param>
+    /// <param name="pitch">í´ë¦½ì˜ í”¼ì¹˜ ë ˆë²¨ ì„¤ì •</param>
+    /// <param name="playback_position">ì‹œì‘ì‹œì </param>
     public void PlayBGMFromPath(string clip_path, MusicTransition transition, float transition_duration, float volume, float pitch, float playback_position = 0)
     {
         PlayBGM(LoadClip(clip_path), transition, transition_duration, volume, pitch, playback_position);
     }
 
     /// <summary>
-    /// ¹è°æÀ½ Àç»ı
-    /// ¹è°æÀ½Àº ÇÑ ¹ø¿¡ ÇÑ °³¸¸ Àç»ı.
+    /// ë°°ê²½ìŒ ì¬ìƒ
+    /// ë°°ê²½ìŒì€ í•œ ë²ˆì— í•œ ê°œë§Œ ì¬ìƒ.
     /// </summary>
-    /// <param name="clip_path">Resources Æú´õ¿¡ ÀÖ´Â Å¬¸³ °æ·Î</param>
-    /// <param name="transition">ÀüÈ¯¹æ¹ı </param>
-    /// <param name="transition_duration">ÀüÈ¯½Ã°£</param>
-    /// <param name="volume">»ç¿îµå Å©±â</param>
+    /// <param name="clip_path">Resources í´ë”ì— ìˆëŠ” í´ë¦½ ê²½ë¡œ</param>
+    /// <param name="transition">ì „í™˜ë°©ë²• </param>
+    /// <param name="transition_duration">ì „í™˜ì‹œê°„</param>
+    /// <param name="volume">ì‚¬ìš´ë“œ í¬ê¸°</param>
     public void PlayBGMFromPath(string clip_path, MusicTransition transition, float transition_duration, float volume)
     {
         PlayBGM(LoadClip(clip_path), transition, transition_duration, volume, 1f);
     }
 
     /// <summary>
-    /// ¹è°æÀ½ Àç»ı
-    /// ¹è°æÀ½Àº ÇÑ ¹ø¿¡ ÇÑ °³¸¸ Àç»ı.
+    /// ë°°ê²½ìŒ ì¬ìƒ
+    /// ë°°ê²½ìŒì€ í•œ ë²ˆì— í•œ ê°œë§Œ ì¬ìƒ.
     /// </summary>
-    /// <param name="clip_path">Resources Æú´õ¿¡ ÀÖ´Â Å¬¸³ °æ·Î</param>
-    /// <param name="transition">ÀüÈ¯¹æ¹ı </param>
-    /// <param name="transition_duration">ÀüÈ¯½Ã°£</param>
+    /// <param name="clip_path">Resources í´ë”ì— ìˆëŠ” í´ë¦½ ê²½ë¡œ</param>
+    /// <param name="transition">ì „í™˜ë°©ë²• </param>
+    /// <param name="transition_duration">ì „í™˜ì‹œê°„</param>
     public void PlayBGMFromPath(string clip_path, MusicTransition transition, float transition_duration)
     {
         PlayBGM(LoadClip(clip_path), transition, transition_duration, _musicVolume, 1f);
     }
 
     /// <summary>
-    /// ¹è°æÀ½ Àç»ı
-    /// ¹è°æÀ½Àº ÇÑ ¹ø¿¡ ÇÑ °³¸¸ Àç»ı.
+    /// ë°°ê²½ìŒ ì¬ìƒ
+    /// ë°°ê²½ìŒì€ í•œ ë²ˆì— í•œ ê°œë§Œ ì¬ìƒ.
     /// </summary>
-    /// <param name="clip_path">Resources Æú´õ¿¡ ÀÖ´Â Å¬¸³ °æ·Î</param>
-    /// <param name="transition">ÀüÈ¯¹æ¹ı </param>
+    /// <param name="clip_path">Resources í´ë”ì— ìˆëŠ” í´ë¦½ ê²½ë¡œ</param>
+    /// <param name="transition">ì „í™˜ë°©ë²• </param>
     public void PlayBGMFromPath(string clip_path, MusicTransition transition)
     {
         PlayBGM(LoadClip(clip_path), transition, 1f, _musicVolume, 1f);
     }
 
     /// <summary>
-    /// ¹è°æÀ½ ¹Ù·Î Àç»ı
-    /// ¹è°æÀ½Àº ÇÑ ¹ø¿¡ ÇÑ °³¸¸ Àç»ı.
+    /// ë°°ê²½ìŒ ë°”ë¡œ ì¬ìƒ
+    /// ë°°ê²½ìŒì€ í•œ ë²ˆì— í•œ ê°œë§Œ ì¬ìƒ.
     /// </summary>
-    /// <param name="clip_path">Resources Æú´õ¿¡ ÀÖ´Â Å¬¸³ °æ·Î</param>
+    /// <param name="clip_path">Resources í´ë”ì— ìˆëŠ” í´ë¦½ ê²½ë¡œ</param>
     public void PlayBGMFromPath(string clip_path)
     {
         PlayBGM(LoadClip(clip_path), MusicTransition.Swift, 1f, _musicVolume, 1f);
     }
 
     /// <summary>
-    /// ¹è°æÀ½ ÁßÁö
+    /// ë°°ê²½ìŒ ì¤‘ì§€
     /// </summary>
     public void StopBGM()
     {
@@ -839,7 +837,7 @@ public class SoundManager : MonoBehaviour
     }
 
     /// <summary>
-    /// ¹è°æÀ½ ÀÏ½ÃÁ¤Áö
+    /// ë°°ê²½ìŒ ì¼ì‹œì •ì§€
     /// </summary>
     public void PauseBGM()
     {
@@ -850,7 +848,7 @@ public class SoundManager : MonoBehaviour
     }
 
     /// <summary>
-    /// ¹è°æÀ½ ´Ù½ÃÀç»ı
+    /// ë°°ê²½ìŒ ë‹¤ì‹œì¬ìƒ
     /// </summary>
     public void ResumeBGM()
     {
@@ -861,27 +859,27 @@ public class SoundManager : MonoBehaviour
     }
 
     /// <summary>
-    /// ¸ğµç È¿°úÀ½¿¡¼­ »ç¿ëµÇ´Â ³»Àå ±âº»ÇÔ¼ö
-    /// È¿°úÀ½¿¡ ´ëÇÑ Æ¯Á¤ Ç×¸ñÀ» ÃÊ±âÈ­ÇÔ.
+    /// ëª¨ë“  íš¨ê³¼ìŒì—ì„œ ì‚¬ìš©ë˜ëŠ” ë‚´ì¥ ê¸°ë³¸í•¨ìˆ˜
+    /// íš¨ê³¼ìŒì— ëŒ€í•œ íŠ¹ì • í•­ëª©ì„ ì´ˆê¸°í™”í•¨.
     /// </summary>
-    /// <param name="audio_clip">Àç»ıÇÒ Å¬¸³</param>
-    /// <param name="location">Å¬¸³ÀÇ »ı¼º À§Ä¡ (2D)</param>
+    /// <param name="audio_clip">ì¬ìƒí•  í´ë¦½</param>
+    /// <param name="location">í´ë¦½ì˜ ìƒì„± ìœ„ì¹˜ (2D)</param>
     /// <returns>Newly created gameobject with sound effect and audio source attached</returns>
     private GameObject CreateSoundFx(AudioClip audio_clip, Vector2 location)
     {
-        // ÀÓ½Ã ¿ÀºêÁ§Æ®
+        // ì„ì‹œ ì˜¤ë¸Œì íŠ¸
         GameObject host = new GameObject("TempAudio");
         host.transform.position = location;
         host.transform.SetParent(transform);
         host.AddComponent<SoundEffect>();
 
-        // ¿Àµğ¿À¼Ò½º Ãß°¡
+        // ì˜¤ë””ì˜¤ì†ŒìŠ¤ ì¶”ê°€
         AudioSource audioSource = host.AddComponent<AudioSource>() as AudioSource;
         audioSource.playOnAwake = false;
         audioSource.spatialBlend = 0;
         audioSource.rolloffMode = AudioRolloffMode.Logarithmic;
 
-        // ¹Í¼­ ±×·ìÀ» »ç¿ëÇÒ °æ¿ì
+        // ë¯¹ì„œ ê·¸ë£¹ì„ ì‚¬ìš©í•  ê²½ìš°
         audioSource.outputAudioMixerGroup = _soundFxMixerGroup;
 
         audioSource.clip = audio_clip;
@@ -891,27 +889,27 @@ public class SoundManager : MonoBehaviour
     }
 
     /// <summary>
-    /// ¸ğµç È¿°úÀ½¿¡¼­ »ç¿ëµÇ´Â ³»Àå ±âº»ÇÔ¼ö (Vector3.zero À§Ä¡ »ı¼º)
-    /// È¿°úÀ½¿¡ ´ëÇÑ Æ¯Á¤ Ç×¸ñÀ» ÃÊ±âÈ­ÇÔ.
+    /// ëª¨ë“  íš¨ê³¼ìŒì—ì„œ ì‚¬ìš©ë˜ëŠ” ë‚´ì¥ ê¸°ë³¸í•¨ìˆ˜ (Vector3.zero ìœ„ì¹˜ ìƒì„±)
+    /// íš¨ê³¼ìŒì— ëŒ€í•œ íŠ¹ì • í•­ëª©ì„ ì´ˆê¸°í™”í•¨.
     /// </summary>
-    /// <param name="audio_clip">Àç»ıÇÒ Å¬¸³</param>
+    /// <param name="audio_clip">ì¬ìƒí•  í´ë¦½</param>
     /// <returns>Newly created gameobject with sound effect and audio source attached</returns>
     private GameObject CreateSoundFx(AudioClip audio_clip, Vector3 location)
     {
-        // ÀÓ½Ã ¿ÀºêÁ§Æ®
+        // ì„ì‹œ ì˜¤ë¸Œì íŠ¸
         GameObject host = new GameObject("TempAudio");
         host.transform.position = location;
         host.transform.SetParent(transform);
         host.AddComponent<SoundEffect>();
 
-        // ¿Àµğ¿À¼Ò½º Ãß°¡
+        // ì˜¤ë””ì˜¤ì†ŒìŠ¤ ì¶”ê°€
         AudioSource audioSource = host.AddComponent<AudioSource>() as AudioSource;
         audioSource.playOnAwake = false;
         audioSource.spatialBlend = 1;
         audioSource.rolloffMode = AudioRolloffMode.Logarithmic;
         audioSource.maxDistance = 50;
 
-        // ¹Í¼­ ±×·ìÀ» »ç¿ëÇÒ °æ¿ì
+        // ë¯¹ì„œ ê·¸ë£¹ì„ ì‚¬ìš©í•  ê²½ìš°
         audioSource.outputAudioMixerGroup = _soundFxMixerGroup;
 
         audioSource.clip = audio_clip;
@@ -921,10 +919,10 @@ public class SoundManager : MonoBehaviour
     }
 
     /// <summary>
-    /// È¿°úÀ½ÀÌ È¿°úÀ½ Ç®¿¡ Á¸ÀçÇÏ¸é ÀÎµ¦½º ¾Ë·ÁÁÖ´Â ÇÔ¼ö
+    /// íš¨ê³¼ìŒì´ íš¨ê³¼ìŒ í’€ì— ì¡´ì¬í•˜ë©´ ì¸ë±ìŠ¤ ì•Œë ¤ì£¼ëŠ” í•¨ìˆ˜
     /// </summary>
-    /// <param name="name">È¿°úÀ½ ÀÌ¸§</param>
-    /// <param name="singleton">È¿°úÀ½ÀÌ ½Ì±ÛÅæÀÎÁö ¿©ºÎ</param>
+    /// <param name="name">íš¨ê³¼ìŒ ì´ë¦„</param>
+    /// <param name="singleton">íš¨ê³¼ìŒì´ ì‹±ê¸€í†¤ì¸ì§€ ì—¬ë¶€</param>
     /// <returns>Index of sound effect or -1 is none exists</returns>
     public int IndexOfSoundFxPool(string name, bool singleton = false)
     {
@@ -943,16 +941,16 @@ public class SoundManager : MonoBehaviour
     }
 
     /// <summary>
-    /// ¿ùµå ½ºÆäÀÌ½º(2D)¿¡¼­ ÁöÁ¤µÈ ½Ã°£¸¸Å­ È¿°úÀ½À» »ı¼ºÇØ Àç»ıÇÏ°í ³¡³ª¸é ÁöÁ¤µÈ Äİ¹é ÇÔ¼ö¸¦ È£ÃâÇÏ´Â ÇÔ¼ö
+    /// ì›”ë“œ ìŠ¤í˜ì´ìŠ¤(2D)ì—ì„œ ì§€ì •ëœ ì‹œê°„ë§Œí¼ íš¨ê³¼ìŒì„ ìƒì„±í•´ ì¬ìƒí•˜ê³  ëë‚˜ë©´ ì§€ì •ëœ ì½œë°± í•¨ìˆ˜ë¥¼ í˜¸ì¶œí•˜ëŠ” í•¨ìˆ˜
     /// </summary>
     /// <returns>An audiosource</returns>
-    /// <param name="clip">Àç»ıÇÒ Å¬¸³</param>
-    /// <param name="location">Å¬¸³ÀÇ »ı¼º À§Ä¡ (2D)</param>
-    /// <param name="duration">Àç»ı½Ã°£</param>
-    /// <param name="volume">»ç¿îµå Å©±â</param>
-    /// <param name="singleton">È¿°úÀ½ÀÌ ½Ì±ÛÅæÀÎÁö ¿©ºÎ</param>
-    /// <param name="pitch">Å¬¸³ÀÇ ÇÇÄ¡ ·¹º§ ¼³Á¤</param>
-    /// <param name="callback">Àç»ıÀÌ ³¡³ª¸é Äİ¹éÇÒ ¾×¼Ç</param>
+    /// <param name="clip">ì¬ìƒí•  í´ë¦½</param>
+    /// <param name="location">í´ë¦½ì˜ ìƒì„± ìœ„ì¹˜ (2D)</param>
+    /// <param name="duration">ì¬ìƒì‹œê°„</param>
+    /// <param name="volume">ì‚¬ìš´ë“œ í¬ê¸°</param>
+    /// <param name="singleton">íš¨ê³¼ìŒì´ ì‹±ê¸€í†¤ì¸ì§€ ì—¬ë¶€</param>
+    /// <param name="pitch">í´ë¦½ì˜ í”¼ì¹˜ ë ˆë²¨ ì„¤ì •</param>
+    /// <param name="callback">ì¬ìƒì´ ëë‚˜ë©´ ì½œë°±í•  ì•¡ì…˜</param>
     public AudioSource PlaySFX(AudioClip clip, Vector2 location, float duration, float volume, bool singleton = false, float pitch = 1f, Action callback = null)
     {
         if (duration <= 0 || clip == null)
@@ -964,7 +962,7 @@ public class SoundManager : MonoBehaviour
 
         if (index >= 0)
         {
-            // È¿°úÀ½ Ç®¿¡ Á¸ÀçÇÏ¸é Àç»ı½Ã°£ Àç¼³Á¤ÇØ¼­ ³»º¸³¿
+            // íš¨ê³¼ìŒ í’€ì— ì¡´ì¬í•˜ë©´ ì¬ìƒì‹œê°„ ì¬ì„¤ì •í•´ì„œ ë‚´ë³´ëƒ„
             SoundEffect singletonSFx = sfxPool[index];
             singletonSFx.Duration = singletonSFx.Time = duration;
             sfxPool[index] = singletonSFx;
@@ -981,7 +979,7 @@ public class SoundManager : MonoBehaviour
         source.volume = _soundFxVolume * volume;
         source.pitch = pitch;
 
-        // Àç»ç¿ë °¡´ÉÇÑ »ç¿îµå »ı¼º
+        // ì¬ì‚¬ìš© ê°€ëŠ¥í•œ ì‚¬ìš´ë“œ ìƒì„±
         SoundEffect sfx = host.GetComponent<SoundEffect>();
         sfx.Singleton = singleton;
         sfx.Source = source;
@@ -989,7 +987,7 @@ public class SoundManager : MonoBehaviour
         sfx.Duration = sfx.Time = duration;
         sfx.Callback = callback;
 
-        // Ç®¿¡ ³Ö´Â´Ù.
+        // í’€ì— ë„£ëŠ”ë‹¤.
         sfxPool.Add(sfx);
 
         source.Play();
@@ -998,43 +996,43 @@ public class SoundManager : MonoBehaviour
     }
 
     /// <summary>
-    /// ¿ùµå ½ºÆäÀÌ½º(2D)¿¡¼­ ÁöÁ¤µÈ ½Ã°£¸¸Å­ È¿°úÀ½À» »ı¼ºÇØ Àç»ıÇÏ°í ³¡³ª¸é ÁöÁ¤µÈ Äİ¹é ÇÔ¼ö¸¦ È£ÃâÇÏ´Â ÇÔ¼ö
+    /// ì›”ë“œ ìŠ¤í˜ì´ìŠ¤(2D)ì—ì„œ ì§€ì •ëœ ì‹œê°„ë§Œí¼ íš¨ê³¼ìŒì„ ìƒì„±í•´ ì¬ìƒí•˜ê³  ëë‚˜ë©´ ì§€ì •ëœ ì½œë°± í•¨ìˆ˜ë¥¼ í˜¸ì¶œí•˜ëŠ” í•¨ìˆ˜
     /// </summary>
     /// <returns>An audiosource</returns>
-    /// <param name="clip">Àç»ıÇÒ Å¬¸³</param>
-    /// <param name="location">Å¬¸³ÀÇ »ı¼º À§Ä¡ (2D)</param>
-    /// <param name="duration">Àç»ı½Ã°£</param>
-    /// <param name="singleton">È¿°úÀ½ÀÌ ½Ì±ÛÅæÀÎÁö ¿©ºÎ</param>
-    /// <param name="callback">Àç»ıÀÌ ³¡³ª¸é Äİ¹éÇÒ ¾×¼Ç</param>
+    /// <param name="clip">ì¬ìƒí•  í´ë¦½</param>
+    /// <param name="location">í´ë¦½ì˜ ìƒì„± ìœ„ì¹˜ (2D)</param>
+    /// <param name="duration">ì¬ìƒì‹œê°„</param>
+    /// <param name="singleton">íš¨ê³¼ìŒì´ ì‹±ê¸€í†¤ì¸ì§€ ì—¬ë¶€</param>
+    /// <param name="callback">ì¬ìƒì´ ëë‚˜ë©´ ì½œë°±í•  ì•¡ì…˜</param>
     public AudioSource PlaySFX(AudioClip clip, Vector2 location, float duration, bool singleton = false, Action callback = null)
     {
         return PlaySFX(clip, location, duration, _soundFxVolume, singleton, 1f, callback);
     }
 
     /// <summary>
-    /// ¿ùµå ½ºÆäÀÌ½º(2D)¿¡¼­ ÁöÁ¤µÈ ½Ã°£¸¸Å­ È¿°úÀ½À» »ı¼ºÇØ Àç»ıÇÏ°í ³¡³ª¸é ÁöÁ¤µÈ Äİ¹é ÇÔ¼ö¸¦ È£ÃâÇÏ´Â ÇÔ¼ö
+    /// ì›”ë“œ ìŠ¤í˜ì´ìŠ¤(2D)ì—ì„œ ì§€ì •ëœ ì‹œê°„ë§Œí¼ íš¨ê³¼ìŒì„ ìƒì„±í•´ ì¬ìƒí•˜ê³  ëë‚˜ë©´ ì§€ì •ëœ ì½œë°± í•¨ìˆ˜ë¥¼ í˜¸ì¶œí•˜ëŠ” í•¨ìˆ˜
     /// </summary>
     /// <returns>An audiosource</returns>
-    /// <param name="clip">Àç»ıÇÒ Å¬¸³</param>
-    /// <param name="duration">Àç»ı½Ã°£</param>
-    /// <param name="singleton">È¿°úÀ½ÀÌ ½Ì±ÛÅæÀÎÁö ¿©ºÎ</param>
-    /// <param name="callback">Àç»ıÀÌ ³¡³ª¸é Äİ¹éÇÒ ¾×¼Ç</param>
+    /// <param name="clip">ì¬ìƒí•  í´ë¦½</param>
+    /// <param name="duration">ì¬ìƒì‹œê°„</param>
+    /// <param name="singleton">íš¨ê³¼ìŒì´ ì‹±ê¸€í†¤ì¸ì§€ ì—¬ë¶€</param>
+    /// <param name="callback">ì¬ìƒì´ ëë‚˜ë©´ ì½œë°±í•  ì•¡ì…˜</param>
     public AudioSource PlaySFX(AudioClip clip, float duration, bool singleton = false, Action callback = null)
     {
         return PlaySFX(clip, Vector2.zero, duration, _soundFxVolume, singleton, 1f, callback);
     }
 
     /// <summary>
-    /// ¿ùµå ½ºÆäÀÌ½º(2D)¿¡¼­ ÁöÁ¤µÈ È½¼ö¸¸Å­ È¿°úÀ½À» »ı¼ºÇØ Àç»ıÇÏ°í ³¡³ª¸é ÁöÁ¤µÈ Äİ¹é ÇÔ¼ö¸¦ È£ÃâÇÏ´Â ÇÔ¼ö
+    /// ì›”ë“œ ìŠ¤í˜ì´ìŠ¤(2D)ì—ì„œ ì§€ì •ëœ íšŸìˆ˜ë§Œí¼ íš¨ê³¼ìŒì„ ìƒì„±í•´ ì¬ìƒí•˜ê³  ëë‚˜ë©´ ì§€ì •ëœ ì½œë°± í•¨ìˆ˜ë¥¼ í˜¸ì¶œí•˜ëŠ” í•¨ìˆ˜
     /// </summary>
     /// <returns>An audiosource</returns>
-    /// <param name="clip">Àç»ıÇÒ Å¬¸³</param>
-    /// <param name="location">Å¬¸³ÀÇ »ı¼º À§Ä¡ (2D)</param>
-    /// <param name="repeat">Å¬¸³À» ¾ó¸¶³ª ¹İº¹ÇÒÁö Á¤ÇÑ´Ù. ¹«ÇÑÀº À½¼ö¸¦ ÀÔ·ÂÇÏ¸é µÊ.</param>
-    /// <param name="volume">»ç¿îµå Å©±â</param>
-    /// <param name="singleton">È¿°úÀ½ÀÌ ½Ì±ÛÅæÀÎÁö ¿©ºÎ</param>
-    /// <param name="pitch">Å¬¸³ÀÇ ÇÇÄ¡ ·¹º§ ¼³Á¤</param>
-    /// <param name="callback">Àç»ıÀÌ ³¡³ª¸é Äİ¹éÇÒ ¾×¼Ç</param>
+    /// <param name="clip">ì¬ìƒí•  í´ë¦½</param>
+    /// <param name="location">í´ë¦½ì˜ ìƒì„± ìœ„ì¹˜ (2D)</param>
+    /// <param name="repeat">í´ë¦½ì„ ì–¼ë§ˆë‚˜ ë°˜ë³µí• ì§€ ì •í•œë‹¤. ë¬´í•œì€ ìŒìˆ˜ë¥¼ ì…ë ¥í•˜ë©´ ë¨.</param>
+    /// <param name="volume">ì‚¬ìš´ë“œ í¬ê¸°</param>
+    /// <param name="singleton">íš¨ê³¼ìŒì´ ì‹±ê¸€í†¤ì¸ì§€ ì—¬ë¶€</param>
+    /// <param name="pitch">í´ë¦½ì˜ í”¼ì¹˜ ë ˆë²¨ ì„¤ì •</param>
+    /// <param name="callback">ì¬ìƒì´ ëë‚˜ë©´ ì½œë°±í•  ì•¡ì…˜</param>
     public AudioSource RepeatSFX(AudioClip clip, Vector2 location, int repeat, float volume, bool singleton = false, float pitch = 1f, Action callback = null)
     {
         if (clip == null)
@@ -1048,7 +1046,7 @@ public class SoundManager : MonoBehaviour
 
             if (index >= 0)
             {
-                // È¿°úÀ½ Ç®¿¡ Á¸ÀçÇÏ¸é Àç»ı½Ã°£ Àç¼³Á¤ÇØ¼­ ³»º¸³¿
+                // íš¨ê³¼ìŒ í’€ì— ì¡´ì¬í•˜ë©´ ì¬ìƒì‹œê°„ ì¬ì„¤ì •í•´ì„œ ë‚´ë³´ëƒ„
                 SoundEffect singletonSFx = sfxPool[index];
                 singletonSFx.Duration = singletonSFx.Time = repeat > 0 ? clip.length * repeat : float.PositiveInfinity;
                 sfxPool[index] = singletonSFx;
@@ -1062,7 +1060,7 @@ public class SoundManager : MonoBehaviour
             source.volume = _soundFxVolume * volume;
             source.pitch = pitch;
 
-            // Àç»ç¿ë °¡´ÉÇÑ »ç¿îµå »ı¼º
+            // ì¬ì‚¬ìš© ê°€ëŠ¥í•œ ì‚¬ìš´ë“œ ìƒì„±
             SoundEffect sfx = host.GetComponent<SoundEffect>();
             sfx.Singleton = singleton;
             sfx.Source = source;
@@ -1070,7 +1068,7 @@ public class SoundManager : MonoBehaviour
             sfx.Duration = sfx.Time = repeat > 0 ? clip.length * repeat : float.PositiveInfinity;
             sfx.Callback = callback;
 
-            // Ç®¿¡ ³Ö´Â´Ù.
+            // í’€ì— ë„£ëŠ”ë‹¤.
             sfxPool.Add(sfx);
 
             source.Play();
@@ -1078,46 +1076,46 @@ public class SoundManager : MonoBehaviour
             return source;
         }
 
-        // repeat ±æÀÌ°¡ 1º¸´Ù ÀÛ°Å³ª °°À¸¸é Àç»ı
+        // repeat ê¸¸ì´ê°€ 1ë³´ë‹¤ ì‘ê±°ë‚˜ ê°™ìœ¼ë©´ ì¬ìƒ
         return PlayOneShot(clip, location, volume, pitch, callback);
     }
 
     /// <summary>
-    /// ¿ùµå ½ºÆäÀÌ½º(2D)¿¡¼­ ÁöÁ¤µÈ È½¼ö¸¸Å­ È¿°úÀ½À» »ı¼ºÇØ Àç»ıÇÏ°í ³¡³ª¸é ÁöÁ¤µÈ Äİ¹é ÇÔ¼ö¸¦ È£ÃâÇÏ´Â ÇÔ¼ö
+    /// ì›”ë“œ ìŠ¤í˜ì´ìŠ¤(2D)ì—ì„œ ì§€ì •ëœ íšŸìˆ˜ë§Œí¼ íš¨ê³¼ìŒì„ ìƒì„±í•´ ì¬ìƒí•˜ê³  ëë‚˜ë©´ ì§€ì •ëœ ì½œë°± í•¨ìˆ˜ë¥¼ í˜¸ì¶œí•˜ëŠ” í•¨ìˆ˜
     /// </summary>
     /// <returns>An audiosource</returns>
-    /// <param name="clip">Àç»ıÇÒ Å¬¸³</param>
-    /// <param name="location">Å¬¸³ÀÇ »ı¼º À§Ä¡ (2D)</param>
-    /// <param name="repeat">Å¬¸³À» ¾ó¸¶³ª ¹İº¹ÇÒÁö Á¤ÇÑ´Ù. ¹«ÇÑÀº À½¼ö¸¦ ÀÔ·ÂÇÏ¸é µÊ.</param>
-    /// <param name="singleton">È¿°úÀ½ÀÌ ½Ì±ÛÅæÀÎÁö ¿©ºÎ</param>
-    /// <param name="callback">Àç»ıÀÌ ³¡³ª¸é Äİ¹éÇÒ ¾×¼Ç</param>
+    /// <param name="clip">ì¬ìƒí•  í´ë¦½</param>
+    /// <param name="location">í´ë¦½ì˜ ìƒì„± ìœ„ì¹˜ (2D)</param>
+    /// <param name="repeat">í´ë¦½ì„ ì–¼ë§ˆë‚˜ ë°˜ë³µí• ì§€ ì •í•œë‹¤. ë¬´í•œì€ ìŒìˆ˜ë¥¼ ì…ë ¥í•˜ë©´ ë¨.</param>
+    /// <param name="singleton">íš¨ê³¼ìŒì´ ì‹±ê¸€í†¤ì¸ì§€ ì—¬ë¶€</param>
+    /// <param name="callback">ì¬ìƒì´ ëë‚˜ë©´ ì½œë°±í•  ì•¡ì…˜</param>
     public AudioSource RepeatSFX(AudioClip clip, Vector2 location, int repeat, bool singleton = false, Action callback = null)
     {
         return RepeatSFX(clip, location, repeat, _soundFxVolume, singleton, 1f, callback);
     }
 
     /// <summary>
-    /// ¿ùµå ½ºÆäÀÌ½º(2D)¿¡¼­ ÁöÁ¤µÈ È½¼ö¸¸Å­ È¿°úÀ½À» »ı¼ºÇØ Àç»ıÇÏ°í ³¡³ª¸é ÁöÁ¤µÈ Äİ¹é ÇÔ¼ö¸¦ È£ÃâÇÏ´Â ÇÔ¼ö
+    /// ì›”ë“œ ìŠ¤í˜ì´ìŠ¤(2D)ì—ì„œ ì§€ì •ëœ íšŸìˆ˜ë§Œí¼ íš¨ê³¼ìŒì„ ìƒì„±í•´ ì¬ìƒí•˜ê³  ëë‚˜ë©´ ì§€ì •ëœ ì½œë°± í•¨ìˆ˜ë¥¼ í˜¸ì¶œí•˜ëŠ” í•¨ìˆ˜
     /// </summary>
     /// <returns>An audiosource</returns>
-    /// <param name="clip">Àç»ıÇÒ Å¬¸³</param>
-    /// <param name="repeat">Å¬¸³À» ¾ó¸¶³ª ¹İº¹ÇÒÁö Á¤ÇÑ´Ù. ¹«ÇÑÀº À½¼ö¸¦ ÀÔ·ÂÇÏ¸é µÊ.</param>
-    /// <param name="singleton">È¿°úÀ½ÀÌ ½Ì±ÛÅæÀÎÁö ¿©ºÎ</param>
-    /// <param name="callback">Àç»ıÀÌ ³¡³ª¸é Äİ¹éÇÒ ¾×¼Ç</param>
+    /// <param name="clip">ì¬ìƒí•  í´ë¦½</param>
+    /// <param name="repeat">í´ë¦½ì„ ì–¼ë§ˆë‚˜ ë°˜ë³µí• ì§€ ì •í•œë‹¤. ë¬´í•œì€ ìŒìˆ˜ë¥¼ ì…ë ¥í•˜ë©´ ë¨.</param>
+    /// <param name="singleton">íš¨ê³¼ìŒì´ ì‹±ê¸€í†¤ì¸ì§€ ì—¬ë¶€</param>
+    /// <param name="callback">ì¬ìƒì´ ëë‚˜ë©´ ì½œë°±í•  ì•¡ì…˜</param>
     public AudioSource RepeatSFX(AudioClip clip, int repeat, bool singleton = false, Action callback = null)
     {
         return RepeatSFX(clip, Vector2.zero, repeat, _soundFxVolume, singleton, 1f, callback);
     }
 
     /// <summary>
-    /// ¿ùµå ½ºÆäÀÌ½º(2D)¿¡¼­ È¿°úÀ½À» »ı¼ºÇØ Àç»ıÇÏ°í ³¡³ª¸é ÁöÁ¤µÈ Äİ¹é ÇÔ¼ö¸¦ È£ÃâÇÏ´Â ÇÔ¼ö
+    /// ì›”ë“œ ìŠ¤í˜ì´ìŠ¤(2D)ì—ì„œ íš¨ê³¼ìŒì„ ìƒì„±í•´ ì¬ìƒí•˜ê³  ëë‚˜ë©´ ì§€ì •ëœ ì½œë°± í•¨ìˆ˜ë¥¼ í˜¸ì¶œí•˜ëŠ” í•¨ìˆ˜
     /// </summary>
     /// <returns>An AudioSource</returns>
-    /// <param name="clip">Àç»ıÇÒ Å¬¸³</param>
-    /// <param name="location">Å¬¸³ÀÇ »ı¼º À§Ä¡ (2D)</param>
-    /// <param name="volume">»ç¿îµå Å©±â</param>
-    /// <param name="pitch">Å¬¸³ÀÇ ÇÇÄ¡ ·¹º§ ¼³Á¤</param>
-    /// <param name="callback">Àç»ıÀÌ ³¡³ª¸é Äİ¹éÇÒ ¾×¼Ç</param>
+    /// <param name="clip">ì¬ìƒí•  í´ë¦½</param>
+    /// <param name="location">í´ë¦½ì˜ ìƒì„± ìœ„ì¹˜ (2D)</param>
+    /// <param name="volume">ì‚¬ìš´ë“œ í¬ê¸°</param>
+    /// <param name="pitch">í´ë¦½ì˜ í”¼ì¹˜ ë ˆë²¨ ì„¤ì •</param>
+    /// <param name="callback">ì¬ìƒì´ ëë‚˜ë©´ ì½œë°±í•  ì•¡ì…˜</param>
     public AudioSource PlayOneShot(AudioClip clip, Vector2 location, float volume, float pitch = 1f, Action callback = null)
     {
         if (clip == null)
@@ -1131,7 +1129,7 @@ public class SoundManager : MonoBehaviour
         source.volume = _soundFxVolume * volume;
         source.pitch = pitch;
 
-        // Àç»ç¿ë °¡´ÉÇÑ »ç¿îµå »ı¼º
+        // ì¬ì‚¬ìš© ê°€ëŠ¥í•œ ì‚¬ìš´ë“œ ìƒì„±
         SoundEffect sfx = host.GetComponent<SoundEffect>();
         sfx.Singleton = false;
         sfx.Source = source;
@@ -1139,7 +1137,7 @@ public class SoundManager : MonoBehaviour
         sfx.Duration = sfx.Time = clip.length;
         sfx.Callback = callback;
 
-        // Ç®¿¡ ³Ö´Â´Ù.
+        // í’€ì— ë„£ëŠ”ë‹¤.
         sfxPool.Add(sfx);
 
         source.Play();
@@ -1148,37 +1146,37 @@ public class SoundManager : MonoBehaviour
     }
 
     /// <summary>
-    /// ¿ùµå ½ºÆäÀÌ½º(2D)¿¡¼­ È¿°úÀ½À» »ı¼ºÇØ Àç»ıÇÏ°í ³¡³ª¸é ÁöÁ¤µÈ Äİ¹é ÇÔ¼ö¸¦ È£ÃâÇÏ´Â ÇÔ¼ö
+    /// ì›”ë“œ ìŠ¤í˜ì´ìŠ¤(2D)ì—ì„œ íš¨ê³¼ìŒì„ ìƒì„±í•´ ì¬ìƒí•˜ê³  ëë‚˜ë©´ ì§€ì •ëœ ì½œë°± í•¨ìˆ˜ë¥¼ í˜¸ì¶œí•˜ëŠ” í•¨ìˆ˜
     /// </summary>
     /// <returns>An AudioSource</returns>
-    /// <param name="clip">Àç»ıÇÒ Å¬¸³</param>
-    /// <param name="location">Å¬¸³ÀÇ »ı¼º À§Ä¡ (2D)</param>
-    /// <param name="callback">Àç»ıÀÌ ³¡³ª¸é Äİ¹éÇÒ ¾×¼Ç</param>
+    /// <param name="clip">ì¬ìƒí•  í´ë¦½</param>
+    /// <param name="location">í´ë¦½ì˜ ìƒì„± ìœ„ì¹˜ (2D)</param>
+    /// <param name="callback">ì¬ìƒì´ ëë‚˜ë©´ ì½œë°±í•  ì•¡ì…˜</param>
     public AudioSource PlayOneShot(AudioClip clip, Vector2 location, Action callback = null)
     {
         return PlayOneShot(clip, location, _soundFxVolume, 1f, callback);
     }
 
     /// <summary>
-    /// ¿ùµå ½ºÆäÀÌ½º(2D)¿¡¼­ È¿°úÀ½À» »ı¼ºÇØ Àç»ıÇÏ°í ³¡³ª¸é ÁöÁ¤µÈ Äİ¹é ÇÔ¼ö¸¦ È£ÃâÇÏ´Â ÇÔ¼ö
+    /// ì›”ë“œ ìŠ¤í˜ì´ìŠ¤(2D)ì—ì„œ íš¨ê³¼ìŒì„ ìƒì„±í•´ ì¬ìƒí•˜ê³  ëë‚˜ë©´ ì§€ì •ëœ ì½œë°± í•¨ìˆ˜ë¥¼ í˜¸ì¶œí•˜ëŠ” í•¨ìˆ˜
     /// </summary>
     /// <returns>An AudioSource</returns>
-    /// <param name="clip">Àç»ıÇÒ Å¬¸³</param>
-    /// <param name="callback">Àç»ıÀÌ ³¡³ª¸é Äİ¹éÇÒ ¾×¼Ç</param>
+    /// <param name="clip">ì¬ìƒí•  í´ë¦½</param>
+    /// <param name="callback">ì¬ìƒì´ ëë‚˜ë©´ ì½œë°±í•  ì•¡ì…˜</param>
     public AudioSource PlayOneShot(AudioClip clip, Action callback = null)
     {
         return PlayOneShot(clip, Vector2.zero, _soundFxVolume, 1f, callback);
     }
 
     /// <summary>
-    /// Æ¯Á¤ À§Ä¡ ¿ùµå ½ºÆäÀÌ½º(3D)¿¡¼­ È¿°úÀ½À» Àç»ıÇÏ°í ³¡³ª¸é ÁöÁ¤µÈ Äİ¹é ÇÔ¼ö¸¦ È£ÃâÇÏ´Â ÇÔ¼ö (3D Sound Settings È°¿ë)
+    /// íŠ¹ì • ìœ„ì¹˜ ì›”ë“œ ìŠ¤í˜ì´ìŠ¤(3D)ì—ì„œ íš¨ê³¼ìŒì„ ì¬ìƒí•˜ê³  ëë‚˜ë©´ ì§€ì •ëœ ì½œë°± í•¨ìˆ˜ë¥¼ í˜¸ì¶œí•˜ëŠ” í•¨ìˆ˜ (3D Sound Settings í™œìš©)
     /// </summary>
     /// <returns>An AudioSource</returns>
-    /// <param name="clip">Àç»ıÇÒ Å¬¸³</param>
-    /// <param name="location">Å¬¸³ÀÇ Àç»ı À§Ä¡ (3D)</param>
-    /// <param name="volume">»ç¿îµå Å©±â</param>
-    /// <param name="pitch">Å¬¸³ÀÇ ÇÇÄ¡ ·¹º§ ¼³Á¤</param>
-    /// <param name="callback">Àç»ıÀÌ ³¡³ª¸é Äİ¹éÇÒ ¾×¼Ç</param>
+    /// <param name="clip">ì¬ìƒí•  í´ë¦½</param>
+    /// <param name="location">í´ë¦½ì˜ ì¬ìƒ ìœ„ì¹˜ (3D)</param>
+    /// <param name="volume">ì‚¬ìš´ë“œ í¬ê¸°</param>
+    /// <param name="pitch">í´ë¦½ì˜ í”¼ì¹˜ ë ˆë²¨ ì„¤ì •</param>
+    /// <param name="callback">ì¬ìƒì´ ëë‚˜ë©´ ì½œë°±í•  ì•¡ì…˜</param>
     public AudioSource PlayClipAtPoint(AudioClip clip, Vector3 location, float volume, float pitch = 1f, Action callback = null)
     {
         if (clip == null)
@@ -1193,7 +1191,7 @@ public class SoundManager : MonoBehaviour
         source.volume = _soundFxVolume * volume;
         source.pitch = pitch;
 
-        // Àç»ç¿ë °¡´ÉÇÑ »ç¿îµå »ı¼º
+        // ì¬ì‚¬ìš© ê°€ëŠ¥í•œ ì‚¬ìš´ë“œ ìƒì„±
         SoundEffect sfx = host.GetComponent<SoundEffect>();
         sfx.Singleton = false;
         sfx.Source = source;
@@ -1201,7 +1199,7 @@ public class SoundManager : MonoBehaviour
         sfx.Duration = sfx.Time = clip.length;
         sfx.Callback = callback;
 
-        // Ç®¿¡ ³Ö´Â´Ù.
+        // í’€ì— ë„£ëŠ”ë‹¤.
         sfxPool.Add(sfx);
 
         source.Play();
@@ -1211,11 +1209,11 @@ public class SoundManager : MonoBehaviour
     }
 
     /// <summary>
-    /// ¸ğµç È¿°úÀ½À» ÀÏ½ÃÁ¤Áö
+    /// ëª¨ë“  íš¨ê³¼ìŒì„ ì¼ì‹œì •ì§€
     /// </summary>
     public void PauseAllSFX()
     {
-        // SoundEffect ´Ù µ¹±â
+        // SoundEffect ë‹¤ ëŒê¸°
         foreach (SoundEffect sfx in FindObjectsOfType<SoundEffect>())
         {
             if (sfx.Source.isPlaying) sfx.Source.Pause();
@@ -1223,7 +1221,7 @@ public class SoundManager : MonoBehaviour
     }
 
     /// <summary>
-    /// ¸ğµç È¿°úÀ½À» ´Ù½ÃÀç»ı
+    /// ëª¨ë“  íš¨ê³¼ìŒì„ ë‹¤ì‹œì¬ìƒ
     /// </summary>
     public void ResumeAllSFX()
     {
@@ -1234,7 +1232,7 @@ public class SoundManager : MonoBehaviour
     }
 
     /// <summary>
-    /// ¸ğµç È¿°úÀ½À» ÁßÁö
+    /// ëª¨ë“  íš¨ê³¼ìŒì„ ì¤‘ì§€
     /// </summary>
     public void StopAllSFX()
     {
@@ -1251,10 +1249,10 @@ public class SoundManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Resources Æú´õ¿¡¼­ ¿Àµğ¿À Å¬¸³À» °¡Á®¿À´Â ÇÔ¼ö
+    /// Resources í´ë”ì—ì„œ ì˜¤ë””ì˜¤ í´ë¦½ì„ ê°€ì ¸ì˜¤ëŠ” í•¨ìˆ˜
     /// </summary>
-    /// <param name="path">Resources Æú´õÀÇ Å¬¸³ °æ·Î</param>
-    /// <param name="add_to_playlist">·ÎµåÇÑ Å¬¸³À» ³ªÁß¿¡ ÂüÁ¶¸¦ À§ÇØ¼­ ÇÃ·¹ÀÌ ¸®½ºÆ®¿¡ Ãß°¡ÇÏ´Â ¿É¼Ç</param>
+    /// <param name="path">Resources í´ë”ì˜ í´ë¦½ ê²½ë¡œ</param>
+    /// <param name="add_to_playlist">ë¡œë“œí•œ í´ë¦½ì„ ë‚˜ì¤‘ì— ì°¸ì¡°ë¥¼ ìœ„í•´ì„œ í”Œë ˆì´ ë¦¬ìŠ¤íŠ¸ì— ì¶”ê°€í•˜ëŠ” ì˜µì…˜</param>
     /// <returns>The Audioclip from the resource folder</returns>
     public AudioClip LoadClip(string path, bool add_to_playlist = false)
     {
@@ -1274,12 +1272,12 @@ public class SoundManager : MonoBehaviour
     }
 
     /// <summary>
-    /// URL °æ·Î·Î ¿Àµğ¿À Å¬¸³À» °¡Á®¿À´Â ÇÔ¼ö
+    /// URL ê²½ë¡œë¡œ ì˜¤ë””ì˜¤ í´ë¦½ì„ ê°€ì ¸ì˜¤ëŠ” í•¨ìˆ˜
     /// </summary>
-    /// <param name="path">¿Àµğ¿À Å¬¸³ ´Ù¿î·Îµå URL. ¿¹: 'http://www.my-server.com/audio.ogg'</param>
-    /// <param name="audio_type">´Ù¿î·Îµå¸¦ À§ÇÑ ¿Àµğ¿À ÀÎÄÚµù Å¸ÀÔ. AudioType Âü°í</param>
-    /// <param name="add_to_playlist">·ÎµåÇÑ Å¬¸³À» ³ªÁß¿¡ ÂüÁ¶¸¦ À§ÇØ¼­ ÇÃ·¹ÀÌ ¸®½ºÆ®¿¡ Ãß°¡ÇÏ´Â ¿É¼Ç</param>
-    /// <param name="callback">·Îµå°¡ ¿Ï·áµÇ¸é Äİ¹éÇÒ ¾×¼Ç.</param>
+    /// <param name="path">ì˜¤ë””ì˜¤ í´ë¦½ ë‹¤ìš´ë¡œë“œ URL. ì˜ˆ: 'http://www.my-server.com/audio.ogg'</param>
+    /// <param name="audio_type">ë‹¤ìš´ë¡œë“œë¥¼ ìœ„í•œ ì˜¤ë””ì˜¤ ì¸ì½”ë”© íƒ€ì…. AudioType ì°¸ê³ </param>
+    /// <param name="add_to_playlist">ë¡œë“œí•œ í´ë¦½ì„ ë‚˜ì¤‘ì— ì°¸ì¡°ë¥¼ ìœ„í•´ì„œ í”Œë ˆì´ ë¦¬ìŠ¤íŠ¸ì— ì¶”ê°€í•˜ëŠ” ì˜µì…˜</param>
+    /// <param name="callback">ë¡œë“œê°€ ì™„ë£Œë˜ë©´ ì½œë°±í•  ì•¡ì…˜.</param>
     public void LoadClip(string path, AudioType audio_type, bool add_to_playlist, Action<AudioClip> callback)
     {
         StartCoroutine(LoadAudioClipFromUrl(path, audio_type, (downloadedContent) => {
@@ -1293,12 +1291,12 @@ public class SoundManager : MonoBehaviour
     }
 
     /// <summary>
-    /// URL °æ·Î·Î ¿Àµğ¿À Å¬¸³ °¡Á®¿À´Â ³»Àå ÇÔ¼ö
+    /// URL ê²½ë¡œë¡œ ì˜¤ë””ì˜¤ í´ë¦½ ê°€ì ¸ì˜¤ëŠ” ë‚´ì¥ í•¨ìˆ˜
     /// </summary>
     /// <returns>The audio clip from URL.</returns>
-    /// <param name="audio_url">¿Àµğ¿À URL</param>
-    /// <param name="audio_type">¿Àµğ¿À Å¸ÀÔ</param>
-    /// <param name="callback">Äİ¹é ¾×¼Ç</param>
+    /// <param name="audio_url">ì˜¤ë””ì˜¤ URL</param>
+    /// <param name="audio_type">ì˜¤ë””ì˜¤ íƒ€ì…</param>
+    /// <param name="callback">ì½œë°± ì•¡ì…˜</param>
     IEnumerator LoadAudioClipFromUrl(string audio_url, AudioType audio_type, Action<AudioClip> callback)
     {
         using (UnityEngine.Networking.UnityWebRequest www = UnityEngine.Networking.UnityWebRequestMultimedia.GetAudioClip(audio_url, audio_type))
@@ -1315,7 +1313,7 @@ public class SoundManager : MonoBehaviour
     }
 
     /// <summary>
-    /// ¹è°æÀ½, È¿°úÀ½ On/Off Åä±Û ÇÔ¼ö
+    /// ë°°ê²½ìŒ, íš¨ê³¼ìŒ On/Off í† ê¸€ í•¨ìˆ˜
     /// </summary>
     /// <param name="flag">On - true, Off - false</param>
     private void ToggleMute(bool flag)
@@ -1325,7 +1323,7 @@ public class SoundManager : MonoBehaviour
     }
 
     /// <summary>
-    /// ¹è°æÀ½ On/Off Åä±Û ÇÔ¼ö
+    /// ë°°ê²½ìŒ On/Off í† ê¸€ í•¨ìˆ˜
     /// </summary>
     /// <param name="flag">On - true, Off - false</param>
     private void ToggleBGMMute(bool flag)
@@ -1335,7 +1333,7 @@ public class SoundManager : MonoBehaviour
     }
 
     /// <summary>
-    /// È¿°úÀ½ On/Off Åä±Û ÇÔ¼ö
+    /// íš¨ê³¼ìŒ On/Off í† ê¸€ í•¨ìˆ˜
     /// </summary>
     /// <param name="flag">On - true, Off - false</param>
     private void ToggleSFXMute(bool flag)
@@ -1349,7 +1347,7 @@ public class SoundManager : MonoBehaviour
     }
 
     /// <summary>
-    /// ¹è°æÀ½ »ç¿îµå Å©±âÁ¶Á¤ ÇÔ¼ö
+    /// ë°°ê²½ìŒ ì‚¬ìš´ë“œ í¬ê¸°ì¡°ì • í•¨ìˆ˜
     /// </summary>
     /// <param name="volume">New volume of the background music.</param>
     private void SetBGMVolume(float volume)
@@ -1357,7 +1355,7 @@ public class SoundManager : MonoBehaviour
         try
         {
             volume = Mathf.Clamp01(volume);
-            // ¸ğµç »ç¿îµå Å©±â º¯¼ö¿¡ ÇÒ´ç
+            // ëª¨ë“  ì‚¬ìš´ë“œ í¬ê¸° ë³€ìˆ˜ì— í• ë‹¹
             musicSource.volume = currentMusicVol = _musicVolume = volume;
 
             if (_musicMixerGroup != null && !string.IsNullOrEmpty(_volumeOfMusicMixer.Trim()))
@@ -1377,7 +1375,7 @@ public class SoundManager : MonoBehaviour
     }
 
     /// <summary>
-    /// È¿°úÀ½ »ç¿îµå Å©±âÁ¶Á¤ ÇÔ¼ö
+    /// íš¨ê³¼ìŒ ì‚¬ìš´ë“œ í¬ê¸°ì¡°ì • í•¨ìˆ˜
     /// </summary>
     /// <param name="volume">New volume for all the sound effects.</param>
     private void SetSFXVolume(float volume)
@@ -1410,10 +1408,10 @@ public class SoundManager : MonoBehaviour
     }
 
     /// <summary>
-    /// ¿Àµğ¿À °ü¸®ÀÚ »ç¿îµå Å©±â¸¦ 0- 1 ·Î Á¤±ÔÈ­ÇÏ´Â ÇÔ¼ö
+    /// ì˜¤ë””ì˜¤ ê´€ë¦¬ì ì‚¬ìš´ë“œ í¬ê¸°ë¥¼ 0- 1 ë¡œ ì •ê·œí™”í•˜ëŠ” í•¨ìˆ˜
     /// </summary>
     /// <returns>The normalised volume between the range of zero and one.</returns>
-    /// <param name="vol">»ç¿îµå Å©±â</param>
+    /// <param name="vol">ì‚¬ìš´ë“œ í¬ê¸°</param>
     private float NormaliseVolume(float vol)
     {
         vol += 80f;
@@ -1422,7 +1420,7 @@ public class SoundManager : MonoBehaviour
     }
 
     /// <summary>
-    /// ¹è°æÀ½ »ç¿îµå Å©±â¸¦ PlayerPrefs¿¡¼­ °¡Á®¿À´Â ÇÔ¼ö
+    /// ë°°ê²½ìŒ ì‚¬ìš´ë“œ í¬ê¸°ë¥¼ PlayerPrefsì—ì„œ ê°€ì ¸ì˜¤ëŠ” í•¨ìˆ˜
     /// </summary>
     /// <returns></returns>
     private float LoadBGMVolume()
@@ -1431,7 +1429,7 @@ public class SoundManager : MonoBehaviour
     }
 
     /// <summary>
-    /// È¿°úÀ½ »ç¿îµå Å©±â¸¦ PlayerPrefs¿¡¼­ °¡Á®¿À´Â ÇÔ¼ö
+    /// íš¨ê³¼ìŒ ì‚¬ìš´ë“œ í¬ê¸°ë¥¼ PlayerPrefsì—ì„œ ê°€ì ¸ì˜¤ëŠ” í•¨ìˆ˜
     /// </summary>
     /// <returns></returns>
     private float LoadSFXVolume()
@@ -1440,7 +1438,7 @@ public class SoundManager : MonoBehaviour
     }
 
     /// <summary>
-    /// int°ªÀ» bool°ªÀ¸·Î º¯È¯ÇÏ´Â ÇÔ¼ö
+    /// intê°’ì„ boolê°’ìœ¼ë¡œ ë³€í™˜í•˜ëŠ” í•¨ìˆ˜
     /// </summary>
     private bool ToBool(int integer)
     {
@@ -1448,7 +1446,7 @@ public class SoundManager : MonoBehaviour
     }
 
     /// <summary>
-    /// ¹è°æÀ½ On/Off ¿©ºÎ¸¦ PlayerPrefs¿¡¼­ °¡Á®¿À´Â ÇÔ¼ö
+    /// ë°°ê²½ìŒ On/Off ì—¬ë¶€ë¥¼ PlayerPrefsì—ì„œ ê°€ì ¸ì˜¤ëŠ” í•¨ìˆ˜
     /// </summary>
     /// <returns>Returns the value of the background music mute key from the saved preferences if it exists or the defaut value if it does not</returns>
     private bool LoadBGMMuteStatus()
@@ -1457,7 +1455,7 @@ public class SoundManager : MonoBehaviour
     }
 
     /// <summary>
-    /// È¿°úÀ½ On/Off ¿©ºÎ¸¦ PlayerPrefs¿¡¼­ °¡Á®¿À´Â ÇÔ¼ö
+    /// íš¨ê³¼ìŒ On/Off ì—¬ë¶€ë¥¼ PlayerPrefsì—ì„œ ê°€ì ¸ì˜¤ëŠ” í•¨ìˆ˜
     /// </summary>
     /// <returns>Returns the value of the sound effect mute key from the saved preferences if it exists or the defaut value if it does not</returns>
     private bool LoadSFXMuteStatus()
@@ -1466,7 +1464,7 @@ public class SoundManager : MonoBehaviour
     }
 
     /// <summary>
-    /// ¹è°æÀ½ On/Off ¿©ºÎ¿Í »ç¿îµå Å©±â¸¦ PlayerPrefs¿¡ ÀúÀåÇÏ´Â ÇÔ¼ö
+    /// ë°°ê²½ìŒ On/Off ì—¬ë¶€ì™€ ì‚¬ìš´ë“œ í¬ê¸°ë¥¼ PlayerPrefsì— ì €ì¥í•˜ëŠ” í•¨ìˆ˜
     /// </summary>
     public void SaveBGMPreferences()
     {
@@ -1476,7 +1474,7 @@ public class SoundManager : MonoBehaviour
     }
 
     /// <summary>
-    /// È¿°úÀ½ On/Off ¿©ºÎ¿Í »ç¿îµå Å©±â¸¦ PlayerPrefs¿¡ ÀúÀåÇÏ´Â ÇÔ¼ö
+    /// íš¨ê³¼ìŒ On/Off ì—¬ë¶€ì™€ ì‚¬ìš´ë“œ í¬ê¸°ë¥¼ PlayerPrefsì— ì €ì¥í•˜ëŠ” í•¨ìˆ˜
     /// </summary>
     public void SaveSFXPreferences()
     {
@@ -1486,7 +1484,7 @@ public class SoundManager : MonoBehaviour
     }
 
     /// <summary>
-    /// ¸ğµç PlayerPrefs ÃÊ±âÈ­ ÇÏ´Â ÇÔ¼ö
+    /// ëª¨ë“  PlayerPrefs ì´ˆê¸°í™” í•˜ëŠ” í•¨ìˆ˜
     /// </summary>
     public void ClearAllPreferences()
     {
@@ -1498,7 +1496,7 @@ public class SoundManager : MonoBehaviour
     }
 
     /// <summary>
-    /// ¸ğµç »ç¿îµå ¿É¼ÇÀ» PlayerPrefs¿¡ ÀúÀåÇÏ´Â ÇÔ¼ö
+    /// ëª¨ë“  ì‚¬ìš´ë“œ ì˜µì…˜ì„ PlayerPrefsì— ì €ì¥í•˜ëŠ” í•¨ìˆ˜
     /// </summary>
     public void SaveAllPreferences()
     {
@@ -1510,7 +1508,7 @@ public class SoundManager : MonoBehaviour
     }
 
     /// <summary>
-    /// ¿Àµğ¿À Å¬¸³ ¸®½ºÆ®¸¦ ÃÊ±âÈ­ÇÏ´Â ÇÔ¼ö
+    /// ì˜¤ë””ì˜¤ í´ë¦½ ë¦¬ìŠ¤íŠ¸ë¥¼ ì´ˆê¸°í™”í•˜ëŠ” í•¨ìˆ˜
     /// </summary>
     public void EmptyPlaylist()
     {
@@ -1518,9 +1516,9 @@ public class SoundManager : MonoBehaviour
     }
 
     /// <summary>
-    /// ¿Àµğ¿À Å¬¸³ ¸®½ºÆ®¿¡ ¿Àµğ¿À Å¬¸³À» Ãß°¡ÇÏ´Â ÇÔ¼ö
+    /// ì˜¤ë””ì˜¤ í´ë¦½ ë¦¬ìŠ¤íŠ¸ì— ì˜¤ë””ì˜¤ í´ë¦½ì„ ì¶”ê°€í•˜ëŠ” í•¨ìˆ˜
     /// </summary>
-    /// <param name="clip">¿Àµğ¿À Å¬¸³</param>
+    /// <param name="clip">ì˜¤ë””ì˜¤ í´ë¦½</param>
     public void AddToPlaylist(AudioClip clip)
     {
         if (clip != null)
@@ -1530,9 +1528,9 @@ public class SoundManager : MonoBehaviour
     }
 
     /// <summary>
-    /// ¿Àµğ¿À Å¬¸³ ¸®½ºÆ®¿¡ ¿Àµğ¿À Å¬¸³À» Á¦°ÅÇÏ´Â ÇÔ¼ö
+    /// ì˜¤ë””ì˜¤ í´ë¦½ ë¦¬ìŠ¤íŠ¸ì— ì˜¤ë””ì˜¤ í´ë¦½ì„ ì œê±°í•˜ëŠ” í•¨ìˆ˜
     /// </summary>
-    /// <param name="clip">¿Àµğ¿À Å¬¸³</param>
+    /// <param name="clip">ì˜¤ë””ì˜¤ í´ë¦½</param>
     public void RemoveFromPlaylist(AudioClip clip)
     {
         if (clip != null && GetClipFromPlaylist(clip.name))
@@ -1543,9 +1541,9 @@ public class SoundManager : MonoBehaviour
     }
 
     /// <summary>
-    /// ¿Àµğ¿À ÀÌ¸§À¸·Î ¿Àµğ¿À Å¬¸³ ¸®½ºÆ®¿¡¼­ ¿Àµğ¿À Å¬¸³ °¡Á®¿À´Â ÇÔ¼ö
+    /// ì˜¤ë””ì˜¤ ì´ë¦„ìœ¼ë¡œ ì˜¤ë””ì˜¤ í´ë¦½ ë¦¬ìŠ¤íŠ¸ì—ì„œ ì˜¤ë””ì˜¤ í´ë¦½ ê°€ì ¸ì˜¤ëŠ” í•¨ìˆ˜
     /// </summary>
-    /// <param name="clip_name">Å¬¸³ ÀÌ¸§</param>
+    /// <param name="clip_name">í´ë¦½ ì´ë¦„</param>
     /// <returns>The AudioClip from the pool or null if no matching name can be found</returns>
     public AudioClip GetClipFromPlaylist(string clip_name)
     {
@@ -1563,15 +1561,15 @@ public class SoundManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Resources Æú´õ °æ·Î¿¡ ÀÖ´Â ¸ğµç ¿Àµğ¿À Å¬¸³À» ¿Àµğ¿À Å¬¸³ ¸®½ºÆ®¿¡ °¡Á®¿À´Â ÇÔ¼ö
+    /// Resources í´ë” ê²½ë¡œì— ìˆëŠ” ëª¨ë“  ì˜¤ë””ì˜¤ í´ë¦½ì„ ì˜¤ë””ì˜¤ í´ë¦½ ë¦¬ìŠ¤íŠ¸ì— ê°€ì ¸ì˜¤ëŠ” í•¨ìˆ˜
     /// </summary>
-    /// <param name="path">Resoures Æú´õ ³» Æú´õ°æ·Î ¿¹) "" ÀÔ·Â ½Ã Resources ³» ¸ğµç Å¬¸³À» °¡Á®¿È.</param>
-    /// <param name="overwrite">µ¤¾î¾º¿ïÁö ¿©ºÎ, true - ¸®½ºÆ® µ¤¾î¾º¿ò, false - ¸®½ºÆ®¿¡ ¿¬´Ş¾Æ¼­ Ãß°¡</param>
+    /// <param name="path">Resoures í´ë” ë‚´ í´ë”ê²½ë¡œ ì˜ˆ) "" ì…ë ¥ ì‹œ Resources ë‚´ ëª¨ë“  í´ë¦½ì„ ê°€ì ¸ì˜´.</param>
+    /// <param name="overwrite">ë®ì–´ì”Œìš¸ì§€ ì—¬ë¶€, true - ë¦¬ìŠ¤íŠ¸ ë®ì–´ì”Œì›€, false - ë¦¬ìŠ¤íŠ¸ì— ì—°ë‹¬ì•„ì„œ ì¶”ê°€</param>
     public void LoadPlaylist(string path, bool overwrite)
     {
         AudioClip[] clips = Resources.LoadAll<AudioClip>(path);
 
-        // »õ·Î¿î ¸®½ºÆ®·Î µ¤¾î¾º¿ïÁö Ã¼Å©
+        // ìƒˆë¡œìš´ ë¦¬ìŠ¤íŠ¸ë¡œ ë®ì–´ì”Œìš¸ì§€ ì²´í¬
         if (clips != null && clips.Length > 0 && overwrite)
         {
             _playlist.Clear();
@@ -1584,7 +1582,7 @@ public class SoundManager : MonoBehaviour
     }
 
     /// <summary>
-    /// ÇöÀç ¹è°æÀ½ Å¬¸³À» °¡Á®¿À´Â ¼Ó¼º
+    /// í˜„ì¬ ë°°ê²½ìŒ í´ë¦½ì„ ê°€ì ¸ì˜¤ëŠ” ì†ì„±
     /// </summary>
     /// <value>The current music clip.</value>
     public AudioClip CurrentMusicClip
@@ -1593,7 +1591,7 @@ public class SoundManager : MonoBehaviour
     }
 
     /// <summary>
-    /// È¿°úÀ½ Ç®À» °¡Á®¿À´Â ¼Ó¼º
+    /// íš¨ê³¼ìŒ í’€ì„ ê°€ì ¸ì˜¤ëŠ” ì†ì„±
     /// </summary>
     public List<SoundEffect> SoundFxPool
     {
@@ -1601,7 +1599,7 @@ public class SoundManager : MonoBehaviour
     }
 
     /// <summary>
-    /// ¿Àµğ¿À ¸Å´ÏÀúÀÇ Å¬¸³ ¸®½ºÆ®¸¦ °¡Á®¿À´Â ¼Ó¼º
+    /// ì˜¤ë””ì˜¤ ë§¤ë‹ˆì €ì˜ í´ë¦½ ë¦¬ìŠ¤íŠ¸ë¥¼ ê°€ì ¸ì˜¤ëŠ” ì†ì„±
     /// </summary>
     public List<AudioClip> Playlist
     {
@@ -1609,7 +1607,7 @@ public class SoundManager : MonoBehaviour
     }
 
     /// <summary>
-    /// ¹è°æÀ½ÀÌ Àç»ıÁßÀÎÁö Ã¼Å©ÇÏ´Â ¼Ó¼º
+    /// ë°°ê²½ìŒì´ ì¬ìƒì¤‘ì¸ì§€ ì²´í¬í•˜ëŠ” ì†ì„±
     /// </summary>
     public bool IsMusicPlaying
     {
@@ -1617,9 +1615,9 @@ public class SoundManager : MonoBehaviour
     }
 
     /// <summary>
-    /// ¹è°æÀ½ »ç¿îµå Å©±â¸¦ °¡Á®¿À°Å³ª ÁöÁ¤ÇÏ´Â ¼Ó¼º
+    /// ë°°ê²½ìŒ ì‚¬ìš´ë“œ í¬ê¸°ë¥¼ ê°€ì ¸ì˜¤ê±°ë‚˜ ì§€ì •í•˜ëŠ” ì†ì„±
     /// </summary>
-    /// <value>»ç¿îµå Å©±â</value>
+    /// <value>ì‚¬ìš´ë“œ í¬ê¸°</value>
     public float MusicVolume
     {
         get { return _musicVolume; }
@@ -1627,9 +1625,9 @@ public class SoundManager : MonoBehaviour
     }
 
     /// <summary>
-    /// È¿°úÀ½ »ç¿îµå Å©±â¸¦ °¡Á®¿À°Å³ª ÁöÁ¤ÇÏ´Â ¼Ó¼º
+    /// íš¨ê³¼ìŒ ì‚¬ìš´ë“œ í¬ê¸°ë¥¼ ê°€ì ¸ì˜¤ê±°ë‚˜ ì§€ì •í•˜ëŠ” ì†ì„±
     /// </summary>
-    /// <value>»ç¿îµå Å©±â</value>
+    /// <value>ì‚¬ìš´ë“œ í¬ê¸°</value>
     public float SoundVolume
     {
         get { return _soundFxVolume; }
@@ -1637,7 +1635,7 @@ public class SoundManager : MonoBehaviour
     }
 
     /// <summary>
-    /// ¹è°æÀ½ On/Off Ã¼Å©ÇÏ°Å³ª ÁöÁ¤ÇÏ´Â ¼Ó¼º
+    /// ë°°ê²½ìŒ On/Off ì²´í¬í•˜ê±°ë‚˜ ì§€ì •í•˜ëŠ” ì†ì„±
     /// </summary>
     /// <value><c>true</c> - BGM On; <c>false</c> - BGM Off</value>
     public bool IsMusicOn
@@ -1647,7 +1645,7 @@ public class SoundManager : MonoBehaviour
     }
 
     /// <summary>
-    /// È¿°úÀ½ On/Off Ã¼Å©ÇÏ°Å³ª ÁöÁ¤ÇÏ´Â ¼Ó¼º
+    /// íš¨ê³¼ìŒ On/Off ì²´í¬í•˜ê±°ë‚˜ ì§€ì •í•˜ëŠ” ì†ì„±
     /// </summary>
     /// <value><c>true</c> - SFX On; <c>false</c> - SFX Off</value>
     public bool IsSoundOn
@@ -1657,7 +1655,7 @@ public class SoundManager : MonoBehaviour
     }
 
     /// <summary>
-    /// ¹è°æÀ½°ú È¿°úÀ½ On/Off Ã¼Å©ÇÏ°Å³ª ÁöÁ¤ÇÏ´Â ¼Ó¼º
+    /// ë°°ê²½ìŒê³¼ íš¨ê³¼ìŒ On/Off ì²´í¬í•˜ê±°ë‚˜ ì§€ì •í•˜ëŠ” ì†ì„±
     /// </summary>
     /// <value><c>true</c> - BGM+SFX On; <c>false</c> - BGM+SFX Off</value>
     public bool IsMasterMute
@@ -1669,50 +1667,50 @@ public class SoundManager : MonoBehaviour
 }
 
 /// <summary>
-/// ÀüÈ¯È¿°ú
+/// ì „í™˜íš¨ê³¼
 /// </summary>
 public enum MusicTransition
 {
     /// <summary>
-    /// (¾øÀ½) ´ÙÀ½À½¾ÇÀÌ Áï½Ã Àç»ı
+    /// (ì—†ìŒ) ë‹¤ìŒìŒì•…ì´ ì¦‰ì‹œ ì¬ìƒ
     /// </summary>
     Swift,
     /// <summary>
-    /// (ÆäÀÌµå ÀÎ/¾Æ¿ô) ÆäÀÌµå ¾Æ¿ôµÇ°í ´ÙÀ½ À½¾Ç ÆäÀÌµå ÀÎ
+    /// (í˜ì´ë“œ ì¸/ì•„ì›ƒ) í˜ì´ë“œ ì•„ì›ƒë˜ê³  ë‹¤ìŒ ìŒì•… í˜ì´ë“œ ì¸
     /// </summary>
     LinearFade,
     /// <summary>
-    /// (Å©·Î½º) ÇöÀçÀ½¾Ç°ú ´ÙÀ½À½¾ÇÀÌ Å©·Î½º
+    /// (í¬ë¡œìŠ¤) í˜„ì¬ìŒì•…ê³¼ ë‹¤ìŒìŒì•…ì´ í¬ë¡œìŠ¤
     /// </summary>
     CrossFade
 }
 
 /// <summary>
-/// ¹è°æÀ½ ¼³Á¤
+/// ë°°ê²½ìŒ ì„¤ì •
 /// </summary>
 [System.Serializable]
 public struct BackgroundMusic
 {
     /// <summary>
-    /// ¹è°æÀ½ ÇöÀç Å¬¸³
+    /// ë°°ê²½ìŒ í˜„ì¬ í´ë¦½
     /// </summary>
     public AudioClip CurrentClip;
     /// <summary>
-    /// ¹è°æÀ½ ´ÙÀ½ Å¬¸³
+    /// ë°°ê²½ìŒ ë‹¤ìŒ í´ë¦½
     /// </summary>
     public AudioClip NextClip;
     /// <summary>
-    /// ÀüÈ¯È¿°ú
+    /// ì „í™˜íš¨ê³¼
     /// </summary>
     public MusicTransition MusicTransition;
     /// <summary>
-    /// ÀüÈ¯È¿°ú ½Ã°£
+    /// ì „í™˜íš¨ê³¼ ì‹œê°„
     /// </summary>
     public float TransitionDuration;
 }
 
 /// <summary>
-/// È¿°úÀ½ ±¸Á¶¿Í ¼³Á¤
+/// íš¨ê³¼ìŒ êµ¬ì¡°ì™€ ì„¤ì •
 /// </summary>
 [System.Serializable]
 public class SoundEffect : MonoBehaviour
@@ -1726,36 +1724,36 @@ public class SoundEffect : MonoBehaviour
     [SerializeField] private bool singleton;
 
     /// <summary>
-    /// È¿°úÀ½ ÀÌ¸§ ¼Ó¼º
+    /// íš¨ê³¼ìŒ ì´ë¦„ ì†ì„±
     /// </summary>
-    /// <value>ÀÌ¸§</value>
+    /// <value>ì´ë¦„</value>
     public string Name
     {
         get { return audioSource.clip.name; }
     }
 
     /// <summary>
-    /// È¿°úÀ½ ±æÀÌ ¼Ó¼º (ÃÊ ´ÜÀ§)
+    /// íš¨ê³¼ìŒ ê¸¸ì´ ì†ì„± (ì´ˆ ë‹¨ìœ„)
     /// </summary>
-    /// <value>±æÀÌ</value>
+    /// <value>ê¸¸ì´</value>
     public float Length
     {
         get { return audioSource.clip.length; }
     }
 
     /// <summary>
-    /// È¿°úÀ½ Àç»ıµÈ ½Ã°£ ¼Ó¼º (ÃÊ ´ÜÀ§)
+    /// íš¨ê³¼ìŒ ì¬ìƒëœ ì‹œê°„ ì†ì„± (ì´ˆ ë‹¨ìœ„)
     /// </summary>
-    /// <value>Àç»ıµÈ ½Ã°£</value>
+    /// <value>ì¬ìƒëœ ì‹œê°„</value>
     public float PlaybackPosition
     {
         get { return audioSource.time; }
     }
 
     /// <summary>
-    /// È¿°úÀ½ Å¬¸³ ¼Ó¼º
+    /// íš¨ê³¼ìŒ í´ë¦½ ì†ì„±
     /// </summary>
-    /// <value>¿Àµğ¿À Å¬¸³</value>
+    /// <value>ì˜¤ë””ì˜¤ í´ë¦½</value>
     public AudioSource Source
     {
         get { return audioSource; }
@@ -1763,9 +1761,9 @@ public class SoundEffect : MonoBehaviour
     }
 
     /// <summary>
-    /// È¿°úÀ½ ¿øº» º¼·ı ¼Ó¼º
+    /// íš¨ê³¼ìŒ ì›ë³¸ ë³¼ë¥¨ ì†ì„±
     /// </summary>
-    /// <value>¿øº» »ç¿îµå Å©±â</value>
+    /// <value>ì›ë³¸ ì‚¬ìš´ë“œ í¬ê¸°</value>
     public float OriginalVolume
     {
         get { return originalVolume; }
@@ -1773,9 +1771,9 @@ public class SoundEffect : MonoBehaviour
     }
 
     /// <summary>
-    /// È¿°úÀ½ ÃÑ Àç»ı½Ã°£ ¼Ó¼º (ÃÊ´ÜÀ§)
+    /// íš¨ê³¼ìŒ ì´ ì¬ìƒì‹œê°„ ì†ì„± (ì´ˆë‹¨ìœ„)
     /// </summary>
-    /// <value>ÃÑ Àç»ı½Ã°£</value>
+    /// <value>ì´ ì¬ìƒì‹œê°„</value>
     public float Duration
     {
         get { return duration; }
@@ -1783,9 +1781,9 @@ public class SoundEffect : MonoBehaviour
     }
 
     /// <summary>
-    /// È¿°úÀ½ ³²Àº Àç»ı½Ã°£ ¼Ó¼º (ÃÊ´ÜÀ§)
+    /// íš¨ê³¼ìŒ ë‚¨ì€ ì¬ìƒì‹œê°„ ì†ì„± (ì´ˆë‹¨ìœ„)
     /// </summary>
-    /// <value>³²Àº Àç»ı½Ã°£</value>
+    /// <value>ë‚¨ì€ ì¬ìƒì‹œê°„</value>
     public float Time
     {
         get { return time; }
@@ -1793,18 +1791,18 @@ public class SoundEffect : MonoBehaviour
     }
 
     /// <summary>
-    /// È¿°úÀ½ Á¤±ÔÈ­µÈ Àç»ıÁøÇàµµ ¼Ó¼º (Á¤±ÔÈ­ 0~1)
+    /// íš¨ê³¼ìŒ ì •ê·œí™”ëœ ì¬ìƒì§„í–‰ë„ ì†ì„± (ì •ê·œí™” 0~1)
     /// </summary>
-    /// <value>Á¤±ÔÈ­µÈ Àç»ıÁøÇàµµ</value>
+    /// <value>ì •ê·œí™”ëœ ì¬ìƒì§„í–‰ë„</value>
     public float NormalisedTime
     {
         get { return Time / Duration; }
     }
 
     /// <summary>
-    /// È¿°úÀ½ ¿Ï·á ½Ã Äİ¹é ¾×¼Ç ¼Ó¼º
+    /// íš¨ê³¼ìŒ ì™„ë£Œ ì‹œ ì½œë°± ì•¡ì…˜ ì†ì„±
     /// </summary>
-    /// <value>Äİ¹é ¾×¼Ç</value>
+    /// <value>ì½œë°± ì•¡ì…˜</value>
     public Action Callback
     {
         get { return callback; }
@@ -1812,9 +1810,9 @@ public class SoundEffect : MonoBehaviour
     }
 
     /// <summary>
-    /// È¿°úÀ½ ¹İº¹ ½Ã ½Ì±ÛÅæ ¿©ºÎ, ¹İº¹ÇÒ °æ¿ì¿¡ true ¾Æ´Ï¸é false
+    /// íš¨ê³¼ìŒ ë°˜ë³µ ì‹œ ì‹±ê¸€í†¤ ì—¬ë¶€, ë°˜ë³µí•  ê²½ìš°ì— true ì•„ë‹ˆë©´ false
     /// </summary>
-    /// <value><c>true</c> ¹İº¹ ½Ã; ±× ¿Ü, <c>false</c>.</value>
+    /// <value><c>true</c> ë°˜ë³µ ì‹œ; ê·¸ ì™¸, <c>false</c>.</value>
     public bool Singleton
     {
         get { return singleton; }

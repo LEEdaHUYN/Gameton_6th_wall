@@ -39,11 +39,14 @@ public class UI_Title : UI_Scene
     {
         Managers.Resource.LoadAllAsync<Object>(Define.ResourceLabel.PreLoad.ToString(), (key, count, totalCount) =>
         {
-            Debug.Log(key);
             if (totalCount == count)
             {
-                //Managers.Sound.PlayBGM("TitleBGM");
-           
+                
+                Managers.Sound.Init(()=>
+                {
+                    Managers.Sound.MusicVolume = 0.35f;
+                    Managers.Sound.PlayBGM("TitleBGM");
+                });
                 isPreload = true;
             }
         });

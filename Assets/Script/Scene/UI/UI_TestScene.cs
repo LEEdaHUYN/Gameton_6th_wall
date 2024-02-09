@@ -18,7 +18,12 @@ public class UI_TestScene :UI_Scene
             Debug.Log(Managers.Game.GetInventoryList()[i].GetName);
       
         }
+        
         return true;
+    }
+    private void Start()
+    {
+        Managers.Sound.PlayBGM("MainBGM");
     }
 
     #region ResourceLoad
@@ -63,7 +68,7 @@ public class UI_TestScene :UI_Scene
 
                 Managers.Resource.Load<Item>("Hand", (success) =>
                 {
-                    Managers.Game.AddItem(success);
+                    Managers.Game.AddItem(success,1);
                 });
             }
             

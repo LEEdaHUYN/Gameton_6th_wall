@@ -119,7 +119,7 @@ namespace dahyeon
             {
                 if (hit.collider.tag == "Item")
                 {
-                    outlinescript = hit.collider.transform.GetChild(1).GetComponent<Outline>();
+                    outlinescript = hit.collider.transform.GetChild(2).GetComponent<Outline>();
                     //outlinescript = hit.collider.gameObject.GetComponent<Outline>();
                     outlinescript.OutlineColor = outlinescript.OutlineColorSelected;
                     Selectobject(hit.collider);

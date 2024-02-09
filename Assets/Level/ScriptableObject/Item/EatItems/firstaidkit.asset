@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 388a9805b15e435ba8863c3437282d15, type: 3}
-  m_Name: Firstaidkit
+  m_Name: firstaidkit
   m_EditorClassIdentifier: 
   serializationData:
     SerializedFormat: 2

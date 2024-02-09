@@ -4,7 +4,6 @@
     "id" : 16,
     "ConditionList" : [
       {
-        "_comment": "이건 무슨무슨 컨디션이다!",
         "type": "DayCondition",
         "startDay" :1,
         "endDay":1

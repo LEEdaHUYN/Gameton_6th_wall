@@ -6,9 +6,7 @@ using Script.TriggerSystem;
 using TMPro;
 using UniRx;
 using UniRx.Triggers;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.UI;
 using Object = UnityEngine.Object;
 
 public class Book : MonoBehaviour

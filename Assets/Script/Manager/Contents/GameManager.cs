@@ -1,13 +1,10 @@
 ﻿
 using System.Collections.Generic;
 using System.Linq;
-using Script.Manager.Contents;
 using Script.Scene.Game;
 using Script.TriggerSystem;
 using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Rendering;
-using UnityEngine.UI;
 
 public class GameManager
 {

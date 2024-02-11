@@ -1,0 +1,213 @@
+fileFormatVersion: 2
+guid: f0f601e292235174f9c51e3eb82e499e
+ModelImporter:
+  serializedVersion: 19301
+  internalIDToNameTable:
+  - first:
+      74: 5505532050000616259
+    second: palm-tree|palm-tree|palm-tree|Agave|Agave|AgaveAction|Agave|AgaveAction|p
+  - first:
+      74: 8912263235561777301
+    second: palm-tree|palm-tree|palm-tree|Agave|Agave|Cactus1Action|Agave|Cactus1Acti
+  - first:
+      74: -50449556218452888
+    second: palm-tree|palm-tree|palm-tree|Agave|Agave|Cactus2Action|Agave|Cactus2Acti
+  - first:
+      74: 259335035850967386
+    second: palm-tree|palm-tree|palm-tree|Agave|Agave|Cactus3Action|Agave|Cactus3Acti
+  - first:
+      74: -2577716955342394081
+    second: palm-tree|palm-tree|palm-tree|Agave|Agave|palm-treeAction|Agave|palm-tree
+  - first:
+      74: 6067420043566287160
+    second: palm-tree|palm-tree|palm-tree|Agave|Agave|SunAction|Agave|SunAction|palm-
+  - first:
+      74: 9195077633170978647
+    second: palm-tree|palm-tree|palm-tree|Cactus1|Cactus1|AgaveAction|Cactus1|AgaveAc
+  - first:
+      74: 1099355250877361172
+    second: palm-tree|palm-tree|palm-tree|Cactus1|Cactus1|Cactus1Action|Cactus1|Cactu
+  - first:
+      74: -7239430556759110468
+    second: palm-tree|palm-tree|palm-tree|Cactus1|Cactus1|Cactus2Action|Cactus1|Cactu
+  - first:
+      74: -4728276732950123931
+    second: palm-tree|palm-tree|palm-tree|Cactus1|Cactus1|Cactus3Action|Cactus1|Cactu
+  - first:
+      74: -2747155846295583955
+    second: palm-tree|palm-tree|palm-tree|Cactus1|Cactus1|palm-treeAction|Cactus1|pal
+  - first:
+      74: -7314498919575833087
+    second: palm-tree|palm-tree|palm-tree|Cactus1|Cactus1|SunAction|Cactus1|SunAction
+  - first:
+      74: 4784209853675483430
+    second: palm-tree|palm-tree|palm-tree|Cactus2|Cactus2|AgaveAction|Cactus2|AgaveAc
+  - first:
+      74: 2669750896301965897
+    second: palm-tree|palm-tree|palm-tree|Cactus2|Cactus2|Cactus1Action|Cactus2|Cactu
+  - first:
+      74: -5561401967944245495
+    second: palm-tree|palm-tree|palm-tree|Cactus2|Cactus2|Cactus2Action|Cactus2|Cactu
+  - first:
+      74: -1508696830487116942
+    second: palm-tree|palm-tree|palm-tree|Cactus2|Cactus2|Cactus3Action|Cactus2|Cactu
+  - first:
+      74: 6940297277627047887
+    second: palm-tree|palm-tree|palm-tree|Cactus2|Cactus2|palm-treeAction|Cactus2|pal
+  - first:
+      74: 4163088985292062275
+    second: palm-tree|palm-tree|palm-tree|Cactus2|Cactus2|SunAction|Cactus2|SunAction
+  - first:
+      74: -1826785015621239936
+    second: palm-tree|palm-tree|palm-tree|Cactus3|Cactus3|AgaveAction|Cactus3|AgaveAc
+  - first:
+      74: -7789544145040622024
+    second: palm-tree|palm-tree|palm-tree|Cactus3|Cactus3|Cactus1Action|Cactus3|Cactu
+  - first:
+      74: -8496683644993560237
+    second: palm-tree|palm-tree|palm-tree|Cactus3|Cactus3|Cactus2Action|Cactus3|Cactu
+  - first:
+      74: -2870862491308792550
+    second: palm-tree|palm-tree|palm-tree|Cactus3|Cactus3|Cactus3Action|Cactus3|Cactu
+  - first:
+      74: -428463267789035356
+    second: palm-tree|palm-tree|palm-tree|Cactus3|Cactus3|palm-treeAction|Cactus3|pal
+  - first:
+      74: 4525578338916333167
+    second: palm-tree|palm-tree|palm-tree|Cactus3|Cactus3|SunAction|Cactus3|SunAction
+  - first:
+      74: -3911314312910641277
+    second: palm-tree|palm-tree|palm-tree|palm-tree|palm-tree|AgaveAction|palm-tr
+  - first:
+      74: 3367438696958216209
+    second: palm-tree|palm-tree|palm-tree|palm-tree|palm-tree|AgaveAction|palm-tree|A
+  - first:
+      74: -8935083051998629208
+    second: palm-tree|palm-tree|palm-tree|palm-tree|palm-tree|Cactus1Action|palm-tree
+  - first:
+      74: 2005261027710723907
+    second: palm-tree|palm-tree|palm-tree|palm-tree|palm-tree|Cactus2Action|palm-tree
+  - first:
+      74: 1117700886372684871
+    second: palm-tree|palm-tree|palm-tree|palm-tree|palm-tree|Cactus3Action|palm-tree
+  - first:
+      74: 8619793944653463551
+    second: palm-tree|palm-tree|palm-tree|palm-tree|palm-tree|palm-treeAction|palm-tr
+  - first:
+      74: -4854221946565879848
+    second: palm-tree|palm-tree|palm-tree|palm-tree|palm-tree|SunAction|palm-tree|Sun
+  - first:
+      74: 896197323078508991
+    second: palm-tree|palm-tree|palm-tree|Sun|Sun|AgaveAction|Sun|AgaveAction|palm-tr
+  - first:
+      74: 6398680094830714852
+    second: palm-tree|palm-tree|palm-tree|Sun|Sun|Cactus1Action|Sun|Cactus1Action|pal
+  - first:
+      74: -9132846514097330556
+    second: palm-tree|palm-tree|palm-tree|Sun|Sun|Cactus2Action|Sun|Cactus2Action|pal
+  - first:
+      74: 1385084702851530186
+    second: palm-tree|palm-tree|palm-tree|Sun|Sun|Cactus3Action|Sun|Cactus3Action|pal
+  - first:
+      74: -3273920973241996471
+    second: palm-tree|palm-tree|palm-tree|Sun|Sun|palm-treeAction|Sun|palm-treeAction
+  - first:
+      74: 2081236153936102309
+    second: palm-tree|palm-tree|palm-tree|Sun|Sun|SunAction|Sun|SunAction|palm-tree|S
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Palm Tree
+    second: {fileID: 2100000, guid: 730047e84e41a03439cd4df4fa65337b, type: 2}
+  materials:
+    materialImportMode: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 0
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    fileIdsGeneration: 2
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    meshOptimizationFlags: -1
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 1
+  humanDescription:
+    serializedVersion: 3
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 1
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
+  humanoidOversampling: 1
+  avatarSetup: 0
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -33,7 +33,7 @@ public class GameManager
     {
         Managers.Resource.Load<Item>(itemName, (success) =>
         {
-            if (success.GetAmount() == 0)
+            if (!_inventory.FindByItemName(success.GetName))
                 return;
             
             AddTextNote($"-{success.GetItemIconIndex} {itemName} 을 전부 잃어버렸어!");

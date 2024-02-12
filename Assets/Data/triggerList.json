@@ -13,9 +13,16 @@
         {
           "type" : "AddItemAction",
           "item" : {
-            "itemName" : "Knife",
-            "amount" : 1
-          } 
+            "itemName" : "CanFood",
+            "amount" : 5
+          }
+        },
+        {
+          "type" : "AddItemAction",
+          "item" : {
+            "itemName" : "Water",
+            "amount" : 5
+          }
         }
       ]
     },

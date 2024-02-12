@@ -434,7 +434,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 50949704}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2054934125}
+        m_TargetAssemblyTypeName: Toturial, Assembly-CSharp
+        m_MethodName: Prevbtn
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &50949704
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -607,7 +619,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.8235294}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.9372549}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1112,7 +1124,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 559752527}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2054934125}
+        m_TargetAssemblyTypeName: Toturial, Assembly-CSharp
+        m_MethodName: Exitbtn
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &559752527
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1985,7 +2009,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &841965567
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3427,7 +3451,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1766025148}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2054934125}
+        m_TargetAssemblyTypeName: Toturial, Assembly-CSharp
+        m_MethodName: Nextbtn
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1766025148
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4248,11 +4284,12 @@ GameObject:
   - component: {fileID: 2054934124}
   - component: {fileID: 2054934123}
   - component: {fileID: 2054934122}
+  - component: {fileID: 2054934125}
   - component: {fileID: 2054934121}
   - component: {fileID: 2054934120}
   m_Layer: 5
   m_Name: Canvas
-  m_TagString: Untagged
+  m_TagString: ToturialCanvas
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4358,6 +4395,26 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &2054934125
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2054934119}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a222adc12da0a34cb8c3aeb9cba3d84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  image:
+  - {fileID: 773343351}
+  - {fileID: 2135540035}
+  - {fileID: 841965568}
+  - {fileID: 188138424}
+  next: {fileID: 1766025147}
+  prev: {fileID: 50949703}
+  Exit: {fileID: 559752526}
 --- !u!4 &2063420157 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 195253722904124749, guid: 24554751cd857174ab0c4c7c68bc3581,
@@ -4387,7 +4444,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2135540034
 RectTransform:
   m_ObjectHideFlags: 0

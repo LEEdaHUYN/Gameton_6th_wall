@@ -7,8 +7,6 @@ using DG.Tweening;
 namespace dahyeon
 {
 
-
-
     public class Clock : MonoBehaviour
     {
         [SerializeField]
@@ -31,13 +29,15 @@ namespace dahyeon
         public bool isEnded = false;
         public bool sucess = false;
 
+        public bool startornot = false;
+
         void Start()
         {
-
             Init_UI();
             Trigger_Skill();
             red.gameObject.SetActive(false);
             red.DOFade(0.0f, 1).SetLoops(-1, loopType);
+
         }
 
         void Update()
@@ -113,7 +113,8 @@ namespace dahyeon
         }
         IEnumerator Reset_CoolTime()
         {
-            yield return new WaitForSeconds(3f);
+            yield return new WaitForSeconds(10f);
+            startornot = true;
             text_CoolTime.gameObject.SetActive(true);
             time_current = time_cooltime;
             time_start = Time.time;

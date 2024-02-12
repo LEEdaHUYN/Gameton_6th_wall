@@ -129,7 +129,7 @@ namespace dahyeon
                         outlinescript.OutlineColor = Color.white;
                 } 
             }
-            if (clockscript.isEnded == true)//시간 끝나면 ui삭제
+            if (clockscript.isEnded == true && clockscript.startornot == true)//시간 끝나면 ui삭제
             {
                 Myanimator = this.transform.GetChild(0).GetComponent<Animator>();
                 exitfalseCamera.gameObject.SetActive(true);

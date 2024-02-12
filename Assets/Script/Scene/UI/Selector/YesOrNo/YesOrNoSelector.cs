@@ -27,11 +27,13 @@
             {
                 _isSelectTrueFlag = true;
                 nextPageAction?.Invoke();
+                nextPageAction = null;
             });
             _noButton.onClick.AddListener(() =>
             {
                 _isSelectTrueFlag = false;
                 nextPageAction?.Invoke();
+                nextPageAction = null;
             });
         }
 

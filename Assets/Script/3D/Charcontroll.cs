@@ -43,7 +43,7 @@ namespace dahyeon
         public Vector2 LockAxis;
         public FloatingJoystick Joystick_left;
         public FloatingJoystick Joystick_right;
-       float MouseSensitivity = 80f;
+       float MouseSensitivity = 100f;
         Vector3 move;
         bool grabbtnon;
 
@@ -107,7 +107,6 @@ namespace dahyeon
             float z = Joystick_right.Vertical;
 
             xmove = x * MouseSensitivity * Time.deltaTime;
-            //ymove = y * MouseSensitivity * Time.deltaTime;
             this.gameObject.transform.Rotate(Vector3.up * xmove);
         }
         IEnumerator CameraOnOff()

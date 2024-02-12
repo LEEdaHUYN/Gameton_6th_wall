@@ -13,7 +13,7 @@
             for (int i = 0; i < addCount; i++)
             {
                 List<ItemInfo> availableItems = 
-                    items.Where(item => Managers.Game.GetInventoryList().All(invItem => invItem.GetName != item.itemName)).
+                    items.Where(item => Managers.Game.GetInventoryList().Any(invItem => invItem.GetName != item.itemName)).
                         ToList();
 
                 if (availableItems.Count != 0)

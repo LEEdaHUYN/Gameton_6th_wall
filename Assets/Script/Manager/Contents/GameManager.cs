@@ -297,9 +297,13 @@ public class GameManager
     public bool CheckFlag(Flag flag)
     {
         Flag findFlag = FlagList.Find(f => f.name == flag.name);
-        
+
         if (findFlag == null && flag.value == 0)
+        {
+            FlagList.Add(flag);
             return true;
+        }
+            
         
         if (findFlag == null )
             return false;

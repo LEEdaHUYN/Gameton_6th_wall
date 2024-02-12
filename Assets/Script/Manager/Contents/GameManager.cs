@@ -33,7 +33,7 @@ public class GameManager
     {
         Managers.Resource.Load<Item>(itemName, (success) =>
         {
-            if (success.GetAmount() == 0)
+            if (!_inventory.FindByItemName(success.GetName))
                 return;
             
             AddTextNote($"-{success.GetItemIconIndex} {itemName} 을 전부 잃어버렸어!");
@@ -297,9 +297,13 @@ public class GameManager
     public bool CheckFlag(Flag flag)
     {
         Flag findFlag = FlagList.Find(f => f.name == flag.name);
-        
+
         if (findFlag == null && flag.value == 0)
+        {
+            FlagList.Add(flag);
             return true;
+        }
+            
         
         if (findFlag == null )
             return false;

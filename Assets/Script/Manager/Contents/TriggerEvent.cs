@@ -7,6 +7,11 @@
     public class TriggerEvent : MonoBehaviour
     {
         private List<TriggerData> _triggerDatas;
+
+        public void RemoveTrigger(int id)
+        {
+            _triggerDatas.RemoveAll(x => x.id == id);
+        }
         public void StartTrigger(Action callback)
         {
             _triggerDatas ??= Managers.Data.TriggerDatas.Values.ToList();

@@ -24,7 +24,7 @@ public class UI_Title : UI_Scene
         BindButton(typeof(Buttons));
         GetButton((int)Buttons.StartButton).gameObject.BindEvent(() =>
         {
-            if (isPreload)
+            if (isLogin)
             {
                 Managers.Scene.LoadScene(Define.Scene.ShipScene);
             }
@@ -34,6 +34,7 @@ public class UI_Title : UI_Scene
 
     #region ResourceLoad
     private bool isPreload = false;
+    private bool isLogin = false;
 
     private void PreResourceLoad()
     {
@@ -46,6 +47,10 @@ public class UI_Title : UI_Scene
                 {
                     Managers.Sound.MusicVolume = 0.35f;
                     Managers.Sound.PlayBGM("TitleBGM");
+                });
+                Managers.Back.OnLogin(() =>
+                {
+                    isLogin = true;
                 });
                 isPreload = true;
             }

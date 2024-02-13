@@ -125,8 +125,26 @@ MonoBehaviour:
     m_SerializedLabels:
     - PreLoad
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 94130dc6f015ea44680466d83e993de1
+  - m_GUID: 80fae70a735f34a43b4824556a592442
     m_Address: BackGround3.sprite
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - PreLoad
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a65e0f8678d42ec479822d322f5ed4bc
+    m_Address: character1.sprite
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - PreLoad
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8f52d1e07197f3744b5e54db1f9406a9
+    m_Address: character2.sprite
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - PreLoad
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5f299081d447f4943adde6eb19f134c9
+    m_Address: character3.sprite
     m_ReadOnly: 0
     m_SerializedLabels:
     - PreLoad

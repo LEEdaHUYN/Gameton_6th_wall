@@ -4,14 +4,16 @@ using UnityEngine;
 
 public class UI_TestScene :UI_Scene
 {
-
-
+    private TestScene _scene;
     public override bool Init()
     {
         if (base.Init() == false)
             return false;
         
         Managers.Game.SetUiCanvas(this.gameObject);
+
+        _scene = GetComponent<TestScene>();
+        
         PreResourceLoad();
         for (int i = 0; i< Managers.Game.GetInventoryList().Count;i++)
         {
@@ -45,9 +47,14 @@ public class UI_TestScene :UI_Scene
                     var i2 = i;
                     Managers.Resource.Load<GameObject>("Character", (success) =>
                     {
-                        Character character = Object.Instantiate(success).GetComponent<Character>();
+                        Character character = Object.Instantiate(success,_scene.characterListParent.transform).GetComponent<Character>();
                         character.SetName(characterNames[i2-1]);
                         var i1 = i2;
+                        Managers.Resource.Load<Sprite>($"character{i2}.sprite", success =>
+                        {
+                            character.SetSprite(success);
+                        });
+                        
                         Managers.Resource.Load<Sprite>($"{i2}.sprite", (spriteSuccess) =>
                         {
                             character.SetPortrait(spriteSuccess);

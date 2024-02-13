@@ -4,21 +4,23 @@ using System;
 using System.Collections.Generic;
 using UniRx;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Character : SerializedMonoBehaviour
 {
     private int _id;
     private string _name;
     private bool _isAlive;
-    private Sprite _sprite;
-    public Sprite GetCharacterSprite => _sprite;
+    private Image _sprite;
+    public Sprite GetCharacterSprite => _sprite.sprite;
+    public void SetSprite(Sprite sprite) => _sprite.sprite = sprite;
     private Sprite _portrait;
 
     public bool isPlayer = false;
     public Sprite GetCharacterPortrait => _portrait;
     public void SetPortrait(Sprite sprite) => _portrait = sprite;
     
-    
+
     [SerializeField]
     private Dictionary<Define.CharacterStatus, float> _status = new Dictionary<Define.CharacterStatus, float>();
 
@@ -87,7 +89,7 @@ public class Character : SerializedMonoBehaviour
     public bool GetIsAlive => _isAlive;
     public void Awake()
     {
-        _sprite = GetComponent<Sprite>();
+        _sprite = GetComponent<Image>();
         _isAlive = true;
         foreach (Define.CharacterStatus status in Enum.GetValues(typeof(Define.CharacterStatus)))
         {

@@ -51,6 +51,9 @@ public class UI_Title : UI_Scene
                 Managers.Back.OnLogin(() =>
                 {
                     isLogin = true;
+                    Debug.Log(Managers.Back.GetCurrencyData(Define.Coin));
+                    Debug.Log(Managers.Back.GetCurrencyData(Define.Diamond));
+                    Debug.Log(Managers.Back.GetCurrencyData(Define.Key));
                 });
                 isPreload = true;
             }

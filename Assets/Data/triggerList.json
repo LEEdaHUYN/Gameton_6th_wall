@@ -3,10 +3,10 @@
     {
       "_comment" :"총을 가지고 있을 때 엔딩 2를 출력하는게 되는지 테스트",
       "id": 1,
-      "ConditionList" : [
+      "ConditionList": [
         {
           "type": "DayCondition",
-          "startDay" : 1,
+          "startDay": 1,
           "endDay": 1
         }
       ],
@@ -20,7 +20,7 @@
         }
       ]
     },
-    {
+    { 
       "_comment" : "3일차 때 엔딩이 일어난다고 가정",
       "id": 2,
       "ConditionList" : [

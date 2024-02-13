@@ -16,7 +16,7 @@ public class UI_TitleAnimation : MonoBehaviour
     {
         var rectTransform = this.GetComponent<RectTransform>();
         rectTransform.localPosition = new Vector2(0, 800);
-        rectTransform.DOAnchorPosY(102f, 1f).SetEase(Ease.OutBounce);
+        rectTransform.DOAnchorPosY(177f, 1f).SetEase(Ease.OutBounce);
     }
 
 }

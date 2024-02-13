@@ -436,4 +436,6 @@ public class GameManager
         EndingPage.ShowEnding();
      
     }
+    
+    
 }

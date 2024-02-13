@@ -37,7 +37,6 @@ namespace dahyeon
             Trigger_Skill();
             red.gameObject.SetActive(false);
             red.DOFade(0.0f, 1).SetLoops(-1, loopType);
-
         }
 
         void Update()

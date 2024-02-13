@@ -69,7 +69,7 @@ namespace dahyeon
             CharacterMove();
             CharTurn();
 
-            Debug.DrawRay(transform.position, transform.forward * lineSize, Color.yellow);
+            Debug.DrawRay(transform.position, transform.forward , Color.yellow);
 
         }
 
@@ -114,20 +114,19 @@ namespace dahyeon
             yield return new WaitForSeconds(3f);
 
             RaycastHit hit; //ray로 잡히는 아이템 잡기
-            if (Physics.Raycast(transform.position, transform.forward, out hit, lineSize))
+
+            if (Physics.Raycast(transform.position, transform.forward, out hit, lineSize ))
             {
                 if (hit.collider.tag == "Item")
                 {
                     outlinescript = hit.collider.transform.GetChild(2).GetComponent<Outline>();
-                    //outlinescript = hit.collider.gameObject.GetComponent<Outline>();
                     outlinescript.OutlineColor = outlinescript.OutlineColorSelected;
                     Selectobject(hit.collider);
                 }
-                else
+                else if (outlinescript != null || hit.collider == null)
                 {
-                    if(outlinescript != null)
-                        outlinescript.OutlineColor = Color.white;
-                } 
+                    outlinescript.OutlineColor = Color.white;
+                }
             }
             if (clockscript.isEnded == true && clockscript.startornot == true)//시간 끝나면 ui삭제
             {
@@ -142,7 +141,7 @@ namespace dahyeon
         public void garbbtnclick()//grap버튼 이벤트
         {
             grabbtnon = true;
-            Invoke("grabbtnoff", 0.5f);
+            Invoke("grabbtnoff", 0.3f);
         }
 
         void grabbtnoff()

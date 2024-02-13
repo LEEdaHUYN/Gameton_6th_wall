@@ -52,6 +52,13 @@ public class Managers : Singleton<Managers>
     }
     // TODO : GPGS 연결 이후 ADMOB Manager 
 
+    private BackEndManager _backEnd = new BackEndManager();
+
+    public static BackEndManager Back
+    {
+        get { return instance?._backEnd; }
+    }
+
     protected override void Awake()
     {
         base.Awake();

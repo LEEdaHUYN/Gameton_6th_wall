@@ -6,4 +6,14 @@ using UnityEngine;
 public partial class Define
 {
     public static Vector2 ScreenSize => new Vector2(1080, 1920);
+
+    #region Backend Currency Code
+    public static string Coin => "CO";
+    public static string Diamond => "DI";
+    public static string Key => "KE";
+
+    public static string PublicStore => "PublicStore";
+
+    #endregion
+
 }

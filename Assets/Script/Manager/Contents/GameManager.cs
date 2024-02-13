@@ -85,6 +85,7 @@ public class GameManager
     public int CurrentDay { get; private set; } = 0;
     private TriggerEvent _triggerEvent = null;
 
+    public TriggerEvent GetTriggerEvent => _triggerEvent;
     public void NextDay()
     {
         if (_triggerEvent == null)
@@ -408,6 +409,33 @@ public class GameManager
         _inventory.ClearInventory();
         Characters.Clear();
         FlagList.Clear();
+        _endingList.Clear();
         Managers.Scene.LoadScene(Define.Scene.TitleScene);
     }
+
+ 
+
+    public EndingPage EndingPage;
+    private List<EndingStruct> _endingList = new List<EndingStruct>();
+
+    public List<EndingStruct> GetEndingList => _endingList;
+    public void AddEnding(string text, string imageName)
+    {
+        Managers.Resource.Load<Sprite>(imageName, (success) =>
+        {
+            EndingStruct ending;
+            ending.text = text;
+            ending.sprite = success;
+            _endingList.Add(ending);
+        });
+    }
+
+    public void ShowEnding()
+    {
+        EndingPage.gameObject.SetActive(true);
+        EndingPage.ShowEnding();
+     
+    }
+    
+    
 }

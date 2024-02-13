@@ -58,10 +58,16 @@ using UnityEngine.UI;
 
         private void SetCurrentAmount()
         {
-            if (Managers.Game.GetFindByItemName(_itemName) is Item item)
-            {
+            Item item = Managers.Game.GetFindByItemName(_itemName);
+            if (item != null)
+            {       
                 _currentFood = item.GetAmount();
             }
+            else
+            {
+                _currentFood = 0;
+            }
+            
        
         }
 

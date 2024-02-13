@@ -1,59 +1,108 @@
 {
   "TriggerDatas": [
     {
+      "_comment" :"총을 가지고 있을 때 엔딩 2를 출력하는게 되는지 테스트",
       "id": 1,
-      "ConditionList":[
+      "ConditionList" : [
         {
           "type": "DayCondition",
-          "startDay" : 1 ,
-          "endDay" : 1
+          "startDay" : 1,
+          "endDay": 1
         }
       ],
-      "ActionList": [
+      "ActionList" : [
         {
           "type" : "AddItemAction",
-          "item" : {
-            "itemName" : "CanFood",
-            "amount" : 5
-          }
-        },
-        {
-          "type" : "AddItemAction",
-          "item" : {
-            "itemName" : "Water",
-            "amount" : 5
+          "item": {
+            "itemName" : "Gun",
+            "amount" : 1
           }
         }
       ]
     },
     {
+      "_comment" : "3일차 때 엔딩이 일어난다고 가정",
       "id": 2,
-      "ConditionList":[
+      "ConditionList" : [
         {
           "type": "DayCondition",
-          "startDay" : 2 ,
-          "endDay" : 2
+          "startDay" : 2,
+          "endDay": 2
         }
       ],
-      "ActionList": [
+      "ActionList" : [
         {
-          "type" : "RandomLoseItemAction",
-          "items" : [
-            {
-              "itemName" : "Knife",
-              "amount" : 1,
-              "weight": 1
-            },
-            {
-              "itemName" : "Knife2",
-              "amount" : 1,
-              "weight": 1
-            }
-          ],
-          "loseCount": 2
+          "type" : "SetFlag",
+          "flag": {
+            "name": "EndingFlag",
+            "value" : 1
+          }
+        }
+      ]
+    },
+    {
+      "_comment" : "엔딩 추가",
+      "id": 3,
+      "ConditionList" : [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "EndingFlag",
+            "value" : 1
+          }
+        }
+      ],
+      "ActionList" : [
+        {
+          "type" : "AddEnding",
+          "text": "첫 번째 반드시 그냥 일어나는 이벤트입니당.",
+          "imageName" : "BackGround02"
+        }
+      ]
+    },
+    {
+      "_comment" : "엔딩 추가 총을 가졌을 때",
+      "id": 4,
+      "ConditionList" : [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "EndingFlag",
+            "value" : 1
+          }
+        },
+        {
+          "type": "HaveItemCondition",
+          "itemName": "Gun",
+          "amount" : 1
+        }
+      ],
+      "ActionList" : [
+        {
+          "type" : "AddEnding",
+          "text": "두 번째 엔딩 총이 있을 때만 일어나는 이벤트입니당.",
+          "imageName" : "BackGround"
+        }
+      ]
+    },
+    {
+      "_comment" : "이걸 반드시 실행 시켜줘야 함 순서가 DayCondition을 통해 Flag 시작 -> 엔딩 조건 체크 -> 이걸로 ShowEnding 샌드위치 구조와 비슷함",
+      "id": 5,
+      "ConditionList" : [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "EndingFlag",
+            "value" : 1
+          }
+        }
+      ],
+      "ActionList" : [
+        {
+          "type" : "ShowEnding"
         }
       ]
     }
-    ]
-  
+
+  ]
 }

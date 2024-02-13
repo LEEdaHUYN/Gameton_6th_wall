@@ -11,7 +11,9 @@ public partial class Define
     public static string Coin => "CO";
     public static string Diamond => "DI";
     public static string Key => "KE";
-    
+
+    public static string PublicStore => "PublicStore";
+
     #endregion
 
 }

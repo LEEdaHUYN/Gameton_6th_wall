@@ -51,6 +51,9 @@ public class UI_Title : UI_Scene
                 Managers.Back.OnLogin(() =>
                 {
                     isLogin = true;
+                    //로그인 시 100 Coin 증가 테스트 코드
+                  //  Managers.Back.AddCurrency(Define.Coin,100);
+                    
                     Debug.Log(Managers.Back.GetCurrencyData(Define.Coin));
                     Debug.Log(Managers.Back.GetCurrencyData(Define.Diamond));
                     Debug.Log(Managers.Back.GetCurrencyData(Define.Key));

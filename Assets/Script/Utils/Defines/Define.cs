@@ -12,7 +12,7 @@ public partial class Define
     public static string Diamond => "DI";
     public static string Key => "KE";
 
-    public static string PublicStore => "PublicStore";
+    public static string PublicStore => "PublicShop";
 
     #endregion
 

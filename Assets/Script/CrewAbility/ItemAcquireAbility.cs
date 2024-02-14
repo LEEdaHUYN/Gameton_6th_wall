@@ -16,7 +16,8 @@
               bool isAdd = randomValue <= addPercent;
               if (isAdd)
               {
-                  Managers.Game.AddItem(itemName,amount);
+                  Managers.Game.AddTextNote($"특성에 의해 {itemName}을 습득하였다!");
+                  Managers.Game.AddItem(itemName,amount,false);
               }
         }
     }

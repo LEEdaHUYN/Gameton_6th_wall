@@ -97,6 +97,7 @@ public class GameManager
       
         CurrentDay++;
         FadeInOut();
+        AbilityRun();
         CharacterNextDayStatus();
         if (isGameOver)
         {
@@ -410,6 +411,7 @@ public class GameManager
         Characters.Clear();
         FlagList.Clear();
         _endingList.Clear();
+        _abilityList.Clear();
         Managers.Scene.LoadScene(Define.Scene.TitleScene);
     }
 
@@ -436,6 +438,21 @@ public class GameManager
         EndingPage.ShowEnding();
      
     }
+
+
+    private List<IAbilityRun> _abilityList = new List<IAbilityRun>();
+
+    public void AddAbility(IAbilityRun ability)
+    {
+        _abilityList.Add(ability);
+    }
     
-    
+    private void AbilityRun()
+    {
+        foreach (var ability in _abilityList)
+        {
+            ability.RunAbility();
+        }
+    }
+
 }

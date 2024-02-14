@@ -1,6 +1,7 @@
 ﻿
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class UI_Title : UI_Scene
 {
@@ -57,6 +58,16 @@ public class UI_Title : UI_Scene
                     Debug.Log(Managers.Back.GetCurrencyData(Define.Coin));
                     Debug.Log(Managers.Back.GetCurrencyData(Define.Diamond));
                     Debug.Log(Managers.Back.GetCurrencyData(Define.Key));
+                    
+                    Managers.Back.PurchaseItem("Key",1,Define.Key, () =>
+                    {
+                        Debug.Log("열쇠 구매 완료");
+                        Debug.Log(Managers.Back.GetCurrencyData(Define.Key));
+                    }, () =>
+                    {
+                        Debug.Log("열쇠 구매 실패");
+                        Debug.Log(Managers.Back.GetCurrencyData(Define.Key));
+                    });
                 });
                 isPreload = true;
             }

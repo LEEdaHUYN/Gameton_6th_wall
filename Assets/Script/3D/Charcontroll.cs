@@ -109,25 +109,42 @@ namespace dahyeon
             xmove = x * MouseSensitivity * Time.deltaTime;
             this.gameObject.transform.Rotate(Vector3.up * xmove);
         }
+
+        private Outline selectedItem;
         IEnumerator CameraOnOff()
         {
             yield return new WaitForSeconds(3f);
 
             RaycastHit hit; //ray로 잡히는 아이템 잡기
-
             if (Physics.Raycast(transform.position, transform.forward, out hit, lineSize ))
             {
+            
                 if (hit.collider.tag == "Item")
                 {
                     outlinescript = hit.collider.transform.GetChild(2).GetComponent<Outline>();
-                    outlinescript.OutlineColor = outlinescript.OutlineColorSelected;
+                    selectedItem = outlinescript;
+
+                    if (inventory.Items.Count >= inventory.Slots.Length)
+                    {
+                        outlinescript.OutLineChange(Color.red);
+                    }
+                    else
+                    {
+                        outlinescript.OutLineChange(Color.green);
+                    }
+                    
                     Selectobject(hit.collider);
                 }
-                else if (outlinescript != null || hit.collider == null)
+            }
+            else
+            {
+                if (selectedItem != null)
                 {
-                    outlinescript.OutlineColor = Color.white;
+                    selectedItem.OutLineChange(Color.white);
                 }
             }
+            
+            
             if (clockscript.isEnded == true && clockscript.startornot == true)//시간 끝나면 ui삭제
             {
                 Myanimator = this.transform.GetChild(0).GetComponent<Animator>();
@@ -159,10 +176,6 @@ namespace dahyeon
                 inventory.AddItem(nomalItem);
                 hit.gameObject.SetActive(false);
 
-            }
-            else if (inventory.Items.Count >= inventory.Slots.Length)
-            {
-                outlinescript.OutlineColor = Color.red;
             }
         }
 

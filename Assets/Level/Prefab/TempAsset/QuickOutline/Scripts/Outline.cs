@@ -99,6 +99,7 @@ public class Outline : MonoBehaviour {
 
     // Apply material properties immediately
     needsUpdate = true;
+    
   }
 
   void OnEnable() {
@@ -132,11 +133,18 @@ public class Outline : MonoBehaviour {
   }
 
   void Update() {
+    
     if (needsUpdate) {
       needsUpdate = false;
 
       UpdateMaterialProperties();
     }
+    
+  }
+
+  public void OutLineChange( Color color)
+  {
+    OutlineColor =  color;
   }
 
   void OnDisable() {

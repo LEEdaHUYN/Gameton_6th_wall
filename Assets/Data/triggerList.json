@@ -17,6 +17,10 @@
             "itemName" : "Gun",
             "amount" : 1
           }
+        },
+        {
+          "type": "SetBackGroundAction",
+          "imageName" : "Cave"
         }
       ]
     },

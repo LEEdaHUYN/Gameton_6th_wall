@@ -77,18 +77,6 @@ MonoBehaviour:
     m_SerializedLabels:
     - PreLoad
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 9addd0bf2cfc82849bac6aff028deac4
-    m_Address: BackGround.sprite
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - PreLoad
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: e17a025c7c820ac4b941e618b4401d68
-    m_Address: BackGround02.sprite
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - PreLoad
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 560bb7e5f3289ab488671c434640af0a
     m_Address: 1.sprite
     m_ReadOnly: 0
@@ -121,12 +109,6 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: ccd22f968dbde4d488cec8392ad29d48
     m_Address: SoundData
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - PreLoad
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 80fae70a735f34a43b4824556a592442
-    m_Address: BackGround3.sprite
     m_ReadOnly: 0
     m_SerializedLabels:
     - PreLoad

@@ -1,0 +1,103 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: BackGround
+  m_EditorClassIdentifier: 
+  m_GroupName: BackGround
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 2f81d6d39b3fb1b42a38c3af0df1011d
+  m_SerializeEntries:
+    - m_GUID: 554762a1a8965ee4ebaccf2db9ff5868
+      m_Address: Castle.sprite
+      m_ReadOnly: 0
+      m_SerializedLabels:
+        - PreLoad
+      FlaggedDuringContentUpdateRestriction: 0
+    - m_GUID: c5aa9392c854f084f95aebb76e596289
+      m_Address: Castle2.sprite
+      m_ReadOnly: 0
+      m_SerializedLabels:
+        - PreLoad
+      FlaggedDuringContentUpdateRestriction: 0
+    - m_GUID: 3188ec64afe2ace4b8bce9e6e0635a68
+      m_Address: Cave.sprite
+      m_ReadOnly: 0
+      m_SerializedLabels:
+        - PreLoad
+      FlaggedDuringContentUpdateRestriction: 0
+    - m_GUID: 351eb07712fa8ad48a9c8ad67446aa88
+      m_Address: Choice.sprite
+      m_ReadOnly: 0
+      m_SerializedLabels:
+        - PreLoad
+      FlaggedDuringContentUpdateRestriction: 0
+    - m_GUID: 087b78b14672edd4991a1e442daedafd
+      m_Address: Cruise.sprite
+      m_ReadOnly: 0
+      m_SerializedLabels:
+        - PreLoad
+      FlaggedDuringContentUpdateRestriction: 0
+    - m_GUID: 20b73796251b44741bbae000050f9608
+      m_Address: Guard.sprite
+      m_ReadOnly: 0
+      m_SerializedLabels:
+        - PreLoad
+      FlaggedDuringContentUpdateRestriction: 0
+    - m_GUID: 963340345cb98cc45b17770dcde7453f
+      m_Address: Helicopter.sprite
+      m_ReadOnly: 0
+      m_SerializedLabels:
+        - PreLoad
+      FlaggedDuringContentUpdateRestriction: 0
+    - m_GUID: 9c525ee7d435f164ab8d1d2abf8c7e47
+      m_Address: Island.sprite
+      m_ReadOnly: 0
+      m_SerializedLabels:
+        - PreLoad
+      FlaggedDuringContentUpdateRestriction: 0
+    - m_GUID: ea3a8d536de32fe44a7521db1023f71a
+      m_Address: Island02.sprite
+      m_ReadOnly: 0
+      m_SerializedLabels:
+        - PreLoad
+      FlaggedDuringContentUpdateRestriction: 0
+    - m_GUID: 5da4f882a6b553f4caf06c88178dea0c
+      m_Address: Lab.sprite
+      m_ReadOnly: 0
+      m_SerializedLabels:
+        - PreLoad
+      FlaggedDuringContentUpdateRestriction: 0
+    - m_GUID: e3df7ca9b6a4c5840b027d51c0091f2d
+      m_Address: Lab02.sprite
+      m_ReadOnly: 0
+      m_SerializedLabels:
+        - PreLoad
+      FlaggedDuringContentUpdateRestriction: 0
+    - m_GUID: 8935c645e3a10ca4ea94ca10643406ce
+      m_Address: Lab03.sprite
+      m_ReadOnly: 0
+      m_SerializedLabels:
+        - PreLoad
+      FlaggedDuringContentUpdateRestriction: 0
+    - m_GUID: c98708be6886b6a4b94d2d35948ff15d
+      m_Address: Pirate.sprite
+      m_ReadOnly: 0
+      m_SerializedLabels:
+        - PreLoad
+      FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 69cf7df5ef811b7419ecea629687d5c9, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+      - {fileID: 11400000, guid: 03e57a360f3cf104a9d924fe0719a342, type: 2}
+      - {fileID: 11400000, guid: 81c8bd7c7368ee445b51bbea2a66dc4a, type: 2}

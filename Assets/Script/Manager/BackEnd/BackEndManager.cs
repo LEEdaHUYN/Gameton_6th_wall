@@ -4,7 +4,6 @@
     using Cysharp.Threading.Tasks;
     using PlayFab;
     using PlayFab.ClientModels;
-    using UnityEditor.PackageManager;
     using UnityEngine;
 
     public class BackEndManager

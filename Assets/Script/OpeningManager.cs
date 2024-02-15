@@ -30,6 +30,8 @@ public class OpeningManager : MonoBehaviour
     private Image Toturial3dcanvas;
     [SerializeField]
     private Image Toturial2dcanvas;
+    [SerializeField]
+    private Image ItemDictionarycanvas;
 
     public LabelAnimatin Animationscript;
     public PlayBtnAnimation PlaybtnAnimation;
@@ -77,7 +79,7 @@ public class OpeningManager : MonoBehaviour
         }
         if (Playbtn == true)
         {
-            CameraPosition(1, 90f, -84f);
+            CameraPosition(1, 87f, -84f);
             StartCoroutine(Invokeplaylabel());
         }
         else if(Playbtn == false && openstore == false)
@@ -243,7 +245,7 @@ public class OpeningManager : MonoBehaviour
         HideIamge(Startcanvas);
         HideIamge(Store_coincanvas);
         HideIamge(Store_skillcanvas);
-       // ShowImage(ItemDictionarycanvas);
+        ShowImage(ItemDictionarycanvas);
 
     }
 
@@ -271,6 +273,7 @@ public class OpeningManager : MonoBehaviour
     { 
         Toturial3dcanvas.GetComponent<Toturial>().Resetting();
         Toturial2dcanvas.GetComponent<Toturial>().Resetting();
+        OnClearItem();
         ShowImage(Defaultcanvas);
         HideIamge(Store_skillcanvas);
         HideIamge(Store_coincanvas);
@@ -319,6 +322,13 @@ public class OpeningManager : MonoBehaviour
         AddItem("CanFood", 1500, Define.Coin,() =>
         {
             Managers.Game.AddItem("CanFood", 1, false);
+        });
+    }
+    public void OnClickWater()
+    {
+        AddItem("Water", 1500, Define.Coin, () =>
+        {
+            Managers.Game.AddItem("Water", 1, false);
         });
     }
 

@@ -24,7 +24,6 @@ public class GameManager
 
     public void AddItem(Item item,float amount = 0)
     {
-        
         _inventory.AddCountableItem(item,amount);
 
     }

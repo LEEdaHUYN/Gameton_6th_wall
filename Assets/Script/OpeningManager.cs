@@ -1,4 +1,5 @@
 ﻿using DG.Tweening;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -41,7 +42,19 @@ public class OpeningManager : MonoBehaviour
 
     private Outline hitoutline;
 
-    bool inmobile = true; 
+    bool inmobile = true;
+    public GameObject Popup;
+
+    struct Basket
+    {
+        public string itemName;
+        public int price;
+        public string vc;
+        public Action action;
+    }
+
+    List<Basket> basketList = new List<Basket>();
+
 
 
     private void Start()
@@ -182,6 +195,31 @@ public class OpeningManager : MonoBehaviour
 
     }
 
+    public void OnStartBtn()
+    {
+        Managers.Back.PurchaseItem("Key", 1, Define.Key, () =>
+        {
+            Debug.Log(Managers.Back.GetCurrencyData(Define.Key));
+            foreach (var Item in basketList)
+            {
+                Managers.Back.PurchaseItem(Item.itemName, Item.price, Item.vc, () =>
+                {
+                    Item.action?.Invoke();
+                },() =>
+                { 
+                    //TODO
+                });
+            }
+            Managers.Scene.LoadScene(Define.Scene.ShipScene);
+        }, () =>
+        {
+            Debug.Log(Managers.Back.GetCurrencyData(Define.Key));
+            Popup.SetActive(true);
+        });
+
+        
+    }
+
     IEnumerator TurnoffOutline(Collider hit)
     {
         yield return new WaitForSeconds(0.2f);
@@ -276,4 +314,32 @@ public class OpeningManager : MonoBehaviour
         Maincam.transform.rotation = Quaternion.Lerp(Maincam.transform.rotation, quaternion, Time.deltaTime * 1.5f);
     }
 
+    public void OnClickCanFood()
+    {
+        AddItem("CanFood", 1500, Define.Coin,() =>
+        {
+            Managers.Game.AddItem("CanFood", 1, false);
+        });
+    }
+
+    private void AddItem(string id, int price, string vc, Action action)
+    {
+        Basket basket = new Basket();
+        basket.itemName = id;
+        basket.price = price;
+        basket.vc = vc;
+        basket.action = action;
+        basketList.Add(basket);
+    }
+
+    public void OnClearItem()
+    {
+        foreach (var basket in basketList)
+        {
+            int currencyPrice = Managers.Back.GetCurrencyData(basket.vc) + basket.price;
+            Managers.Back.SetClientCurrencyData(basket.vc, currencyPrice);
+        }
+        basketList.Clear();
+
+    }
 }

@@ -54,11 +54,11 @@
         {
             return _userCurrecy[id];
         }
-        // public int SetClientCurrencyData(string id,int data)
-        // {
-        //     _userCurrecy[id] = data;
-        //     return _userCurrecy[id];
-        // }
+        public int SetClientCurrencyData(string id,int data)
+        {
+            _userCurrecy[id] = data;
+             return _userCurrecy[id];
+        }
         
         /// <summary>
         /// 서버에서 데이터를 동기화 해야할 때.

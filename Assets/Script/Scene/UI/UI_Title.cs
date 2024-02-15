@@ -59,7 +59,7 @@ public class UI_Title : UI_Scene
                     Debug.Log(Managers.Back.GetCurrencyData(Define.Diamond));
                     Debug.Log(Managers.Back.GetCurrencyData(Define.Key));
                     
-                    Managers.Back.PurchaseItem("Key",1,Define.Key, () =>
+                    Managers.Back.PurchaseItem("CanFood",1500,Define.Coin, () =>
                     {
                         Debug.Log("열쇠 구매 완료");
                         Debug.Log(Managers.Back.GetCurrencyData(Define.Key));

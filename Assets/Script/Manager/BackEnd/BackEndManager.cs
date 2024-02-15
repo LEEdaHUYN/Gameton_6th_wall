@@ -139,7 +139,7 @@
         public void PurchaseItem(string itemId,int price,string vc,Action successCallback,Action failedCallBack ,string StoreId = null)
         {
    
-            _userCurrecy[vc] -= price;
+
             if (StoreId == null) StoreId = Define.PublicStore;
             PlayFabClientAPI.PurchaseItem(new PurchaseItemRequest()
             {
@@ -163,6 +163,7 @@
                 //     }
                 //
                 // }
+                _userCurrecy[vc] -= price;
                 SyncCurrencyDataFromServer(() =>
                 {
                     successCallback?.Invoke(); 

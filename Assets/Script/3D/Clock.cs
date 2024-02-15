@@ -112,7 +112,7 @@ namespace dahyeon
         }
         IEnumerator Reset_CoolTime()
         {
-            yield return new WaitForSeconds(10f);
+            yield return new WaitForSeconds(3f);
             startornot = true;
             text_CoolTime.gameObject.SetActive(true);
             time_current = time_cooltime;

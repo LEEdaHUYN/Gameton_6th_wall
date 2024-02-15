@@ -2,11 +2,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class OpeningManager : MonoBehaviour
 {
+    //스크립트.. 정말 개발새발로 짠거 죄성함다... 최대한 빨리 끝내려다보니..
+    //playing song : 과제곡 - 이무진
+
     [SerializeField]
     private Image Maincanvas;
     [SerializeField]
@@ -19,18 +23,26 @@ public class OpeningManager : MonoBehaviour
     private Image Roulettecanvas;
     [SerializeField]
     private Image Creditcanvas;
+    [SerializeField]
+    private Image Defaultcanvas;
+    [SerializeField]
+    private Image Toturial3dcanvas;
+    [SerializeField]
+    private Image Toturial2dcanvas;
 
+    public LabelAnimatin Animationscript;
+    public PlayBtnAnimation PlaybtnAnimation;
     public Camera Maincam;
-    public GameObject CameraPos;
+
+    [SerializeField]
+    private GameObject[] CameraPos = new GameObject[3];
     bool openstore = false;
+    bool Playbtn = false;
 
-    [SerializeField]
-    private Canvas[] rebel;
-    [SerializeField]
-    private GameObject[] StoreObejct;
+    private Outline hitoutline;
 
+    bool inmobile = true; 
 
-    Vector3 velo = Vector3.zero;
 
     private void Start()
     {
@@ -38,114 +50,176 @@ public class OpeningManager : MonoBehaviour
         Store_coincanvas.gameObject.SetActive(false);
         Store_skillcanvas.gameObject.SetActive(false);
         Roulettecanvas.gameObject.SetActive(false);
+        Defaultcanvas.gameObject.SetActive(false);
+        Toturial3dcanvas.gameObject.SetActive(false);
+        Toturial2dcanvas.gameObject.SetActive(false);
+        //ItemDictionarycanvas.gameObject.SetActive(false);
     }
     private void FixedUpdate()
     {
         if (openstore == true)
         {
-            Maincam.transform.position = Vector3.Lerp(
-            Maincam.transform.position, CameraPos.transform.position, 1.5f * Time.deltaTime);
-            Quaternion quaternion = Quaternion.Euler(82f, -102f, 0);
-            Maincam.transform.rotation = Quaternion.Lerp(Maincam.transform.rotation, quaternion, Time.deltaTime * 1.5f);
+            StartCoroutine(Invokelabel());
+            CameraPosition(0, 82f, -102f);
         }
+        if (Playbtn == true)
+        {
+            CameraPosition(1, 90f, -84f);
+            StartCoroutine(Invokeplaylabel());
+        }
+        else if(Playbtn == false && openstore == false)
+        {
+            CameraPosition(2, 1.5f, -102f);
+            Animationscript.StoreLabelHide();
+            PlaybtnAnimation.PlayLabelHide();
+        }
+
     }
     void Update()
     {
-        if (Input.touchCount > 0)
+        if(inmobile == true)
         {
-            // 싱글 터치.
-            Touch touch = Input.GetTouch(0);
+            MobileTouch();
+        }
+    }
+
+    IEnumerator Invokelabel()
+    {
+        yield return new WaitForSeconds(0.7f);
+        Animationscript.StoreLabelShow();
+    }
+
+    IEnumerator Invokeplaylabel()
+    {
+        yield return new WaitForSeconds(1.3f);
+        PlaybtnAnimation.PlayLabelShow();
+    }
+
+
+    private void MobileTouch()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
             Vector3 touchPos;
             Ray ray;
             RaycastHit hit;
 
-            switch (touch.phase)
+            touchPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+            if (Physics.Raycast(ray, out hit))
             {
-                case TouchPhase.Began:
-                    Vector3 touchPosToVector3 = new Vector3(touch.position.x, touch.position.y, 100);
-                    touchPos = Camera.main.ScreenToWorldPoint(touchPosToVector3);
-                    ray = Camera.main.ScreenPointToRay(touchPosToVector3);
+                Debug.DrawLine(ray.origin, hit.point, Color.red, 1.5f);
 
-                    if (Physics.Raycast(ray, out hit, 100))
-                    {
-                        Debug.DrawLine(ray.origin, hit.point, Color.red, 1.5f);
-                        hit.transform.GetComponent<Outline>().OutlineColor = Color.green;
+                switch (hit.collider.name)
+                {
+                    case ("medkit"):
+                        ShowImage(Store_coincanvas);
+                        HideIamge(Defaultcanvas);
+                        hitoutline = hit.collider.GetComponent<Outline>();
+                        hitoutline.OutlineColor = Color.green;
+                        StartCoroutine(TurnoffOutline(hit.collider));
+                        break;
+                    case ("waterbottle"):
+                        ShowImage(Store_skillcanvas);
+                        HideIamge(Defaultcanvas);
 
-                        if (hit.collider.name == "medkit")
-                        {
-                            Store_coincanvas.gameObject.SetActive(true);
+                        hitoutline = hit.collider.GetComponent<Outline>();
+                        hitoutline.OutlineColor = Color.green;
+                        StartCoroutine(TurnoffOutline(hit.collider));
+                        break;
+                    case ("default"):
+                        ShowImage(Creditcanvas);
+                        HideIamge(Defaultcanvas);
 
-                            var seq = DOTween.Sequence();
+                        hitoutline = hit.collider.GetComponent<Outline>();
+                        hitoutline.OutlineColor = Color.green;
+                        StartCoroutine(TurnoffOutline(hit.collider));
+                        break;
+                    case ("can"):
+                        ShowImage(Roulettecanvas);
+                        HideIamge(Defaultcanvas);
 
-                            seq.Append(Store_coincanvas.transform.DOScale(1.1f, 0.2f));
-                            seq.Append(Store_coincanvas.transform.DOScale(1f, 0.1f));
+                        hitoutline = hit.collider.GetComponent<Outline>();
+                        hitoutline.OutlineColor = Color.green;
+                        StartCoroutine(TurnoffOutline(hit.collider));
+                        break;
+                    case ("book"):
+                        ShowImage(Startcanvas);
+                        HideIamge(Defaultcanvas);
 
-                            seq.Play();
-                        }
-                        else if (hit.collider.name == "waterbottle")
-                        {
-                            Store_skillcanvas.gameObject.SetActive(true);
+                        hitoutline = hit.collider.GetComponent<Outline>();
+                        hitoutline.OutlineColor = Color.green;
+                        StartCoroutine(TurnoffOutline(hit.collider));
+                        break;
+                    case ("Flare"):
+                        ShowImage(Toturial3dcanvas);
+                        HideIamge(Defaultcanvas);
 
-                            var seq = DOTween.Sequence();
+                        hitoutline = hit.collider.GetComponent<Outline>();
+                        hitoutline.OutlineColor = Color.green;
+                        StartCoroutine(TurnoffOutline(hit.collider));
+                        break;
+                    case ("GuitarA"):
+                        ShowImage(Toturial3dcanvas);
+                        HideIamge(Defaultcanvas);
 
-                            seq.Append(Store_skillcanvas.transform.DOScale(1.1f, 0.2f));
-                            seq.Append(Store_skillcanvas.transform.DOScale(1f, 0.1f));
+                        hitoutline = hit.collider.GetComponent<Outline>();
+                        hitoutline.OutlineColor = Color.green;
+                        StartCoroutine(TurnoffOutline(hit.collider));
+                        break;
+                    default:
 
-                            seq.Play();
-                        }
-                        else if (hit.collider.name == "default")
-                        {
-                            Creditcanvas.gameObject.SetActive(true);
-
-                            var seq = DOTween.Sequence();
-
-                            seq.Append(Creditcanvas.transform.DOScale(1.1f, 0.2f));
-                            seq.Append(Creditcanvas.transform.DOScale(1f, 0.1f));
-
-                            seq.Play();
-                        }
-                        else if (hit.collider.name == "can")
-                        {
-                            Roulettecanvas.gameObject.SetActive(true);
-
-                            var seq = DOTween.Sequence();
-
-                            
-                            seq.Append(Roulettecanvas.transform.DOScale(1.1f, 0.2f));
-                            seq.Append(Roulettecanvas.transform.DOScale(1f, 0.1f));
-
-                            seq.Play();
-                        }
-                    }
-                    else
-                    {
-                        Debug.DrawLine(ray.origin, touchPos, Color.yellow, 1.5f);
-                    }
-
-                    break;
+                        break;
+                }
             }
+            else
+            {
+                Debug.DrawLine(ray.origin, touchPos, Color.yellow, 1.5f);
+            }
+
         }
+
     }
 
-  
+    IEnumerator TurnoffOutline(Collider hit)
+    {
+        yield return new WaitForSeconds(0.2f);
+        hitoutline.OutlineColor = Color.white;
+    }
+        
+    
+
+    public void BacktoTitle()
+    {
+        Playbtn = false;
+        openstore = false;
+        HideIamge(Defaultcanvas);
+        ShowImage(Maincanvas);
+
+    }
+    public void OpenItemDictionary()
+    {
+        HideIamge(Defaultcanvas);
+        HideIamge(Maincanvas);
+        HideIamge(Startcanvas);
+        HideIamge(Store_coincanvas);
+        HideIamge(Store_skillcanvas);
+       // ShowImage(ItemDictionarycanvas);
+
+    }
+
     public void MainStartBtn()
     {
-        Maincanvas.gameObject.SetActive(false);  
-        Startcanvas.gameObject.SetActive(true); 
+        Playbtn = true;
+        HideIamge(Maincanvas);
+        ShowImage(Defaultcanvas);
     }
     public void MainStoreBtn()
     {
         openstore = true;
-        var seq = DOTween.Sequence();
-
-        Maincanvas.transform.localScale = Vector3.one * 0.2f;
-      
-        seq.Append(Maincanvas.transform.DOScale(1.2f, 0.3f));
-        seq.Append(Maincanvas.transform.DOScale(0.2f, 0.3f));
-        seq.Play().OnComplete(() =>
-        {
-            Maincanvas.gameObject.SetActive(false);
-        });
+        HideIamge(Maincanvas);
+        ShowImage(Defaultcanvas);
         //ClickCoinbtn();
         //Storecanvas.gameObject.SetActive(true);
     }
@@ -156,11 +230,50 @@ public class OpeningManager : MonoBehaviour
         Roulettecanvas.gameObject.SetActive(true);
     }
     public void Exitbtn()
-    {
-        Maincanvas.gameObject.SetActive(true);
-        Store_skillcanvas.gameObject.SetActive(false);
-        Store_coincanvas.gameObject.SetActive(false);
-        Roulettecanvas.gameObject.SetActive(false);
-        Startcanvas.gameObject.SetActive(false);
+    { 
+        Toturial3dcanvas.GetComponent<Toturial>().Resetting();
+        Toturial2dcanvas.GetComponent<Toturial>().Resetting();
+        ShowImage(Defaultcanvas);
+        HideIamge(Store_skillcanvas);
+        HideIamge(Store_coincanvas);
+        HideIamge(Roulettecanvas);
+        HideIamge(Startcanvas);
+        HideIamge(Toturial3dcanvas);
+        HideIamge(Toturial2dcanvas);
+       
     }
+
+
+    void HideIamge(Image canvas)
+    {
+        var seq = DOTween.Sequence();
+
+        canvas.transform.localScale = Vector3.one * 0.2f;
+        seq.Append(canvas.transform.DOScale(1.0f, 0.2f));
+        seq.Append(canvas.transform.DOScale(0.2f, 0.1f));
+        seq.Play().OnComplete(() =>
+        {
+            canvas.gameObject.SetActive(false);
+        });
+    }
+    void ShowImage(Image canvas)
+    {
+        canvas.gameObject.transform.localScale = Vector3.one * 0.2f;
+        canvas.gameObject.SetActive(true);
+
+        var seq = DOTween.Sequence();
+        seq.Append(canvas.transform.DOScale(1.1f, 0.3f));
+        seq.Append(canvas.transform.DOScale(1f, 0.2f));
+
+        seq.Play();
+    }
+
+    void CameraPosition(int a, float x, float y)
+    {
+        Maincam.transform.position = Vector3.Lerp(
+        Maincam.transform.position, CameraPos[a].transform.position, 1.5f * Time.deltaTime);
+        Quaternion quaternion = Quaternion.Euler(x, y, 0);
+        Maincam.transform.rotation = Quaternion.Lerp(Maincam.transform.rotation, quaternion, Time.deltaTime * 1.5f);
+    }
+
 }

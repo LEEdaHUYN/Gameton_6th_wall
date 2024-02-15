@@ -12,7 +12,7 @@ public class UI_Title : UI_Scene
 
     enum Buttons
     {
-        StartButton
+        //StartButton
     }
     public override bool Init()
     {
@@ -22,13 +22,13 @@ public class UI_Title : UI_Scene
         //TODO : BIND End StartButton Event
         BindObject(typeof(GameObjects));
         BindButton(typeof(Buttons));
-        GetButton((int)Buttons.StartButton).gameObject.BindEvent(() =>
-        {
-            if (isLogin)
-            {
-                Managers.Scene.LoadScene(Define.Scene.ShipScene);
-            }
-        });
+        //GetButton((int)Buttons.StartButton).gameObject.BindEvent(() =>
+        //{
+        //    if (isLogin)
+        //    {
+        //        Managers.Scene.LoadScene(Define.Scene.ShipScene);
+        //    }
+        //});
         return true;
     }
 

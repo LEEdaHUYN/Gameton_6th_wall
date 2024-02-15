@@ -65,7 +65,7 @@
         /// </summary>
         public void SyncCurrencyDataFromServer(Action callback = null)
         {
-            GetCurrencyDataBackEnd(_userCurrecy,callback).Forget();
+            GetCurrencyDataBackEnd(callback).Forget();
         }
 
         public void AddCurrency(string id,int amount,Action callback = null)
@@ -86,16 +86,16 @@
             //_userCurrecy[id] += amount;
             
         }
-        private async UniTaskVoid GetCurrencyDataBackEnd(Dictionary<string, int> CurrencyList,Action callback = null)
+        private async UniTaskVoid GetCurrencyDataBackEnd(Action callback = null)
         {
             bool isResult = false;
             PlayFabClientAPI.GetUserInventory(new PlayFab.ClientModels.GetUserInventoryRequest(),
                 (result) =>
                 {
-                    List<string> Keys = new List<string>(CurrencyList.Keys);
+                    List<string> Keys = new List<string>(_userCurrecy.Keys);
                     foreach (var item in Keys)
                     {
-                        CurrencyList[item] = result.VirtualCurrency[item];
+                        _userCurrecy[item] = result.VirtualCurrency[item];
 
                     }
                 
@@ -126,7 +126,7 @@
             await UniTask.WaitUntil(() => { return isComplated == true; });
             return storeItems;
         }
-        
+
 
         /// <summary>
         /// 아이템 구매 이거 써야 API콜 호출을 백번해도 괜찮음.
@@ -134,8 +134,9 @@
         /// <param name="itemId">아이템 ID</param>
         /// <param name="price">가격은 Catalog에 있는 가격으로 해야함</param>
         /// <param name="vc">재화 String</param>
-        /// <param name="SuccesCallback">성공시 실행시킬 액션</param>
-        public void PurchaseItem(string itemId,int price,string vc,Action SuccesCallback, string StoreId = null)
+        /// <param name="successCallback">성공시 실행시킬 액션</param>
+        /// <param name="failedCallBack">실패시 실행시킬 액션</param>
+        public void PurchaseItem(string itemId,int price,string vc,Action successCallback,Action failedCallBack ,string StoreId = null)
         {
    
             _userCurrecy[vc] -= price;
@@ -162,8 +163,15 @@
                 //     }
                 //
                 // }
-                SuccesCallback?.Invoke(); 
-            }, error => ErrorLog(error));
+                SyncCurrencyDataFromServer(() =>
+                {
+                    successCallback?.Invoke(); 
+                });
+            }, error =>
+            {
+                failedCallBack?.Invoke();
+                ErrorLog(error);
+            });
         }
         #endregion
         

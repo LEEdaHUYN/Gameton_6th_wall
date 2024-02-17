@@ -120,6 +120,13 @@
       ],
       "ActionList": [
         {
+          "type": "AddItemAction",
+          "item": {
+            "itemName": "Fever",
+            "amount": 1
+          }
+        },
+        {
           "type": "RandomItemAddAction",
           "items": [
 
@@ -138,7 +145,7 @@
         },
         {
           "type": "ShowTextAction",
-          "text": "\n암초에서 빛나던게 이거였나봐\n도움이 되겠는걸?\n--------------------------------"
+          "text": "\n암초에서 빛나던 게 이거였나봐\n도움이 되겠는걸?\n--------------------------------"
         },
         {
           "type": "SetFlag",
@@ -676,6 +683,13 @@
           "loseCount": 1
         },
         {
+          "type": "AddItemAction",
+          "item": {
+            "itemName": "Fever",
+            "amount": 1
+          }
+        },
+        {
           "type": "RandomItemAddAction",
           "items": [
             {
@@ -731,6 +745,13 @@
             }
           ],
           "addCount": 1
+        },
+        {
+          "type": "AddItemAction",
+          "item": {
+            "itemName": "Fever",
+            "amount": 1
+          }
         },
         {
           "type": "ShowTextAction",
@@ -1398,6 +1419,13 @@
       ],
       "ActionList": [
         {
+          "type": "AddItemAction",
+          "item": {
+            "itemName": "WhiteLeaf",
+            "amount": 1
+          }
+        },
+        {
           "type": "SetBackGroundAction",
           "imageName": "Island02"
         },
@@ -1927,6 +1955,20 @@
           "count": 2
         },
         {
+          "type": "AddItemAction",
+          "item": {
+            "itemName": "Fever",
+            "amount": 1
+          }
+        },
+        {
+          "type": "AddItemAction",
+          "item": {
+            "itemName": "detoxicant",
+            "amount": 1
+          }
+        },
+        {
           "type": "RandomItemAddAction",
           "items": [
             {
@@ -1977,6 +2019,13 @@
         }
       ],
       "ActionList": [
+        {
+          "type": "AddItemAction",
+          "item": {
+            "itemName": "WhiteLeaf",
+            "amount": 1
+          }
+        },
         {
           "type": "RandomItemAddAction",
           "items": [
@@ -2277,6 +2326,20 @@
       ],
       "ActionList": [
         {
+          "type": "AddItemAction",
+          "item": {
+            "itemName": "CanFood",
+            "amount": 2
+          }
+        },
+        {
+          "type": "AddItemAction",
+          "item": {
+            "itemName": "Water",
+            "amount": 2
+          }
+        },
+        {
           "type": "AllCharacterSetStatusAction",
           "calculate": "Mod",
           "status": "Hungry",
@@ -2290,7 +2353,7 @@
         },
         {
           "type": "ShowTextAction",
-          "text": "\n\n뭐 그냥 돌 같은 거겠지?\n괜히 힘 빼지 말고\n체력을 비축하도록 하자!\n--------------------------------"
+          "text": "\n\n뭐 그냥 돌 같은 거겠지?\n주변에 돌아다니는 토끼를 잡아서\n식량도 비축하고 힘 빼지 말고\n체력을 비축하도록 하자!\n--------------------------------"
         },
         {
           "type": "SetFlag",
@@ -3190,6 +3253,13 @@
         }
       ],
       "ActionList": [
+        {
+          "type": "AddItemAction",
+          "item": {
+            "itemName": "WhiteLeaf",
+            "amount": 1
+          }
+        },
         {
           "type": "SetBackGroundAction",
           "imageName": "Choice"
@@ -5104,7 +5174,7 @@
         },
         {
           "type": "ShowTextAction",
-          "text": "\n\n운 좋게 수술 키트가 들어있었어\n이걸로 중환자가 될 동료를\n치료할 수 있겠어.\n--------------------------------"
+          "text": "\n\n운 좋게 수술 키트가 들어있었어\n이걸로 다친 동료를\n치료할 수 있겠어.\n--------------------------------"
         },
         {
           "type": "SetFlag",

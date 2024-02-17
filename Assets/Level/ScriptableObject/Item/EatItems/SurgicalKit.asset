@@ -28,4 +28,4 @@ MonoBehaviour:
   _useEffectSetStatus:
     _value: 0
     _setStatusAction: 1
-    _characterStatus: 5
+    _characterStatus: 6

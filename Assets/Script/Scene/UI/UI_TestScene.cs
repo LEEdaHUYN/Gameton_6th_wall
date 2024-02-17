@@ -41,15 +41,15 @@ public class UI_TestScene :UI_Scene
                 Debug.Log("end");
                 isPreload = true;
 
-                string[] characterNames = { "민영", "감자", "주호" };
-                for (int i= 1; i < 4; i++)
+                string[] characterNames = { "감자","민영", "주호", "경훈" };
+                for (int i= 1; i < 5; i++)
                 {
                     var i2 = i;
                     Managers.Resource.Load<GameObject>("Character", (success) =>
                     {
                         Character character = Object.Instantiate(success,_scene.characterListParent.transform).GetComponent<Character>();
-                        character.SetName(characterNames[i2-1]);
-                        var i1 = i2;
+                        character.SetName(characterNames[i2-1]);// 이름은 0번부터
+                        var i1 = i2; //for문 값을 i1에 집어넣음
                         Managers.Resource.Load<Sprite>($"character{i2}.sprite", success =>
                         {
                             character.SetSprite(success);

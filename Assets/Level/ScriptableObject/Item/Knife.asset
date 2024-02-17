@@ -24,4 +24,4 @@ MonoBehaviour:
   _name: Knife
   _sprite: {fileID: 21300000, guid: 070104b7f9014e242921325f41daf861, type: 3}
   _prefab: {fileID: 7079919218563593500, guid: 0bcdc7d174ff79641a4487a022f363d6, type: 3}
-  _itemIconIndex: 32
+  _itemIconIndex: 4

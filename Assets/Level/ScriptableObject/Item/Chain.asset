@@ -24,4 +24,4 @@ MonoBehaviour:
   _name: Chain
   _sprite: {fileID: 21300000, guid: 44fec3c25b5e15b41a53323e3367f49d, type: 3}
   _prefab: {fileID: 6774110033043748086, guid: 8e74d4a4f1ec1c24eb0b706767a54efd, type: 3}
-  _itemIconIndex: 26
+  _itemIconIndex: 16

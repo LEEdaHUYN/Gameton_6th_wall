@@ -24,8 +24,8 @@ MonoBehaviour:
   _name: GreenLeaf
   _sprite: {fileID: 21300000, guid: 9296644fe0048274eb136afd41ab0c21, type: 3}
   _prefab: {fileID: 0}
-  _itemIconIndex: 15
+  _itemIconIndex: 21
   _useEffectSetStatus:
-    _value: 2
-    _setStatusAction: 2
-    _characterStatus: 6
+    _value: 0
+    _setStatusAction: 1
+    _characterStatus: 4

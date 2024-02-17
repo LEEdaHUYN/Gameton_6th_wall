@@ -24,4 +24,4 @@ MonoBehaviour:
   _name: Wine
   _sprite: {fileID: 21300000, guid: 8cc6f32db35a4b647ada360b76cb84e2, type: 3}
   _prefab: {fileID: 8228349114221829678, guid: 5f5978000c93d1b4bbf47815f2e32962, type: 3}
-  _itemIconIndex: 35
+  _itemIconIndex: 18

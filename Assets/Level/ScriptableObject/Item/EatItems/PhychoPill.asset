@@ -24,7 +24,7 @@ MonoBehaviour:
   _name: PhychoPill
   _sprite: {fileID: 21300000, guid: 60424b99ad81f644aa9a9796b27490d9, type: 3}
   _prefab: {fileID: 5135901469196194101, guid: 6b7f936d7d4ea4b4eb1feb3af3b7f56a, type: 3}
-  _itemIconIndex: 23
+  _itemIconIndex: 28
   _useEffectSetStatus:
     _value: 4
     _setStatusAction: 2

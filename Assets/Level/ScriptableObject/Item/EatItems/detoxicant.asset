@@ -24,7 +24,7 @@ MonoBehaviour:
   _name: detoxicant
   _sprite: {fileID: 21300000, guid: dbbda7064e48c8744a500914443809c7, type: 3}
   _prefab: {fileID: 1892581908884312970, guid: 56f7e1d447e4d5248baa817ecf044a46, type: 3}
-  _itemIconIndex: 11
+  _itemIconIndex: 29
   _useEffectSetStatus:
     _value: 1
     _setStatusAction: 2

@@ -24,3 +24,4 @@ MonoBehaviour:
   _name: Gun
   _sprite: {fileID: 21300000, guid: 082351d9bd212444b9a56b1117164499, type: 3}
   _prefab: {fileID: 199669651405181594, guid: 41236ddb97b001d499cadd3503c086dc, type: 3}
+  _itemIconIndex: 2

@@ -24,7 +24,7 @@ MonoBehaviour:
   _name: Fever
   _sprite: {fileID: 21300000, guid: 4135f7008ebe52d40a68ac7146a20a92, type: 3}
   _prefab: {fileID: 9200857764570806971, guid: ea44c3e07d4f5d54a92aa41d208300ed, type: 3}
-  _itemIconIndex: 12
+  _itemIconIndex: 30
   _useEffectSetStatus:
     _value: 2
     _setStatusAction: 2

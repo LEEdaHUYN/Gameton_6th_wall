@@ -24,4 +24,4 @@ MonoBehaviour:
   _name: Lighter
   _sprite: {fileID: 21300000, guid: 232a6b445c2ce684f86b3575bef963a0, type: 3}
   _prefab: {fileID: 1482338108640310, guid: ed2b54f035699d54ba22e379cc6e9cd6, type: 3}
-  _itemIconIndex: 31
+  _itemIconIndex: 8

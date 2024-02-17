@@ -3,7 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-using Unity.VisualScripting;
+using UniRx;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -32,6 +32,10 @@ public class OpeningManager : MonoBehaviour
     private Image Toturial2dcanvas;
     [SerializeField]
     private Image ItemDictionarycanvas;
+    [SerializeField]
+    private TextMeshPro Coin;
+    [SerializeField]
+    private TextMeshPro Dia;
 
     public LabelAnimatin Animationscript;
     public PlayBtnAnimation PlaybtnAnimation;
@@ -69,6 +73,7 @@ public class OpeningManager : MonoBehaviour
         Toturial3dcanvas.gameObject.SetActive(false);
         Toturial2dcanvas.gameObject.SetActive(false);
         //ItemDictionarycanvas.gameObject.SetActive(false);
+
     }
     private void FixedUpdate()
     {
@@ -176,7 +181,7 @@ public class OpeningManager : MonoBehaviour
                         StartCoroutine(TurnoffOutline(hit.collider));
                         break;
                     case ("GuitarA"):
-                        ShowImage(Toturial3dcanvas);
+                        ShowImage(Toturial2dcanvas);
                         HideIamge(Defaultcanvas);
 
                         hitoutline = hit.collider.GetComponent<Outline>();

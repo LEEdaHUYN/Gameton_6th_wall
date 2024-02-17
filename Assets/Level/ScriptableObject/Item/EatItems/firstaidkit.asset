@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: firstaidkit
   m_EditorClassIdentifier: 
   serializationData:
-    SerializedFormat: 2
+    SerializedFormat: 0
     SerializedBytes: 
     ReferencedUnityObjects: []
     SerializedBytesString: 
@@ -27,5 +27,5 @@ MonoBehaviour:
   _itemIconIndex: 22
   _useEffectSetStatus:
     _value: 0
-    _setStatusAction: 0
-    _characterStatus: 0
+    _setStatusAction: 1
+    _characterStatus: 4

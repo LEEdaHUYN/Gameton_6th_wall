@@ -43,7 +43,7 @@ namespace dahyeon
         public Vector2 LockAxis;
         public FloatingJoystick Joystick_left;
         public FloatingJoystick Joystick_right;
-       float MouseSensitivity = 100f;
+       float MouseSensitivity = 130f;
         Vector3 move;
         bool grabbtnon;
 

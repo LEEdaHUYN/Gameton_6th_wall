@@ -24,7 +24,7 @@ MonoBehaviour:
   _name: PurpleLeaf
   _sprite: {fileID: 21300000, guid: 70d00abfab9ea5440ae9c49d2457e63d, type: 3}
   _prefab: {fileID: 0}
-  _itemIconIndex: 16
+  _itemIconIndex: 20
   _useEffectSetStatus:
     _value: 1
     _setStatusAction: 2

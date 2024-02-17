@@ -1,7 +1,6 @@
 {
   "TriggerDatas": [
     {
-      "_comment" :"총을 가지고 있을 때 엔딩 2를 출력하는게 되는지 테스트",
       "id": 1,
       "ConditionList": [
         {
@@ -10,103 +9,8101 @@
           "endDay": 1
         }
       ],
-      "ActionList" : [
+      "ActionList": [
         {
-          "type" : "AddItemAction",
+          "type": "SetBackGroundAction",
+          "imageName": "Island"
+        },
+        {
+          "type": "ShowTextAction",
+          "text": "\n배가 침몰하기 전에 보트를 탔지만 보트가 찢어져 있는 줄은 몰랐어..\n다행히 보트도 가라앉기 전에 섬이 보여서 섬으로 들어왔지\n근데 사람 사는 섬이 아닌거 같아\n구조를 기다려야 겠지?...\n\n이 식량으로 얼마나 버틸 수 있을까?\n정 안되면 섬 내부로 들어가야 될 거 같아."
+        },
+        {
+          "type": "AllCharacterSetStatusAction",
+          "calculate": "Mod",
+          "status": "Hungry",
+          "value": 0
+        },
+        {
+          "type": "AllCharacterSetStatusAction",
+          "calculate": "Mod",
+          "status": "Thirsty",
+          "value": 0
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "ConditionList": [
+        {
+          "type": "DayCondition",
+          "startDay": 2,
+          "endDay": 2
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "SetActiveShowCharacterStatusAction",
+          "active": true
+        },
+        {
+          "type": "AllCharacterSetStatusAction",
+          "calculate": "Mod",
+          "status": "Hungry",
+          "value": 0
+        },
+        {
+          "type": "AllCharacterSetStatusAction",
+          "calculate": "Mod",
+          "status": "Thirsty",
+          "value": 0
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "1-4DayRandomEventFlag",
+            "value": 1
+          }
+        },
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "1Event",
+            "value": 0
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "ShowYesOrNoAction",
+          "text": "\n동료가 해변을 따라서 돌다가 해변에서\n조금 떨어져 있는 암초에서 뭔가\n발견했다고 우리한테 말했어\n괜히 위험한 행동은 안했으면 좋겠는데..\n가지러 가야 될까?",
+          "yesFlag": {
+            "name": "BeachEvent",
+            "value": 1
+          },
+          "noFlag": {
+            "name": "BeachEvent",
+            "value": 2
+          }
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "1-4DayRandomEventFlag",
+            "value": 0
+          }
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "1Event",
+            "value": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "BeachEvent",
+            "value": 1
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "RandomItemAddAction",
+          "items": [
+
+            {
+              "itemName": "Bodyboard",
+              "amount": 1,
+              "weight": 50
+            },
+            {
+              "itemName": "Crowbar",
+              "amount": 1,
+              "weight": 50
+            }
+          ],
+          "addCount": 1
+        },
+        {
+          "type": "ShowTextAction",
+          "text": "\n암초에서 빛나던게 이거였나봐\n도움이 되겠는걸?\n--------------------------------"
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "BeachEvent",
+            "value": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "BeachEvent",
+            "value": 2
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "AllCharacterSetStatusAction",
+          "calculate": "Mod",
+          "status": "Addiction",
+          "value": "0"
+        },
+        {
+          "type": "AllCharacterSetStatusAction",
+          "calculate": "Mod",
+          "status": "Cold",
+          "value": "0"
+        },
+        {
+          "type": "AllCharacterSetStatusAction",
+          "calculate": "Mod",
+          "status": "Wound",
+          "value": "0"
+        },
+        {
+          "type": "ShowTextAction",
+          "text": "\n어제 발견한게 뭐였을까?\n궁금하긴 하지만 괜한 행동 안 하는 게\n맞았을거야\n그 대신 다들 푹쉬어서 몸 상태가 좋은거\n같아\n--------------------------------"
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "BeachEvent",
+            "value": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "1-4DayRandomEventFlag",
+            "value": 2
+          }
+        },
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "2Event",
+            "value": 0
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "ShowYesOrNoAction",
+          "text": "사고로 겨우겨우 섬에 도착해서\n그런지 다들 불안하고 초조해하고 있어\n일단 충분한 물을 섭취하고 마음을\n진정시켜볼까?\n\n근데 언제 구조될지 모르는데 지금 물을\n왕창 마셨다가 나중에 없으면 어떡하지?\n\n(Yes:물을 마신다 No:물을 마시지 않는다)",
+          "yesFlag": {
+            "name": "ThirstyEvent",
+            "value": 1
+          },
+          "noFlag": {
+            "name": "ThirstyEvent",
+            "value": 2
+          }
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "1-4DayRandomEventFlag",
+            "value": 0
+          }
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "2Event",
+            "value": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "ThirstyEvent",
+            "value": 1
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "AllCharacterSetStatusAction",
+          "calculate": "Mod",
+          "status": "Addiction",
+          "value": "0"
+        },
+        {
+          "type": "AllCharacterSetStatusAction",
+          "calculate": "Mod",
+          "status": "Wound",
+          "value": "0"
+        },
+        {
+          "type": "AllCharacterSetStatusAction",
+          "calculate": "Mod",
+          "status": "Cold",
+          "value": "0"
+        },
+        {
+          "type": "ShowTextAction",
+          "text": "\n충분히 휴식한거 같아!\n당분간은 모두 건강 상태를 유지하겠지?\n--------------------------------"
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "ThirstyEvent",
+            "value": 0
+          }
+        }
+      ]
+    },
+
+    {
+      "id": 9,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "ThirstyEvent",
+            "value": 2
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "AllCharacterSetStatusAction",
+          "calculate": "Mod",
+          "status": "Thirsty",
+          "value": "4"
+        },
+        {
+          "type": "ShowTextAction",
+          "text": "\n우리가 너무 안일했나봐\n심적으로 다들 지친 상태라 다들 갈증을\n호소하고 있어..\n이러다가 다 죽을지도 몰라\n어서 물을 마셔야해..\n--------------------------------"
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "ThirstyEvent",
+            "value": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "1-4DayRandomEventFlag",
+            "value": 3
+          }
+        },
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "3Event",
+            "value": 0
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "ShowYesOrNoAction",
+          "text": "하염없이 구조만 기다려야할까?\n아니면 섬 내부로 이동해서 뭔가를\n찾아봐야 할까?\n이 섬이 무인도가 아닐수도 있잖아?\n\n내부로 이동해야 한다면 들어가기 전에\n배를 든든히 채우고 이동해야겠지?\n\n(Yes:음식을 먹는다 No:먹지 않는다)",
+          "yesFlag": {
+            "name": "FoodEvent",
+            "value": 1
+          },
+          "noFlag": {
+            "name": "FoodEvent",
+            "value": 2
+          }
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "1-4DayRandomEventFlag",
+            "value": 0
+          }
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "3Event",
+            "value": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": 11,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "FoodEvent",
+            "value": 1
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "AllCharacterSetStatusAction",
+          "calculate": "Mod",
+          "status": "Hungry",
+          "value": "0"
+        },
+        {
+          "type": "AllCharacterSetStatusAction",
+          "calculate": "Mod",
+          "status": "Thirsty",
+          "value": "0"
+        },
+        {
+          "type": "ShowTextAction",
+          "text": "\n이제 배도 든든해서 아프더라도 몸 상태가 빠르게 나을것 같아!\n다행이야 아직 음식이 좀 있어서\n--------------------------------"
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "FoodEvent",
+            "value": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": 12,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "FoodEvent",
+            "value": 2
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "AllCharacterSetStatusAction",
+          "calculate": "Mod",
+          "status": "Hungry",
+          "value": "4"
+        },
+        {
+          "type": "AllCharacterSetStatusAction",
+          "calculate": "Mod",
+          "status": "Thirsty",
+          "value": "1"
+        },
+        {
+          "type": "ShowTextAction",
+          "text": "\n너무 아끼려 다가 다 죽겠다..\n좀 먹고 살자..\n--------------------------------"
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "FoodEvent",
+            "value": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": 13,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "1-4DayRandomEventFlag",
+            "value": 4
+          }
+        },
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "4Event",
+            "value": 0
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "ShowYesOrNoAction",
+          "text": "배를 난파시킨 폭풍이 섬까지 오는거 같아.\n점점 비바람이 거세지고 있어!\n여기 있다가는 감기에 다 걸리겠는데?\n\n나무가 있는 쪽으로 일단 피신할까?\n아니면 물품들과 움막이 날라가지 않게\n붙잡고 있어야 할까?\n\n(Yes:나무로 간다 No:움막을 붙잡는다)",
+          "yesFlag": {
+            "name": "DisasterEvent",
+            "value": 1
+          },
+          "noFlag": {
+            "name": "DisasterEvent",
+            "value": 2
+          }
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "1-4DayRandomEventFlag",
+            "value": 0
+          }
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "4Event",
+            "value": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": 14,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "DisasterEvent",
+            "value": 1
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "RandomLoseItemAction",
+          "items": [
+            {
+              "itemName": "Ax",
+              "amount": 1,
+              "weight": 10
+            },
+            {
+              "itemName": "Matchbox",
+              "amount": 1,
+              "weight": 10
+            },
+            {
+              "itemName": "Hammer",
+              "amount": 1,
+              "weight": 10
+            },
+            {
+              "itemName": "Bandage",
+              "amount": 1,
+              "weight": 10
+            },
+            {
+              "itemName": "Fever",
+              "amount": 1,
+              "weight": 10
+            },
+            {
+              "itemName": "detoxicant",
+              "amount": 1,
+              "weight": 10
+            },
+            {
+              "itemName": "radioTransceiver",
+              "amount": 1,
+              "weight": 10
+            },
+            {
+              "itemName": "FlashLight",
+              "amount": 1,
+              "weight": 10
+            },
+            {
+              "itemName": "Rope",
+              "amount": 1,
+              "weight": 10
+            },
+            {
+              "itemName": "Radio",
+              "amount": 1,
+              "weight": 10
+            }
+          ],
+          "loseCount": 3
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "DisasterEvent",
+            "value": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": 15,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "DisasterEvent",
+            "value": 2
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "AllCharacterSetStatusAction",
+          "calculate": "Mod",
+          "status": "Cold",
+          "value": 1
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "DisasterEvent",
+            "value": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": 16,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "1-4DayRandomEventFlag",
+            "value": 5
+          }
+        },
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "5Event",
+            "value": 0
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "ShowTextAction",
+          "text": ""
+        },
+        {
+          "type": "ShowItemChoiceAction",
+          "text": "부랴부랴 배에서 최소한의 물품만 가지고 탈출했는데 배가 침몰한\n쪽에서 상자가 천천히 떠밀려 오고 있네??\n제발 생존에 필요한 물품이면\n좋겠다!\n\n상자를 뭐로 열어야 할까?",
+          "itemFlagList": [
+            {
+              "itemName": "Knife",
+              "flag": {
+                "name": "KnifeFlag",
+                "value": 1
+              }
+            },
+            {
+              "itemName": "Hammer",
+              "flag": {
+                "name": "HammerFlag",
+                "value": 1
+              }
+            },
+            {
+              "itemName": "Crowbar",
+              "flag": {
+                "name": "CrowbarFlag",
+                "value": 1
+              }
+            }
+          ]
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "1-4DayRandomEventFlag",
+            "value": 0
+          }
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "5Event",
+            "value": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": 17,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "KnifeFlag",
+            "value": 1
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "RandomLoseItemAction",
+          "items": [
+            {
+              "itemName": "Knife",
+              "amount": 1,
+              "weight": 100
+            }
+          ],
+          "loseCount": 1
+        },
+        {
+          "type": "RandomItemAddAction",
+          "items": [
+            {
+              "itemName": "Radio",
+              "amount": 1,
+              "weight": 50
+            },
+            {
+              "itemName": "FlashLight",
+              "amount": 1,
+              "weight": 50
+            }
+          ],
+          "addCount": 1
+        },
+        {
+          "type": "ShowTextAction",
+          "text": "상자를 열다가 나이프가 부러졌어\n그래도 쓸만한 게 들어있어 다행이네\n--------------------------------"
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "KnifeFlag",
+            "value": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": 18,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "HammerFlag",
+            "value": 1
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "RandomItemAddAction",
+          "items": [
+            {
+              "itemName": "SurgicalKit",
+              "amount": 1,
+              "weight": 50
+            },
+            {
+              "itemName": "Firstaidkit",
+              "amount": 1,
+              "weight": 50
+            }
+          ],
+          "addCount": 1
+        },
+        {
+          "type": "ShowTextAction",
+          "text": "망치로 상자를 부쉈는데 다행이다!\n구급약품이 들어있다니 위급하면 이걸로\n치료할 수 있겠어\n--------------------------------"
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "HammerFlag",
+            "value": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": 19,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "CrowbarFlag",
+            "value": 1
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "RandomItemAddAction",
+          "items": [
+            {
+              "itemName": "Guitar",
+              "amount": 1,
+              "weight": 50
+            },
+            {
+              "itemName": "Compass",
+              "amount": 1,
+              "weight": 50
+            }
+          ],
+          "addCount": 1
+        },
+        {
+          "type": "ShowTextAction",
+          "text": "\n빠루로 힘들게 상자를 열었어\n나중에 쓸만한 물품이 들어있어 다행이네\n--------------------------------"
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "CrowbarFlag",
+            "value": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": 20,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "1-4DayRandomEventFlag",
+            "value": 6
+          }
+        },
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "6Event",
+            "value": 0
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "ShowYesOrNoAction",
+          "text": "지진이 났나?\n섬 깊은 곳에서 진동이 느껴져\n그 진동으로 인해 숲 안쪽의 생물들이\n기어나오고 있어!\n거미, 뱀, 개미 등 다양한테 왠지 근처에 있으면 물릴거 같은데? 어떻게 하지?\n\n(Yes:물건 위에 올라간다\n No: 피해다닌다)",
+          "yesFlag": {
+            "name": "BugEvent",
+            "value": 1
+          },
+          "noFlag": {
+            "name": "BugEvent",
+            "value": 2
+          }
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "1-4DayRandomEventFlag",
+            "value": 0
+          }
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "6Event",
+            "value": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": 21,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "BugEvent",
+            "value": 1
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "RandomLoseItemAction",
+          "items": [
+            {
+              "itemName": "Ax",
+              "amount": 1,
+              "weight": 10
+            },
+            {
+              "itemName": "Matchbox",
+              "amount": 1,
+              "weight": 10
+            },
+            {
+              "itemName": "Hammer",
+              "amount": 1,
+              "weight": 10
+            },
+            {
+              "itemName": "Bandage",
+              "amount": 1,
+              "weight": 10
+            },
+            {
+              "itemName": "Rope",
+              "amount": 1,
+              "weight": 10
+            },
+            {
+              "itemName": "Fever",
+              "amount": 1,
+              "weight": 10
+            },
+            {
+              "itemName": "detoxicant",
+              "amount": 1,
+              "weight": 10
+            },
+            {
+              "itemName": "FlashLight",
+              "amount": 1,
+              "weight": 10
+            },
+            {
+              "itemName": "Radio",
+              "amount": 1,
+              "weight": 10
+            },
+            {
+              "itemName": "radioTransceiver",
+              "amount": 1,
+              "weight": 10
+            }
+          ],
+          "lostCount": 4
+        },
+        {
+          "type": "ShowTextAction",
+          "text": "곤충들한테 산성이 있었나봐\n우리가 밟고 선 물품들이 순식간에\n녹슬었어!\n만약 곤충들이 우리 몸을 지나갔다면..\n생각만 해도 끔찍해!\n--------------------------------"
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "BugEvent",
+            "value": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": 22,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "BugEvent",
+            "value": 2
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "AllCharacterSetStatusAction",
+          "calculate": "Mod",
+          "status": "Wound",
+          "value": 1
+        },
+        {
+          "type": "RandomCharacterSetStatusAction",
+          "calculate": "Mod",
+          "status": "Addiction",
+          "value": 1,
+          "Count": 2
+        },
+        {
+          "type": "ShowTextAction",
+          "text": "곤충들이 스쳐 지나갔는데도 엄청나게\n따가워!\n뭐야 언제 이렇게 많이 물렸지??\n독성이 있는 곤충한테 물렸나봐!\n중독된 동료들 상태는 더 심각해보여\n--------------------------------"
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "BugEvent",
+            "value": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": 23,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "1-4DayRandomEventFlag",
+            "value": 7
+          }
+        },
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "7Event",
+            "value": 0
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "ShowTextAction",
+          "text": ""
+        },
+        {
+          "type": "ShowItemChoiceAction",
+          "text": "아니 아까 동료가 배고프다고 약초나 버섯 같은거 가져와서 먹으려고\n하길래 그거 잘못먹으면 큰일난다고 먹지말라 했더니 이자식이 글쎄\n구워먹으면 괜찮다고 신나서\n구워먹더니 지금 토하고 난리났어..\n\n이러다가 황천길 가는거 아니야?",
+          "itemFlagList": [
+            {
+              "itemName": "detoxicant",
+              "flag": {
+                "name": "detoxicantFlag",
+                "value": 1
+              }
+            },
+            {
+              "itemName": "Firstaidkit",
+              "flag": {
+                "name": "FirstaidkitFlag",
+                "value": 1
+              }
+            },
+            {
+              "itemName": "Hand",
+              "flag": {
+                "name": "HandFlag",
+                "value": 1
+              }
+            }
+          ]
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "1-4DayRandomEventFlag",
+            "value": 0
+          }
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "7Event",
+            "value": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": 24,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "detoxicantFlag",
+            "value": 1
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "RandomLoseItemAction",
+          "items": [
+            {
+              "itemName": "detoxicant",
+              "amount": 1,
+              "weight": 100
+            }
+          ],
+          "loseCount": 1
+        },
+        {
+          "type": "AllCharacterSetStatusAction",
+          "calculate": "Mod",
+          "status": "Addiction",
+          "value": 0
+        },
+        {
+          "type": "ShowTextAction",
+          "text": "동료가 다 나았어!\n다음부턴 배고프다고 아무거나 먹지마라...\n--------------------------------"
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "detoxicantFlag",
+            "value": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": 25,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "FirstaidkitFlag",
+            "value": 1
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "RandomLoseItemAction",
+          "items": [
+            {
+              "itemName": "Firstaidkit",
+              "amount": 1,
+              "weight": 100
+            }
+          ],
+          "loseCount": 1
+        },
+        {
+          "type": "AllCharacterSetStatusAction",
+          "calculate": "Mod",
+          "status": "Addiction",
+          "value": 0
+        },
+        {
+          "type": "AllCharacterSetStatusAction",
+          "calculate": "Mod",
+          "status": "Hungry",
+          "value": 0
+        },
+        {
+          "type": "AllCharacterSetStatusAction",
+          "calculate": "Mod",
+          "status": "Thirsty",
+          "value": 0
+        },
+        {
+          "type": "AllCharacterSetStatusAction",
+          "calculate": "Mod",
+          "status": "Wound",
+          "value": 0
+        },
+        {
+          "type": "AllCharacterSetStatusAction",
+          "calculate": "Mod",
+          "status": "Cold",
+          "value": 0
+        },
+        {
+          "type": "AllCharacterSetStatusAction",
+          "calculate": "Mod",
+          "status": "Panic",
+          "value": 0
+        },
+        {
+          "type": "ShowTextAction",
+          "text": "동료가 다 나았어!\n당분간은 그냥 통조림만 먹겠지?\n--------------------------------"
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "FirstaidkitFlag",
+            "value": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": 26,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "HandFlag",
+            "value": 1
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "RandomCharacterSetStatusAction",
+          "calculate": "Mod",
+          "status": "Addiction",
+          "value": 1,
+          "Count": 2
+        },
+        {
+          "type": "ShowTextAction",
+          "text": "\n중독된 동료는 움직이기도 힘들어하고 있어!\n이대로 가다가 정말 큰일 나겠어\n빨리 방법을 찾아야해\n--------------------------------"
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "HandFlag",
+            "value": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": 27,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "1-4DayRandomEventFlag",
+            "value": 8
+          }
+        },
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "8Event",
+            "value": 0
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "ShowYesOrNoAction",
+          "text": "이 섬에 오게 된 이후 전부 불안한거 같아..\n불안한건 알겠는데..점점 서로 언성이\n높아지는거 같은데?\n\n여기서 살아나갈 수 있을지도 모르는데\n저렇게 싸우는게 맞아??\n더 험악해지기 전에 말려야겠어\n\n(Yes:말린다 No:말리지 않는다)",
+          "yesFlag": {
+            "name": "FightEvent",
+            "value": 1
+          },
+          "noFlag": {
+            "name": "FightEvent",
+            "value": 2
+          }
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "1-4DayRandomEventFlag",
+            "value": 0
+          }
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "8Event",
+            "value": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": 28,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "FightEvent",
+            "value": 1
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "RandomCharacterSetStatusAction",
+          "calculate": "Mod",
+          "status": "Wound",
+          "value": 1,
+          "count": 2
+        },
+        {
+          "type": "ShowTextAction",
+          "text": "말리는 도중에 우리가 상처가 났어..\n하.. 진짜 서로 도와야 된다니까!\n--------------------------------"
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "FightEvent",
+            "value": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": 29,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "FightEvent",
+            "value": 2
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "RandomLoseItemAction",
+          "Items": [
+            {
+              "itemName": "Ax",
+              "amount": 1,
+              "weight": 40
+            },
+            {
+              "itemName": "Crowbar",
+              "amount": 1,
+              "weight": 30
+            },
+            {
+              "itemName": "Hammer",
+              "amount": 1,
+              "weight": 30
+            }
+          ],
+          "loseCount": 1
+        },
+        {
+          "type": "ShowTextAction",
+          "text": "말리는 도중에 이놈들이 난동을 피워서\n물품이 고장났을지도 몰라\n살펴봐야겠어\n--------------------------------"
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "FightEvent",
+            "value": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "ConditionList": [
+        {
+          "type": "DayCondition",
+          "startDay": 1,
+          "endDay": 3
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "SetRandomFlag",
+          "flag": {
+            "name": "1-4DayRandomEventFlag",
+            "value": 0
+          },
+          "minValue": 1,
+          "maxValue": 8
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "1Event",
+            "value": 0
+          }
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "2Event",
+            "value": 0
+          }
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "3Event",
+            "value": 0
+          }
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "4Event",
+            "value": 0
+          }
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "5Event",
+            "value": 0
+          }
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "6Event",
+            "value": 0
+          }
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "7Event",
+            "value": 0
+          }
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "8Event",
+            "value": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": 30,
+      "ConditionList": [
+        {
+          "type": "DayCondition",
+          "startDay": 5,
+          "endDay": 5
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "ShowPictureAndTextAction",
+          "text": "\n아무래도 더 이상 여기에 있을 수는 없을 것 같아\n계속 있다가는 배에서 탈출하기\n전에 가지고 왔던 식량이 다 떨어질 거야\n\n어쩔 수 없이 섬 내부로\n이동해야겠네"
+        },
+        {
+          "type": "SetActiveShowCharacterStatusAction",
+          "active": false
+        }
+      ]
+    },
+    {
+      "_comment": "숲속 일러스트",
+      "id": 31,
+      "ConditionList": [
+        {
+          "type": "DayCondition",
+          "startDay": 6,
+          "endDay": 6
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "SetBackGroundAction",
+          "imageName": "Island02"
+        },
+        {
+          "type": "ShowTextAction",
+          "text": "\n우리는 그렇게 섬 내부로 이동했고\n이동한 지 몇 시간이 지난 후에야\n우리는 주변환경이 조금씩 변하는 것을\n느낄 수 있었다\n\n여기서 바람이 불어오는 거 같은데?"
+        }
+      ]
+    },
+    {
+      "_comment": "동굴 일러스트",
+      "id": 1000,
+      "ConditionList": [
+        {
+          "type": "DayCondition",
+          "startDay": 7,
+          "endDay": 7
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "SetBackGroundAction",
+          "imageName": "Cave"
+        },
+        {
+          "type": "AddItemAction",
           "item": {
-            "itemName" : "Gun",
-            "amount" : 1
+            "itemName": "Water",
+            "amount": 2
+          }
+        },
+        {
+          "type": "AddItemAction",
+          "item": {
+            "itemName": "CanFood",
+            "amount": 2
+          }
+        },
+        {
+          "type": "SetActiveShowCharacterStatusAction",
+          "active": true
+        }
+      ]
+    },
+    {
+      "id": 32,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "7-10DayRandomEventFlag",
+            "value": 1
+          }
+        },
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "11Event",
+            "value": 0
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "ShowTextAction",
+          "text": ""
+        },
+        {
+          "type": "ShowItemChoiceAction",
+          "text": "일단 동굴에 들어온 이후에는\n해안가 보다는 따뜻해서 감기는\n잘 안 걸리는 것 같아\n그리고 동료들도 기운을 내려고\n힘쓰는거 같아\n서로 힘 좀 내게 오늘은 술 한 잔\n하면서 노래를 부를까??\n괜히 시끄럽게 하다가 짐승을\n부르는거 아닌가?",
+          "itemFlagList": [
+            {
+              "itemName": "Wine",
+              "flag": {
+                "name": "WineFlag",
+                "value": 1
+              }
+            },
+            {
+              "itemName": "Guitar",
+              "flag": {
+                "name": "GuitarFlag",
+                "value": 1
+              }
+            },
+            {
+              "itemName": "Hand",
+              "flag": {
+                "name": "HandFlag1",
+                "value": 1
+              }
+            }
+          ]
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "7-10DayRandomEventFlag",
+            "value": 0
+          }
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "11Event",
+            "value": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": 33,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "WineFlag",
+            "value": 1
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "AllCharacterSetStatusAction",
+          "calculate": "Mod",
+          "status": "Panic",
+          "value": "0"
+        },
+        {
+          "type": "ShowTextAction",
+          "text": "\n\n\n오랜만에 다들 기분좋게 한잔씩 하고 잤네\n--------------------------------"
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "WineFlag",
+            "value": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": 34,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "GuitarFlag",
+            "value": 1
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "AllCharacterSetStatusAction",
+          "calculate": "Mod",
+          "status": "Panic",
+          "value": "0"
+        },
+        {
+          "type": "ShowTextAction",
+          "text": "\n\n\n기분좋게 술도 마시고 노래도 불렀더니\n다들 즐거워 보이는걸?\n--------------------------------"
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "GuitarFlag",
+            "value": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": 35,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "HandFlag1",
+            "value": 1
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "ShowTextAction",
+          "text": "\n\n\n혹시 짐승들을 부를까봐 그냥 잤어\n--------------------------------"
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "HandFlag1",
+            "value": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": 36,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "7-10DayRandomEventFlag",
+            "value": 2
+          }
+        },
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "12Event",
+            "value": 0
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "ShowTextAction",
+          "text": ""
+        },
+        {
+          "type": "ShowItemChoiceAction",
+          "text": "이 동굴은 꽤 큰 것 같아\n해안가보다는 따듯하지만 그래도\n불을 안켜두니 쌀쌀한데?\n\n오늘 밤은 유독 어딘지는 모르겠지만 바람이 세게 불어와서 더 추운 것\n같은데 불을 켜두고 잘까?\n\n추우면 무조건 감기가 걸릴거 같은데",
+          "itemFlagList": [
+            {
+              "itemName": "Matchbox",
+              "flag": {
+                "name": "MatchboxFlag",
+                "value": 1
+              }
+            },
+            {
+              "itemName": "Lighter",
+              "flag": {
+                "name": "LighterFlag",
+                "value": 1
+              }
+            },
+            {
+              "itemName": "Hand",
+              "flag": {
+                "name": "HandFlag2",
+                "value": 1
+              }
+            }
+          ]
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "7-10DayRandomEventFlag",
+            "value": 0
+          }
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "12Event",
+            "value": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": 37,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "MatchboxFlag",
+            "value": 1
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "RandomCharacterSetStatusAction",
+          "calculate": "Mod",
+          "status": "Wound",
+          "value": 1,
+          "count": 1
+        },
+        {
+          "type": "ShowTextAction",
+          "text": "\n동료가 말하길\n불이 약해서 불이 꺼졌는데\n불을 다시 지필려고 하니 동굴 깊은 곳에서 박쥐들이 날아와서 물었다고 해\n\n흡혈박쥐 인가봐\n조심해야겠는걸\n--------------------------------"
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "MatchboxFlag",
+            "value": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": 38,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "LighterFlag",
+            "value": 1
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "ShowTextAction",
+          "text": "\n새벽에 깼는데\n글쎄\n우리가 있는 곳 저 멀리 깊은 곳에서\n어둠속에서 비치는 빨간 눈들을 봤어...\n\n동굴 안쪽으로는 함부로 못 가겠는데?\n--------------------------------"
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "LighterFlag",
+            "value": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": 39,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "HandFlag2",
+            "value": 1
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "AllCharacterSetStatusAction",
+          "calculate": "Mod",
+          "status": "Wound",
+          "value": 1
+        },
+        {
+          "type": "ShowTextAction",
+          "text": "\n\n불을 안 켜고 잤더니 박쥐들이 날아와서\n우리를 다 물었어\n\n엄청나게 쓰라려!\n\n앞으로는 불을 어떡해서든 켜야겠어\n--------------------------------"
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "HandFlag2",
+            "value": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": 40,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "7-10DayRandomEventFlag",
+            "value": 3
+          }
+        },
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "13Event",
+            "value": 0
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "ShowYesOrNoAction",
+          "text": "동굴이 너무 넓어서 가끔 바람이 들어오면 추워..\n바람이 안 들어오는 통로로 들어가서 자면 좀 따듯하지 않을까 싶은데 ..\n찾아보니 안쪽에 통로들이 몇개 있는 것\n같아 바람도 안불어오고\n안쪽 통로에 들어가서 잘까?\n\n(Yes:들어가서 잔다\n No:들어가서 자지 않는다)",
+          "yesFlag": {
+            "name": "OxygenEvent",
+            "value": 1
+          },
+          "noFlag": {
+            "name": "OxygenEvent",
+            "value": 2
+          }
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "7-10DayRandomEventFlag",
+            "value": 0
+          }
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "13Event",
+            "value": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": 41,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "OxygenEvent",
+            "value": 1
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "RandomCharacterSetStatusAction",
+          "calculate": "Mod",
+          "status": "Addiction",
+          "value": 1,
+          "count": 2
+        },
+        {
+          "type": "ShowTextAction",
+          "text": "\n잠을 자고 있다가 밤에 화장실을 가려고\n일어났더니 우리가 자고 있던 통로\n안쪽에서 어떤 연기가 흘러나오고 있었어\n겨우겨우 정신차려서 그 통로에서 나오긴 했지만 우리 중 두 명은 이상한 연기를\n마시고 중독된것같아..\n윽..\n--------------------------------"
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "OxygenEvent",
+            "value": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": 42,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "OxygenEvent",
+            "value": 2
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "RandomCharacterSetStatusAction",
+          "calculate": "Mod",
+          "status": "Cold",
+          "value": 1,
+          "count": 2
+        },
+        {
+          "type": "ShowTextAction",
+          "text": "\n추운데 들어가서 자지 않으니\n감기가 걸렸어\n\n으..불을 떼도 춥단 말이야\n동굴이라 따듯한 줄 알았는데 이렇게 크니 오히려 추운거 같아..\n\n이 동굴도 오래 있을 곳이 아닌가?\n--------------------------------"
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "OxygenEvent",
+            "value": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": 43,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "7-10DayRandomEventFlag",
+            "value": 4
+          }
+        },
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "14Event",
+            "value": 0
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "ShowYesOrNoAction",
+          "text": "동굴은 여러 통로로 이루어져 있는 것\n같아서 여럿 통로를 관찰했는데 낙서?\n벽화? 같은 게 많이 적혀져 있네\n\n토착 원주민이 살았었던 흔적 같아\n벽에 있는 낙서를 쭉 따라가니 어떤 공터 중앙에 상자가 있는데?\n이거 왠지 열면 무슨 일 일어나게끔\n생겼는데... 열어볼까?",
+          "yesFlag": {
+            "name": "RecordEvent",
+            "value": 1
+          },
+          "noFlag": {
+            "name": "RecordEvent",
+            "value": 2
+          }
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "7-10DayRandomEventFlag",
+            "value": 0
+          }
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "14Event",
+            "value": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": 44,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "RecordEvent",
+            "value": 1
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "RandomCharacterSetStatusAction",
+          "calculate": "Mod",
+          "status": "Addiction",
+          "value": 1,
+          "count": 2
+        },
+        {
+          "type": "RandomItemAddAction",
+          "items": [
+            {
+              "itemName": "Cardkey",
+              "amount": 1,
+              "weight": 25
+            },
+            {
+              "itemName": "BookItem",
+              "amount": 1,
+              "weight": 25
+            },
+            {
+              "itemName": "Chain",
+              "amount": 1,
+              "weight": 25
+            },
+            {
+              "itemName": "Card",
+              "amount": 1,
+              "weight": 25
+            }
+          ],
+          "addCount": 1
+        },
+        {
+          "type": "ShowTextAction",
+          "text": "\n상자를 열었을 때 어떤 먼지 같은게\n올라왔고 상자 안을 보니 물품들이 있어서\n챙겼어\n그리고 휴식을 취했는데...\n먼지 같아 보이던 게 독이었나봐..\n큰일 났어\n--------------------------------"
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "RecordEvent",
+            "value": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": 45,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "RecordEvent",
+            "value": 2
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "RandomItemAddAction",
+          "items": [
+            {
+              "itemName": "Ax",
+              "amount": 1,
+              "weight": 25
+            },
+            {
+              "itemName": "Hammer",
+              "amount": 1,
+              "weight": 25
+            },
+            {
+              "itemName": "PhychoPill",
+              "amount": 1,
+              "weight": 25
+            },
+            {
+              "itemName": "Signal",
+              "amount": 1,
+              "weight": 25
+            }
+          ],
+          "addCount": 1
+        },
+        {
+          "type": "ShowTextAction",
+          "text": "\n쉽사리 상자를 열지 않고 주변을\n탐색했는데 공터 구석에서 쓸만한\n물품을 발견했어!\n그 이후에 우리는 괜히 상자를 열지 않았어\n\n영화 같은 걸 보면 무슨 일이 일어나잖아?\n위험을 감수할 수는 없지\n--------------------------------"
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "RecordEvent",
+            "value": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": 46,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "7-10DayRandomEventFlag",
+            "value": 5
+          }
+        },
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "15Event",
+            "value": 0
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "ShowYesOrNoAction",
+          "text": "지나가면서 벽에 부딪혀서 상처가\n나지 않는 한 이 동굴은 안전한 거\n같기도 하고 아직은 잘 모르겠네\n\n음식을 다 먹은 후에 빈 통하고 쓰레기들을 동굴 안쪽에 던졌는데 뭔진 모르겠는데\n느낌이 싸해 말로 설명은 못하겠어\n동굴을 나갈까?",
+          "yesFlag": {
+            "name": "SnakeEvent",
+            "value": 1
+          },
+          "noFlag": {
+            "name": "SnakeEvent",
+            "value": 2
+          }
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "7-10DayRandomEventFlag",
+            "value": 0
+          }
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "15Event",
+            "value": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": 47,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "SnakeEvent",
+            "value": 1
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "RandomLoseItemAction",
+          "items": [
+            {
+              "itemName": "Compass",
+              "amount": 1,
+              "weight": 25
+            },
+            {
+              "itemName": "Card",
+              "amount": 1,
+              "weight": 25
+            },
+            {
+              "itemName": "BookItem",
+              "amount": 1,
+              "weight": 25
+            },
+            {
+              "itemName": "Matchbox",
+              "amount": 1,
+              "weight": 25
+            }
+          ],
+          "loseCount": 1
+        },
+        {
+          "type": "ShowTextAction",
+          "text": "그대로 안에 있으면 무슨 일이\n일어날 것 같아서 바로 밖으로 뛰쳐나왔어\n동굴에서 멀찍이 떨어져 있었는데 말이야\n글쎄 시간이 지난 뒤에 엄청난 양의 뱀들이 동굴에서 나왔어\n만약 나오지 않았다면...\n뱀들이 다 나온 뒤에 우리가 물품도 놓고\n나와서 다시 들어갔는데 어떤 물품인지는\n모르겠는데 뭐가 없는데?\n--------------------------------"
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "SnakeEvent",
+            "value": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": 48,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "SnakeEvent",
+            "value": 2
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "RandomCharacterSetStatusAction",
+          "calculate": "Mod",
+          "status": "Addiction",
+          "value": 4,
+          "count": 2
+        },
+        {
+          "type": "ShowTextAction",
+          "text": "\n기분 탓이겠지 하고 동굴에 있었는데\n갑자기 어디선가 사방에서\n뱀들이 나타났어\n물품들을 밟고 물품 위에 올라갔지만\n뱀들이 지나가면서 몇 마리가 우리 몇 명을\n문거 같아!\n순식간에 물린 동료들의 몸 상태가\n나빠지고 있어!\n그냥 밖에 나갈걸..\n--------------------------------"
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "SnakeEvent",
+            "value": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": 49,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "7-10DayRandomEventFlag",
+            "value": 6
+          }
+        },
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "16Event",
+            "value": 0
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "ShowYesOrNoAction",
+          "text": "동료들 중 한 명이 동굴을 나가서 땔감을\n구해오던 도중에 환경에 맞지 않는\n알루미늄? 철? 로 된 어떤 물체가 땅에\n박혀있는 거 같다고 알려줬어\n\n밥도 먹었겠다\n아까 말한 물체를 확인하러 가볼까?",
+          "yesFlag": {
+            "name": "TimeCapsuleEvent",
+            "value": 1
+          },
+          "noFlag": {
+            "name": "TimeCapsuleEvent",
+            "value": 2
+          }
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "7-10DayRandomEventFlag",
+            "value": 0
+          }
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "16Event",
+            "value": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": 50,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "TimeCapsuleEvent",
+            "value": 1
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "RandomItemAddAction",
+          "items": [
+            {
+              "itemName": "Firstaidkit",
+              "amount": 1,
+              "weight": 10
+            },
+            {
+              "itemName": "PurpleLeaf",
+              "amount": 1,
+              "weight": 15
+            },
+            {
+              "itemName": "WhiteLeaf",
+              "amount": 1,
+              "weight": 15
+            },
+            {
+              "itemName": "SurgicalKit",
+              "amount": 1,
+              "weight": 10
+            },
+            {
+              "itemName": "radioTransceiver",
+              "amount": 1,
+              "weight": 15
+            },
+            {
+              "itemName": "Signal",
+              "amount": 1,
+              "weight": 15
+            },
+            {
+              "itemName": "Bandage",
+              "amount": 1,
+              "weight": 10
+            },
+            {
+              "itemName": "RedLeaf",
+              "amount": 1,
+              "weight": 10
+            }
+          ],
+          "addCount": 4
+        },
+        {
+          "type": "ShowTextAction",
+          "text": "\n동굴 주변에 정말 인위적인 물체가\n박혀있어서 그걸 파냈더니 어떤 캡슐 같은\n형태였는데 열어보니 몇 가지 물품들이\n있네?\n이 섬에 원주민도 아니고 문명인들이\n있었던 흔적인가?\n--------------------------------"
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "TimeCapsuleEvent",
+            "value": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": 51,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "TimeCapsuleEvent",
+            "value": 2
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "AllCharacterSetStatusAction",
+          "calculate": "Mod",
+          "status": "Hungry",
+          "value": 0
+        },
+        {
+          "type": "AllCharacterSetStatusAction",
+          "calculate": "Mod",
+          "status": "Thirsty",
+          "value": 0
+        },
+        {
+          "type": "ShowTextAction",
+          "text": "\n\n뭐 그냥 돌 같은 거겠지?\n괜히 힘 빼지 말고\n체력을 비축하도록 하자!\n--------------------------------"
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "TimeCapsuleEvent",
+            "value": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": 52,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "7-10DayRandomEventFlag",
+            "value": 7
+          }
+        },
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "17Event",
+            "value": 0
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "ShowYesOrNoAction",
+          "text": "동굴에 너무 오래 있다보니까 환청? 환각같은게 들리는거 같기도해 아까 동굴 안쪽에 누가 부르는 줄 알아서 가보니까 아무도 없었어 나만 그런줄 알았는데 모두가 환청을 조금씩 느낀 것 같아\n아무래도 그 주기도 점점 짧아지고 있는것 같기도 하고.. 이 동굴에 뭐가 있는건가?\n아니면 우리가 너무 심리적으로 지친걸까? 오늘은 그럼 동굴 밖에서 잘까?\n(Yes:밖에서 잔다 No: 그냥 잔다)",
+          "yesFlag": {
+            "name": "PanicEvent",
+            "value": 1
+          },
+          "noFlag": {
+            "name": "PanicEvent",
+            "value": 2
+          }
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "7-10DayRandomEventFlag",
+            "value": 0
+          }
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "17Event",
+            "value": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": 53,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "PanicEvent",
+            "value": 1
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "AllCharacterSetStatusAction",
+          "calculate": "Mod",
+          "status": "Panic",
+          "value": 0
+        },
+        {
+          "type": "AllCharacterSetStatusAction",
+          "calculate": "Mod",
+          "status": "Cold",
+          "value": 1
+        },
+        {
+          "type": "ShowTextAction",
+          "text": "\n하필 밖에 나와서 자는데 새벽부터\n소나기가 내려서 다들 흠뻑 젖었어!\n젠장!!\n다시 동굴에 들어가서 옷부터 말려야겠어\n--------------------------------"
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "PanicEvent",
+            "value": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": 54,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "PanicEvent",
+            "value": 2
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "RandomCharacterSetStatusAction",
+          "calculate": "Mod",
+          "status": "Panic",
+          "value": 1,
+          "count": 2
+        },
+        {
+          "type": "ShowTextAction",
+          "text": "\n우리가 그냥 모두 자고 있었는데\n동굴 안쪽에서 분명히 사람이 미친 듯이\n웃는 소리를 듣고 우리 모두가 잠에서 깼어\n도대체뭐야!\n이 동굴 저주가 걸린거야?\n그렇게 밤을 뜬눈으로 지새웠는데\n이제 다들 한계인거같아!\n제정신을 못차리겠어\n--------------------------------"
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "PanicEvent",
+            "value": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": 55,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "7-10DayRandomEventFlag",
+            "value": 8
+          }
+        },
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "18Event",
+            "value": 0
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "ShowYesOrNoAction",
+          "text": "지진이 났나?\n섬 깊은 곳에서 진동이 느껴져\n그 진동으로 인해 숲 안쪽의 생물들이\n기어나오고 있어!\n거미, 뱀, 개미 등 다양한테 왠지 근처에 있으면 물릴거 같은데? 어떻게 하지?\n\n(Yes:물건 위에 올라간다\n No: 피해다닌다)",
+          "yesFlag": {
+            "name": "BugEvent2",
+            "value": 1
+          },
+          "noFlag": {
+            "name": "BugEvent2",
+            "value": 2
+          }
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "7-10DayRandomEventFlag",
+            "value": 0
+          }
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "18Event",
+            "value": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": 56,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "BugEvent2",
+            "value": 1
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "RandomLoseItemAction",
+          "items": [
+            {
+              "itemName": "Ax",
+              "amount": 1,
+              "weight": 10
+            },
+            {
+              "itemName": "Matchbox",
+              "amount": 1,
+              "weight": 10
+            },
+            {
+              "itemName": "Hammer",
+              "amount": 1,
+              "weight": 10
+            },
+            {
+              "itemName": "Bandage",
+              "amount": 1,
+              "weight": 10
+            },
+            {
+              "itemName": "Rope",
+              "amount": 1,
+              "weight": 10
+            },
+            {
+              "itemName": "Fever",
+              "amount": 1,
+              "weight": 10
+            },
+            {
+              "itemName": "detoxicant",
+              "amount": 1,
+              "weight": 10
+            },
+            {
+              "itemName": "FlashLight",
+              "amount": 1,
+              "weight": 10
+            },
+            {
+              "itemName": "Radio",
+              "amount": 1,
+              "weight": 10
+            },
+            {
+              "itemName": "radioTransceiver",
+              "amount": 1,
+              "weight": 10
+            }
+          ],
+          "lostCount": 4
+        },
+        {
+          "type": "ShowTextAction",
+          "text": "곤충들한테 산성이 있었나봐\n우리가 밟고 선 물품들이 순식간에\n녹슬었어!\n만약 곤충들이 우리 몸을 지나갔다면..\n생각만 해도 끔찍해!\n--------------------------------"
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "BugEvent2",
+            "value": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": 57,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "BugEvent2",
+            "value": 2
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "AllCharacterSetStatusAction",
+          "calculate": "Mod",
+          "status": "Wound",
+          "value": 1
+        },
+        {
+          "type": "RandomCharacterSetStatusAction",
+          "calculate": "Mod",
+          "status": "Addiction",
+          "value": 1,
+          "Count": 2
+        },
+        {
+          "type": "ShowTextAction",
+          "text": "곤충들이 스쳐 지나갔는데도 엄청나게\n따가워!\n뭐야 언제 이렇게 많이 물렸지??\n독성이 있는 곤충한테 물렸나봐!\n중독된 동료들 상태는 더 심각해보여\n--------------------------------"
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "BugEvent2",
+            "value": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": 58,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "7-10DayRandomEventFlag",
+            "value": 9
+          }
+        },
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "19Event",
+            "value": 0
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "ShowTextAction",
+          "text": ""
+        },
+        {
+          "type": "ShowItemChoiceAction",
+          "text": "아니 아까 동료가 배고프다고 약초나 버섯 같은거 가져와서 먹으려고\n하길래 그거 잘못먹으면 큰일난다고 먹지말라 했더니 이자식이 글쎄\n구워먹으면 괜찮다고 신나서\n구워먹더니 지금 토하고 난리났어..\n\n이러다가 황천길 가는거 아니야?",
+          "itemFlagList": [
+            {
+              "itemName": "detoxicant",
+              "flag": {
+                "name": "detoxicantFlag2",
+                "value": 1
+              }
+            },
+            {
+              "itemName": "Firstaidkit",
+              "flag": {
+                "name": "FirstaidkitFlag2",
+                "value": 1
+              }
+            },
+            {
+              "itemName": "Hand",
+              "flag": {
+                "name": "HandFlag9",
+                "value": 1
+              }
+            }
+          ]
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "7-10DayRandomEventFlag",
+            "value": 0
+          }
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "19Event",
+            "value": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": 59,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "detoxicantFlag2",
+            "value": 1
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "RandomLoseItemAction",
+          "items": [
+            {
+              "itemName": "detoxicant",
+              "amount": 1,
+              "weight": 100
+            }
+          ],
+          "loseCount": 1
+        },
+        {
+          "type": "AllCharacterSetStatusAction",
+          "calculate": "Mod",
+          "status": "Addiction",
+          "value": 0
+        },
+        {
+          "type": "ShowTextAction",
+          "text": "\n동료가 다 나았어!\n다음부턴 배고프다고 아무거나 먹지마라..."
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "detoxicantFlag2",
+            "value": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": 60,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "FirstaidkitFlag2",
+            "value": 1
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "RandomLoseItemAction",
+          "items": [
+            {
+              "itemName": "Firstaidkit",
+              "amount": 1,
+              "weight": 100
+            }
+          ],
+          "loseCount": 1
+        },
+        {
+          "type": "AllCharacterSetStatusAction",
+          "calculate": "Mod",
+          "status": "Addiction",
+          "value": 0
+        },
+        {
+          "type": "AllCharacterSetStatusAction",
+          "calculate": "Mod",
+          "status": "Hungry",
+          "value": 0
+        },
+        {
+          "type": "AllCharacterSetStatusAction",
+          "calculate": "Mod",
+          "status": "Thirsty",
+          "value": 0
+        },
+        {
+          "type": "AllCharacterSetStatusAction",
+          "calculate": "Mod",
+          "status": "Wound",
+          "value": 0
+        },
+        {
+          "type": "AllCharacterSetStatusAction",
+          "calculate": "Mod",
+          "status": "Cold",
+          "value": 0
+        },
+        {
+          "type": "AllCharacterSetStatusAction",
+          "calculate": "Mod",
+          "status": "Panic",
+          "value": 0
+        },
+        {
+          "type": "ShowTextAction",
+          "text": "\n동료가 다 나았어!\n당분간은 그냥 통조림만 먹겠지?\n--------------------------------"
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "FirstaidkitFlag2",
+            "value": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": 61,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "HandFlag9",
+            "value": 1
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "RandomCharacterSetStatusAction",
+          "calculate": "Mod",
+          "status": "Addiction",
+          "value": 1,
+          "Count": 2
+        },
+        {
+          "type": "ShowTextAction",
+          "text": "\n중독된 동료는 움직이기도 힘들어하고 있어!\n이대로 가다가 정말 큰일 나겠어\n빨리 방법을 찾아야해\n--------------------------------"
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "HandFlag9",
+            "value": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": 62,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "7-10DayRandomEventFlag",
+            "value": 10
+          }
+        },
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "20Event",
+            "value": 0
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "ShowYesOrNoAction",
+          "text": "이 섬에 오게 된 이후 전부 불안한거 같아..\n불안한건 알겠는데..점점 서로 언성이\n높아지는거 같은데?\n\n여기서 살아나갈 수 있을지도 모르는데\n저렇게 싸우는게 맞아??\n더 험악해지기 전에 말려야겠어\n\n(Yes:말린다 No:말리지 않는다)",
+          "yesFlag": {
+            "name": "FightEvent2",
+            "value": 1
+          },
+          "noFlag": {
+            "name": "FightEvent2",
+            "value": 2
+          }
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "7-10DayRandomEventFlag",
+            "value": 0
+          }
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "20Event",
+            "value": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": 63,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "FightEvent2",
+            "value": 1
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "RandomCharacterSetStatusAction",
+          "calculate": "Mod",
+          "status": "Wound",
+          "value": 1,
+          "count": 2
+        },
+        {
+          "type": "ShowTextAction",
+          "text": "\n\n말리는 도중에 우리가 상처가 났어..\n하.. 진짜 서로 도와야 된다니까!\n--------------------------------"
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "FightEvent2",
+            "value": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": 64,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "FightEvent2",
+            "value": 2
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "RandomLoseItemAction",
+          "Items": [
+            {
+              "itemName": "Ax",
+              "amount": 1,
+              "weight": 40
+            },
+            {
+              "itemName": "Crowbar",
+              "amount": 1,
+              "weight": 30
+            },
+            {
+              "itemName": "Hammer",
+              "amount": 1,
+              "weight": 30
+            }
+          ],
+          "loseCount": 1
+        },
+        {
+          "type": "ShowTextAction",
+          "text": "\n\n말리는 도중에 이놈들이 난동을 피워서\n물품이 고장났을지도 몰라\n살펴봐야겠어\n--------------------------------"
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "FightEvent2",
+            "value": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": 900,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "7-10DayRandomEventFlag",
+            "value": 11
+          }
+        },
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "101Event",
+            "value": 0
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "ShowTextAction",
+          "text": ""
+        },
+        {
+          "type": "ShowItemChoiceAction",
+          "text": "이 동굴을 둘러보니 여러개의 통로로 구성되어있는 것 같아 넓은 공터를 기준으로 통로들이 뻗어있어서 혹시 모르는 짐승이나 무슨 일이 일어나면 다른 방향으로 도망갈 수 있겠는걸? 근데 우리 발밑에 있는 이 뼈는\n도대체 뭐지?? 인간의 뼈는 아닌 것\n같은데 오늘 잘 때는 왠지 보초를\n서야할 것 같아",
+          "itemFlagList": [
+            {
+              "itemName": "Ax",
+              "flag": {
+                "name": "AxFlag101",
+                "value": 1
+              }
+            },
+            {
+              "itemName": "Gun",
+              "flag": {
+                "name": "GunFlag101",
+                "value": 1
+              }
+            },
+            {
+              "itemName": "Chain",
+              "flag": {
+                "name": "ChainFlag101",
+                "value": 1
+              }
+            }
+          ]
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "101Event",
+            "value": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": 901,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "AxFlag101",
+            "value": 1
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "ShowTextAction",
+          "text": "이런 젠장\n우리가 있던 그 공터가 곰의 서식지였나봐\n새벽에 으르렁 거리는 소리가 들려서 그 쪽을 봤더니 곰이 우리 쪽으로 오고 있어서\n무기를 들고 최대한 뒤로 물러났어\n그러더니 곰도 더이상 우리를 쫓진 않았어..\n저쪽으로 다시는 가지말아야겠어\n--------------------------------"
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "AxFlag101",
+            "value": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": 902,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "GunFlag101",
+            "value": 1
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "AddItemAction",
+          "item": {
+            "itemName": "CanFood",
+            "amount": 5
+          }
+        },
+        {
+          "type": "ShowTextAction",
+          "text": "우리가 있던 곳이 곰의 식당인가봐!\n먹이를 물고 곰이 우리쪽으로 오는 걸 보고\n보초를 서던 녀석이 바로 권총으로 곰을\n쐈어! 곰을 맞추지는 못했지만 곰도 놀라서\n먹이를 버리고 도망 갔어! 곰이 놓고 간\n먹이를 식량으로 쓰면 되겠다!\n--------------------------------"
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "GunFlag101",
+            "value": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": 903,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "ChainFlag101",
+            "value": 1
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "ShowTextAction",
+          "text": "보초를 설때 혹시 몰라서 쇠사슬로 천막을 둘러싸고 있는 기둥들을 쇠사슬로 묶었는데 세상에! 곰이 겨울잠 자는 곳 이였나봐\n새벽에 곰이 소리를 내면서 우리 근처를\n맴돌다가 쇠사슬을 쳤는데도\n안 끊어지니까 곰이 포기했는지 갔어\n만약 쇠사슬을 안쳤으면...\n곰에게 죽지 않았을까?\n--------------------------------"
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "ChainFlag101",
+            "value": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": 65,
+      "ConditionList": [
+        {
+          "type": "DayCondition",
+          "startDay": 6,
+          "endDay": 9
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "SetRandomFlag",
+          "flag": {
+            "name": "7-10DayRandomEventFlag",
+            "value": 0
+          },
+          "minValue": 1,
+          "maxValue": 11
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "11Event",
+            "value": 0
+          }
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "12Event",
+            "value": 0
+          }
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "13Event",
+            "value": 0
+          }
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "14Event",
+            "value": 0
+          }
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "15Event",
+            "value": 0
+          }
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "16Event",
+            "value": 0
+          }
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "17Event",
+            "value": 0
+          }
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "18Event",
+            "value": 0
+          }
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "19Event",
+            "value": 0
+          }
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "20Event",
+            "value": 0
+          }
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "101Event",
+            "value": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": 66,
+      "ConditionList": [
+        {
+          "type": "DayCondition",
+          "startDay": 11,
+          "endDay": 11
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "SetActiveShowCharacterStatusAction",
+          "active": false
+        },
+        {
+          "type": "ShowPictureAndTextAction",
+          "text": "\n문명인들이 살았던 흔적을 발견했어\n이 섬은 우리 생각보다 더 거대한 것 같아\n\n일단 이 숲을 빠져나가볼까? "
+        }
+      ]
+    },
+    {
+      "_comment": "연구소 고성 선택 이미지",
+      "id": 67,
+      "ConditionList": [
+        {
+          "type": "DayCondition",
+          "startDay": 12,
+          "endDay": 12
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "SetBackGroundAction",
+          "imageName": "Choice"
+        },
+        {
+          "type": "ShowYesOrNoAction",
+          "text": "숲을 빠져나오니 예전에는 경작을 했던\n땅처럼 보이는데 지금은 황무지가 된\n넓은 평야지대가 나왔어\n왼쪽으로 가면 또 다른 숲으로 가는 길이\n중앙은 멀리서 보이더라도 확연히\n성 같은 구조물들이 아직 제 형태를\n유지하고 있네\n\n(Yes:왼쪽으로 간다 No:중앙으로 간다)",
+          "yesFlag": {
+            "name": "Lab",
+            "value": 1
+          },
+          "noFlag": {
+            "name": "Castle",
+            "value": 2
+          }
+        }
+      ]
+    },
+    {
+      "_comment": "연구소 외부 이미지",
+      "id": 70,
+      "ConditionList": [
+        {
+          "type": "DayCondition",
+          "startDay": 13,
+          "endDay": 13
+        },
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "Lab",
+            "value": 1
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "AddItemAction",
+          "item": {
+            "itemName": "Water",
+            "amount": 2
+          }
+        },
+        {
+          "type": "AddItemAction",
+          "item": {
+            "itemName": "CanFood",
+            "amount": 2
+          }
+        },
+        {
+          "type": "SetActiveShowCharacterStatusAction",
+          "active": true
+        },
+        {
+          "type": "SetBackGroundAction",
+          "imageName": "Lab"
+        }
+      ]
+    },
+    {
+      "id": 100,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "13-15DayRandomEventFlag",
+            "value": 1
+          }
+        },
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "21Event",
+            "value": 0
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "ShowTextAction",
+          "text": ""
+        },
+        {
+          "type": "ShowItemChoiceAction",
+          "text": "\n연구소가 철책으로 둘러싸여 있어서 주변을 먼저 탐색했는데\n연구소 뒤편에 상자들이 있네?\n이건 그냥 열리지 않는데...\n\n부셔야겠어!!",
+          "itemFlagList": [
+            {
+              "itemName": "Ax",
+              "flag": {
+                "name": "AxFlag3",
+                "value": 1
+              }
+            },
+            {
+              "itemName": "Hammer",
+              "flag": {
+                "name": "HammerFlag3",
+                "value": 1
+              }
+            },
+            {
+              "itemName": "Hand",
+              "flag": {
+                "name": "HandFlag3",
+                "value": 1
+              }
+            }
+          ]
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "13-15DayRandomEventFlag",
+            "value": 0
+          }
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "21Event",
+            "value": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": 101,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "AxFlag3",
+            "value": 1
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "AddItemAction",
+          "item": {
+            "itemName": "FlashLight",
+            "amount": 1
+          }
+        },
+        {
+          "type": "AddItemAction",
+          "item": {
+            "itemName": "Gun",
+            "amount": 1
+          }
+        },
+        {
+          "type": "ShowTextAction",
+          "text": "\n도끼로 상자를 전부 부쉈는데\n각종 물품들이 나왔어\n\n이건 나중에 써먹을 수 있을 것 같아\n--------------------------------"
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "AxFlag3",
+            "value": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": 102,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "HammerFlag3",
+            "value": 1
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "AddItemAction",
+          "item": {
+            "itemName": "Signal",
+            "amount": 1
+          }
+        },
+        {
+          "type": "AddItemAction",
+          "item": {
+            "itemName": "GreenLeaf",
+            "amount": 1
+          }
+        },
+        {
+          "type": "AddItemAction",
+          "item": {
+            "itemName": "Surgicalkit",
+            "amount": 1
+          }
+        },
+        {
+          "type": "AddItemAction",
+          "item": {
+            "itemName": "PhychoPill",
+            "amount": 1
+          }
+        },
+        {
+          "type": "ShowTextAction",
+          "text": "\n망치로 전부 부쉈더니\n구조에 필요한 물품과 구급품이 나왔어!\n--------------------------------"
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "HammerFlag3",
+            "value": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": 103,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "HandFlag3",
+            "value": 1
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "ShowTextAction",
+          "text": "\n도끼와 망치가 없어서 열지 못했어..\n--------------------------------"
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "HandFlag3",
+            "value": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": 104,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "13-15DayRandomEventFlag",
+            "value": 2
+          }
+        },
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "22Event",
+            "value": 0
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "ShowYesOrNoAction",
+          "text": "연구소 시스템은 아직 전력이\n공급되고 있나 봐\n북쪽에서 ai 음성이 반복적으로\n출력 되고 있어!!\n피를 검증하라고 하면서 정문에\n바늘이 달려있어\n\n채혈을 하면 들어갈 수 있는 걸까?\n채혈을 할까?",
+          "yesFlag": {
+            "name": "BloodEvent",
+            "value": 1
+          },
+          "noFlag": {
+            "name": "BloodEvent",
+            "value": 2
+          }
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "13-15DayRandomEventFlag",
+            "value": 0
+          }
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "22Event",
+            "value": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": 105,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "BloodEvent",
+            "value": 1
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "RandomCharacterSetStatusAction",
+          "calculate": "Mod",
+          "status": "Wound",
+          "value": 1,
+          "count": 2
+        },
+        {
+          "type": "AddItemAction",
+          "item": {
+            "itemName": "Cardkey",
+            "amount": 1
+          }
+        },
+        {
+          "type": "ShowTextAction",
+          "text": "\n채혈을 하기로 결정하고 했는데 생각보다 많은 피를 요구하는 것 같아서 두 명으로\n나눠서 피를 공급했어\n그러더니카드 키를 기계에서\n바로 만들어서 줬어\n근데...\n이 카드 키로 어디에 갖다 대야\n문이 열리지??\n--------------------------------"
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "BloodEvent",
+            "value": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": 106,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "BloodEvent",
+            "value": 2
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "ShowTextAction",
+          "text": "\n괜히 이상한 바이러스가 걸릴 것 같아서\n하지 않았어\n--------------------------------"
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "BloodEvent",
+            "value": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": 107,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "13-15DayRandomEventFlag",
+            "value": 3
+          }
+        },
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "23Event",
+            "value": 0
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "ShowYesOrNoAction",
+          "text": "\n연구소에서 어떤 전파가 계속 나오나 봐!\n지속적으로 머리가 아픈 것 같아!..\n두통이 심해지고 있었는데 우리 중 한 명이 숲에 불을 지르기 시작했어!\n그는 지금 손에 무기를 들고 있어\n정신이 나갔나 봐 그를 말려야 할까?\n(No: 도망친다)",
+          "yesFlag": {
+            "name": "PanicEvent3",
+            "value": 1
+          },
+          "noFlag": {
+            "name": "PanicEvent3",
+            "value": 2
+          }
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "13-15DayRandomEventFlag",
+            "value": 0
+          }
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "23Event",
+            "value": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": 108,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "PanicEvent3",
+            "value": 1
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "RandomCharacterSetStatusAction",
+          "calculate": "Mod",
+          "status": "Wound",
+          "value": 1,
+          "count": 2
+        },
+        {
+          "type": "ShowTextAction",
+          "text": "\n그를 겨우 진정시켰어!!\n어떻게 해서든 연구소를 진입하던가\n다른 장소로 이동해야 해!\n--------------------------------"
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "PanicEvent3",
+            "value": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": 109,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "PanicEvent3",
+            "value": 2
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "RandomCharacterSetStatusAction",
+          "calculate": "Mod",
+          "status": "Wound",
+          "value": 7,
+          "count": 1
+        },
+        {
+          "type": "ShowTextAction",
+          "text": "\n우리는 그를 버리고 도망갔어...\n그는 어떻게 되었을까..\n연구소를 둘러싼 숲이 거의 다 탄 후에\n다시 되돌아가 보자...\n--------------------------------"
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "PanicEvent3",
+            "value": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": 110,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "13-15DayRandomEventFlag",
+            "value": 4
+          }
+        },
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "24Event",
+            "value": 0
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "ShowYesOrNoAction",
+          "text": "\n연구소의 남쪽은 카메라와 터렛으로 보이는 것들이 막고 있어 연구만 하러 온 거면\n 왜 저런 무기들이 필요했을까? \n터렛 위에 달려있는 카메라가\n우리를 인식했나 봐!!\n연구소 안에 사람이 있는 걸까? 응?\n터렛이 우리를 조준하는데?\n도망갈까?(No: 엄폐한다)",
+          "yesFlag": {
+            "name": "TurretEvent",
+            "value": 1
+          },
+          "noFlag": {
+            "name": "TurretEvent",
+            "value": 2
+          }
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "13-15DayRandomEventFlag",
+            "value": 0
+          }
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "24Event",
+            "value": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": 111,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "TurretEvent",
+            "value": 1
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "RandomCharacterSetStatusAction",
+          "calculate": "Mod",
+          "status": "Wound",
+          "value": 1,
+          "count": 1
+        },
+        {
+          "type": "RandomCharacterSetStatusAction",
+          "calculate": "Mod",
+          "status": "Wound",
+          "value": 4,
+          "count": 1
+        },
+        {
+          "type": "ShowTextAction",
+          "text": "\n도망가다가 누가 총에 맞은 것 같아!\n어떡해 큰일이야!!\n터렛 근처에 가지 말아야겠어.\n--------------------------------"
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "TurretEvent",
+            "value": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": 112,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "TurretEvent",
+            "value": 2
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "RandomCharacterSetStatusAction",
+          "calculate": "Mod",
+          "status": "Wound",
+          "value": 1,
+          "count": 2
+        },
+        {
+          "type": "ShowTextAction",
+          "text": "\n엄폐한다고 최대한 엄폐했는데\n몇 분 동안 터렛이 총을 쏘다가 멈췄어\n총알을 엄폐물이 거의 막았지만..\n 스쳐서 상처가 난 거 같아.\n--------------------------------"
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "TurretEvent",
+            "value": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": 113,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "13-15DayRandomEventFlag",
+            "value": 5
+          }
+        },
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "25Event",
+            "value": 0
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "ShowTextAction",
+          "text": ""
+        },
+        {
+          "type": "ShowItemChoiceAction",
+          "text": "\n연구소를 둘러싸고 있는 철책 중에\n뭔가 틈이 없을까 생각해서\n연구소의 서쪽을 탐색하고 있는데\n사이렌 소리가 들렸어....\n무슨 일이지?... 어?..\n바닥에서 연기가 올라오는데?\n불로 가스를 태울까?",
+          "itemFlagList": [
+            {
+              "itemName": "Lighter",
+              "flag": {
+                "name": "LighterFlag25",
+                "value": 1
+              }
+            },
+            {
+              "itemName": "Matchbox",
+              "flag": {
+                "name": "MatchboxFlag25",
+                "value": 1
+              }
+            }
+          ]
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "13-15DayRandomEventFlag",
+            "value": 0
+          }
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "25Event",
+            "value": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": 114,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "LighterFlag25",
+            "value": 1
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "RandomCharacterSetStatusAction",
+          "calculate": "Mod",
+          "status": "Addiction",
+          "value": 1,
+          "count": 2
+        },
+        {
+          "type": "ShowTextAction",
+          "text": "불로 가스를 연소시킨다는 방법이 먹혔어\n가스를 태우긴했지만 일부 가스는\n들이마신것같아..\n--------------------------------"
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "LighterFlag25",
+            "value": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": 115,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "MatchboxFlag25",
+            "value": 1
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "RandomLoseItemAction",
+          "items": [
+            {
+              "itemName": "Crowbar",
+              "amount": 1,
+              "weight": 20
+            },
+            {
+              "itemName": "Guitar",
+              "amount": 1,
+              "weight": 20
+            },
+            {
+              "itemName": "Chain",
+              "amount": 1,
+              "weight": 20
+            },
+            {
+              "itemName": "Rope",
+              "amount": 1,
+              "weight": 20
+            },
+            {
+              "itemName": "Signal",
+              "amount": 1,
+              "weight": 20
+            }
+          ],
+          "loseCount": 1
+        },
+        {
+          "type": "ShowTextAction",
+          "text": "성냥으로는 가스를 잡지 못해서 도망쳤어\n너무 빠르게 도망치느라 몇몇 물품을\n잃어버린 것 같아\n아직도 연구소 쪽에서 연기가\n피어오르고 있어\n내일이나 다시 가보자\n--------------------------------"
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "MatchboxFlag25",
+            "value": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": 116,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "13-15DayRandomEventFlag",
+            "value": 6
+          }
+        },
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "26Event",
+            "value": 0
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "ShowTextAction",
+          "text": ""
+        },
+        {
+          "type": "ShowItemChoiceAction",
+          "text": "\n연구소의 동쪽 주변을 어슬렁거리다 딸깍하는 소리가 들려서\n발을 봤더니 지뢰야!!\n지뢰를 밟은 것 같아! 큰일이야!!\n지뢰를 해체해야 해!\n가지고 있는 전자제품을 분해한 뒤\n부품을 사용해서 지뢰를\n해체 시킬 수 있나??",
+          "itemFlagList": [
+            {
+              "itemName": "Radio",
+              "flag": {
+                "name": "RadioFlag3",
+                "value": 1
+              }
+            },
+            {
+              "itemName": "radioTransceiver",
+              "flag": {
+                "name": "radioTransceiverFlag3",
+                "value": 1
+              }
+            },
+            {
+              "itemName": "Hand",
+              "flag": {
+                "name": "HandFlag6",
+                "value": 1
+              }
+            }
+          ]
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "13-15DayRandomEventFlag",
+            "value": 0
+          }
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "26Event",
+            "value": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": 117,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "RadioFlag3",
+            "value": 1
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "RandomLoseItemAction",
+          "items": [
+            {
+              "itemName": "Radio",
+              "amount": 1,
+              "weight": 100
+            }
+          ],
+          "loseCount": 1
+        },
+        {
+          "type": "ShowTextAction",
+          "text": "\n\n라디오를 분해한 물품으로 지뢰를 해체했어 다행이다..\n\n연구소 동쪽으로는 오면 안 되겠다\n--------------------------------"
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "RadioFlag3",
+            "value": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": 118,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "radioTransceiverFlag3",
+            "value": 1
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "RandomLoseItemAction",
+          "items": [
+            {
+              "itemName": "radioTransceiver",
+              "amount": 1,
+              "weight": 100
+            }
+          ],
+          "loseCount": 1
+        },
+        {
+          "type": "ShowTextAction",
+          "text": "\n\n무전기를 분해한 물품으로 지뢰를 해체했어 다행이다..\n\n연구소 동쪽으로는 오면 안 되겠다\n--------------------------------"
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "radioTransceiverFlag3",
+            "value": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": 119,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "HandFlag6",
+            "value": 1
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "RandomCharacterSetStatusAction",
+          "calculate": "Mod",
+          "status": "Wound",
+          "value": 7,
+          "count": 1
+        },
+        {
+          "type": "ShowTextAction",
+          "text": "\n우리는 해줄게 아무것도 없었고..\n지뢰를 밟은 동료는 우리를 멀리 보냈어\n그가 보이지 않을 정도로 멀리 떨어졌을 때\n쾅! 하는 소리가 들렸어..\n--------------------------------"
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "HandFlag6",
+            "value": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": 800,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "13-15DayRandomEventFlag",
+            "value": 7
+          }
+        },
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "27Event",
+            "value": 0
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "ShowTextAction",
+          "text": ""
+        },
+        {
+          "type": "ShowItemChoiceAction",
+          "text": "연구소에서 지속적으로 어떤 전파가 나오는 것 같아\n근처에 있으면 계속 머리가 아파\n아예 건물 안으로 들어가지 않는 한 해결 안 될 것 같은데...\n잠시 연구소에서 멀어져서 회복 좀 하자..",
+          "itemFlagList": [
+            {
+              "itemName": "BookItem",
+              "flag": {
+                "name": "BookItemFlag27",
+                "value": 1
+              }
+            },
+            {
+              "itemName": "Card",
+              "flag": {
+                "name": "CardFlag27",
+                "value": 1
+              }
+            },
+            {
+              "itemName": "Hand",
+              "flag": {
+                "name": "HandFlag27",
+                "value": 1
+              }
+            }
+          ]
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "13-15DayRandomEventFlag",
+            "value": 0
+          }
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "27Event",
+            "value": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": 801,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "BookItemFlag27",
+            "value": 1
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "RandomCharacterSetStatusAction",
+          "calculate": "Mod",
+          "status": "Panic",
+          "value": 0,
+          "count": 2
+        },
+        {
+          "type": "ShowTextAction",
+          "text": "일단 멘탈을 잡을 수 있는게 뭐가 있을까\n생각하다가 책을 읽어야 겠다고 생각했어\n읽으니까 좀 낫군\n--------------------------------"
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "BookItemFlag27",
+            "value": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": 802,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "CardFlag27",
+            "value": 1
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "AllCharacterSetStatusAction",
+          "calculate": "Mod",
+          "status": "Panic",
+          "value": 0
+        },
+        {
+          "type": "ShowTextAction",
+          "text": "카드게임을 하면서 오랜만에 여유로운\n시간을 보낸것같아\n서로에게 불만있던 것도 말하면서\n다 털어낸 것 같아\n--------------------------------"
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "CardFlag27",
+            "value": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": 803,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "HandFlag27",
+            "value": 1
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "RandomCharacterSetStatusAction",
+          "calculate": "Mod",
+          "status": "Panic",
+          "value": 0,
+          "count": 1
+        },
+        {
+          "type": "ShowTextAction",
+          "text": "그냥 연구소에서 멀리있는 것 만으로도\n어지러움 증세가 가시는것같아\n--------------------------------"
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "HandFlag27",
+            "value": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": 220,
+      "ConditionList": [
+        {
+          "type": "DayCondition",
+          "startDay": 13,
+          "endDay": 15
+        },
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "Lab",
+            "value": 1
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "SetRandomFlag",
+          "flag": {
+            "name": "13-15DayRandomEventFlag",
+            "value": 0
+          },
+          "minValue": 1,
+          "maxValue": 7
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "21Event",
+            "value": 0
+          }
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "22Event",
+            "value": 0
+          }
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "23Event",
+            "value": 0
+          }
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "24Event",
+            "value": 0
+          }
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "25Event",
+            "value": 0
+          }
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "26Event",
+            "value": 0
+          }
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "27Event",
+            "value": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": 126,
+      "ConditionList": [
+        {
+          "type": "DayCondition",
+          "startDay": 17,
+          "endDay": 17
+        },
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "Lab",
+            "value": 1
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "SetActiveShowCharacterStatusAction",
+          "active": false
+        },
+        {
+          "type": "ShowTextAction",
+          "text": ""
+        },
+        {
+          "type": "ShowItemChoiceAction",
+          "text": "도대체 저 연구소를 어떻게 해야\n들어갈 수 있는 걸까? 아예 다른\n지역으로 가야 할까? 고민을 하고\n있는 도중에 진흙에 파묻혀 있는\n노트를 발견했다. 노트에서는 카드\n키만 있다면 진입하는 방법을 알려주고 있었다. 북서쪽 철책에서 밤이 되면 카드 키를 찍을 수 있는 화면이\n증강현실로 출력된다고??",
+          "itemFlagList": [
+            {
+              "itemName": "Cardkey",
+              "flag": {
+                "name": "CardkeyFlag16",
+                "value": 1
+              }
+            },
+            {
+              "itemName": "Hand",
+              "flag": {
+                "name": "HandFlag16",
+                "value": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 127,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "CardkeyFlag16",
+            "value": 1
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "ShowTextAction",
+          "text": "\n철책 안으로 들어왔어\n이제 연구소 건물로 들어가 보자"
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "CardkeyFlag16",
+            "value": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": 128,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "HandFlag16",
+            "value": 1
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "ShowTextAction",
+          "text": "\n카드 키가 없어 진입하지 못해 ..\n결국 다른 장소로 가보자"
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "HandFlag16",
+            "value": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": 129,
+      "ConditionList": [
+        {
+          "type": "DayCondition",
+          "startDay": 18,
+          "endDay": 18
+        },
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "Lab",
+            "value": 1
+          }
+        },
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "CardkeyFlag16",
+            "value": 1
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "SetActiveShowCharacterStatusAction",
+          "active": true
+        },
+        {
+          "type": "ShowYesOrNoAction",
+          "text": "\n연구소 철책을 지나서 들어오는데\n사람의 흔적이 보이지 않아.\n그냥 전력만으로 연구소가 돌아가고\n있나 봐.\n겨우겨우 들어와서 그런지 좀 지치네\n내부에서 무슨 일이 일어날지 모르니\n쉬고 갈까?\n(Yes: 쉰다 No: 쉬지않고 바로 들어간다)",
+          "yesFlag": {
+            "name": "RestEvent",
+            "value": 1
+          },
+          "noFlag": {
+            "name": "RestEvent",
+            "value": 2
+          }
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "Lab",
+            "value": 0
+          }
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "CardkeyFlag16",
+            "value": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": 130,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "RestEvent",
+            "value": 1
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "AllCharacterSetStatusAction",
+          "calculate": "Mod",
+          "status": "Panic",
+          "value": "0"
+        },
+        {
+          "type": "AllCharacterSetStatusAction",
+          "calculate": "Mod",
+          "status": "Hungry",
+          "value": "0"
+        },
+        {
+          "type": "AllCharacterSetStatusAction",
+          "calculate": "Mod",
+          "status": "Thirsty",
+          "value": "0"
+        },
+        {
+          "type": "AllCharacterSetStatusAction",
+          "calculate": "Mod",
+          "status": "Wound",
+          "value": "0"
+        },
+        {
+          "type": "AllCharacterSetStatusAction",
+          "calculate": "Mod",
+          "status": "Cold",
+          "value": "0"
+        },
+        {
+          "type": "AllCharacterSetStatusAction",
+          "calculate": "Mod",
+          "status": "Addiction",
+          "value": "0"
+        },
+        {
+          "type": "ShowTextAction",
+          "text": "\n하루 동안 잘 쉰 거 같아\n이제 연구소 내부로 들어가자!"
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "RestEvent",
+            "value": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": 131,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "RestEvent",
+            "value": 2
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "ShowTextAction",
+          "text": "\n쉬지 않고 연구소 내부로 들어왔어..\n내부도 얼마나 큰 거야...?!"
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "RestEvent",
+            "value": 0
+          }
+        }
+      ]
+    },
+    {
+      "_comment": "연구소 내부 이미지 삽입",
+      "id": 135,
+      "ConditionList": [
+        {
+          "type": "DayCondition",
+          "startDay": 20,
+          "endDay": 20
+        },
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "Lab",
+            "value": 1
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "AddItemAction",
+          "item": {
+            "itemName": "Water",
+            "amount": 2
+          }
+        },
+        {
+          "type": "AddItemAction",
+          "item": {
+            "itemName": "CanFood",
+            "amount": 2
           }
         },
         {
           "type": "SetBackGroundAction",
-          "imageName" : "Cave"
-        }
-      ]
-    },
-    { 
-      "_comment" : "3일차 때 엔딩이 일어난다고 가정",
-      "id": 2,
-      "ConditionList" : [
-        {
-          "type": "DayCondition",
-          "startDay" : 2,
-          "endDay": 2
-        }
-      ],
-      "ActionList" : [
-        {
-          "type" : "SetFlag",
-          "flag": {
-            "name": "EndingFlag",
-            "value" : 1
-          }
+          "imageName": "Lab02"
         }
       ]
     },
     {
-      "_comment" : "엔딩 추가",
-      "id": 3,
-      "ConditionList" : [
+      "id": 200,
+      "ConditionList": [
         {
           "type": "FlagCondition",
           "flag": {
-            "name": "EndingFlag",
-            "value" : 1
-          }
-        }
-      ],
-      "ActionList" : [
-        {
-          "type" : "AddEnding",
-          "text": "첫 번째 반드시 그냥 일어나는 이벤트입니당.",
-          "imageName" : "BackGround02"
-        }
-      ]
-    },
-    {
-      "_comment" : "엔딩 추가 총을 가졌을 때",
-      "id": 4,
-      "ConditionList" : [
-        {
-          "type": "FlagCondition",
-          "flag": {
-            "name": "EndingFlag",
-            "value" : 1
+            "name": "18-20DayRandomEventFlag",
+            "value": 1
           }
         },
         {
-          "type": "HaveItemCondition",
-          "itemName": "Gun",
-          "amount" : 1
+          "type": "FlagCondition",
+          "flag": {
+            "name": "31Event",
+            "value": 0
+          }
         }
       ],
-      "ActionList" : [
+      "ActionList": [
         {
-          "type" : "AddEnding",
-          "text": "두 번째 엔딩 총이 있을 때만 일어나는 이벤트입니당.",
-          "imageName" : "BackGround"
+          "type": "ShowYesOrNoAction",
+          "text": "연구소 내부로 진입했는데\n무슨 일이 생긴 모양이야! 사이렌이 계속\n울리면서 내부 온도 상승 중이라고\n기계 음성이 나오고 있어.\n이 연구소는 원자로로 전력을 생산하는 것 같은데 사람이 없다 보니 냉각기가\n안 돌아가나 봐\n냉각장치를 재가동시켜야겠어\n(Yes:가동한다 No:가동하지 않는다)",
+          "yesFlag": {
+            "name": "UseEvent",
+            "value": 1
+          },
+          "noFlag": {
+            "name": "UseEvent",
+            "value": 2
+          }
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "18-20DayRandomEventFlag",
+            "value": 0
+          }
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "31Event",
+            "value": 1
+          }
         }
       ]
     },
     {
-      "_comment" : "이걸 반드시 실행 시켜줘야 함 순서가 DayCondition을 통해 Flag 시작 -> 엔딩 조건 체크 -> 이걸로 ShowEnding 샌드위치 구조와 비슷함",
-      "id": 5,
-      "ConditionList" : [
+      "id": 201,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "UseEvent",
+            "value": 1
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "AddItemAction",
+          "item": {
+            "itemName": "radioTransceiver",
+            "amount": 1
+          }
+        },
+        {
+          "type": "ShowTextAction",
+          "text": "\n\n냉각기 제어장치실에 무전기가\n하나 있어서 챙겼어!.\n--------------------------------"
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "UseEvent",
+            "value": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": 202,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "UseEvent",
+            "value": 2
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "AllCharacterSetStatusAction",
+          "calculate": "Mod",
+          "status": "Hungry",
+          "value": "5"
+        },
+        {
+          "type": "ShowTextAction",
+          "text": "\n\n원자로가 터졌습니다\n전원 사망하였습니다."
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "UseEvent",
+            "value": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": 203,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "18-20DayRandomEventFlag",
+            "value": 2
+          }
+        },
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "32Event",
+            "value": 0
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "ShowTextAction",
+          "text": ""
+        },
+        {
+          "type": "ShowItemChoiceAction",
+          "text": "연구소는 굉장히 크고 어떤 문으로는 지나갈 수 있지만 어떤 문으로는\n지나갈 수 없었어\n최대한 연구소의 제일 높은 층으로 이동하던 와중 식물들을 재배하는\n공간에 들어섰는데..\n방호복도 없는 상태로 식물들이\n내뿜는 연기를 마셨더니..\n눈앞이 흐려지고 어지러워..\n빨리 치료해야해!",
+          "itemFlagList": [
+            {
+              "itemName": "detoxicant",
+              "flag": {
+                "name": "detoxicantFlag32",
+                "value": 1
+              }
+            },
+            {
+              "itemName": "PurpleLeaf",
+              "flag": {
+                "name": "PurpleLeaf32",
+                "value": 1
+              }
+            },
+            {
+              "itemName": "Hand",
+              "flag": {
+                "name": "HandFlag32",
+                "value": 1
+              }
+            }
+          ]
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "18-20DayRandomEventFlag",
+            "value": 0
+          }
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "32Event",
+            "value": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": 204,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "detoxicantFlag32",
+            "value": 1
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "RandomLoseItemAction",
+          "items": [
+            {
+              "itemName": "detoxicant",
+              "amount": 1,
+              "weight": 100
+            }
+          ],
+          "loseConunt": 1
+        },
+        {
+          "type": "ShowTextAction",
+          "text": "\n겨우 중독 증세가 멈춘 것 같아\n제 상태로 돌아오기까지는 조금 걸릴지\n몰라.\n--------------------------------"
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "detoxicantFlag32",
+            "value": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": 205,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "PurpleLeaf32",
+            "value": 1
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "RandomLoseItemAction",
+          "items": [
+            {
+              "itemName": "PurpleLeaf",
+              "amount": 1,
+              "weight": 100
+            }
+          ],
+          "loseConunt": 1
+        },
+        {
+          "type": "ShowTextAction",
+          "text": "\n겨우 중독 증세가 멈춘 것 같아\n제 상태로 돌아오기까지는 조금 걸릴지\n몰라.\n--------------------------------"
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "PurpleLeaf32",
+            "value": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": 206,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "HandFlag32",
+            "value": 1
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "AllCharacterSetStatusAction",
+          "calculate": "Mod",
+          "status": "Addiction",
+          "value": "1"
+        },
+        {
+          "type": "ShowTextAction",
+          "text": "\n\n다들 중독 된 거 같아.\n--------------------------------"
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "HandFlag32",
+            "value": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": 207,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "18-20DayRandomEventFlag",
+            "value": 3
+          }
+        },
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "33Event",
+            "value": 0
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "ShowTextAction",
+          "text": ""
+        },
+        {
+          "type": "ShowItemChoiceAction",
+          "text": "연구소의 전력 상태가 고르지\n못하고 있어.\n한층 자체가 정전 상태야...\n각종 실험기구들이 있는 층 같은데\n손전등이 필요해!\n\n그냥 지나가다가는 어떤 일이\n생길지 몰라",
+          "itemFlagList": [
+            {
+              "itemName": "FlashLight",
+              "flag": {
+                "name": "FlashLightFlag33",
+                "value": 1
+              }
+            },
+            {
+              "itemName": "Hand",
+              "flag": {
+                "name": "HandFlag33",
+                "value": 1
+              }
+            }
+          ]
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "18-20DayRandomEventFlag",
+            "value": 0
+          }
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "33Event",
+            "value": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": 208,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "FlashLightFlag33",
+            "value": 1
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "RandomLoseItemAction",
+          "items": [
+            {
+              "itemName": "detoxicant",
+              "amount": 1,
+              "weight": 100
+            }
+          ],
+          "loseConunt": 1
+        },
+        {
+          "type": "ShowTextAction",
+          "text": "\n예상대로 많은 실험기구들이 있었는데\n전부 끝이 날카로웠어.\n\n마치 어떤 짐승을 잡아서\n해체하는 기구처럼 말이야..\n\n도대체 뭐지??\n--------------------------------"
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "FlashLightFlag33",
+            "value": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": 209,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "HandFlag33",
+            "value": 1
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "AllCharacterSetStatusAction",
+          "calculate": "Mod",
+          "status": "Wound",
+          "value": "1"
+        },
+        {
+          "type": "ShowTextAction",
+          "text": "\n크윽..\n\n앞을 보지 못해서 각종 실험기구에\n부딪히면서 어두운 곳을 나왔는데\n온몸이 얇은 뭔가에 찢긴 것처럼\n상처들이 많아..\n\n도대체 저긴 뭐 하는 곳이지?..\n--------------------------------"
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "HandFlag33",
+            "value": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": 210,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "18-20DayRandomEventFlag",
+            "value": 4
+          }
+        },
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "34Event",
+            "value": 0
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "AddItemAction",
+          "item": {
+            "itemName": "Box",
+            "amount": 3
+          }
+        },
+        {
+          "type": "ShowTextAction",
+          "text": ""
+        },
+        {
+          "type": "ShowItemChoiceAction",
+          "text": "연구소 내부에서 의무실이라고\n적혀있는 곳을 보고 들어왔어\n의무실에서 내부가 안 보이는\n세 가지 상자가 있는데 한 개를 열면\n나머지 두 개의 상자 안에 있는\n물건은 산성으로 녹는다고 되어있어\n아니 무슨 의무실에 이런 장치를\n만들어 놓는 거야..?\n설마 세개다 함정은 아니겠지?",
+          "itemFlagList": [
+            {
+              "itemName": "Box",
+              "flag": {
+                "name": "ABoxFlag",
+                "value": 1
+              }
+            },
+            {
+              "itemName": "Box",
+              "flag": {
+                "name": "BBoxFlag",
+                "value": 1
+              }
+            },
+            {
+              "itemName": "Box",
+              "flag": {
+                "name": "CBoxFlag",
+                "value": 1
+              }
+            }
+          ]
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "18-20DayRandomEventFlag",
+            "value": 0
+          }
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "34Event",
+            "value": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": 211,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "ABoxFlag",
+            "value": 1
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "AddItemAction",
+          "item": {
+            "itemName": "SurgicalKit",
+            "amount": 1
+          }
+        },
+        {
+          "type": "ShowTextAction",
+          "text": "\n\n운 좋게 수술 키트가 들어있었어\n이걸로 중환자가 될 동료를\n치료할 수 있겠어.\n--------------------------------"
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "ABoxFlag",
+            "value": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": 212,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "BBoxFlag",
+            "value": 1
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "RandomCharacterSetStatusAction",
+          "calculate": "Mod",
+          "status": "Addiction",
+          "value": 1,
+          "count": 2
+        },
+        {
+          "type": "ShowTextAction",
+          "text": "\n아니 뭐야!\n상자를 열자마자 가스가 새어 나왔고\n중독 가스였나 봐!\n우리 중 두 명이 중독된 거 같아.\n--------------------------------"
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "BBoxFlag",
+            "value": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": 213,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "CBoxFlag",
+            "value": 1
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "AddItemAction",
+          "item": {
+            "itemName": "FirstaidKit",
+            "amount": 1
+          }
+        },
+        {
+          "type": "ShowTextAction",
+          "text": "\n\n운 좋게 구급상자가 들어있었어\n이걸로 위급한 동료를 치료할 수 있어.\n--------------------------------"
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "CBoxFlag",
+            "value": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": 214,
+      "ConditionList": [
+        {
+          "type": "DayCondition",
+          "startDay": 19,
+          "endDay": 21
+        },
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "Lab",
+            "value": 1
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "SetRandomFlag",
+          "flag": {
+            "name": "18-20DayRandomEventFlag",
+            "value": 0
+          },
+          "minValue": 1,
+          "maxValue": 4
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "31Event",
+            "value": 0
+          }
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "32Event",
+            "value": 0
+          }
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "33Event",
+            "value": 0
+          }
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "34Event",
+            "value": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": 215,
+      "ConditionList": [
+        {
+          "type": "DayCondition",
+          "startDay": 23,
+          "endDay": 23
+        },
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "Lab",
+            "value": 1
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "ShowTextAction",
+          "text": ""
+        },
+        {
+          "type": "ShowItemChoiceAction",
+          "text": "드디어!\n연구소 맨 위층에 도착했어!\n엄청난 크기야 몇백 명이 있어도\n될 정도의 공간이야.\n아니 이런 무인도에 연구시설을\n짓고 도대체 무슨 연구를 했던 거지? 일단 이 정도 크기면 분명히 외부와 연결하는 방법이 있을 거야\n아직 전력이 남아있을 때 찾아서\n외부에 연락해야 해",
+          "itemFlagList": [
+            {
+              "itemName": "Radio",
+              "flag": {
+                "name": "RadioFlag21",
+                "value": 1
+              }
+            },
+            {
+              "itemName": "radioTransceiver",
+              "flag": {
+                "name": "radioTransceiverFlag21",
+                "value": 1
+              }
+            },
+            {
+              "itemName": "Signal",
+              "flag": {
+                "name": "SignalFlag21",
+                "value": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 2000,
+      "ConditionList": [
+        {
+          "type": "DayCondition",
+          "startDay": 23,
+          "endDay": 23
+        },
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "Lab",
+            "value": 1
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "EndingFlag",
+            "value": 1
+          }
+        }
+      ]
+    },
+    {
+      "_comment": "통신 장면 이미지",
+      "id": 10000,
+      "ConditionList": [
+        {
+          "type": "DayCondition",
+          "startDay": 24,
+          "endDay": 24
+        },
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "Lab",
+            "value": 1
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "SetActiveShowCharacterStatusAction",
+          "active": true
+        },
+        {
+          "type": "SetBackGroundAction",
+          "imageName": "Lab03"
+        }
+      ]
+    },
+    {
+      "_comment": "크루즈 엔딩씬",
+      "id": 2001,
+      "ConditionList": [
         {
           "type": "FlagCondition",
           "flag": {
             "name": "EndingFlag",
-            "value" : 1
+            "value": 1
+          }
+        },
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "RadioFlag21",
+            "value": 1
           }
         }
       ],
-      "ActionList" : [
+      "ActionList": [
         {
-          "type" : "ShowEnding"
+          "type": "AddEnding",
+          "text": "통신장비를 찾았어!!\n이제 라디오로 근처 주파수를 잡고 난 뒤 외부와 연락하면 될 것 같아!",
+          "imageName": "Cruise"
+        }
+      ]
+    },
+    {
+      "_comment": "해양경비대 엔딩",
+      "id": 2002,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "EndingFlag",
+            "value": 1
+          }
+        },
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "radioTransceiverFlag21",
+            "value": 1
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "AddEnding",
+          "text": "인공지능 컴퓨터가 근처에 있는 해양경비대의 주파수를 표시하고 있어\n무전기 주파수를 해양경비대 주파수에 맞춰보자",
+          "imageName": "Guard"
+        }
+      ]
+    },
+    {
+      "_comment": "해양경비대 엔딩",
+      "id": 2003,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "EndingFlag",
+            "value": 1
+          }
+        },
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "SignalFlag21",
+            "value": 1
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "AddEnding",
+          "text": "인공지능 컴퓨터가 무인도 근처에서 순찰을 하고 있는\n해양경비대가 있단 걸 알려줬어\n\n우리가 난파된 걸 알았나 봐!",
+          "imageName": "Guard"
+        }
+      ]
+    },
+    {
+      "id": 2004,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "EndingFlag",
+            "value": 1
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "ShowEnding"
+        }
+      ]
+    },
+    {
+      "id": 219,
+      "ConditionList": [
+        {
+          "type": "DayCondition",
+          "startDay": 24,
+          "endDay": 24
+        },
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "Lab",
+            "value": 1
+          }
+        },
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "RadioFlag21",
+            "value": 0
+          }
+        },
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "radioTransceiverFlag21",
+            "value": 0
+          }
+        },
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "SignalFlag21",
+            "value": 0
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "ShowTextAction",
+          "text": "\n아무것도 찾을 수가 없었어....\n\n아까 봤던 고성으로 가볼까?"
+        }
+      ]
+    },
+    {
+      "_comment": "고성 외부 이미지/임의로 아이템 추가",
+      "id": 69,
+      "ConditionList": [
+        {
+          "type": "DayCondition",
+          "startDay": 13,
+          "endDay": 13
+        },
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "Castle",
+            "value": 2
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "AddItemAction",
+          "item": {
+            "itemName": "Water",
+            "amount": 2
+          }
+        },
+        {
+          "type": "AddItemAction",
+          "item": {
+            "itemName": "CanFood",
+            "amount": 2
+          }
+        },
+        {
+          "type": "SetActiveShowCharacterStatusAction",
+          "active": true
+        },
+        {
+          "type": "SetBackGroundAction",
+          "imageName": "Castle"
+        }
+      ]
+    },
+    {
+      "id": 300,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "14-16DayRandomEventFlag",
+            "value": 1
+          }
+        },
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "41Event",
+            "value": 0
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "ShowTextAction",
+          "text": ""
+        },
+        {
+          "type": "ShowItemChoiceAction",
+          "text": "이 성은 겉에서 봤을 때는 몇백 년이 지난 것 같아...\n하지만 내부는 정말 최근까지도\n누가 관리한 것처럼 비교적 깨끗해 먼지도 많이 안 쌓여있기도 하고.. 이 성안에 누가 살지도 몰라!\n성 내부의 대부분을 탐색했는데\n한 곳 빼고는 다 열려있었어\n이 문을 어떻게 할까?",
+          "itemFlagList": [
+            {
+              "itemName": "Ax",
+              "flag": {
+                "name": "AxFlag41",
+                "value": 1
+              }
+            },
+            {
+              "itemName": "Hammer",
+              "flag": {
+                "name": "HammerFlag41",
+                "value": 1
+              }
+            },
+            {
+              "itemName": "Chain",
+              "flag": {
+                "name": "ChainFlag41",
+                "value": 1
+              }
+            }
+          ]
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "14-16DayRandomEventFlag",
+            "value": 0
+          }
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "41Event",
+            "value": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": 301,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "AxFlag41",
+            "value": 1
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "RandomLoseItemAction",
+          "items": [
+            {
+              "itemName": "Ax",
+              "amount": 1,
+              "weight": 1
+            }
+          ],
+          "loseCount": 1
+        },
+        {
+          "type": "ShowTextAction",
+          "text": "도끼로 문을 부수려다가 도끼날이 빠졌어..\n젠장!\n이 안쪽에 뭐가 있는지 정말 궁금해\n--------------------------------"
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "AxFlag41",
+            "value": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": 302,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "HammerFlag41",
+            "value": 1
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "ShowTextAction",
+          "text": "망치로 수십 번을 두들겼는데도\n이문이 열릴 생각을 안 하네..?\n겉으로 보이기는 나무 문 같지만\n속은 강철인 것 같아!\n--------------------------------"
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "HammerFlag41",
+            "value": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": 303,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "ChainFlag41",
+            "value": 1
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "AddItemAction",
+          "item": {
+            "itemName": "GreenLeaf",
+            "amount": 1
+          }
+        },
+        {
+          "type": "AddItemAction",
+          "item": {
+            "itemName": "PurpleLeaf",
+            "amount": 1
+          }
+        },
+        {
+          "type": "AddItemAction",
+          "item": {
+            "itemName": "WhiteLeaf",
+            "amount": 1
+          }
+        },
+        {
+          "type": "AddItemAction",
+          "item": {
+            "itemName": "RedLeaf",
+            "amount": 1
+          }
+        },
+        {
+          "type": "ShowTextAction",
+          "text": "문고리에 쇠사슬을 걸고 모두가 당겼어\n그러니 문이 우리 쪽으로 엎어지면서\n방이 열렸는데 가보니 다른 방 들하고\n다르게 먼지로 뒤덮여져 있네..?\n엥?..가운데 상자가 있어서 열어보니\n각종 약초가 있었어!!\n--------------------------------"
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "ChainFlag41",
+            "value": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": 304,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "14-16DayRandomEventFlag",
+            "value": 2
+          }
+        },
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "42Event",
+            "value": 0
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "ShowTextAction",
+          "text": ""
+        },
+        {
+          "type": "ShowItemChoiceAction",
+          "text": "성 내부가 아닌\n외부에도 건물들이 있어서\n우리는 천천히 둘러보기 시작했어.\n마구간, 정원, 그리고 대장간도 있어 대장간에 필요한 물품을\n직접 만들 수 있지 않을까?\n아직 소량의 철이 남아있는데\n어떤 물품을 만들어 볼까?",
+          "itemFlagList": [
+            {
+              "itemName": "Ax",
+              "flag": {
+                "name": "AxFlag42",
+                "value": 1
+              }
+            },
+            {
+              "itemName": "Hammer",
+              "flag": {
+                "name": "HammerFlag42",
+                "value": 1
+              }
+            },
+            {
+              "itemName": "Chain",
+              "flag": {
+                "name": "ChainFlag42",
+                "value": 1
+              }
+            }
+          ]
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "14-16DayRandomEventFlag",
+            "value": 0
+          }
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "42Event",
+            "value": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": 305,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "HammerFlag42",
+            "value": 1
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "AddItemAction",
+          "item": {
+            "itemName": "Hammer",
+            "amount": 1
+          }
+        },
+        {
+          "type": "ShowTextAction",
+          "text": "남아있는 소량의 철로 망치를 만들었어\n어떤 물품이든 부술 수 있겠지?!\n--------------------------------"
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "HammerFlag42",
+            "value": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": 306,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "AxFlag42",
+            "value": 1
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "AddItemAction",
+          "item": {
+            "itemName": "Ax",
+            "amount": 1
+          }
+        },
+        {
+          "type": "ShowTextAction",
+          "text": "남아있는 소량의 철로 도끼를 만들었어\n어떤 물품이든 부술 수 있겠지\n--------------------------------"
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "AxFlag42",
+            "value": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": 307,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "ChainFlag42",
+            "value": 1
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "AddItemAction",
+          "item": {
+            "itemName": "Chain",
+            "amount": 1
+          }
+        },
+        {
+          "type": "ShowTextAction",
+          "text": "\n\n쇠사슬이 필요할지도 몰라서 만들었어!\n--------------------------------"
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "ChainFlag42",
+            "value": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": 308,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "14-16DayRandomEventFlag",
+            "value": 3
+          }
+        },
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "43Event",
+            "value": 0
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "ShowTextAction",
+          "text": ""
+        },
+        {
+          "type": "ShowItemChoiceAction",
+          "text": "이 정도 크기의 성이라면 분명 각종\n재화들을 보관하는 창고가 있을텐데 말이야.. 그렇다면 숨어있는 공간이 있다는말인데.. 계속 탐색을 진행하다가 아무것도 없는 방이 있더라고 도대체 여기는 뭐하는 곳이였을까? 그런데 이 방 벽면에 뭐가 적혀있는데?\n어두워 불빛이 없으면 볼 수 없겠어",
+          "itemFlagList": [
+            {
+              "itemName": "Lighter",
+              "flag": {
+                "name": "LighterFlag43",
+                "value": 1
+              }
+            },
+            {
+              "itemName": "Matchbox",
+              "flag": {
+                "name": "MatchboxFlag43",
+                "value": 1
+              }
+            },
+            {
+              "itemName": "FlashLight",
+              "flag": {
+                "name": "FlashLightFlag43",
+                "value": 1
+              }
+            }
+          ]
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "14-16DayRandomEventFlag",
+            "value": 0
+          }
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "43Event",
+            "value": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": 309,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "LighterFlag43",
+            "value": 1
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "RandomLoseItemAction",
+          "items": [
+            {
+              "itemName": "Lighter",
+              "amount": 1,
+              "weight": 1
+            }
+          ],
+          "loseCount": 1
+        },
+        {
+          "type": "ShowTextAction",
+          "text": "생각보다 많은 글들이 적혀있어서\n라이터의 기름이 닳을 때까지\n라이터를 켰지만 글을 못 봤어..\n--------------------------------"
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "LighterFlag43",
+            "value": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": 310,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "MatchboxFlag43",
+            "value": 1
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "RandomLoseItemAction",
+          "items": [
+            {
+              "itemName": "Matchbox",
+              "amount": 1,
+              "weight": 1
+            }
+          ],
+          "loseCount": 1
+        },
+        {
+          "type": "ShowTextAction",
+          "text": "생각보다 많은 글들이 적혀있어서\n우리가 가지고 있는 성냥 전부를\n사용했지만..글을 못 봤어..\n--------------------------------"
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "MatchboxFlag43",
+            "value": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": 311,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "FlashLightFlag43",
+            "value": 1
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "AddItemAction",
+          "item": {
+            "itemName": "Rope",
+            "amount": 1
+          }
+        },
+        {
+          "type": "AddItemAction",
+          "item": {
+            "itemName": "Knife",
+            "amount": 1
+          }
+        },
+        {
+          "type": "AddItemAction",
+          "item": {
+            "itemName": "Crowbar",
+            "amount": 1
+          }
+        },
+        {
+          "type": "ShowTextAction",
+          "text": "손전등으로 방에 적혀있는 글들을\n전부 볼 수 있었어 이 방에서 어느 벽돌을\n눌러보라는 말이었고 찾아서 눌렀더니\n벽돌이 안쪽으로 빠졌고 각종 물품들이\n그 벽돌 뒷공간에 있었어 도대체 누가 어떤 이유로 물품들을 여기에 숨기고\n벽에 글을 적어놓은 거지?\n--------------------------------"
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "FlashLightFlag43",
+            "value": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": 312,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "14-16DayRandomEventFlag",
+            "value": 4
+          }
+        },
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "44Event",
+            "value": 0
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "ShowTextAction",
+          "text": ""
+        },
+        {
+          "type": "ShowItemChoiceAction",
+          "text": "첨탑으로 가는 길을 찾지 못해서 무슨 장치가 있지는 않을까 싶어 벽을 두들기면서 탐색하고 있었는데 동료 중 한명이 찾은 것 같다고 해서 가보니 어떤 벽돌 하나가 다른 벽돌들과 다른 색이였어 벽돌을 눌렀더니 모든 문과 창문이 갑자기 닫혀버리면서 바닥에 물이 차오르기시작했어! 위로 대피할 수 있을만큼 대피하던가 바깥으로 탈출해야해",
+          "itemFlagList": [
+            {
+              "itemName": "Ax",
+              "flag": {
+                "name": "AxFlag44",
+                "value": 1
+              }
+            },
+            {
+              "itemName": "Hammer",
+              "flag": {
+                "name": "HammerFlag44",
+                "value": 1
+              }
+            },
+            {
+              "itemName": "Hand",
+              "flag": {
+                "name": "HandFlag44",
+                "value": 1
+              }
+            }
+          ]
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "14-16DayRandomEventFlag",
+            "value": 0
+          }
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "44Event",
+            "value": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": 313,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "AxFlag44",
+            "value": 1
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "RandomLoseItemAction",
+          "items": [
+            {
+              "itemName": "Ax",
+              "amount": 1,
+              "weight": 1
+            }
+          ],
+          "loseCount": 1
+        },
+        {
+          "type": "ShowTextAction",
+          "text": "도끼로 문들을 부술 기세로 부쉈는데도\n안 부서져서 위로 올라가면서 창문들을 전부\n도끼로 휘둘렀는데 창문 뒤쪽도 쇳덩어리야! 물이 우리가 있는 공간에 다 차기 전에\n다행히 창문 뒤쪽의 쇳덩어리를 도끼로\n틈새를 만들어서 물을 빠지게 했어\n그 틈새 사이에 도끼를 끼워놔야 돼서\n도끼를 이젠 쓰지 못할 거 같아!\n--------------------------------"
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "AxFlag44",
+            "value": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": 314,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "HammerFlag44",
+            "value": 1
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "RandomLoseItemAction",
+          "items": [
+            {
+              "itemName": "Hammer",
+              "amount": 1,
+              "weight": 1
+            }
+          ],
+          "loseCount": 1
+        },
+        {
+          "type": "ShowTextAction",
+          "text": "모든 문이 쇳덩어리지만\n이대로면 죽을 수밖에 없어서\n망치가 부서지도록 쇳덩어리로 된\n문 하나만 미친 듯이 내려찍었어\n망치 손잡이와 장도리가 분리되면서 겨우 문이 부서졌어 아니었으면 다 죽었을 거야..\n--------------------------------"
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "HammerFlag44",
+            "value": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": 315,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "HandFlag44",
+            "value": 1
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "AllCharacterSetStatusAction",
+          "calculate": "Mod",
+          "status": "Thirsty",
+          "value": "7"
+        },
+        {
+          "type": "ShowTextAction",
+          "text": "차오르는 물을 피할 수 없어\n모두 익사하였습니다.\n--------------------------------"
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "HandFlag44",
+            "value": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": 316,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "14-16DayRandomEventFlag",
+            "value": 5
+          }
+        },
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "45Event",
+            "value": 0
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "ShowTextAction",
+          "text": ""
+        },
+        {
+          "type": "ShowItemChoiceAction",
+          "text": "성을 살펴보다가 지하로 가는 길이 있어서 내려가 보았는데\n지하 감옥이 있더라고 지하 감옥이\n정말 넓고 깊어 마치 카타콤처럼.... 혹시 어떤 물품을 얻을 수 있지\n않을까 해서 우리 모두 내려와서\n탐색하고 있는데\n누군가 어떤 장치를 발동시켰나 봐! 화살이 벽면에서 날라오고 있어!!\n어서 다시 지상으로 올라가야 해!",
+          "itemFlagList": [
+            {
+              "itemName": "Bodyboard",
+              "flag": {
+                "name": "BodyboardFlag45",
+                "value": 1
+              }
+            },
+            {
+              "itemName": "Hand",
+              "flag": {
+                "name": "HandFlag45",
+                "value": 1
+              }
+            }
+          ]
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "14-16DayRandomEventFlag",
+            "value": 0
+          }
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "45Event",
+            "value": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": 317,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "BodyboardFlag45",
+            "value": 1
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "ShowTextAction",
+          "text": "올라오면서 화살을 바디 보드로 막아내면서 올라와서 아무도 다치지 않았어.\n--------------------------------"
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "BodyboardFlag45",
+            "value": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": 318,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "HandFlag45",
+            "value": 1
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "AllCharacterSetStatusAction",
+          "calculate": "Mod",
+          "status": "Wound",
+          "value": "1"
+        },
+        {
+          "type": "ShowTextAction",
+          "text": "화살을 막을 수 있는 방법이 없어서\n나오면서 몸에 화살을 몇 개 맞았어..\n--------------------------------"
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "HandFlag45",
+            "value": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": 319,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "14-16DayRandomEventFlag",
+            "value": 6
+          }
+        },
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "46Event",
+            "value": 0
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "ShowTextAction",
+          "text": ""
+        },
+        {
+          "type": "ShowItemChoiceAction",
+          "text": "첨탑으로 가는 길이 내부에서\n보이지 않아서 외부에서 가는 길이\n있지 않을까 해서 외부에 나가\n높이 올라가고 있는데 \n어떤 함정 같은 게 발동되었나 봐!! \n돌무더기가 위에서 쏟아져내리고\n있어!\n돌무더기를 쳐내던가 피해야 해!",
+          "itemFlagList": [
+            {
+              "itemName": "Ax",
+              "flag": {
+                "name": "AxFlag46",
+                "value": 1
+              }
+            },
+            {
+              "itemName": "Chain",
+              "flag": {
+                "name": "ChainFlag46",
+                "value": 1
+              }
+            },
+            {
+              "itemName": "Hand",
+              "flag": {
+                "name": "HandFlag46",
+                "value": 1
+              }
+            }
+          ]
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "14-16DayRandomEventFlag",
+            "value": 0
+          }
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "46Event",
+            "value": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": 320,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "AxFlag46",
+            "value": 1
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "RandomCharacterSetStatusAction",
+          "calculate": "Mod",
+          "status": "Wound",
+          "value": 1,
+          "count": 1
+        },
+        {
+          "type": "ShowTextAction",
+          "text": "도끼로 돌무더기를 쳐낸다고 쳐냈지만\n쳐낼 수 있는 범위가 너무 좁아\n많이 쳐내진 못했어..\n--------------------------------"
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "AxFlag46",
+            "value": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": 321,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "ChainFlag46",
+            "value": 1
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "ShowTextAction",
+          "text": "범위가 넓은 쇠사슬로\n돌무더기를 전부다 쳐냈어!!\n다행이야..!\n--------------------------------"
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "ChainFlag46",
+            "value": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": 322,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "HandFlag46",
+            "value": 1
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "RandomCharacterSetStatusAction",
+          "calculate": "Mod",
+          "status": "Wound",
+          "value": 1,
+          "count": 3
+        },
+        {
+          "type": "ShowTextAction",
+          "text": "돌무더기가 쏟아져 내리는데!!\n쳐낼 도구가 없어 몸으로 피하다니.. \n우리가 무슨 스파이더맨도 아니고..\n온몸에 상처투성이야.\n--------------------------------"
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "HandFlag46",
+            "value": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": 323,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "14-16DayRandomEventFlag",
+            "value": 7
+          }
+        },
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "47Event",
+            "value": 0
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "ShowTextAction",
+          "text": ""
+        },
+        {
+          "type": "ShowItemChoiceAction",
+          "text": "성을 계속 탐사하던중 어두워지고 있었는데 누가 나를 부르는거\n같아서 홀로 나갔더니 아무도 없었어 그리고 동료가 내가 있는 곳으로 찾아와서 아까 왜불렀냐고 하는데..뭐지? 그리고, 또 다른 동료가 다른동료에게 자기를 아까 왜불렀냐고 말하는데?? 설마 유령이 있는거야? 분위기 전환이 필요할것같아",
+          "itemFlagList": [
+            {
+              "itemName": "Card",
+              "flag": {
+                "name": "CardFlag47",
+                "value": 1
+              }
+            },
+            {
+              "itemName": "Wine",
+              "flag": {
+                "name": "WineFlag47",
+                "value": 1
+              }
+            },
+            {
+              "itemName": "Hand",
+              "flag": {
+                "name": "HandFlag47",
+                "value": 1
+              }
+            }
+          ]
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "14-16DayRandomEventFlag",
+            "value": 0
+          }
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "47Event",
+            "value": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": 324,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "CardFlag47",
+            "value": 1
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "ShowTextAction",
+          "text": "카드게임을 하면서 우중충한 기분을 날렸어\n설사 유령이 있더라도\n이곳에 오래 있을생각은 아니니 큰 문제는 되지 않겠지.\n--------------------------------"
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "CardFlag47",
+            "value": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": 325,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "WineFlag47",
+            "value": 1
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "RandomLoseItemAction",
+          "items": [
+            {
+              "itemName": "Wine",
+              "amount": 1,
+              "weight": 100
+            }
+          ],
+          "loseCount": 1
+        },
+        {
+          "type": "ShowTextAction",
+          "text": "다들 정신없이 술을 마시고 잤어\n다들 피곤해서 환청이 들린 걸 거야.\n--------------------------------"
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "WineFlag47",
+            "value": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": 326,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "HandFlag47",
+            "value": 1
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "AllCharacterSetStatusAction",
+          "calculate": "Mod",
+          "status": "Panic",
+          "value": "1"
+        },
+        {
+          "type": "ShowTextAction",
+          "text": "술도 없고 카드도 없어서 그냥 잤는데\n모두 다 환청이 들리고..\n이젠 환각까지 보여!!\n너무 오래된 성이라서..\n 뭐가 있어도 이상하지 않긴 해..\n--------------------------------"
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "HandFlag47",
+            "value": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": 327,
+      "ConditionList": [
+        {
+          "type": "DayCondition",
+          "startDay": 13,
+          "endDay": 15
+        },
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "Castle",
+            "value": 2
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "SetRandomFlag",
+          "flag": {
+            "name": "14-16DayRandomEventFlag",
+            "value": 0
+          },
+          "minValue": 1,
+          "maxValue": 7
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "41Event",
+            "value": 0
+          }
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "42Event",
+            "value": 0
+          }
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "43Event",
+            "value": 0
+          }
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "44Event",
+            "value": 0
+          }
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "45Event",
+            "value": 0
+          }
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "46Event",
+            "value": 0
+          }
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "47Event",
+            "value": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": 328,
+      "ConditionList": [
+        {
+          "type": "DayCondition",
+          "startDay": 17,
+          "endDay": 17
+        },
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "Castle",
+            "value": 2
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "SetActiveShowCharacterStatusAction",
+          "active": false
+        },
+        {
+          "type": "ShowTextAction",
+          "text": ""
+        },
+        {
+          "type": "ShowItemChoiceAction",
+          "text": "외부에서 볼 때는 분명히 높은 첨탑이 있는데 그쪽으로 가는 길이 없어 도대체 어떻게 된 거지? 내부에서 첨탑으로 가는 길을 찾지 못해서 외부로 나와서 천천히 성외 부를 둘러보면서 올라가는 길이 있는 건지 찾고 있었어 근데 외부에 있는 마구간하고 연결되어 있는 것 같아 연결된 문도 강철인데 이걸 부숴야겠어\n도끼로는 흠집도 안 날 거야",
+          "itemFlagList": [
+            {
+              "itemName": "Hammer",
+              "flag": {
+                "name": "HammerFlag48",
+                "value": 1
+              }
+            },
+            {
+              "itemName": "Hand",
+              "flag": {
+                "name": "HandFlag48",
+                "value": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 329,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "HammerFlag48",
+            "value": 1
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "ShowTextAction",
+          "text": "첨탑으로 연결된 길이 드러났어.\n이제 올라가 보자!"
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "HammerFlag48",
+            "value": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": 330,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "HandFlag48",
+            "value": 1
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "ShowTextAction",
+          "text": "첨탑으로 들어갈 수 없는데..\n다른 장소로 가보자"
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "HandFlag48",
+            "value": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": 331,
+      "ConditionList": [
+        {
+          "type": "DayCondition",
+          "startDay": 18,
+          "endDay": 18
+        },
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "Castle",
+            "value": 2
+          }
+        },
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "HammerFlag48",
+            "value": 1
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "ShowTextAction",
+          "text": ""
+        },
+        {
+          "type": "ShowItemChoiceAction",
+          "text": "첨탑으로 가는 길이 그냥 마구간\n뒤쪽으로 연결된 게 아니라\n지하로 내려갔다가 올라갔다 하면서\n어지럽게 하고 있어 그 와중에..\n갈림길도 나왔는데 이거 어떡하지?\n분명 첨탑이 지금 기준으로 동쪽에\n있는 거 같았는데...",
+          "itemFlagList": [
+            {
+              "itemName": "Compass",
+              "flag": {
+                "name": "CompassFlag49",
+                "value": 1
+              }
+            },
+            {
+              "itemName": "Hand",
+              "flag": {
+                "name": "HandFlag49",
+                "value": 1
+              }
+            }
+          ]
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "HammerFlag48",
+            "value": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": 332,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "CompassFlag49",
+            "value": 1
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "ShowTextAction",
+          "text": "나침반을 보고 갈림길을 선택해서\n이동하는데 몇 가지 갈림길이\n더 나왔는데도 나침반이 있어서\n제대로 온 것 같아 통로 끝의 문을 여니\n완전히 다른 양식의 성 내부가 펼쳐져\n있어.."
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "CompassFlag49",
+            "value": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": 333,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "HandFlag49",
+            "value": 1
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "RandomCharacterSetStatusAction",
+          "calculate": "Mod",
+          "status": "Panic",
+          "value": 1,
+          "count": 2
+        },
+        {
+          "type": "ShowTextAction",
+          "text": "나침반이 없어서 모든 길을 다 갔어 \n좁은 공간에 오래 있으니 어지러운 증세가\n동료들한테 생긴 것 같아..\n 그래도 결국 첨탑으로 들어왔네"
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "HandFlag49",
+            "value": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": 334,
+      "ConditionList": [
+        {
+          "type": "DayCondition",
+          "startDay": 18,
+          "endDay": 18
+        },
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "Castle",
+            "value": 2
+          }
+        },
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "HandFlag48",
+            "value": 1
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "ShowTextAction",
+          "text": "이쪽으로 오니 연구소 외부와 연결되어 있네"
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "Castle",
+            "value": 0
+          }
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "HandFlag48",
+            "value": 0
+          }
+        }
+      ]
+    },
+    {
+      "_comment": "첨탑 내부 이미지 삽입",
+      "id": 140,
+      "ConditionList": [
+        {
+          "type": "DayCondition",
+          "startDay": 20,
+          "endDay": 20
+        },
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "Castle",
+            "value": 2
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "AddItemAction",
+          "item": {
+            "itemName": "Water",
+            "amount": 2
+          }
+        },
+        {
+          "type": "AddItemAction",
+          "item": {
+            "itemName": "CanFood",
+            "amount": 2
+          }
+        },
+        {
+          "type": "SetBackGroundAction",
+          "imageName": "Castle2"
+        }
+      ]
+    },
+    {
+      "id": 500,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "20-22DayRandomEventFlag",
+            "value": 1
+          }
+        },
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "51Event",
+            "value": 0
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "ShowTextAction",
+          "text": ""
+        },
+        {
+          "type": "ShowItemChoiceAction",
+          "text": "첨탑에 들어온 뒤부터는\n공기 자체가 다른 것 같아.. 고성도\n이상한 방과 사건들이 많았지만\n여기는 더 위험한 게 본능적으로\n느껴져라고 생각하는 순간!\n우리들 중 누군가가 어떤 장치를\n발동시킨 것 같아!!\n돌덩어리가 사방에서 날라온다!",
+          "itemFlagList": [
+            {
+              "itemName": "Bodyboard",
+              "flag": {
+                "name": "BodyboardFlag51",
+                "value": 1
+              }
+            },
+            {
+              "itemName": "Vest",
+              "flag": {
+                "name": "VestFlag51",
+                "value": 1
+              }
+            },
+            {
+              "itemName": "Hand",
+              "flag": {
+                "name": "HandFlag51",
+                "value": 1
+              }
+            }
+          ]
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "20-22DayRandomEventFlag",
+            "value": 0
+          }
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "51Event",
+            "value": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": 501,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "BodyboardFlag51",
+            "value": 1
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "RandomCharacterSetStatusAction",
+          "calculate": "Mod",
+          "status": "Wound",
+          "value": 1,
+          "Count": 1
+        },
+        {
+          "type": "ShowTextAction",
+          "text": "바디보드로 날라오는 돌덩어리를\n다 쳐내진 못했지만. \n날라오는 건 거의 다 쳐냈어!\n--------------------------------"
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "BodyboardFlag51",
+            "value": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": 502,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "VestFlag51",
+            "value": 1
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "RandomCharacterSetStatusAction",
+          "calculate": "Mod",
+          "status": "Wound",
+          "value": 1,
+          "Count": 2
+        },
+        {
+          "type": "ShowTextAction",
+          "text": "구명조끼를 펼쳐서 우리 머리를 덮었어\n머리는 보호했지만..\n다른 곳은 상처를 입은 것 같아...\n--------------------------------"
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "VestFlag51",
+            "value": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": 503,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "HandFlag51",
+            "value": 1
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "AllCharacterSetStatusAction",
+          "calculate": "Mod",
+          "status": "Wound",
+          "value": 1
+        },
+        {
+          "type": "ShowTextAction",
+          "text": "막을 게 아무것도 없어서 돌덩어리를\n온몸에 다 맞았어..\n죽을 정도까진 아니지만..\n돌덩어리에 피부가 많이 찢겼어.\n--------------------------------"
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "HandFlag51",
+            "value": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": 504,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "20-22DayRandomEventFlag",
+            "value": 2
+          }
+        },
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "52Event",
+            "value": 0
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "ShowTextAction",
+          "text": ""
+        },
+        {
+          "type": "ShowItemChoiceAction",
+          "text": "첨탑의 내부 문양이 사람을\n어지럽게 만드는 시각 효과가 있나?\n탑을 천천히 올라가는데도\n어지러워...\n\n그리고 점점 계단이 좁아지는데?\n착시효과 때문인지 동료가 발을\n헛딛었어!!",
+          "itemFlagList": [
+            {
+              "itemName": "Rope",
+              "flag": {
+                "name": "RopeFlag52",
+                "value": 1
+              }
+            },
+            {
+              "itemName": "Chain",
+              "flag": {
+                "name": "ChainFlag52",
+                "value": 1
+              }
+            },
+            {
+              "itemName": "Hand",
+              "flag": {
+                "name": "HandFlag52",
+                "value": 1
+              }
+            }
+          ]
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "20-22DayRandomEventFlag",
+            "value": 0
+          }
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "52Event",
+            "value": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": 505,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "RopeFlag52",
+            "value": 1
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "RandomLoseItemAction",
+          "items": [
+            {
+              "itemName": "Rope",
+              "amount": 1,
+              "weight": 1
+            }
+          ],
+          "loseCount": 1
+        },
+        {
+          "type": "ShowTextAction",
+          "text": "\n로프를 던져서 다행히 동료를 끌어올렸어\n동료를 끌어올리자마자 로프가 끊어졌어..\n조금만 늦게 올라왔다면...\n--------------------------------"
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "RopeFlag52",
+            "value": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": 506,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "ChainFlag52",
+            "value": 1
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "ShowTextAction",
+          "text": "쇠사슬을 던져서\n동료를 무사히 끌어올렸어..\n벽에 손을 짚으면서 올라가야겠어.\n--------------------------------"
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "ChainFlag52",
+            "value": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": 507,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "HandFlag52",
+            "value": 1
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "RandomCharacterSetStatusAction",
+          "calculate": "Mod",
+          "status": "Wound",
+          "value": 7,
+          "Count": 1
+        },
+        {
+          "type": "ShowTextAction",
+          "text": "동료를 구해낼 물품이 없어\n동료가 추락하는 걸 볼 수밖에 없었어...\n--------------------------------"
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "HandFlag52",
+            "value": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": 508,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "20-22DayRandomEventFlag",
+            "value": 3
+          }
+        },
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "53Event",
+            "value": 0
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "ShowTextAction",
+          "text": ""
+        },
+        {
+          "type": "ShowItemChoiceAction",
+          "text": "첨탑에 들어오고\n1층부터 좌측, 우측으로 나뉜 계단이 있어서 좌측 계단으로 올라왔는데\n첨탑 윗부분은 연결되는 것 같아\n근데 중간중간마다 장애물이 있어 치워야 할 것 같아",
+          "itemFlagList": [
+            {
+              "itemName": "Ax",
+              "flag": {
+                "name": "AxFlag53",
+                "value": 1
+              }
+            },
+            {
+              "itemName": "Hammer",
+              "flag": {
+                "name": "HammerFlag53",
+                "value": 1
+              }
+            },
+            {
+              "itemName": "Hand",
+              "flag": {
+                "name": "HandFlag53",
+                "value": 1
+              }
+            }
+          ]
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "53Event",
+            "value": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": 509,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "AxFlag53",
+            "value": 1
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "RandomLoseItemAction",
+          "items": [
+            {
+              "itemName": "Ax",
+              "amount": 1,
+              "weight": 100
+            }
+          ],
+          "loseCount": 1
+        },
+        {
+          "type": "ShowTextAction",
+          "text": "\n도끼로 장애물을 다부셨어..\n너무 많은 장애물이라서\n도끼날이 상해버렸군..\n 더 이상 쓰지 못할 것 같아.\n--------------------------------"
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "AxFlag53",
+            "value": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": 510,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "HammerFlag53",
+            "value": 1
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "ShowTextAction",
+          "text": "망치로 장애물을 다부셨어..\n힘은 들지만 피해가 없어.\n\n휴...\n--------------------------------"
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "HammerFlag53",
+            "value": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": 511,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "HandFlag53",
+            "value": 1
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "AllCharacterSetStatusAction",
+          "calculate": "Mod",
+          "status": "Addiction",
+          "value": 1
+        },
+        {
+          "type": "ShowTextAction",
+          "text": "빈손으로 장애물을 치우고 있었는데\n독극물이 발라져있었나 봐!\n숨쉬기가 점점 힘들고 어지러워!\n--------------------------------"
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "HandFlag53",
+            "value": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": 512,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "20-22DayRandomEventFlag",
+            "value": 4
+          }
+        },
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "54Event",
+            "value": 0
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "ShowTextAction",
+          "text": ""
+        },
+        {
+          "type": "ShowItemChoiceAction",
+          "text": "첨탑에 들어오고\n1층부터 우측, 좌측으로 나뉜 계단이 있어서 우측 계단으로 올라왔는데\n첨탑 윗부분은 연결되는 것 같아\n근데 중간중간마다 장애물이 있어 치워야 할 것 같아.",
+          "itemFlagList": [
+            {
+              "itemName": "Crowbar",
+              "flag": {
+                "name": "CrowbarFlag54",
+                "value": 1
+              }
+            },
+            {
+              "itemName": "Hand",
+              "flag": {
+                "name": "HandFlag54",
+                "value": 1
+              }
+            }
+          ]
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "54Event",
+            "value": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": 513,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "CrowbarFlag54",
+            "value": 1
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "ShowTextAction",
+          "text": "빠루로 장애물을 치우면서 올라왔어..\n힘은 들지만 피해는 없어 \n\n휴..\n--------------------------------"
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "CrowbarFlag54",
+            "value": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": 514,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "HandFlag54",
+            "value": 1
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "AllCharacterSetStatusAction",
+          "calculate": "Mod",
+          "status": "Addiction",
+          "value": 1
+        },
+        {
+          "type": "ShowTextAction",
+          "text": "빈손으로 장애물을 치우고 있었는데\n독극물이 발라져있었나 봐!\n숨쉬기가 점점 힘들고 어지러워!\n--------------------------------"
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "HandFlag54",
+            "value": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": 9000,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "20-22DayRandomEventFlag",
+            "value": 5
+          }
+        },
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "55Event",
+            "value": 0
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "ShowTextAction",
+          "text": ""
+        },
+        {
+          "type": "ShowItemChoiceAction",
+          "text": "고성부터 첨탑까지 매일매일이\n긴장하면서 여기까지 왔어\n다들 신경질적이고 몸도 지친것같아\n오늘은 올라가지말고 잠깐 쉬었으면 좋겠어",
+          "itemFlagList": [
+            {
+              "itemName": "BookItem",
+              "flag": {
+                "name": "BookItemFlag90",
+                "value": 1
+              }
+            },
+            {
+              "itemName": "Guitar",
+              "flag": {
+                "name": "GuitarFlag90",
+                "value": 1
+              }
+            },
+            {
+              "itemName": "Hand",
+              "flag": {
+                "name": "HandFlag90",
+                "value": 1
+              }
+            }
+          ]
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "55Event",
+            "value": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": 9001,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "BookItemFlag90",
+            "value": 1
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "RandomCharacterSetStatusAction",
+          "calculate": "Mod",
+          "status": "Panic",
+          "value": 0,
+          "Count": 2
+        },
+        {
+          "type": "ShowTextAction",
+          "text": "책도 읽고 명상도 해서\n기분이 좀 나아진 것 같아\n--------------------------------"
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "BookItemFlag90",
+            "value": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": 9002,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "GuitarFlag90",
+            "value": 1
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "AllCharacterSetStatusAction",
+          "calculate": "Mod",
+          "status": "Panic",
+          "value": 0
+        },
+        {
+          "type": "ShowTextAction",
+          "text": "기타 반주에 맞춰 서로 춤도 추다\n보니까 스트레스가 풀리는것 같아\n다들 이제 괜찮아보여\n--------------------------------"
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "GuitarFlag90",
+            "value": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": 9003,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "HandFlag90",
+            "value": 1
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "RandomCharacterSetStatusAction",
+          "calculate": "Mod",
+          "status": "Panic",
+          "value": 0,
+          "Count": 1
+        },
+        {
+          "type": "ShowTextAction",
+          "text": "그냥 각자 명상하기로 했어\n스트레스가 조금은 나아진 것 같아\n--------------------------------"
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "HandFlag90",
+            "value": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": 515,
+      "ConditionList": [
+        {
+          "type": "DayCondition",
+          "startDay": 19,
+          "endDay": 21
+        },
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "Castle",
+            "value": 2
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "SetRandomFlag",
+          "flag": {
+            "name": "20-22DayRandomEventFlag",
+            "value": 0
+          },
+          "minValue": 1,
+          "maxValue": 5
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "51Event",
+            "value": 0
+          }
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "52Event",
+            "value": 0
+          }
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "53Event",
+            "value": 0
+          }
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "54Event",
+            "value": 0
+          }
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "55Event",
+            "value": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": 516,
+      "ConditionList": [
+        {
+          "type": "DayCondition",
+          "startDay": 23,
+          "endDay": 23
+        },
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "Castle",
+            "value": 2
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "ShowTextAction",
+          "text": ""
+        },
+        {
+          "type": "ShowItemChoiceAction",
+          "text": "드디어 첨탑의 최상층에\n도착한 거 같아\n아주 큰 철문인데 여태 발견한\n성 내부의 문들 중에 가장\n단단해 보여...\n\n근데 문고리가 약해 보이는데\n이거 설마?",
+          "itemFlagList": [
+            {
+              "itemName": "Gun",
+              "flag": {
+                "name": "GunFlag55",
+                "value": 1
+              }
+            },
+            {
+              "itemName": "Hand",
+              "flag": {
+                "name": "HandFlag55",
+                "value": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 517,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "GunFlag55",
+            "value": 1
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "ShowTextAction",
+          "text": "\n\n권총으로 문고리를 부수고 반대쪽 문고리를 잡아당겼더니 문이 쉽게 열렸어."
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "GunFlag55",
+            "value": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": 518,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "HandFlag55",
+            "value": 1
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "AddItemAction",
+          "item": {
+            "itemName": "Rope",
+            "amount": 1
+          }
+        },
+        {
+          "type": "AddItemAction",
+          "item": {
+            "itemName": "Map",
+            "amount": 1
+          }
+        },
+        {
+          "type": "ShowTextAction",
+          "text": "도저히 저 문 뒤로 넘어갈 방법이 생각나지 않아 다시 첨탑을 내려가기로 했어..\n내려가면서 탐색하지 못했던 방들도\n탐색했더니\n이 섬 근처의 해역 지도와 로프가 나왔어..\n이섬을 우리 힘으로 나가야 될까?"
+        },
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "HandFlag55",
+            "value": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": 519,
+      "ConditionList": [
+        {
+          "type": "DayCondition",
+          "startDay": 24,
+          "endDay": 24
+        },
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "Castle",
+            "value": 2
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "SetBackGroundAction",
+          "imageName": "Top"
+        },
+        {
+          "type": "ShowTextAction",
+          "text": ""
+        },
+        {
+          "type": "ShowItemChoiceAction",
+          "text": "옥상에 도달했더니 아니 이런 곳에 헬리콥터가 있을 줄이야...\n분명 여기는 문명인들이 있었던\n곳이 틀림없어.\n헬리콥터는 기름이 충분해!\n\n대신 이륙장치가 없어..",
+          "itemFlagList": [
+            {
+              "itemName": "Knife",
+              "flag": {
+                "name": "KnifeFlag56",
+                "value": 1
+              }
+            },
+            {
+              "itemName": "Signal",
+              "flag": {
+                "name": "SignalFlag56",
+                "value": 1
+              }
+            },
+            {
+              "itemName": "Hand",
+              "flag": {
+                "name": "HandFlag56",
+                "value": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 520,
+      "ConditionList": [
+        {
+          "type": "DayCondition",
+          "startDay": 24,
+          "endDay": 24
+        },
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "Castle",
+            "value": 2
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "SetFlag",
+          "flag": {
+            "name": "EndingFlag",
+            "value": 2
+          }
+        }
+      ]
+    },
+    {
+      "_comment": "헬기 엔딩씬",
+      "id": 521,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "Castle",
+            "value": 2
+          }
+        },
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "EndingFlag",
+            "value": 2
+          }
+        },
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "KnifeFlag56",
+            "value": 1
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "AddEnding",
+          "text": "이륙장치가 있던 곳에 나이프를 꽂았어\n이상하게도 빈틈이 없이 맞춰졌어\n이제 우리가 어떡해서든 이 헬기를 조종해서 나가야 해!",
+          "imageName": "Helicopter"
+        }
+      ]
+    },
+    {
+      "_comment": "해적 엔딩씬",
+      "id": 522,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "EndingFlag",
+            "value": 2
+          }
+        },
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "SignalFlag56",
+            "value": 1
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "AddEnding",
+          "text": "헬기의 이륙장치를 어떡해야 하나 싶었는데 저쪽에서 어떤 배가 보이는 거야! 이 섬의 제일 높은 곳이라 보이는군!\n우리는 신호탄을 흔들었고 멀리 보이던 배가 우리 근처로 왔는데...\n\n그 배는....",
+          "imageName": "Pirate"
+        }
+      ]
+    },
+    {
+      "_comment": "탈출 엔딩씬",
+      "id": 524,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "EndingFlag",
+            "value": 2
+          }
+        },
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "HandFlag56",
+            "value": 1
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "AddEnding",
+          "text": "내가 직접 만들어서 탈출을 하는 거야!!\n뗏목도 만들었고 지도도 있겠다..\n섬에서 탈출 하자",
+          "imageName": "Escape"
+        }
+      ]
+    },
+    {
+      "id": 523,
+      "ConditionList": [
+        {
+          "type": "FlagCondition",
+          "flag": {
+            "name": "EndingFlag",
+            "value": 2
+          }
+        }
+      ],
+      "ActionList": [
+        {
+          "type": "ShowEnding"
         }
       ]
     }
-
   ]
 }
+        

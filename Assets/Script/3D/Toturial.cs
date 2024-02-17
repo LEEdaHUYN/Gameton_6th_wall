@@ -12,10 +12,12 @@ public class Toturial : MonoBehaviour
     [SerializeField]
     private Button prev;
     int currentPage;
+    int Imagecount;
 
     private void Start()
     {
         Resetting();
+        Imagecount = image.Length;
     }
     public void Resetting()
     {
@@ -30,37 +32,41 @@ public class Toturial : MonoBehaviour
     }
     public void Nextbtn()
     {
-        image[currentPage].gameObject.SetActive(false);
-        //Exit.gameObject.SetActive(false);
-        if (currentPage < 2)
+        Debug.Log("현재 페이지" + currentPage);
+
+        if (currentPage == image.Length - 2)
         {
-            if (currentPage == 1)
-            {
-                next.gameObject.SetActive(false);
-            }
+            next.gameObject.SetActive(false); 
+        }
+        if (currentPage == image.Length)
+        {
+            return;
+        }
+            image[currentPage].gameObject.SetActive(false);
             currentPage++;
             prev.gameObject.SetActive(true);
-        }
-        else
-            currentPage = 2;
- 
-        image[currentPage].gameObject.SetActive(true);
+
+            image[currentPage].gameObject.SetActive(true);
+
+       
+
+
     }
 
     public void Prevbtn()
     {
-        image[currentPage].gameObject.SetActive(false);
-        if (currentPage > 0)
+        if (currentPage == 0)
         {
-            if(currentPage == 1)
-            {
-                  prev.gameObject.SetActive(false);
-            }   
-            currentPage--;
-            next.gameObject.SetActive(true);
+            return;
         }
-        else
-            currentPage = 0;
+        image[currentPage].gameObject.SetActive(false);
+        if(currentPage == 1)
+        {
+                prev.gameObject.SetActive(false);
+        }   
+        currentPage--;
+        next.gameObject.SetActive(true);
+ 
             
         image[currentPage].gameObject.SetActive(true);
     }

@@ -77,20 +77,20 @@ MonoBehaviour:
     m_SerializedLabels:
     - PreLoad
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 560bb7e5f3289ab488671c434640af0a
-    m_Address: 1.sprite
+  - m_GUID: 2a8d5af8168f9bc45b6d45d57487c306
+    m_Address: 3.sprite
     m_ReadOnly: 0
     m_SerializedLabels:
     - PreLoad
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 0d7189c9b0c7cab41adf07ff474a6edc
+  - m_GUID: 24284648c1f4ccf4ea53e2a1b3e2d9e8
     m_Address: 2.sprite
     m_ReadOnly: 0
     m_SerializedLabels:
     - PreLoad
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 9417f8685491f9b40a174cd5f9339724
-    m_Address: 3.sprite
+  - m_GUID: 7e74778a39c698243beafcc0792be4fa
+    m_Address: 1.sprite
     m_ReadOnly: 0
     m_SerializedLabels:
     - PreLoad
@@ -113,20 +113,32 @@ MonoBehaviour:
     m_SerializedLabels:
     - PreLoad
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: a65e0f8678d42ec479822d322f5ed4bc
-    m_Address: character1.sprite
+  - m_GUID: 36ce0f711dca51045944957331fa36c9
+    m_Address: character3.sprite
     m_ReadOnly: 0
     m_SerializedLabels:
     - PreLoad
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 8f52d1e07197f3744b5e54db1f9406a9
+  - m_GUID: b647ffeabd67e6049a0db694e2915820
     m_Address: character2.sprite
     m_ReadOnly: 0
     m_SerializedLabels:
     - PreLoad
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 5f299081d447f4943adde6eb19f134c9
-    m_Address: character3.sprite
+  - m_GUID: 68757d77136796042b1449b65d6b7eb2
+    m_Address: character1.sprite
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - PreLoad
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b885c7a5d8aa435459a1c6251faddd13
+    m_Address: 4.sprite
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - PreLoad
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a98a96625413308408c550a1c499ea07
+    m_Address: character4.sprite
     m_ReadOnly: 0
     m_SerializedLabels:
     - PreLoad

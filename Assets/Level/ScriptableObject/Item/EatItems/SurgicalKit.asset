@@ -24,8 +24,8 @@ MonoBehaviour:
   _name: SurgicalKit
   _sprite: {fileID: 21300000, guid: e6c6050ba03179b418b60ca73ed26eb4, type: 3}
   _prefab: {fileID: 7377542272545160608, guid: 644d446abc8f9c34d9a9be81e508fcab, type: 3}
-  _itemIconIndex: 9
+  _itemIconIndex: 17
   _useEffectSetStatus:
     _value: 0
-    _setStatusAction: 0
-    _characterStatus: 0
+    _setStatusAction: 1
+    _characterStatus: 5

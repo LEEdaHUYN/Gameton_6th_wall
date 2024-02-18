@@ -214,7 +214,7 @@ public class GameManager
             {
                 if (Utils.InRange(character.GetStatusValue(checkStatus),checkMinValue,checkMaxValue) )
                 {
-                    character.StatusText.Add(character.GetName() + noteText);
+                    character.StatusText.Add(character.GetName() + ": " + noteText);
                     character.DisplayStatusText.Add(displayText);
 
                 }

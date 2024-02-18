@@ -23,6 +23,8 @@ public class FoodCharacterItem : SerializedMonoBehaviour
 
         [SerializeField] private Button _handButton;
 
+        [SerializeField] private TMP_Text _nameText;
+        
         public Item GetSelectItem { get; private set; }
 
         public void InitSelectItem()
@@ -158,6 +160,11 @@ public class FoodCharacterItem : SerializedMonoBehaviour
         public void SetPersonInfoSprite(Sprite sprite)
         {
             _personInfo.SetPersonInfo(sprite);
+        }
+
+        public void SetPersonNameText(string text)
+        {
+            _nameText.text = text;
         }
 
     }

@@ -25,6 +25,7 @@ using Object = UnityEngine.Object;
                     infoItem.SetFoodBarDistribute(_foodBars.Select(bar => (IFoodDistribute)bar).ToList());
                     infoItem.SetPersonInfoSprite(character.GetCharacterPortrait);
                     infoItem.SetInventory(_itemInventory);
+                    infoItem.SetPersonNameText(character.GetName());
                      _characterList.Add(character,infoItem);
                 });
             }

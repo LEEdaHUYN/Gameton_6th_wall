@@ -14,10 +14,12 @@
 
         [SerializeField] private Button _yesButton;
         [SerializeField] private Button _noButton;
+        [SerializeField] private Image _image;
+        [SerializeField] private Sprite _defalutSprite;
         private Flag _trueFlag;
         private Flag _falseFlag;
         private bool _isSelectTrueFlag;
-        public void Init(string text, Flag trueFlag, Flag falseFlag, Action nextPageAction)
+        public void Init(string text, Flag trueFlag, Flag falseFlag, Action nextPageAction,string image)
         {
             _text.text = text;
             _trueFlag = trueFlag;
@@ -35,6 +37,17 @@
                 nextPageAction?.Invoke();
                 nextPageAction = null;
             });
+            if (image == null)
+            {
+                _image.sprite = _defalutSprite;
+            }
+            else
+            {
+                Managers.Resource.Load<Sprite>(image, (success) =>
+                {
+                    _image.sprite = success;
+                });
+            }
         }
 
         private void Awake()

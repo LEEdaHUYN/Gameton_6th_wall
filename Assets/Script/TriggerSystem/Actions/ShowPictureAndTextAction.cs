@@ -5,6 +5,6 @@
         public string imageNmae;
         public override void RunAction()
         {
-            Managers.Game.ShowPictureAndText(text,null);
+            Managers.Game.ShowPictureAndText(text,imageNmae);
         }
     }

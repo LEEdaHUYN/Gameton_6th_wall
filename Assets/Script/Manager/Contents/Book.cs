@@ -53,25 +53,25 @@ public class Book : MonoBehaviour
     }
 
 
-    public void AddPictureTextBox(string text, Sprite sprite)
+    public void AddPictureTextBox(string text, string image)
     {
         _pictureAndText.gameObject.SetActive(true);
         _selectors.Add("PictureAndText",_pictureAndText);
-        _pictureAndText.Init(text,sprite);
+        _pictureAndText.Init(text,image);
     }
-    public void AddYesOrNoBox(string text,Flag yesFlag, Flag noFlag)
+    public void AddYesOrNoBox(string text,Flag yesFlag, Flag noFlag,string image)
     { 
         _yesOrNoSelector.gameObject.SetActive(true);
       _selectors.Add("YesOrNoBox",_yesOrNoSelector);
-      _yesOrNoSelector.Init(text,yesFlag,noFlag,NextPage);
+      _yesOrNoSelector.Init(text,yesFlag,noFlag,NextPage,image);
     }
     
-    public void AddItemChoiceBox(string text, List<ItemFlag> itemFlagList)
+    public void AddItemChoiceBox(string text, List<ItemFlag> itemFlagList,string image = null)
     {
         //TODO
         _itemChoiceSelector.gameObject.SetActive(true);
         _selectors.Add("ItemChoiceBox",_itemChoiceSelector);
-        _itemChoiceSelector.Init(text, itemFlagList,NextPage);
+        _itemChoiceSelector.Init(text, itemFlagList,NextPage,image);
     }
     public void AddText(string text)
     {

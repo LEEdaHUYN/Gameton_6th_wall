@@ -362,6 +362,8 @@ MonoBehaviour:
   _text: {fileID: 112234359675221575}
   _yesButton: {fileID: 3226277095508781172}
   _noButton: {fileID: 2332448314072952844}
+  _image: {fileID: 112234360484520483}
+  _defalutSprite: {fileID: 21300000, guid: fa246593303d61c4992914449089c5d6, type: 3}
 --- !u!1 &112234360484520485
 GameObject:
   m_ObjectHideFlags: 0

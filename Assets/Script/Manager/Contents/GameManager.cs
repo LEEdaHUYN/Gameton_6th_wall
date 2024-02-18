@@ -326,19 +326,19 @@ public class GameManager
         
     }
     
-    public void ShowYesOrNoAction(string text, Flag yesFlag, Flag noFlag)
+    public void ShowYesOrNoAction(string text, Flag yesFlag, Flag noFlag,string image)
     {
-        _book.AddYesOrNoBox(text,yesFlag,noFlag);
+        _book.AddYesOrNoBox(text,yesFlag,noFlag,image);
     }
 
-    public void ShowItemChoice(string text, List<ItemFlag> itemFlagList)
+    public void ShowItemChoice(string text, List<ItemFlag> itemFlagList,string image)
     {
-        _book.AddItemChoiceBox(text, itemFlagList);
+         _book.AddItemChoiceBox(text, itemFlagList,image);
     }
 
-    public void ShowPictureAndText(string text, Sprite sprite = null)
+    public void ShowPictureAndText(string text, string image)
     {
-        _book.AddPictureTextBox(text,sprite);
+        _book.AddPictureTextBox(text,image);
     }
     #endregion
     #region FadeInOut

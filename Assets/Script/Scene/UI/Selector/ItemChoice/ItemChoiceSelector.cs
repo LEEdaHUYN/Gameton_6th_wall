@@ -3,20 +3,34 @@
     using Script.TriggerSystem;
     using TMPro;
     using UnityEngine;
+    using UnityEngine.UI;
     using Object = UnityEngine.Object;
 
     public class ItemChoiceSelector : Selector
     {
         [SerializeField] private TMP_Text _text;
         [SerializeField] private GameObject _content;
+        [SerializeField] private Image _image;
+        [SerializeField] private Sprite _defalutSprite;
         private List<ItemBox> _itemBoxList = new List<ItemBox>();
         private Action _nextPageAction;
         private List<ItemFlag> _itemFlags = new List<ItemFlag>();
-        public void Init(string text, List<ItemFlag> itemFlagList, Action nextPage)
+        public void Init(string text, List<ItemFlag> itemFlagList, Action nextPage, string image = null)
         {
             _nextPageAction = nextPage;
             _text.text = text;
             _itemFlags = itemFlagList;
+            if (image == null)
+            {
+                _image.sprite = _defalutSprite;
+            }
+            else
+            {
+                Managers.Resource.Load<Sprite>(image, (success) =>
+                {
+                    _image.sprite = success;
+                });
+            }
         }
 
         private void CreateItemBox(Item item,Flag flagAction,bool haveItem)

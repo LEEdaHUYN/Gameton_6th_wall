@@ -193,7 +193,7 @@ public class OpeningManager : MonoBehaviour
                             break;
                         case ("book"):
                             ShowImage(Startcanvas);
-                            HideIamge(Defaultcanvas);
+                           // HideIamge(Defaultcanvas);
 
                             hitoutline = hit.collider.GetComponent<Outline>();
                             hitoutline.OutlineColor = Color.green;
@@ -374,7 +374,7 @@ public class OpeningManager : MonoBehaviour
             return;
         }
        
-        
+        Managers.Back.SetClientCurrencyData(vc, Managers.Back.GetCurrencyData(vc) - price);
         Basket basket = new Basket();
         basket.itemName = id;
         basket.price = price;

@@ -16,11 +16,16 @@ public class CharSkillSelect : MonoBehaviour
 
     public void SelectSkill(SkilItem skill)
     {
+        if (_selectSkill.Contains(skill))
+        {
+            RemoveSkill(skill);
+            return;
+        }
+        
         if (_selectSkill.Count >= MAX_COUNT)
         {
-            var removeSkill = _selectSkill[MAX_COUNT - 1];
+            var removeSkill = _selectSkill[0];
             RemoveSkill(removeSkill);
-            return;
         }
         skill.SetChangeSelect(true);
         _selectSkill.Add(skill);
@@ -41,6 +46,15 @@ public class CharSkillSelect : MonoBehaviour
         
     }
 
+
+    public void OnEquipUpdate()
+    {
+        foreach (var skill in _selectSkill)
+        {
+            Managers.Back.UpdateItem(skill.GetItemInstanceId,"true");
+            //TODO GameManager Binding & Load Data GameManager에 어떻게 전달? 
+        }
+    }
     private async UniTaskVoid ShowStore()
     {
         var items = await  Managers.Back.GetStoreItems("SkillShop");

@@ -155,12 +155,6 @@
 
                 }, error => ErrorLog(error));
         }
-
-        
-
-
-        
-
         /// <summary>
         /// 아이템 구매 이거 써야 API콜 호출을 백번해도 괜찮음.
         /// </summary>
@@ -171,8 +165,6 @@
         /// <param name="failedCallBack">실패시 실행시킬 액션</param>
         public void PurchaseItem(string itemId,int price,string vc,Action successCallback,Action failedCallBack ,string StoreId = null)
         {
-   
-
             if (StoreId == null) StoreId = Define.PublicStore;
             PlayFabClientAPI.PurchaseItem(new PurchaseItemRequest()
             {
@@ -187,7 +179,10 @@
                     _userCurrecy[vc] -= price;
                     SyncCurrencyDataFromServer(() =>
                     {
-                        successCallback?.Invoke();
+                        GetUserInventory(() =>
+                        {
+                            successCallback?.Invoke();
+                        });
                     });
                 };
                 
@@ -212,7 +207,7 @@
         /// <param name="itemId"></param>
         /// <param name="equip"></param>
         /// <param name="callback"></param>
-        public void UpdateItem(string itemId, string equip,Action callback)
+        public void UpdateItem(string itemId, string equip,Action callback =null )
         {
 
             PlayFabClientAPI.ExecuteCloudScript(new ExecuteCloudScriptRequest()

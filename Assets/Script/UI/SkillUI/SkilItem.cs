@@ -22,14 +22,18 @@ public class SkilItem : MonoBehaviour
 
    [SerializeField]
    private bool _isSelected;
-
-   private ColorBlock _buttonColorBlock;
-
+   
    private ItemInstance _itemInstance;
+
+   public string GetItemInstanceId => _itemInstance.ItemInstanceId;
 
    private Dictionary<string, string> _itemCustomData = new();
 
    private CharSkillSelect _selector;
+
+   private Image _buttonColorImage;
+   
+   UnityAction clickAction;
    public void Init( string id, string text, uint cost,ItemInstance itemInstance,CharSkillSelect selector)
    {
 
@@ -59,27 +63,23 @@ public class SkilItem : MonoBehaviour
    }
    private void ButtonInit()
    {
+       _buttonColorImage = Utils.GetOrAddComponent<Image>(this.gameObject);
        _button = Utils.GetOrAddComponent<Button>(this.gameObject);
-       _buttonColorBlock = _button.colors;
-
-       UnityAction clickAction;
        if (_isHave)
        {
-           _buttonColorBlock.normalColor = _isSelected ? Color.yellow : Color.white;
+           SetColor();
            clickAction = SelectSkill;
        }
        else
        {
-           _buttonColorBlock.normalColor = Color.red;
+           _buttonColorImage.color = Color.red;
            clickAction = PurchaseSkill;
        }
-       _button.colors = _buttonColorBlock;
        _button.onClick.AddListener(clickAction);
    }
 
    public void SelectSkill()
    {
-       //TODO GameManager Noti
        SetColor();
        _selector.SelectSkill(this);
 
@@ -87,16 +87,7 @@ public class SkilItem : MonoBehaviour
 
    void SetColor()
    {
-       if (_isSelected)
-       {
-           _buttonColorBlock.selectedColor = Color.yellow;
-       }
-       else
-       {
-           _buttonColorBlock.selectedColor = Color.white;
-       }
-       
-       _button.colors = _buttonColorBlock;
+       _buttonColorImage.color = _isSelected ? Color.yellow : Color.white;
    }
    
    
@@ -110,7 +101,12 @@ public class SkilItem : MonoBehaviour
      Managers.Back.PurchaseItem(_skillId,(int)_cost,Define.Diamond, () =>
      {
          _isSelected = false;
+         _isHave = true;
          SetColor();
+         _button.onClick.RemoveAllListeners();
+         clickAction = SelectSkill;
+         _button.onClick.AddListener(clickAction);
+         _itemInstance = Managers.Back.GetItem(_skillId);
          Debug.Log("아이템 구매 ");
      }, () =>
      {

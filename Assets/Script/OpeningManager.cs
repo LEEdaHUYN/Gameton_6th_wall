@@ -34,9 +34,9 @@ public class OpeningManager : MonoBehaviour
     [SerializeField]
     private Image ItemDictionarycanvas;
     [SerializeField]
-    private TextMeshPro Coin;
+    private TextMeshProUGUI Coin;
     [SerializeField]
-    private TextMeshPro Dia;
+    private TextMeshProUGUI Dia;
 
     public LabelAnimatin Animationscript;
     public PlayBtnAnimation PlaybtnAnimation;
@@ -73,7 +73,21 @@ public class OpeningManager : MonoBehaviour
         Defaultcanvas.gameObject.SetActive(false);
         Toturial3dcanvas.gameObject.SetActive(false);
         Toturial2dcanvas.gameObject.SetActive(false);
-        //ItemDictionarycanvas.gameObject.SetActive(false);
+
+        string textCoin;
+        this.ObserveEveryValueChanged( _ => Managers.Back.GetCurrencyData(Define.Coin))
+            .Subscribe(_ =>
+             {
+                textCoin = Managers.Back.GetCurrencyData(Define.Coin).ToString();
+                Coin.text = textCoin;
+             });
+        string textDia;
+        this.ObserveEveryValueChanged(_ => Managers.Back.GetCurrencyData(Define.Diamond))
+            .Subscribe(_ =>
+            {
+                textDia = Managers.Back.GetCurrencyData(Define.Diamond).ToString();
+                Dia.text = textDia;
+            });
 
     }
     private void FixedUpdate()
@@ -350,6 +364,7 @@ public class OpeningManager : MonoBehaviour
             Managers.Game.AddItem("Water", 1, false);
         });
     }
+
 
     private void AddItem(string id, int price, string vc, Action action)
     {

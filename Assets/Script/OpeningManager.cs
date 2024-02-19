@@ -353,6 +353,13 @@ public class OpeningManager : MonoBehaviour
 
     private void AddItem(string id, int price, string vc, Action action)
     {
+        if (Managers.Back.GetCurrencyData(vc) < price)
+        {
+            Popup.SetActive(true);
+            return;
+        }
+       
+        
         Basket basket = new Basket();
         basket.itemName = id;
         basket.price = price;

@@ -33,7 +33,6 @@ public class CharSkillSelect : MonoBehaviour
 
     public void ButtonClickon(int a)
     {
-        
         Popup.gameObject.SetActive(true);
         Skillindex = a;
     }
@@ -43,7 +42,6 @@ public class CharSkillSelect : MonoBehaviour
         ColorBlock colorBlock = _buttons[Skillindex].colors;
         colorBlock.normalColor = Color.white;
         _buttons[Skillindex].colors = colorBlock;
-
     }
 
 

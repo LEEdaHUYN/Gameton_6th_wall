@@ -77,12 +77,14 @@ namespace dahyeon
             Set_FillAmount(0);
             text_CoolTime.gameObject.SetActive(false);
             red.gameObject.SetActive(false);
+            charcontrollscript.GoToTitleScene();
             this.transform.parent.gameObject.SetActive(false);
             if (sucess == false)
             {
+               
                 charcontrollscript.Myanimator.SetTrigger("exitfalse");
                 fadeout.DOFade(1f, 2.2f);
-                StartCoroutine(GoToTitleScene());
+                
             }
             else if (sucess == true)
             {
@@ -93,11 +95,7 @@ namespace dahyeon
 
         }
 
-        IEnumerator GoToTitleScene()
-        {
-            yield return new WaitForSeconds(3.5f);
-            Managers.Game.GameOver();
-        }
+  
 
 
         private void Trigger_Skill()

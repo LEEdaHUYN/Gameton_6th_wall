@@ -197,5 +197,14 @@ namespace dahyeon
             Managers.Scene.GetCurrentScene.GetUIScene().SceneChange();
         }
 
+        void NextScene2()
+        { 
+            Managers.Game.GameOver();
+        }
+
+        public void GoToTitleScene()
+        {
+            Invoke("NextScene2", 4f);
+        }
     }
 }

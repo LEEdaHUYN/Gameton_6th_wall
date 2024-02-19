@@ -96,6 +96,14 @@ namespace Script.Data
         }
     }
     #endregion
-    
+
+    #region SkillData
+
+    [Serializable]
+    public class SkillItemData
+    {
+        public string text;
+    }
+    #endregion
 
 }

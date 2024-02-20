@@ -62,8 +62,7 @@ public class GameManager
 
     public void UseItem(Item item, Character character, float amount = 0)
     {
-       
-            _inventory.UseCountableItem(item,amount,character);
+       _inventory.UseCountableItem(item,amount,character);
     }
     
     
@@ -459,7 +458,19 @@ public class GameManager
         var skillInventory = Managers.Back.GetClientUserInventory;
         foreach (var skill in skillInventory)
         {
+            if (skill.CustomData == null)
+            {
+                continue;
+            } 
             
+            if (skill.CustomData["equip"] == "true")
+            {
+                Managers.Resource.Load<ScriptableObject>(skill.ItemId, (success) =>
+                {
+                    var ability = (IAbilityRun)success;
+                    AddAbility(ability);
+                });
+            }
         }
     }
 

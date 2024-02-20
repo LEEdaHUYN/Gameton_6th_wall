@@ -15,6 +15,8 @@
             InitCurrencyData();
         }
 
+        public bool IsLogin = false;
+
         #region  Login
 
         public void OnLogin(Action callback)
@@ -29,6 +31,7 @@
             //맨 마지막에 
             SyncCurrencyDataFromServer(() =>
             {
+                IsLogin = true;
                 callback?.Invoke();
             });
      

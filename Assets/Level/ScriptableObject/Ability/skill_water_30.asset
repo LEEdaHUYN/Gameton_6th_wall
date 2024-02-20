@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b8ca9523682347519b6687210a4e1fe2, type: 3}
-  m_Name: CriticalPatientStatusAbility
+  m_Script: {fileID: 11500000, guid: d79b7933042643e79e877ff6a2d7946e, type: 3}
+  m_Name: skill_water_30
   m_EditorClassIdentifier: 
   serializationData:
     SerializedFormat: 2
@@ -21,5 +21,7 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes: []
-  statusList: 040000000600000005000000
-  addPercent: 5
+  _itemId: skill_water_30
+  itemName: Water
+  amount: 1
+  addPercent: 30

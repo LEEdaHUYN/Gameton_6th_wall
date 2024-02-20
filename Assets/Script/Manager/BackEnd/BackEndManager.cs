@@ -1,6 +1,7 @@
 ﻿
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using Cysharp.Threading.Tasks;
     using PlayFab;
     using PlayFab.ClientModels;
@@ -13,6 +14,8 @@
             authSerivce = new PlayFabAuthService();
             InitCurrencyData();
         }
+
+        public bool IsLogin = false;
 
         #region  Login
 
@@ -28,6 +31,7 @@
             //맨 마지막에 
             SyncCurrencyDataFromServer(() =>
             {
+                IsLogin = true;
                 callback?.Invoke();
             });
      
@@ -112,21 +116,48 @@
         /// </summary>
         /// <param name="storeId">상점 ID </param>
         /// <returns></returns>
-        public async UniTask<List<StoreItem>> GetStoreItems(string storeId)
+        public async UniTask<GetStoreItemsResult> GetStoreItems(string storeId)
         {
-            List<StoreItem> storeItems = new List<StoreItem>();
+            GetStoreItemsResult storeItems = new GetStoreItemsResult();
             bool isComplated = false;
             PlayFabClientAPI.GetStoreItems(new GetStoreItemsRequest() {
                 StoreId = storeId
-            }, Success => {
-                storeItems = Success.Store;
+            }, Success =>
+            {
+                storeItems = Success;
                 isComplated = true;
             },error=>ErrorLog(error));
             await UniTask.WaitUntil(() => { return isComplated == true; });
             return storeItems;
         }
+        
+        private List<ItemInstance> _userInventory = new List<ItemInstance>();
+        public List<ItemInstance> GetClientUserInventory => _userInventory;
+
+        public ItemInstance GetItem(string itemId)
+        {
+            return _userInventory.Find(item => item.ItemId == itemId);
+        }
+        /// <summary>
+        /// 현재 인벤토리 가져오기.
+        /// </summary>
+        /// <param name="callback"></param>
+        public void GetUserInventory(Action callback = null)
+        {
+
+            PlayFabClientAPI.GetUserInventory(new GetUserInventoryRequest { },
+                result =>
+                {
+                    _userInventory = result.Inventory;
+                    //foreach(var item in userInventory)
+                    //{
+                    //    Debug.Log(item.ItemClass + "," + item.RemainingUses);
+                    //}
+                    callback?.Invoke();
 
 
+                }, error => ErrorLog(error));
+        }
         /// <summary>
         /// 아이템 구매 이거 써야 API콜 호출을 백번해도 괜찮음.
         /// </summary>
@@ -137,8 +168,6 @@
         /// <param name="failedCallBack">실패시 실행시킬 액션</param>
         public void PurchaseItem(string itemId,int price,string vc,Action successCallback,Action failedCallBack ,string StoreId = null)
         {
-   
-
             if (StoreId == null) StoreId = Define.PublicStore;
             PlayFabClientAPI.PurchaseItem(new PurchaseItemRequest()
             {
@@ -146,32 +175,58 @@
                 Price = price,
                 VirtualCurrency = vc,
                 StoreId = StoreId
-            }, success => {
-                // TODO 상점 구현? 열쇠소모도 이걸로 해야 할 듯.
-                // for (int i = 0; i < success.Items.Count; i++)
-                // {
-                //     int haveQuantity = FindItemQuantity(success.Items[i].ItemId);
-                //     if(haveQuantity == 0)
-                //     {
-                //         userInventory.Add(success.Items[i]);
-                //     }
-                //     else
-                //     {
-                //         int idx = FindItemIdx(success.Items[i].ItemId);
-                //         userInventory[idx].RemainingUses = success.Items[i].RemainingUses;
-                //     }
-                //
-                // }
-                _userCurrecy[vc] -= price;
-                SyncCurrencyDataFromServer(() =>
+            }, success =>
+            {
+                Action callbackAction = () =>
                 {
-                    successCallback?.Invoke(); 
-                });
+                    _userCurrecy[vc] -= price;
+                    SyncCurrencyDataFromServer(() =>
+                    {
+                        GetUserInventory(() =>
+                        {
+                            successCallback?.Invoke();
+                        });
+                    });
+                };
+                
+                if (success.Items[0].ItemClass == "skill")
+                {
+                    var itemId = success.Items[0].ItemInstanceId;
+                    UpdateItem(itemId,"false",callbackAction);
+                    return;
+                } 
+                callbackAction?.Invoke();
+                
             }, error =>
             {
                 failedCallBack?.Invoke();
                 ErrorLog(error);
             });
+        }
+
+        /// <summary>
+        /// https://community.playfab.com/questions/4299/cloud-script-and-updating-user-data.html
+        /// </summary>
+        /// <param name="itemId"></param>
+        /// <param name="equip"></param>
+        /// <param name="callback"></param>
+        public void UpdateItem(string itemId, string equip,Action callback =null )
+        {
+
+            PlayFabClientAPI.ExecuteCloudScript(new ExecuteCloudScriptRequest()
+            {
+                FunctionName = "UpdateSkill", // Arbitrary function name (must exist in your uploaded cloud.js file)
+                FunctionParameter = new Dictionary<string,object> { {"ItemInstanceId", itemId }, { "equip", equip }},
+                GeneratePlayStreamEvent = true, // Optional - Shows this event in PlayStream
+            }, success =>
+            {
+
+                foreach (var log in success.Logs)
+                {
+                    Debug.Log(log.Message);
+                }
+                callback?.Invoke();
+            }, error => { ErrorLog(error); });
         }
         #endregion
         

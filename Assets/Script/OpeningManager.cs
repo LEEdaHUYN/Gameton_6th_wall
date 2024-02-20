@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using TMPro;
 using UniRx;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class OpeningManager : MonoBehaviour
@@ -33,9 +34,9 @@ public class OpeningManager : MonoBehaviour
     [SerializeField]
     private Image ItemDictionarycanvas;
     [SerializeField]
-    private TextMeshPro Coin;
+    private TextMeshProUGUI Coin;
     [SerializeField]
-    private TextMeshPro Dia;
+    private TextMeshProUGUI Dia;
 
     public LabelAnimatin Animationscript;
     public PlayBtnAnimation PlaybtnAnimation;
@@ -72,7 +73,21 @@ public class OpeningManager : MonoBehaviour
         Defaultcanvas.gameObject.SetActive(false);
         Toturial3dcanvas.gameObject.SetActive(false);
         Toturial2dcanvas.gameObject.SetActive(false);
-        //ItemDictionarycanvas.gameObject.SetActive(false);
+
+        string textCoin;
+        this.ObserveEveryValueChanged( _ => Managers.Back.GetCurrencyData(Define.Coin))
+            .Subscribe(_ =>
+             {
+                textCoin = Managers.Back.GetCurrencyData(Define.Coin).ToString();
+                Coin.text = textCoin;
+             });
+        string textDia;
+        this.ObserveEveryValueChanged(_ => Managers.Back.GetCurrencyData(Define.Diamond))
+            .Subscribe(_ =>
+            {
+                textDia = Managers.Back.GetCurrencyData(Define.Diamond).ToString();
+                Dia.text = textDia;
+            });
 
     }
     private void FixedUpdate()
@@ -115,88 +130,101 @@ public class OpeningManager : MonoBehaviour
         PlaybtnAnimation.PlayLabelShow();
     }
 
-
+    bool IsPointerOverUIObject()
+    {
+        PointerEventData eventDataCurrentPosition = new PointerEventData(EventSystem.current);
+        eventDataCurrentPosition.position = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
+        List<RaycastResult> results = new List<RaycastResult>();
+        EventSystem.current.RaycastAll(eventDataCurrentPosition, results);
+        return results.Count > 0;
+    }
     private void MobileTouch()
     {
         if (Input.GetMouseButtonDown(0))
         {
             Vector3 touchPos;
             Ray ray;
-            RaycastHit hit;
+            RaycastHit[] hits;
 
             touchPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-            if (Physics.Raycast(ray, out hit))
+            hits = Physics.RaycastAll(ray);
+
+            foreach (RaycastHit hit in hits)
             {
-                Debug.DrawLine(ray.origin, hit.point, Color.red, 1.5f);
-
-                switch (hit.collider.name)
+                // UI를 무시하고 처리
+                if (!IsPointerOverUIObject())
                 {
-                    case ("medkit"):
-                        ShowImage(Store_coincanvas);
-                        HideIamge(Defaultcanvas);
-                        hitoutline = hit.collider.GetComponent<Outline>();
-                        hitoutline.OutlineColor = Color.green;
-                        StartCoroutine(TurnoffOutline(hit.collider));
-                        break;
-                    case ("waterbottle"):
-                        ShowImage(Store_skillcanvas);
-                        HideIamge(Defaultcanvas);
+                    Debug.DrawLine(ray.origin, hit.point, Color.red, 1.5f);
 
-                        hitoutline = hit.collider.GetComponent<Outline>();
-                        hitoutline.OutlineColor = Color.green;
-                        StartCoroutine(TurnoffOutline(hit.collider));
-                        break;
-                    case ("default"):
-                        ShowImage(Creditcanvas);
-                        HideIamge(Defaultcanvas);
+                    switch (hit.collider.name)
+                    {
+                        case ("medkit"):
+                            ShowImage(Store_coincanvas);
+                            HideIamge(Defaultcanvas);
+                            hitoutline = hit.collider.GetComponent<Outline>();
+                            hitoutline.OutlineColor = Color.green;
+                            StartCoroutine(TurnoffOutline(hit.collider));
+                            break;
+                        case ("waterbottle"):
+                            ShowImage(Store_skillcanvas);
+                            HideIamge(Defaultcanvas);
 
-                        hitoutline = hit.collider.GetComponent<Outline>();
-                        hitoutline.OutlineColor = Color.green;
-                        StartCoroutine(TurnoffOutline(hit.collider));
-                        break;
-                    case ("can"):
-                        ShowImage(Roulettecanvas);
-                        HideIamge(Defaultcanvas);
+                            hitoutline = hit.collider.GetComponent<Outline>();
+                            hitoutline.OutlineColor = Color.green;
+                            StartCoroutine(TurnoffOutline(hit.collider));
+                            break;
+                        case ("default"):
+                            ShowImage(Creditcanvas);
+                            HideIamge(Defaultcanvas);
 
-                        hitoutline = hit.collider.GetComponent<Outline>();
-                        hitoutline.OutlineColor = Color.green;
-                        StartCoroutine(TurnoffOutline(hit.collider));
-                        break;
-                    case ("book"):
-                        ShowImage(Startcanvas);
-                        HideIamge(Defaultcanvas);
+                            hitoutline = hit.collider.GetComponent<Outline>();
+                            hitoutline.OutlineColor = Color.green;
+                            StartCoroutine(TurnoffOutline(hit.collider));
+                            break;
+                        case ("can"):
+                            ShowImage(Roulettecanvas);
+                            HideIamge(Defaultcanvas);
 
-                        hitoutline = hit.collider.GetComponent<Outline>();
-                        hitoutline.OutlineColor = Color.green;
-                        StartCoroutine(TurnoffOutline(hit.collider));
-                        break;
-                    case ("Flare"):
-                        ShowImage(Toturial3dcanvas);
-                        HideIamge(Defaultcanvas);
+                            hitoutline = hit.collider.GetComponent<Outline>();
+                            hitoutline.OutlineColor = Color.green;
+                            StartCoroutine(TurnoffOutline(hit.collider));
+                            break;
+                        case ("book"):
+                            ShowImage(Startcanvas);
+                           // HideIamge(Defaultcanvas);
 
-                        hitoutline = hit.collider.GetComponent<Outline>();
-                        hitoutline.OutlineColor = Color.green;
-                        StartCoroutine(TurnoffOutline(hit.collider));
-                        break;
-                    case ("GuitarA"):
-                        ShowImage(Toturial2dcanvas);
-                        HideIamge(Defaultcanvas);
+                            hitoutline = hit.collider.GetComponent<Outline>();
+                            hitoutline.OutlineColor = Color.green;
+                            StartCoroutine(TurnoffOutline(hit.collider));
+                            break;
+                        case ("Flare"):
+                            ShowImage(Toturial3dcanvas);
+                            HideIamge(Defaultcanvas);
 
-                        hitoutline = hit.collider.GetComponent<Outline>();
-                        hitoutline.OutlineColor = Color.green;
-                        StartCoroutine(TurnoffOutline(hit.collider));
-                        break;
-                    default:
+                            hitoutline = hit.collider.GetComponent<Outline>();
+                            hitoutline.OutlineColor = Color.green;
+                            StartCoroutine(TurnoffOutline(hit.collider));
+                            break;
+                        case ("GuitarA"):
+                            ShowImage(Toturial2dcanvas);
+                            HideIamge(Defaultcanvas);
 
-                        break;
+                            hitoutline = hit.collider.GetComponent<Outline>();
+                            hitoutline.OutlineColor = Color.green;
+                            StartCoroutine(TurnoffOutline(hit.collider));
+                            break;
+                        default:
+
+                            break;
+                    }
                 }
             }
-            else
-            {
-                Debug.DrawLine(ray.origin, touchPos, Color.yellow, 1.5f);
-            }
+            // else
+            // {
+            //     Debug.DrawLine(ray.origin, touchPos, Color.yellow, 1.5f);
+            // }
 
         }
 
@@ -337,8 +365,16 @@ public class OpeningManager : MonoBehaviour
         });
     }
 
+
     private void AddItem(string id, int price, string vc, Action action)
     {
+        if (Managers.Back.GetCurrencyData(vc) < price)
+        {
+            Popup.SetActive(true);
+            return;
+        }
+       
+        Managers.Back.SetClientCurrencyData(vc, Managers.Back.GetCurrencyData(vc) - price);
         Basket basket = new Basket();
         basket.itemName = id;
         basket.price = price;

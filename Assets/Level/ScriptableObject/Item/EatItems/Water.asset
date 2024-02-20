@@ -24,7 +24,7 @@ MonoBehaviour:
   _name: Water
   _sprite: {fileID: 21300000, guid: 6fbb2138966499d41b9dd8fee0c74a45, type: 3}
   _prefab: {fileID: 2026532587686286578, guid: 3eaf85c03703c3c449c1d9df708a273c, type: 3}
-  _itemIconIndex: 27
+  _itemIconIndex: 34
   _useEffectSetStatus:
     _value: 2
     _setStatusAction: 2

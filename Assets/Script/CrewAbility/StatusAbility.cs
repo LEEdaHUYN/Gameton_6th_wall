@@ -12,6 +12,12 @@
         private float addPercent;
         public override void RunAbility()
         {
+            float randomValue = Random.Range(0f, 101f);
+
+            bool isAdd = randomValue <= addPercent;
+            if (!isAdd)
+                return;
+            
             var characters = Managers.Game.Characters;
             var randIdx = Random.Range(0, characters.Count);
             foreach (var status in statusList)

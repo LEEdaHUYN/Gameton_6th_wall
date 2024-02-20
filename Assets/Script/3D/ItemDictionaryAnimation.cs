@@ -12,17 +12,21 @@ public class ItemDictionaryAnimation : MonoBehaviour
     {
         for (int i = 1; i < Iteminformation.Length; i++)
         {
-            Iteminformation[i].gameObject.SetActive(false);
-            Iteminformation[i].rectTransform.localScale= Vector2.zero;
+            Iteminformation[i].gameObject.SetActive(true);
+            Iteminformation[i].rectTransform.localScale= new Vector2(1f,1f);
         }
+        Instantiate(Iteminformation[0], itemspon.rectTransform);
+        ShowImage(Iteminformation[0]);
     }
 
     public void ShowInformation(int currentPage)
     {
-        HideIamge(Iteminformation[currentPage - 1]);
+        //HideIamge(Iteminformation[currentPage - 1]);
         //Destroy(Iteminformation[currentPage-1]);
-        Instantiate(Iteminformation[currentPage],itemspon.rectTransform , itemspon.rectTransform);
-        ShowImage(Iteminformation[currentPage]);
+        Iteminformation[currentPage-1].gameObject.SetActive(false);
+        Instantiate(Iteminformation[currentPage],itemspon.rectTransform);
+        Iteminformation[currentPage].gameObject.SetActive(true);
+        //ShowImage(Iteminformation[currentPage]);
     }
 
     void HideIamge(Image canvas)
@@ -37,6 +41,7 @@ public class ItemDictionaryAnimation : MonoBehaviour
             canvas.gameObject.SetActive(false);
         });
     }
+
     void ShowImage(Image canvas)
     {
         canvas.gameObject.transform.localScale = Vector3.one * 0.2f;

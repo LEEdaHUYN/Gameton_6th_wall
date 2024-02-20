@@ -24,7 +24,7 @@ MonoBehaviour:
   _name: CanFood
   _sprite: {fileID: 21300000, guid: 3cb545f2bf36aee439d855bd816690e1, type: 3}
   _prefab: {fileID: 1896720402374228, guid: baa8d2066558c9a4ebcd1853c4c3ac4e, type: 3}
-  _itemIconIndex: 20
+  _itemIconIndex: 35
   _useEffectSetStatus:
     _value: 2
     _setStatusAction: 2

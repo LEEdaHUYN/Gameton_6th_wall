@@ -77,6 +77,28 @@ public class UI_TestScene :UI_Scene
                 {
                     Managers.Game.AddItem(success,1);
                 });
+               
+                
+                if (!Managers.Back.IsLogin)
+                {
+                    Managers.Back.OnLogin(() =>
+                    {
+                        Managers.Back.GetUserInventory(() =>
+                        {
+                            Managers.Game.EquipSkillUpdate();
+                        });
+                    });
+                }
+                else
+                {
+                    Managers.Back.GetUserInventory(() =>
+                    {
+                        Managers.Game.EquipSkillUpdate();
+                    });
+                }
+          
+                
+               
             }
             
         });

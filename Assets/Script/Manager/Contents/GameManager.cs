@@ -410,6 +410,7 @@ public class GameManager
         FlagList.Clear();
         _endingList.Clear();
         _abilityList.Clear();
+        _time = 60f;
         Managers.Scene.LoadScene(Define.Scene.TitleScene);
     }
 
@@ -472,6 +473,13 @@ public class GameManager
                 });
             }
         }
+    }
+
+    private float _time = 60f;
+    public float GetTime => _time;
+    public void SetTime(float time)
+    {
+        _time = time;
     }
 
 }

@@ -129,7 +129,7 @@
         }
         
         private List<ItemInstance> _userInventory = new List<ItemInstance>();
-        
+        public List<ItemInstance> GetClientUserInventory => _userInventory;
 
         public ItemInstance GetItem(string itemId)
         {
@@ -217,7 +217,11 @@
                 GeneratePlayStreamEvent = true, // Optional - Shows this event in PlayStream
             }, success =>
             {
-                Debug.Log(success);
+
+                foreach (var log in success.Logs)
+                {
+                    Debug.Log(log.Message);
+                }
                 callback?.Invoke();
             }, error => { ErrorLog(error); });
         }

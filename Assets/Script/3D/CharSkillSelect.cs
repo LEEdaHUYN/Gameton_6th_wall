@@ -14,6 +14,8 @@ public class CharSkillSelect : MonoBehaviour
     
     private const int MAX_COUNT = 3;
 
+    private List<SkilItem> _allSkillItem = new();
+
     public void SelectSkill(SkilItem skill)
     {
         if (_selectSkill.Contains(skill))
@@ -27,13 +29,13 @@ public class CharSkillSelect : MonoBehaviour
             var removeSkill = _selectSkill[0];
             RemoveSkill(removeSkill);
         }
-        skill.SetChangeSelect(true);
+        skill.UpdateEquipSelect(true);
         _selectSkill.Add(skill);
     }
 
     private void RemoveSkill(SkilItem item)
     {
-        item.SetChangeSelect(false);
+        item.UpdateEquipSelect(false);
         _selectSkill.Remove(item);
     }
     
@@ -49,10 +51,9 @@ public class CharSkillSelect : MonoBehaviour
 
     public void OnEquipUpdate()
     {
-        foreach (var skill in _selectSkill)
+        foreach (var skill in _allSkillItem)
         {
-            Managers.Back.UpdateItem(skill.GetItemInstanceId,"true");
-            //TODO GameManager Binding & Load Data GameManager에 어떻게 전달? 
+            skill.SelectSkillServerUpdate();
         }
     }
     private async UniTaskVoid ShowStore()
@@ -66,6 +67,9 @@ public class CharSkillSelect : MonoBehaviour
           var customData = item.CustomData;
           var itemData = JsonConvert.DeserializeObject<SkillItemData>(customData.ToString());
           itemObject.Init(item.ItemId,itemData.text,item.VirtualCurrencyPrices[Define.Diamond],itemInstance,this);
+         
+          if(itemInstance != null)
+            _allSkillItem.Add(itemObject);
         }
         
     }

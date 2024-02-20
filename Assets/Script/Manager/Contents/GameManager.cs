@@ -454,4 +454,13 @@ public class GameManager
         }
     }
 
+    public void EquipSkillUpdate()
+    {
+        var skillInventory = Managers.Back.GetClientUserInventory;
+        foreach (var skill in skillInventory)
+        {
+            
+        }
+    }
+
 }

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: skill_antidote_10
   m_EditorClassIdentifier: 
   serializationData:
-    SerializedFormat: 2
+    SerializedFormat: 0
     SerializedBytes: 
     ReferencedUnityObjects: []
     SerializedBytesString: 
@@ -22,6 +22,6 @@ MonoBehaviour:
     PrefabModifications: []
     SerializationNodes: []
   _itemId: skill_antidote_10
-  itemName: Card
+  itemName: detoxicant
   amount: 1
   addPercent: 10

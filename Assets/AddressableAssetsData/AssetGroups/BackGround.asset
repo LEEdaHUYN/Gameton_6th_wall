@@ -264,7 +264,7 @@ MonoBehaviour:
     - PreLoad
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 097d0af334bcf824e85e4ccc0a12d054
-    m_Address: rockside.sprite
+    m_Address: rockslide.sprite
     m_ReadOnly: 0
     m_SerializedLabels:
     - PreLoad

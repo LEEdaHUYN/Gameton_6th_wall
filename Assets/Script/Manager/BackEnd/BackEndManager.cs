@@ -15,6 +15,8 @@
             InitCurrencyData();
         }
 
+        public bool IsLogin = false;
+
         #region  Login
 
         public void OnLogin(Action callback)
@@ -29,6 +31,7 @@
             //맨 마지막에 
             SyncCurrencyDataFromServer(() =>
             {
+                IsLogin = true;
                 callback?.Invoke();
             });
      
@@ -129,7 +132,7 @@
         }
         
         private List<ItemInstance> _userInventory = new List<ItemInstance>();
-        
+        public List<ItemInstance> GetClientUserInventory => _userInventory;
 
         public ItemInstance GetItem(string itemId)
         {
@@ -217,7 +220,11 @@
                 GeneratePlayStreamEvent = true, // Optional - Shows this event in PlayStream
             }, success =>
             {
-                Debug.Log(success);
+
+                foreach (var log in success.Logs)
+                {
+                    Debug.Log(log.Message);
+                }
                 callback?.Invoke();
             }, error => { ErrorLog(error); });
         }

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using PlayFab.ClientModels;
 using TMPro;
 using UnityEngine;
@@ -46,8 +47,14 @@ public class SkilItem : MonoBehaviour
       _selector = selector;
       ItemInit();
       ButtonInit();
+      if (isLoadEquipSelect)
+      {
+          _selector.SelectSkill(this);
+      }
    }
 
+   private bool isLoadEquipSelect = false;
+   private string equipState = "false";
    private void ItemInit(){
        if (_itemInstance == null)
        {
@@ -56,7 +63,8 @@ public class SkilItem : MonoBehaviour
        _itemCustomData = _itemInstance.CustomData;
        if (_itemCustomData["equip"] == "true")
        {
-           _isSelected = true;
+           equipState = "true";
+           isLoadEquipSelect = true;
        }
        _isHave = true;
 
@@ -91,11 +99,24 @@ public class SkilItem : MonoBehaviour
    }
    
    
-   public void SetChangeSelect(bool select)
+   public void UpdateEquipSelect(bool select)
    {
+       equipState = select ? "true" : "false";
        _isSelected = select;
        SetColor();
    }
+
+
+   public void SelectSkillServerUpdate()
+   {
+       if (_itemCustomData["equip"].Equals(equipState))
+       {
+           return;
+       }
+       Managers.Back.UpdateItem(_itemInstance.ItemInstanceId,equipState);
+       
+   }
+   
    private void PurchaseSkill()
    {
      Managers.Back.PurchaseItem(_skillId,(int)_cost,Define.Diamond, () =>

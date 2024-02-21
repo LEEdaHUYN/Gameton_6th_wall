@@ -78,11 +78,16 @@ namespace dahyeon
 
             Debug.DrawRay(transform.position, transform.forward , Color.yellow);
             Arrow.transform.LookAt(Particle[2].transform.position);
+         
         }
 
         private void Update()
         {
-            StartCoroutine("CameraOnOff");
+            StartCoroutine("CameraOnOff");   
+            if(clockscript.time_current >= 50f)
+            {
+                Arrow.gameObject.SetActive(true);
+            }
         }
 
         private void CharacterMove()

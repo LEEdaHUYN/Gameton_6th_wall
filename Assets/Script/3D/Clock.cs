@@ -23,7 +23,7 @@ namespace dahyeon
         public GameObject Warming;
 
         private float time_cooltime = 60f;
-        private float time_current;
+        public float time_current;
         private float time_start;
         public bool isEnded = false;
         public bool sucess = false;

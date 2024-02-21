@@ -374,14 +374,14 @@ public class OpeningManager : MonoBehaviour
     }
     public void OnClickClick5sec()
     {
-        AddItem("Water", 3000, Define.Coin, () =>
+        AddItem("FiveSecond", 3000, Define.Coin, () =>
         {
             Managers.Game.SetTime(65f);
         });
     }
     public void OnClickClick3sec()
     {
-        AddItem("Water", 1500, Define.Coin, () =>
+        AddItem("OneSecond", 1500, Define.Coin, () =>
         {
             Managers.Game.SetTime(63f);
         });

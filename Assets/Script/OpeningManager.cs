@@ -37,6 +37,8 @@ public class OpeningManager : MonoBehaviour
     private TextMeshProUGUI Coin;
     [SerializeField]
     private TextMeshProUGUI Dia;
+    [SerializeField]
+    private Image[] Key;
 
     public LabelAnimatin Animationscript;
     public PlayBtnAnimation PlaybtnAnimation;
@@ -62,7 +64,14 @@ public class OpeningManager : MonoBehaviour
 
     List<Basket> basketList = new List<Basket>();
 
+    private void Awake()
+    {
+        for (int i = 0; i < 5; i++)
+        {
+            Key[i].gameObject.SetActive(false);
+        }
 
+    }
 
     private void Start()
     {
@@ -89,11 +98,14 @@ public class OpeningManager : MonoBehaviour
                 textDia = Managers.Back.GetCurrencyData(Define.Diamond).ToString();
                 Dia.text = textDia;
             });
-        this.ObserveEveryValueChanged(_ => Managers.Back.GetCurrencyData(Define.Diamond))
+        this.ObserveEveryValueChanged(_ => Managers.Back.GetCurrencyData(Define.Key))
             .Subscribe(_ =>
             {
-                textDia = Managers.Back.GetCurrencyData(Define.Diamond).ToString();
-                Dia.text = textDia;
+                int a = Managers.Back.GetCurrencyData(Define.Key);
+                for(int i = 0; i < a; i++)
+                {
+                    Key[i].gameObject.SetActive(true);
+                }
             });
 
     }
@@ -387,6 +399,10 @@ public class OpeningManager : MonoBehaviour
         });
     }
 
+    public void OnCheatKey()
+    {
+        Managers.Back.AddCurrency(5, Define.Key);
+    }
 
     private void AddItem(string id, int price, string vc, Action action)
     {

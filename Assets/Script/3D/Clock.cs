@@ -30,14 +30,18 @@ namespace dahyeon
 
         public bool startornot = false;
 
-        void Start()
+        private void Awake()
         {
+             time_cooltime = Managers.Game.GetTime;
+            text_CoolTime.text = Managers.Game.GetTime.ToString();
+        }
+        void Start()
+        { 
             Init_UI();
             Trigger_Skill();
             red.gameObject.SetActive(false);
             red.DOFade(0.0f, 1).SetLoops(-1, loopType);
-            text_CoolTime.text = Managers.Game.GetTime.ToString();
-            time_cooltime = Managers.Game.GetTime;
+            Debug.Log(time_cooltime);
             
         }
 

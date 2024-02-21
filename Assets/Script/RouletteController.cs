@@ -13,7 +13,7 @@ public class RouletteController : MonoBehaviour
 
     public void TrunRoulette()
     {
-        this.rotspeed = 40f;
+        Managers.Ad.RunRewardedAd(() => { this.rotspeed = 40f; },Admob.rulletId); 
     }
 
     // Update is called once per frame

@@ -1,4 +1,5 @@
 ﻿
+using GoogleMobileAds.Api;
 using Script.Manager.Core;
 
 public class Managers : Singleton<Managers>
@@ -59,10 +60,23 @@ public class Managers : Singleton<Managers>
         get { return instance?._backEnd; }
     }
 
+    public AdManager _ad = new AdManager();
+
+    public static AdManager Ad
+    {
+        get { return instance?._ad; }
+    }
+    
+    public static bool isAdmobLoad = false;
     protected override void Awake()
     {
         base.Awake();
         _sound = Utils.GetOrAddComponent<SoundManager>(this.gameObject);
+        // 애드몹 초기화
+        MobileAds.Initialize(initStatus =>
+        {
+            isAdmobLoad = true;
+        });
     }
 }        
 

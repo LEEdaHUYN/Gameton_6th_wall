@@ -48,6 +48,28 @@
             _userCurrecy.Add(Define.Key,0);
         }
         
+        
+        
+        /// <summary>
+        /// 재화 추가
+        /// </summary>
+        /// <param name="amount"> 얼마만큼 추가할 것인지</param>
+        /// <param name="vc">VirtualCurrency ID</param>
+        /// <param name="callback">재화 추가후 실행할 액션</param>
+        public void AddCurrency(int amount, string vc,Action callback = null)
+        {
+            PlayFabClientAPI.ExecuteCloudScript(new ExecuteCloudScriptRequest()
+            {
+                FunctionName = "addCurrency", // Arbitrary function name (must exist in your uploaded cloud.js file)
+                FunctionParameter = new Dictionary<string,object> { {"amount", amount }, { "vc", vc }},
+                GeneratePlayStreamEvent = true, // Optional - Shows this event in PlayStream
+            }, success =>
+            {
+                callback?.Invoke();
+            }, error => { ErrorLog(error); });
+        }
+
+        
         /// <summary>
         /// 현재 재화 가져오기
         /// </summary>
@@ -71,24 +93,24 @@
             GetCurrencyDataBackEnd(callback).Forget();
         }
 
-        public void AddCurrency(string id,int amount,Action callback = null)
-        {
-            PlayFabClientAPI.AddUserVirtualCurrency(new AddUserVirtualCurrencyRequest()
-                {
-                    Amount = amount,
-                    VirtualCurrency = id
-                }, 
-                success =>
-                {
-                    _userCurrecy[id] += amount;
-                    callback?.Invoke();
-                }, error =>
-            {
-                ErrorLog(error);
-            });
-            //_userCurrecy[id] += amount;
-            
-        }
+        // public void AddCurrency(string id,int amount,Action callback = null)
+        // {
+        //     PlayFabClientAPI.AddUserVirtualCurrency(new AddUserVirtualCurrencyRequest()
+        //         {
+        //             Amount = amount,
+        //             VirtualCurrency = id
+        //         }, 
+        //         success =>
+        //         {
+        //             _userCurrecy[id] += amount;
+        //             callback?.Invoke();
+        //         }, error =>
+        //     {
+        //         ErrorLog(error);
+        //     });
+        //     //_userCurrecy[id] += amount;
+        //     
+        // }
         private async UniTaskVoid GetCurrencyDataBackEnd(Action callback = null)
         {
             bool isResult = false;

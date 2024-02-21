@@ -108,7 +108,7 @@ public class GameManager
             ShowCharacterText();
             EndNote();
         });
-
+        Managers.Back.AddCurrency(80,Define.Coin);
     }
 
     private void CharacterNextDayStatus()

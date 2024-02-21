@@ -1,11 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class RouletteController : MonoBehaviour
 {
+    //1 sodlfcoin, 2 dia, 3 key
     float rotspeed = 0f;
     // Start is called before the first frame update
+    public Image[] CheckPanel;
     void Start()
     {
         

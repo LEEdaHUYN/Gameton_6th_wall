@@ -189,7 +189,7 @@ namespace dahyeon
                 {
                     inventory.ClearSlot();
                     Particle[2].Play();
-                    Managers.Sound.PlaySFX("Boat");
+                    Managers.Sound.PlaySFX("Boat" , 0.4f);
                 }
 
                 clockscript.sucess = clockscript.isEnded;

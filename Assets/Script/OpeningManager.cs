@@ -102,6 +102,10 @@ public class OpeningManager : MonoBehaviour
             .Subscribe(_ =>
             {
                 int a = Managers.Back.GetCurrencyData(Define.Key);
+                if (a > 5)
+                {
+                    a = 5;
+                }
                 for(int i = 0; i < a; i++)
                 {
                     Key[i].gameObject.SetActive(true);

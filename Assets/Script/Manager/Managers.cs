@@ -60,6 +60,14 @@ public class Managers : Singleton<Managers>
         get { return instance?._backEnd; }
     }
 
+    public AdManager _ad = new AdManager();
+
+    public static AdManager Ad
+    {
+        get { return instance?._ad; }
+    }
+    
+    public static bool isAdmobLoad = false;
     protected override void Awake()
     {
         base.Awake();
@@ -67,7 +75,7 @@ public class Managers : Singleton<Managers>
         // 애드몹 초기화
         MobileAds.Initialize(initStatus =>
         {
-            
+            isAdmobLoad = true;
         });
     }
 }        

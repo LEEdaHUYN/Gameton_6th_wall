@@ -125,12 +125,6 @@ MonoBehaviour:
     m_SerializedLabels:
     - PreLoad
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 0d58ad9502bfdf3468adf2b26c6b10a9
-    m_Address: Chocolate
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - PreLoad
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 0ceaf5cac8bedab47b1d0d110a20041f
     m_Address: Radio
     m_ReadOnly: 0
@@ -145,12 +139,6 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: ed72f2194436ba047aee3d5f5c4af32d
     m_Address: Rope
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - PreLoad
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: e912131784a27054cb3d77de1788367f
-    m_Address: Scarf
     m_ReadOnly: 0
     m_SerializedLabels:
     - PreLoad

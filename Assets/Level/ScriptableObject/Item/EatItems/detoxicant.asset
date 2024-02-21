@@ -26,6 +26,6 @@ MonoBehaviour:
   _prefab: {fileID: 1892581908884312970, guid: 56f7e1d447e4d5248baa817ecf044a46, type: 3}
   _itemIconIndex: 29
   _useEffectSetStatus:
-    _value: 1
+    _value: 2
     _setStatusAction: 2
     _characterStatus: 5

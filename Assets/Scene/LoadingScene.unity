@@ -1042,7 +1042,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -14.55188, y: 5.3756104}
+  m_AnchoredPosition: {x: -14.551758, y: 5.3756104}
   m_SizeDelta: {x: 82.3915, y: 59.7755}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1957988045
@@ -1096,10 +1096,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bgimages:
-  - {fileID: 21300000, guid: dc9b9dca5f0547e44b3ef1596387d740, type: 3}
-  - {fileID: 21300000, guid: 112060fd64b72714c8fcb8b653c3f7bf, type: 3}
-  - {fileID: 21300000, guid: e55a334fee72dda4997727455bc4b572, type: 3}
+  - {fileID: 21300000, guid: 554762a1a8965ee4ebaccf2db9ff5868, type: 3}
+  - {fileID: 21300000, guid: ea3a8d536de32fe44a7521db1023f71a, type: 3}
   - {fileID: 21300000, guid: 8935c645e3a10ca4ea94ca10643406ce, type: 3}
+  - {fileID: 21300000, guid: 9c525ee7d435f164ab8d1d2abf8c7e47, type: 3}
 --- !u!1 &2130279548
 GameObject:
   m_ObjectHideFlags: 0

@@ -24,7 +24,7 @@ MonoBehaviour:
   _name: Firstaidkit
   _sprite: {fileID: 21300000, guid: b471dcb4b52c4564189f15d216429cf2, type: 3}
   _prefab: {fileID: 1987713744733760, guid: b55df95fa6211964e8ad561501250fac, type: 3}
-  _itemIconIndex: 22
+  _itemIconIndex: 0
   _useEffectSetStatus:
     _value: 0
     _setStatusAction: 1

@@ -9,6 +9,7 @@ using UnityEngine.UI;
 using DG.Tweening;
 using UnityEngine.SceneManagement;
 using TMPro;
+using static UnityEngine.GraphicsBuffer;
 
 namespace dahyeon
 {
@@ -25,6 +26,8 @@ namespace dahyeon
         private Camera exitfalseCamera;
         [SerializeField]
         private GameObject exitfalsepos;
+        [SerializeField]
+        private Canvas Arrow;
 
         public TextMeshProUGUI Uptext;
         public Image clockimage;
@@ -64,6 +67,7 @@ namespace dahyeon
             Particle[1].enableEmission = false;
             Uptext.DOFade(0.0f, 1).SetLoops(-1, LoopType.Yoyo);
             sponposition = this.transform.position;
+            Arrow.gameObject.SetActive(false);
         }
 
 
@@ -73,7 +77,7 @@ namespace dahyeon
             CharTurn();
 
             Debug.DrawRay(transform.position, transform.forward , Color.yellow);
-
+            Arrow.transform.LookAt(Particle[2].transform.position);
         }
 
         private void Update()

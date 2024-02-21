@@ -1,4 +1,5 @@
 ﻿
+using Cysharp.Threading.Tasks;
 using Script.Manager.Contents;
 using UnityEngine;
 
@@ -14,31 +15,35 @@ public class UI_TestScene :UI_Scene
 
         _scene = GetComponent<TestScene>();
         
-        PreResourceLoad();
-        for (int i = 0; i< Managers.Game.GetInventoryList().Count;i++)
-        {
-            Debug.Log(Managers.Game.GetInventoryList()[i].GetName);
-      
-        }
+        PreResourceLoad().Forget();
         
         return true;
-    }
-    private void Start()
-    {
-        Managers.Sound.PlayBGM("MainBGM");
     }
 
     #region ResourceLoad
     private bool isPreload = false;
 
-    private void PreResourceLoad()
+    private async UniTaskVoid PreResourceLoad()
     {
+        bool isLogin = false;
+        if (!Managers.Back.IsLogin)
+        {
+            Managers.Back.OnLogin(() =>
+            {
+                isLogin = true;
+            });          
+        }
+
+        await UniTask.WaitUntil(() =>
+        {
+            return isLogin;
+        });
+        
         Managers.Resource.LoadAllAsync<Object>(Define.ResourceLabel.PreLoad.ToString(), (key, count, totalCount) =>
         {
-            Debug.Log("Load");
             if (totalCount == count)
             {
-                Debug.Log("end");
+                Managers.Sound.PlayBGM("MainBGM");
                 isPreload = true;
 
                 string[] characterNames = { "감자","민영", "주호", "경훈" };
@@ -78,27 +83,12 @@ public class UI_TestScene :UI_Scene
                     Managers.Game.AddItem(success,1);
                 });
                
-                
-                if (!Managers.Back.IsLogin)
+            
+                Managers.Back.GetUserInventory(() =>
                 {
-                    Managers.Back.OnLogin(() =>
-                    {
-                        Managers.Back.GetUserInventory(() =>
-                        {
-                            Managers.Game.EquipSkillUpdate();
-                        });
-                    });
-                }
-                else
-                {
-                    Managers.Back.GetUserInventory(() =>
-                    {
-                        Managers.Game.EquipSkillUpdate();
-                    });
-                }
-          
+                    Managers.Game.EquipSkillUpdate();
+                });
                 
-               
             }
             
         });

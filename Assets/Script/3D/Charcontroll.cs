@@ -8,6 +8,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using DG.Tweening;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 namespace dahyeon
 {
@@ -25,6 +26,7 @@ namespace dahyeon
         [SerializeField]
         private GameObject exitfalsepos;
 
+        public TextMeshProUGUI Uptext;
         public Image clockimage;
         Clock clockscript;
 
@@ -60,6 +62,7 @@ namespace dahyeon
             exitfalseCamera.gameObject.SetActive(false);
             Particle[0].enableEmission = false;
             Particle[1].enableEmission = false;
+            Uptext.DOFade(0.0f, 1).SetLoops(-1, LoopType.Yoyo);
             sponposition = this.transform.position;
         }
 
@@ -158,6 +161,7 @@ namespace dahyeon
                 Item nomalItem = objectitem.iteminObjectitem;
                 inventory.AddItem(nomalItem);
                 hit.gameObject.SetActive(false);
+                Managers.Sound.PlaySFX("ItemAdd");
 
             }
             else if (inventory.Items.Count >= inventory.Slots.Length)
@@ -181,11 +185,14 @@ namespace dahyeon
                 clockscript.sucess = clockscript.isEnded;
                 if (clockscript.sucess == true)
                 {
+                    //Managers.Sound.StopBGM();
+                    Managers.Sound.PlayBGM("endinginship");
                     this.transform.position = exitfalsepos.transform.position;
                     this.transform.LookAt(Particle[2].transform.position, Vector3.up);
                     Myanimator.SetTrigger("Exit");
                     transform.DOMove(Particle[2].transform.position, 2).SetEase(Ease.Linear);
                     StartCoroutine(NextScene());
+                 
                 }
                
             }
@@ -194,16 +201,20 @@ namespace dahyeon
         IEnumerator NextScene()
         {
             yield return new WaitForSeconds(3.5f);
+            Managers.Sound.PauseBGM();
             Managers.Scene.GetCurrentScene.GetUIScene().SceneChange();
         }
 
         void NextScene2()
-        { 
+        {
+            //Managers.Sound.StopBGM();
+            Managers.Sound.PlayBGM("endinginship");
             Managers.Game.GameOver();
         }
 
         public void GoToTitleScene()
         {
+            Managers.Sound.PauseBGM();
             Invoke("NextScene2", 4f);
         }
     }

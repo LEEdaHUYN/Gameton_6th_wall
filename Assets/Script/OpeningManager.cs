@@ -73,6 +73,7 @@ public class OpeningManager : MonoBehaviour
         Defaultcanvas.gameObject.SetActive(false);
         Toturial3dcanvas.gameObject.SetActive(false);
         Toturial2dcanvas.gameObject.SetActive(false);
+        ItemDictionarycanvas.gameObject.SetActive(false);
 
         string textCoin;
         this.ObserveEveryValueChanged( _ => Managers.Back.GetCurrencyData(Define.Coin))
@@ -82,6 +83,12 @@ public class OpeningManager : MonoBehaviour
                 Coin.text = textCoin;
              });
         string textDia;
+        this.ObserveEveryValueChanged(_ => Managers.Back.GetCurrencyData(Define.Diamond))
+            .Subscribe(_ =>
+            {
+                textDia = Managers.Back.GetCurrencyData(Define.Diamond).ToString();
+                Dia.text = textDia;
+            });
         this.ObserveEveryValueChanged(_ => Managers.Back.GetCurrencyData(Define.Diamond))
             .Subscribe(_ =>
             {
@@ -314,7 +321,8 @@ public class OpeningManager : MonoBehaviour
         HideIamge(Startcanvas);
         HideIamge(Toturial3dcanvas);
         HideIamge(Toturial2dcanvas);
-       
+        HideIamge(ItemDictionarycanvas);
+
     }
 
 
@@ -362,6 +370,20 @@ public class OpeningManager : MonoBehaviour
         AddItem("Water", 1500, Define.Coin, () =>
         {
             Managers.Game.AddItem("Water", 1, false);
+        });
+    }
+    public void OnClickClick5sec()
+    {
+        AddItem("Water", 3000, Define.Coin, () =>
+        {
+            Managers.Game.SetTime(65f);
+        });
+    }
+    public void OnClickClick3sec()
+    {
+        AddItem("Water", 1500, Define.Coin, () =>
+        {
+            Managers.Game.SetTime(63f);
         });
     }
 

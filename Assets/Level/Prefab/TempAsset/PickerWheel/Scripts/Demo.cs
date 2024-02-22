@@ -10,7 +10,7 @@ public class Demo : MonoBehaviour
 {
     //2 coin, 1 dia, 0 key
     [SerializeField] private Button UispinButton;
-    [SerializeField] private TextMeshProUGUI UiSpinButtonText;
+   // [SerializeField] private TextMeshProUGUI UiSpinButtonText;
 
     [SerializeField] private PickerWheel pickerwheel;
     [SerializeField] private Image[] panel;
@@ -20,11 +20,11 @@ public class Demo : MonoBehaviour
         UispinButton.onClick.AddListener(() =>
         {
             UispinButton.interactable = false;
-            UiSpinButtonText.text = "spining";
+          //  UiSpinButtonText.text = "spining";
 
             pickerwheel.OnSpinStart(() =>
             {
-                Debug.Log("spin started...");
+               // Debug.Log("spin started...");
             });
 
 
@@ -32,7 +32,7 @@ public class Demo : MonoBehaviour
             {
                 Debug.Log("spin end  :  Label  : " + wheelPiace.Label + ", Amount: " + wheelPiace.Amount);
                 UispinButton.interactable = true;
-                UiSpinButtonText.text = "spin";
+              //  UiSpinButtonText.text = "spin";
                 
 
                 switch (wheelPiace.Label)

@@ -676,7 +676,7 @@ MonoBehaviour:
     SerializationNodes: []
   _overFoodText: {fileID: 0}
   _itemName: CanFood
-  _clickAmount: 0.3
+  _clickAmount: 0.25
   _foodType: 0
   _amountText: {fileID: 7711042309655335393}
 --- !u!1 &7711042309655335399
@@ -1260,6 +1260,6 @@ MonoBehaviour:
     SerializationNodes: []
   _overFoodText: {fileID: 0}
   _itemName: Water
-  _clickAmount: 0.3
+  _clickAmount: 0.25
   _foodType: 1
   _amountText: {fileID: 7711042309247402170}

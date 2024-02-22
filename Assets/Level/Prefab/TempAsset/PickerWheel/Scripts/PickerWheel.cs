@@ -100,8 +100,8 @@ namespace EasyUI.PickerWheelUI {
          WheelPiece piece = wheelPieces [ index ] ;
          Transform pieceTrns = InstantiatePiece ().transform.GetChild (0) ;
 
-         pieceTrns.GetChild (0).GetComponent <Image> ().sprite = piece.Icon ;
-         pieceTrns.GetChild (1).GetComponent <Text> ().text = piece.Label ;
+         pieceTrns.GetChild (1).GetComponent <Image> ().sprite = piece.Icon ;
+         pieceTrns.GetChild (0).GetComponent <Text> ().text = piece.Label ;
          //pieceTrns.GetChild (2).GetComponent <Text> ().text = piece.Amount.ToString () ;
 
          //Line
@@ -117,6 +117,7 @@ namespace EasyUI.PickerWheelUI {
 
 
       public void Spin () {
+
          if (!_isSpinning) {
             _isSpinning = true ;
             if (onSpinStartEvent != null)
@@ -129,24 +130,23 @@ namespace EasyUI.PickerWheelUI {
                index = nonZeroChancesIndices [ Random.Range (0, nonZeroChancesIndices.Count) ] ;
                piece = wheelPieces [ index ] ;
             }
+                float angle = -(pieceAngle * index);
 
-            float angle = -(pieceAngle * index) ;
+                float rightOffset = (angle - halfPieceAngleWithPaddings) % 360;
+                float leftOffset = (angle + halfPieceAngleWithPaddings) % 360;
 
-            float rightOffset = (angle - halfPieceAngleWithPaddings) % 360 ;
-            float leftOffset = (angle + halfPieceAngleWithPaddings) % 360 ;
+                float randomAngle = Random.Range(leftOffset, rightOffset);
 
-            float randomAngle = Random.Range (leftOffset, rightOffset) ;
+                Vector3 targetRotation = Vector3.back * (randomAngle + 2 * 360 * spinDuration);
 
-            Vector3 targetRotation = Vector3.back * (randomAngle + 2 * 360 * spinDuration) ;
+                //float prevAngle = wheelCircle.eulerAngles.z + halfPieceAngle ;
+                float prevAngle, currentAngle;
+                prevAngle = currentAngle = wheelCircle.eulerAngles.z;
 
-            //float prevAngle = wheelCircle.eulerAngles.z + halfPieceAngle ;
-            float prevAngle, currentAngle ;
-            prevAngle = currentAngle = wheelCircle.eulerAngles.z ;
+                bool isIndicatorOnTheLine = false;
 
-            bool isIndicatorOnTheLine = false ;
-
-            wheelCircle
-            .DORotate (targetRotation, spinDuration, RotateMode.Fast)
+                wheelCircle
+                .DORotate (targetRotation, spinDuration, RotateMode.FastBeyond360)
             .SetEase (Ease.InOutQuart)
             .OnUpdate (() => {
                float diff = Mathf.Abs (prevAngle - currentAngle) ;

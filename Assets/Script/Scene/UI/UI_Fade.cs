@@ -1,5 +1,4 @@
-﻿
-    using System;
+﻿    using System;
     using DG.Tweening;
     using TMPro;
     using UnityEngine;
@@ -13,17 +12,16 @@
         private Image _image;
         private Sequence sequence;
         private float _time = 1.0f;
-        [SerializeField]
-        private Image ItemDictionarycanvas;
-        [SerializeField]
-        private Button ItemDictionarybtn;
-        [SerializeField]
-        private Image Bg;
+        //[SerializeField]
+        //private Image ItemDictionarycanvas;
+        //[SerializeField]
+        //private Button ItemDictionarybtn;
+        //[SerializeField]
+        //private Image Bg;
     private void Awake()
         {
-        ItemDictionarycanvas.gameObject.SetActive(false);
-        Bg.gameObject.SetActive(false);
-        _image = GetComponent<Image>();
+      
+            _image = GetComponent<Image>();
             Managers.Game.SetFadeUI(this);
             sequence = DOTween.Sequence()
                     .SetAutoKill(false)
@@ -41,7 +39,9 @@
                     {
                         _image.raycastTarget = false;
                     })
-                ;
+                ;  
+        //ItemDictionarycanvas.gameObject.SetActive(false);
+        //Bg.gameObject.SetActive(false);
         }
 
         public void FadeIn(int currentDay, float time = 1.0f)
@@ -56,41 +56,41 @@
             
         }
 
-    public void OpenDictionary()
-    {
-        ShowImage(ItemDictionarycanvas);
-        ShowImage(Bg);
-        ItemDictionarybtn.interactable = false;
-    }
-    public void CloseDictionary()
-    {
-        Bg.gameObject.SetActive(false);
-        HideIamge(ItemDictionarycanvas);
-        ItemDictionarybtn.interactable = true;
-    }
+    //public void OpenDictionary()
+    //{
+    //    ShowImage(ItemDictionarycanvas);
+    //    ShowImage(Bg);
+    //    ItemDictionarybtn.interactable = false;
+    //}
+    //public void CloseDictionary()
+    //{
+    //    Bg.gameObject.SetActive(false);
+    //    HideIamge(ItemDictionarycanvas);
+    //    ItemDictionarybtn.interactable = true;
+    //}
 
-    void HideIamge(Image canvas)
-    {
-        var seq = DOTween.Sequence();
+    //void HideIamge(Image canvas)
+    //{
+    //    var seq = DOTween.Sequence();
 
-        canvas.transform.localScale = Vector3.one * 0.2f;
-        seq.Append(canvas.transform.DOScale(1.0f, 0.2f));
-        seq.Append(canvas.transform.DOScale(0.2f, 0.1f));
-        seq.Play().OnComplete(() =>
-        {
-            canvas.gameObject.SetActive(false);
-        });
-    }
-    void ShowImage(Image canvas)
-    {
-        canvas.gameObject.transform.localScale = Vector3.one * 0.2f;
-        canvas.gameObject.SetActive(true);
+    //    canvas.transform.localScale = Vector3.one * 0.2f;
+    //    seq.Append(canvas.transform.DOScale(1.0f, 0.2f));
+    //    seq.Append(canvas.transform.DOScale(0.2f, 0.1f));
+    //    seq.Play().OnComplete(() =>
+    //    {
+    //        canvas.gameObject.SetActive(false);
+    //    });
+    //}
+    //void ShowImage(Image canvas)
+    //{
+    //    canvas.gameObject.transform.localScale = Vector3.one * 0.2f;
+    //    canvas.gameObject.SetActive(true);
 
-        var seq = DOTween.Sequence();
-        seq.Append(canvas.transform.DOScale(1.1f, 0.3f));
-        seq.Append(canvas.transform.DOScale(1f, 0.2f));
+    //    var seq = DOTween.Sequence();
+    //    seq.Append(canvas.transform.DOScale(1.1f, 0.3f));
+    //    seq.Append(canvas.transform.DOScale(1f, 0.2f));
 
-        seq.Play();
-    }
+    //    seq.Play();
+    //}
 
 }

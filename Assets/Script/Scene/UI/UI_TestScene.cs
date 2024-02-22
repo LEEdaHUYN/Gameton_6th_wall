@@ -46,7 +46,7 @@ public class UI_TestScene :UI_Scene
                 Managers.Sound.PlayBGM("MainBGM");
                 isPreload = true;
 
-                string[] characterNames = { "감자","민영", "주호", "경훈" };
+                string[] characterNames = { "제임스","에릭", "케빈", "브라이언" };
                 for (int i= 1; i < 5; i++)
                 {
                     var i2 = i;
@@ -63,8 +63,8 @@ public class UI_TestScene :UI_Scene
                         Managers.Resource.Load<Sprite>($"{i2}.sprite", (spriteSuccess) =>
                         {
                             character.SetPortrait(spriteSuccess);
-                            //임시 주인공 설정 
-                            if (i1 == 2)
+                            //임시 주인공 설정 1로 해놨습니다
+                            if (i1 == 1)
                                 character.isPlayer = true;
                         });
                         Managers.Game.AddCharacter(character);

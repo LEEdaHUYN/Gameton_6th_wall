@@ -47,12 +47,6 @@ MonoBehaviour:
     m_SerializedLabels:
     - PreLoad
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 4effd42d9fcd4824384f70f778ad1250
-    m_Address: Battery
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - PreLoad
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 17603131d773f134eb6afffa49e8f9ba
     m_Address: Bodyboard
     m_ReadOnly: 0

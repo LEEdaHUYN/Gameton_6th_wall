@@ -338,7 +338,6 @@ public class OpeningManager : MonoBehaviour
         HideIamge(Toturial3dcanvas);
         HideIamge(Toturial2dcanvas);
         HideIamge(ItemDictionarycanvas);
-
     }
 
 

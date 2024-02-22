@@ -210,21 +210,21 @@ namespace dahyeon
 
         IEnumerator NextScene()
         {
+            Managers.Sound.PlayBGM("endinginship");
             yield return new WaitForSeconds(3.5f);
-            Managers.Sound.PauseBGM();
+            Managers.Sound.PlayBGM("AniBGM");
             Managers.Scene.GetCurrentScene.GetUIScene().SceneChange();
         }
 
         void NextScene2()
         {
-            //Managers.Sound.StopBGM();
-            Managers.Sound.PlayBGM("endinginship");
             Managers.Game.GameOver();
         }
 
         public void GoToTitleScene()
         {
-            Managers.Sound.PauseBGM();
+           // Managers.Sound.PauseBGM();
+            Managers.Sound.PlayBGM("endinginship");
             Invoke("NextScene2", 4f);
         }
     }

@@ -33,8 +33,6 @@ namespace dahyeon
 
         void Start()
         {   
-            time_cooltime = Managers.Game.GetTime;
-            text_CoolTime.text = Managers.Game.GetTime.ToString();
             Init_UI();
             Trigger_Skill();
             red.gameObject.SetActive(false);
@@ -117,6 +115,8 @@ namespace dahyeon
         }
         IEnumerator Reset_CoolTime()
         {
+            time_cooltime = Managers.Game.GetTime;
+            text_CoolTime.text = Managers.Game.GetTime.ToString();
             yield return new WaitForSeconds(3f);
             startornot = true;
             text_CoolTime.gameObject.SetActive(true);

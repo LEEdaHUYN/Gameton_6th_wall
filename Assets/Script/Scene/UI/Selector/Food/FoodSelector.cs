@@ -64,7 +64,6 @@ using Object = UnityEngine.Object;
                     Managers.Game.UseItem(canFood,infoItem.Key,canFoodClickAmount);
                 if(infoItem.Value.GetIsEat(FoodType.Water))
                     Managers.Game.UseItem(water,infoItem.Key,waterClickAmount);
-
             }
         }
 

@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
@@ -22,10 +23,7 @@ namespace dahyeon
         [SerializeField]
         private GameObject[] map;
         [SerializeField]
-        private float angle = 0f;
-        float offsetX = 0.0f;
-        float offsetY = 8.8f;
-        float offsetZ = -3.3f;
+        private float Y = 0f;
 
 
 
@@ -36,7 +34,7 @@ namespace dahyeon
             int RandomNumber = Random.Range(0, 4);
             Instantiate(map[RandomNumber]);
             CameraArm = GameObject.FindWithTag("CameraArm").gameObject.transform;
-            player = GameObject.FindWithTag("CameraLookat").gameObject.transform;
+            player = GameObject.FindWithTag("CameraLookat").gameObject.transform ;
 
         }
         private void FixedUpdate()

@@ -2217,18 +2217,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cd0b338a794fd064fa7726220858fabb, type: 3}
---- !u!114 &1834552687
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 919132149339883848}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4bd5e5ddd242bd64581fb5ed9c0e0507, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1900521844
 GameObject:
   m_ObjectHideFlags: 0
@@ -2266,7 +2254,7 @@ MonoBehaviour:
   - {fileID: 1405036349834125808, guid: 1c343928de90b4548b35a331bee60962, type: 3}
   - {fileID: 7724388945038229513, guid: 185f9057b25f13b468432098d1cb9616, type: 3}
   - {fileID: 6709124466746603478, guid: de97ff148e5cedb4691c0777df431e69, type: 3}
-  angle: 0
+  Y: 0
 --- !u!114 &1900521846
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2886,7 +2874,6 @@ GameObject:
   - component: {fileID: 543450653548860402}
   - component: {fileID: 3469287837398260823}
   - component: {fileID: 1711813855751186589}
-  - component: {fileID: 1834552687}
   m_Layer: 0
   m_Name: water
   m_TagString: Untagged

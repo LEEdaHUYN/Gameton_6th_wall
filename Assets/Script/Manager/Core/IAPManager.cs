@@ -1,9 +1,13 @@
 ﻿
-    using System;
-    using UnityEngine;
+using System;
+using UnityEngine.UI;
+using UnityEngine;
     using UnityEngine.Purchasing;
+using static UnityEngine.Rendering.DebugUI;
+using Image = UnityEngine.UI.Image;
+using TMPro;
 
-    public class IAPManager : MonoBehaviour, IStoreListener
+public class IAPManager : MonoBehaviour, IStoreListener
     {
         [Header("Product ID")]
         public readonly string productId_dia70 = "dia70";
@@ -13,7 +17,8 @@
         public readonly string productId_dia2050 = "dia2050";
         public readonly string removeAd = "removead";
         public readonly string removeAd500Dia = "removeaddia500";
-        
+
+        public Image[] PanelImage; //1dia 2package
 
         private IStoreController storeController; //구매 과정을 제어하는 함수 제공자
         private void Start()
@@ -84,39 +89,56 @@
             //구매 성공
             if (args.purchasedProduct.definition.id == productId_dia70)
             {
-                /* test_id 구매 처리 */
-                Managers.Back.AddCurrency(70,Define.Diamond);
+            /* test_id 구매 처리 */
+            PanelImage[0].gameObject.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = 70 + "개\n 구매완료";
+            PanelImage[0].gameObject.SetActive(true);
+            Managers.Back.AddCurrency(70,Define.Diamond);
             }
             else if (args.purchasedProduct.definition.id == productId_dia350)
             {
-                /* test_id 구매 처리 */
-                Managers.Back.AddCurrency(350,Define.Diamond);
+            /* test_id 구매 처리 */
+            PanelImage[0].gameObject.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = 350 + "개\n 구매완료";
+            PanelImage[0].gameObject.SetActive(true);
+
+            Managers.Back.AddCurrency(350,Define.Diamond);
             }
             else if (args.purchasedProduct.definition.id == productId_dia660)
             {
-                /* test_id 구매 처리 */
-                Managers.Back.AddCurrency(660,Define.Diamond);
+            /* test_id 구매 처리 */
+            PanelImage[0].gameObject.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = 660 + "개\n 구매완료";
+            PanelImage[0].gameObject.SetActive(true);
+
+            Managers.Back.AddCurrency(660,Define.Diamond);
             }
             else if (args.purchasedProduct.definition.id == productId_dia1350)
             {
-                /* test_id 구매 처리 */
-                Managers.Back.AddCurrency(1350,Define.Diamond);
+            /* test_id 구매 처리 */
+            PanelImage[0].gameObject.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = 1350 + "개\n 구매완료";
+            PanelImage[0].gameObject.SetActive(true);
+
+            Managers.Back.AddCurrency(1350,Define.Diamond);
             }
             else if (args.purchasedProduct.definition.id == productId_dia2050)
             {
-                /* test_id 구매 처리 */
-                Managers.Back.AddCurrency(2050,Define.Diamond);
+            /* test_id 구매 처리 */
+            PanelImage[0].gameObject.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = 2050 + "개\n 구매완료";
+            PanelImage[0].gameObject.SetActive(true);
+
+            Managers.Back.AddCurrency(2050,Define.Diamond);
             }
             else if (args.purchasedProduct.definition.id == removeAd500Dia)
             {
-                /* test_id 구매 처리 */
-                Managers.Back.AddCurrency(1,"AD");
+            /* test_id 구매 처리 */
+            PanelImage[1].gameObject.SetActive(true);
+
+            Managers.Back.AddCurrency(1, "AD");
                 Managers.Back.AddCurrency(500,Define.Diamond);
             }
             else if (args.purchasedProduct.definition.id == productId_dia2050)
             {
-                /* test_id 구매 처리 */
-                Managers.Back.AddCurrency(1,"AD");
+            /* test_id 구매 처리 */
+            PanelImage[2].gameObject.SetActive(true);
+            Managers.Back.AddCurrency(1,"AD");
             }
 
             return PurchaseProcessingResult.Complete;

@@ -42,19 +42,19 @@ public class Demo : MonoBehaviour
                         Managers.Back.SetClientCurrencyData(Define.Coin, Managers.Back.GetCurrencyData(Define.Coin) + wheelPiace.Amount);
                         panel[2].transform.GetChild(4).gameObject.GetComponent<TextMeshProUGUI>().text = "+ " + wheelPiace.Amount.ToString();
                         ShowImage(panel[2]);
-                        Debug.Log(Managers.Back.GetCurrencyData(Define.Coin));
+                       // Debug.Log(Managers.Back.GetCurrencyData(Define.Coin));
                         break;
                     case "다이아":
                         Managers.Back.SetClientCurrencyData(Define.Diamond, Managers.Back.GetCurrencyData(Define.Diamond) + wheelPiace.Amount);
                         panel[1].transform.GetChild(4).gameObject.GetComponent<TextMeshProUGUI>().text = "+ " + wheelPiace.Amount.ToString();
                         ShowImage(panel[1]);
-                        Debug.Log(Managers.Back.GetCurrencyData(Define.Diamond));
+                       // Debug.Log(Managers.Back.GetCurrencyData(Define.Diamond));
                         break;
                     case "열쇠":
                         Managers.Back.SetClientCurrencyData(Define.Key, Managers.Back.GetCurrencyData(Define.Key) + wheelPiace.Amount);
                         panel[0].transform.GetChild(4).gameObject.GetComponent<TextMeshProUGUI>().text = "+ " + wheelPiace.Amount.ToString();
                         ShowImage(panel[0]);
-                        Debug.Log(Managers.Back.GetCurrencyData(Define.Key));
+                      //  Debug.Log(Managers.Back.GetCurrencyData(Define.Key));
                         break;
 
                 }
@@ -66,6 +66,7 @@ public class Demo : MonoBehaviour
                 Managers.Ad.RunRewardedAd(() =>
                 {
                     pickerwheel.Spin();
+                    //UispinButton.interactable = false;
                 },Admob.rulletId, () =>
                 {
                     //요기 1일 1회 초과시 에러나는데 PopUp 띄어줘야함
@@ -97,8 +98,9 @@ public class Demo : MonoBehaviour
 
     private void ErrorMessagePopUp()
     {
-        
+        ShowImage(panel[3]);
     }
+
     void ShowImage(Image canvas)
     {
         canvas.gameObject.transform.localScale = Vector3.one * 0.2f;

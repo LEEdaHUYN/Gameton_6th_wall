@@ -1,6 +1,7 @@
 using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,6 +9,9 @@ public class StoreCoin : MonoBehaviour
 {
     [SerializeField]
     private Button[] coin;
+    [SerializeField]
+    private Image[] Panel;
+    //getdia, getpackage, fail
 
     [SerializeField] private IAPManager IAPManager;
 
@@ -25,12 +29,16 @@ public class StoreCoin : MonoBehaviour
                     Managers.Back.AddCurrency(50,Define.Diamond, () =>
                     {
                         // TODO 구매 성공 메세지 
+                        Panel[0].gameObject.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = 50 + "개\n 구매완료";
+                        ShowImage(Panel[0]);
                     });
                 }
                 ,Admob.diaId, 
                 () =>
                 {
                     // TODO 광고 이미 시청했을 때,
+                    Panel[2].gameObject.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "이미\n구매되었습니다";
+                    ShowImage(Panel[2]);
                     ErrorMessagePopUp();
                 });
         }
@@ -47,7 +55,8 @@ public class StoreCoin : MonoBehaviour
                 {
                     Managers.Back.AddCurrency(50,Define.Diamond, () =>
                     {
-                        // TODO 구매 성공 메세지 
+                        Panel[0].gameObject.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = 50 + "개\n 획득완료";
+                        ShowImage(Panel[0]);
                     });
                 }, () =>
                 {
@@ -60,7 +69,7 @@ public class StoreCoin : MonoBehaviour
 
     private void ErrorMessagePopUp()
     {
-        //TODO
+        ShowImage(Panel[2]); 
     }
 
     public void OnClickByDiaInApp(string productCode)
@@ -106,5 +115,16 @@ public class StoreCoin : MonoBehaviour
             seq.Append(coin[a].GetComponent<RectTransform>().DOScale(2f, 0.1f).SetEase(Ease.Linear));
             //seq.Play().SetLoops(-1);
         }
+    }
+    void ShowImage(Image canvas)
+    {
+        canvas.gameObject.transform.localScale = Vector3.one * 0.2f;
+        canvas.gameObject.SetActive(true);
+
+        var seq = DOTween.Sequence();
+        seq.Append(canvas.transform.DOScale(1.1f, 0.3f));
+        seq.Append(canvas.transform.DOScale(1f, 0.2f));
+
+        seq.Play();
     }
 }

@@ -8,11 +8,29 @@ public class StoreCoin : MonoBehaviour
 {
     [SerializeField]
     private Button[] coin;
-    // Start is called before the first frame update
-    void Start()
+
+
+    /// <summary>
+    /// 광고로 다이아 구매
+    /// </summary>
+    public void OnClickBuyAdDia()
     {
-       
+        
+        Managers.Ad.RunRewardedAd(() =>
+            {
+                Managers.Back.AddCurrency(50,Define.Diamond, () =>
+                {
+                    // TODO 구매 성공 메세지 
+                });
+            }
+            ,Admob.diaId, 
+            () =>
+            {
+                // TODO 광고 이미 시청했을 때,
+            });
     }
+    
+    
     public void ShowStartSequence(int a)
     {
         if (a >= 6f)

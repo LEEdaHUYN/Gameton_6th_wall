@@ -25,19 +25,19 @@ public class UI_TestScene :UI_Scene
 
     private async UniTaskVoid PreResourceLoad()
     {
-        bool isLogin = false;
-        if (!Managers.Back.IsLogin)
-        {
-            Managers.Back.OnLogin(() =>
-            {
-                isLogin = true;
-            });          
-        }
+        //bool isLogin = false;
+        //if (!Managers.Back.IsLogin)
+        //{
+        //    Managers.Back.OnLogin(() =>
+        //    {
+        //        isLogin = true;
+        //    });          
+        //}
 
-        await UniTask.WaitUntil(() =>
-        {
-            return isLogin;
-        });
+        //await UniTask.WaitUntil(() =>
+        //{
+        //    return isLogin;
+        //});
         
         Managers.Resource.LoadAllAsync<Object>(Define.ResourceLabel.PreLoad.ToString(), (key, count, totalCount) =>
         {

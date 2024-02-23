@@ -61,18 +61,40 @@ public class Demo : MonoBehaviour
 
                
             });
-            
-            Managers.Ad.RunRewardedAd(() =>
+            if (Managers.Back.GetCurrencyData("AD") == 0)
             {
-                pickerwheel.Spin();
-            },Admob.rulletId, () =>
+                Managers.Ad.RunRewardedAd(() =>
+                {
+                    pickerwheel.Spin();
+                },Admob.rulletId, () =>
+                {
+                    //요기 1일 1회 초과시 에러나는데 PopUp 띄어줘야함
+                    ErrorMessagePopUp();
+                });
+            }
+            else
             {
-                //요기 1일 1회 초과시 에러나는데 PopUp 띄어줘야함
-            });
+                if (Managers.Back.GetItem("adrullet") != null)
+                {
+                    ErrorMessagePopUp();
+                }
+                Managers.Back.PurchaseItem("addrullet",0,Define.Coin, () =>
+                {
+                    pickerwheel.Spin();
+                }, () =>
+                {
+                    
+                });
+            }
+         
 
         });
     }
 
+    private void ErrorMessagePopUp()
+    {
+        
+    }
     void ShowImage(Image canvas)
     {
         canvas.gameObject.transform.localScale = Vector3.one * 0.2f;

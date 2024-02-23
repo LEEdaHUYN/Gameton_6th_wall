@@ -46,6 +46,7 @@
             _userCurrecy.Add(Define.Coin,0);
             _userCurrecy.Add(Define.Diamond,0);
             _userCurrecy.Add(Define.Key,0);
+            _userCurrecy.Add("AD",0);
         }
         
         
@@ -92,25 +93,6 @@
         {
             GetCurrencyDataBackEnd(callback).Forget();
         }
-
-        // public void AddCurrency(string id,int amount,Action callback = null)
-        // {
-        //     PlayFabClientAPI.AddUserVirtualCurrency(new AddUserVirtualCurrencyRequest()
-        //         {
-        //             Amount = amount,
-        //             VirtualCurrency = id
-        //         }, 
-        //         success =>
-        //         {
-        //             _userCurrecy[id] += amount;
-        //             callback?.Invoke();
-        //         }, error =>
-        //     {
-        //         ErrorLog(error);
-        //     });
-        //     //_userCurrecy[id] += amount;
-        //     
-        // }
         private async UniTaskVoid GetCurrencyDataBackEnd(Action callback = null)
         {
             bool isResult = false;
@@ -121,7 +103,6 @@
                     foreach (var item in Keys)
                     {
                         _userCurrecy[item] = result.VirtualCurrency[item];
-
                     }
                 
                     isResult = true;
@@ -171,10 +152,6 @@
                 result =>
                 {
                     _userInventory = result.Inventory;
-                    //foreach(var item in userInventory)
-                    //{
-                    //    Debug.Log(item.ItemClass + "," + item.RemainingUses);
-                    //}
                     callback?.Invoke();
 
 

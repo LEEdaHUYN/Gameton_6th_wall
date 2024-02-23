@@ -25,20 +25,11 @@ public class UI_TestScene :UI_Scene
 
     private async UniTaskVoid PreResourceLoad()
     {
-        //bool isLogin = false;
-        //if (!Managers.Back.IsLogin)
-        //{
-        //    Managers.Back.OnLogin(() =>
-        //    {
-        //        isLogin = true;
-        //    });          
-        //}
-
-        //await UniTask.WaitUntil(() =>
-        //{
-        //    return isLogin;
-        //});
-        Managers.Ad.LoadAdBanner();
+        if (Managers.Back.GetCurrencyData("AD") == 0)
+        {
+            Managers.Ad.LoadAdBanner();
+        }
+    
         Managers.Resource.LoadAllAsync<Object>(Define.ResourceLabel.PreLoad.ToString(), (key, count, totalCount) =>
         {
             if (totalCount == count)

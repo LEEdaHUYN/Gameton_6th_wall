@@ -11,6 +11,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
             <meta-data android:name="unityplayer.UnityActivity" android:value="true" />
+            <meta-data android:name="com.google.android.play.billingclient.version" android:value="5.0.0" />
         </activity>
     </application>
 </manifest>

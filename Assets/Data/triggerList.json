@@ -8473,6 +8473,16 @@
           }
         },
         {
+          "type": "HaveItemCondition",
+          "itemName": "Map",
+          "amount": 1
+        },
+        {
+          "type": "HaveItemCondition",
+          "itemName": "Vest",
+          "amount": 1
+        },
+        {
           "type": "FlagCondition",
           "flag": {
             "name": "HandFlag56",

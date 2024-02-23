@@ -78,13 +78,17 @@ public class Demo : MonoBehaviour
                 {
                     ErrorMessagePopUp();
                 }
-                Managers.Back.PurchaseItem("addrullet",0,Define.Coin, () =>
+                else
                 {
-                    pickerwheel.Spin();
-                }, () =>
-                {
+                    Managers.Back.PurchaseItem("adrullet",0,Define.Coin, () =>
+                    {
+                        pickerwheel.Spin();
+                    }, () =>
+                    {
                     
-                });
+                    });
+                }
+             
             }
          
 

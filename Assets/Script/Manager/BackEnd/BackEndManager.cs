@@ -66,6 +66,7 @@
                 GeneratePlayStreamEvent = true, // Optional - Shows this event in PlayStream
             }, success =>
             {
+                SyncCurrencyDataFromServer();
                 callback?.Invoke();
             }, error => { ErrorLog(error); });
         }

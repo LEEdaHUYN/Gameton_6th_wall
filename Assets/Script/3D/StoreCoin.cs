@@ -17,6 +17,7 @@ public class StoreCoin : MonoBehaviour
     public void OnClickBuyAdDia()
     {
 
+        Debug.Log(Managers.Back.GetCurrencyData("AD"));
         if (Managers.Back.GetCurrencyData("AD") == 0)
         {
             Managers.Ad.RunRewardedAd(() =>
@@ -35,20 +36,25 @@ public class StoreCoin : MonoBehaviour
         }
         else
         {
+            Debug.Log(Managers.Back.GetItem("addia50"));
             if (Managers.Back.GetItem("addia50") != null)
             {
                 ErrorMessagePopUp();
             }
-            Managers.Back.PurchaseItem("addia50",0,Define.Coin, () =>
+            else
             {
-                Managers.Back.AddCurrency(50,Define.Diamond, () =>
+                Managers.Back.PurchaseItem("addia50",0,Define.Coin, () =>
                 {
-                    // TODO 구매 성공 메세지 
-                });
-            }, () =>
-            {
+                    Managers.Back.AddCurrency(50,Define.Diamond, () =>
+                    {
+                        // TODO 구매 성공 메세지 
+                    });
+                }, () =>
+                {
                     
-            });
+                });
+            }
+            
         }
     }
 

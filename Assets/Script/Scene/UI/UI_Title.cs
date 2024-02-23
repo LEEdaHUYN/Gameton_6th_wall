@@ -52,6 +52,7 @@ public class UI_Title : UI_Scene
                 Managers.Back.OnLogin(() =>
                 {
                     isLogin = true;
+                    Managers.Back.GetUserInventory();
                 });
                 isPreload = true;
             }

@@ -25,6 +25,7 @@ public class UI_TestScene :UI_Scene
 
     private async UniTaskVoid PreResourceLoad()
     {
+        //이부분
         //bool isLogin = false;
         //if (!Managers.Back.IsLogin)
         //{
@@ -38,6 +39,7 @@ public class UI_TestScene :UI_Scene
         //{
         //    return isLogin;
         //});
+        //이부분
         
         Managers.Resource.LoadAllAsync<Object>(Define.ResourceLabel.PreLoad.ToString(), (key, count, totalCount) =>
         {

@@ -5,7 +5,64 @@
 
     public class AdManager
     {
+        #region  Banner
         #if UNITY_ANDROID
+        private string _adUnitBannerId = Admob.bannerId;
+        #elif UNITY_IPHONE
+                private string _adUnitBannerId = "ca-app-pub-3940256099942544/2934735716";
+        #else
+                private string _adUnitBannerId = "unused";
+        #endif
+        BannerView _bannerView;
+        public void CreateBannerView()
+        {
+            Debug.Log("Creating banner view");
+
+            // If we already have a banner, destroy the old one.
+            if (_bannerView != null)
+            {
+                DestroyBannerView();
+            }
+
+            // Create a 320x50 banner at top of the screen
+            _bannerView = new BannerView(_adUnitId, AdSize.SmartBanner, AdPosition.Top);
+        }
+        public void LoadAdBanner()
+        {
+            // create an instance of a banner view first.
+            if(_bannerView == null)
+            {
+                CreateBannerView();
+            }
+
+            // create our request used to load the ad.
+            var adRequest = new AdRequest();
+
+            // send the request to load the ad.
+            Debug.Log("Loading banner ad.");
+            _bannerView.LoadAd(adRequest);
+        }
+        
+        /// <summary>
+        /// Destroys the banner view.
+        /// </summary>
+        public void DestroyBannerView()
+        {
+            if (_bannerView != null)
+            {
+                Debug.Log("Destroying banner view.");
+                _bannerView.Destroy();
+                _bannerView = null;
+            }
+        }
+
+        #endregion
+ 
+
+
+        #region RewardAd
+
+           #if UNITY_ANDROID
         private string _adUnitId = "ca-app-pub-3940256099942544/5224354917";
         #elif UNITY_IPHONE
           private string _adUnitId = "ca-app-pub-3940256099942544/1712485313";
@@ -122,4 +179,7 @@
                                "with error : " + error);
             };
         }
+
+        #endregion
+     
     }

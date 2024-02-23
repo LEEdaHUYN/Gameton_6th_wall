@@ -38,7 +38,7 @@ public class UI_TestScene :UI_Scene
         //{
         //    return isLogin;
         //});
-        
+        Managers.Ad.LoadAdBanner();
         Managers.Resource.LoadAllAsync<Object>(Define.ResourceLabel.PreLoad.ToString(), (key, count, totalCount) =>
         {
             if (totalCount == count)

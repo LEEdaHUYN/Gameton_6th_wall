@@ -61,7 +61,15 @@ public class Demo : MonoBehaviour
 
                
             });
-            pickerwheel.Spin();
+            
+            Managers.Ad.RunRewardedAd(() =>
+            {
+                pickerwheel.Spin();
+            },Admob.rulletId, () =>
+            {
+                //요기 1일 1회 초과시 에러나는데 PopUp 띄어줘야함
+            });
+
         });
     }
 

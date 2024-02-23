@@ -15,22 +15,21 @@
         
         
         private RewardedAd _rewardedAd;
-        public void RunRewardedAd(Action successCallback,string adUnitId) {
+        public void RunRewardedAd(Action successCallback,string adUnitId,Action errorCallback = null) {
 
                 _adUnitId = adUnitId;
                 LoadRewardedAd(() =>
                 {
-                    //핸들러 등록
-                    RegisterEventHandlers(_rewardedAd);
+                    //핸들러 등
                     ShowRewardedAd(successCallback);
-                });
+                },errorCallback);
             
     }
         
         /// <summary>
         /// 보상형 로드 하기
         /// </summary>
-        private void LoadRewardedAd(Action successCallback = null)
+        private void LoadRewardedAd(Action successCallback = null,Action errorCallback = null)
         {
             // Clean up the old ad before loading a new one.
             if (_rewardedAd != null)
@@ -53,6 +52,7 @@
                     {
                         Debug.LogError("Rewarded ad failed to load an ad " +
                                        "with error : " + error);
+                        errorCallback?.Invoke();
                         return;
                     }
 
@@ -60,6 +60,7 @@
                               + ad.GetResponseInfo());
 
                     _rewardedAd = ad;
+                    RegisterEventHandlers(_rewardedAd);
                     successCallback?.Invoke();
                 });
         }

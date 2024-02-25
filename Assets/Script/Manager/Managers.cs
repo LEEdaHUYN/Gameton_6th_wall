@@ -75,6 +75,7 @@ public class Managers : Singleton<Managers>
         // 애드몹 초기화
         MobileAds.Initialize(initStatus =>
         {
+            MobileAds.RaiseAdEventsOnUnityMainThread = true;
             isAdmobLoad = true;
         });
     }

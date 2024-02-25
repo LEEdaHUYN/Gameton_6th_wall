@@ -1,5 +1,6 @@
 ﻿
     using System;
+    using Cysharp.Threading.Tasks;
     using GoogleMobileAds.Api;
     using UnityEngine;
 
@@ -78,7 +79,12 @@
                 LoadRewardedAd(() =>
                 {
                     //핸들러 등
-                    ShowRewardedAd(successCallback);
+                    WaitTask(() =>
+                    {
+                        ShowRewardedAd(successCallback);
+
+                    }).Forget();
+
                 },errorCallback);
             
     }
@@ -121,6 +127,16 @@
                     successCallback?.Invoke();
                 });
         }
+
+        /// <summary>
+        /// https://parksh3641.tistory.com/entry/%EC%9C%A0%EB%8B%88%ED%8B%B0-Graphics-device-is-null-%EC%97%90%EB%9F%AC-%EB%8C%80%EC%B2%98%EB%B2%95-%EA%B0%84%EB%8B%A8-%EC%84%A4%EB%AA%85#google_vignette
+        /// </summary>
+        /// <param name="callback"></param>
+        async UniTaskVoid WaitTask(Action callback )
+        {
+            await UniTask.WaitForSeconds(0.2f);
+            callback?.Invoke();
+        } 
         
         /// <summary>
         /// 보상형 광고 띄우기

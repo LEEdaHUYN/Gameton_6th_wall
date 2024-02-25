@@ -19,7 +19,7 @@ public class Demo : MonoBehaviour
     {
         UispinButton.onClick.AddListener(() =>
         {
-            UispinButton.interactable = false;
+            //UispinButton.interactable = false;
           //  UiSpinButtonText.text = "spining";
 
             pickerwheel.OnSpinStart(() =>
@@ -66,6 +66,7 @@ public class Demo : MonoBehaviour
                 Managers.Ad.RunRewardedAd(() =>
                 {
                     pickerwheel.Spin();
+                    UispinButton.interactable = false;
                     //UispinButton.interactable = false;
                 },Admob.rulletId, () =>
                 {
@@ -84,6 +85,7 @@ public class Demo : MonoBehaviour
                     Managers.Back.PurchaseItem("adrullet",0,Define.Coin, () =>
                     {
                         pickerwheel.Spin();
+                        
                     }, () =>
                     {
                     

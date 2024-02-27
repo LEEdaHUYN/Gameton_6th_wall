@@ -13,17 +13,17 @@
             base.UseItem(character);
         }
 
-        public virtual float GetAmount()
+        public override float GetAmount()
         {
             return _amount;
         }
 
-        public  virtual float GetMaxAmount()
+        public  override float GetMaxAmount()
         {
             return 0;
         }
 
-        public virtual void SetAmount(float amount)
+        public override void SetAmount(float amount)
         {
             _amount = amount;
         }

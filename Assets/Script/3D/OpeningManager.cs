@@ -34,6 +34,8 @@ public class OpeningManager : MonoBehaviour
     [SerializeField]
     private Image ItemDictionarycanvas;
     [SerializeField]
+    private Image CoinImage;
+    [SerializeField]
     private TextMeshProUGUI Coin;
     [SerializeField]
     private TextMeshProUGUI Dia;
@@ -111,6 +113,17 @@ public class OpeningManager : MonoBehaviour
                     Key[i].gameObject.SetActive(true);
                 }
             });
+        string textday;
+        this.ObserveEveryValueChanged(_ => Managers.Game.CurrentDay_int)
+           .Subscribe(_ =>
+           {
+               textday = Managers.Game.CurrentDay_int.ToString();
+               int currency = Managers.Game.CurrentDay_int * 80;
+               CoinImage.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "골드 " + currency+"획득";
+               CoinImage.transform.GetChild(3).GetComponent<TextMeshProUGUI>().text = textday;
+               if(Managers.Game.CurrentDay_int != 0)
+                   ShowImage(CoinImage);
+           });
 
     }
     private void FixedUpdate()

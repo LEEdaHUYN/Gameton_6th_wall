@@ -3377,20 +3377,6 @@
         {
           "type": "AddItemAction",
           "item": {
-            "itemName": "WhiteLeaf",
-            "amount": 1
-          }
-        },
-        {
-          "type": "AddItemAction",
-          "item": {
-            "itemName": "GreenLeaf",
-            "amount": 1
-          }
-        },
-        {
-          "type": "AddItemAction",
-          "item": {
             "itemName": "PurpleLeaf",
             "amount": 1
           }
@@ -4507,13 +4493,6 @@
         }
       ],
       "ActionList": [
-        {
-          "type": "AddItemAction",
-          "item": {
-            "itemName": "Cardkey",
-            "amount": 1
-          }
-        },
         {
           "type": "SetActiveShowCharacterStatusAction",
           "active": false
@@ -5693,20 +5672,6 @@
           "type": "AddItemAction",
           "item": {
             "itemName": "CanFood",
-            "amount": 1
-          }
-        },
-        {
-          "type": "AddItemAction",
-          "item": {
-            "itemName": "WhiteLeaf",
-            "amount": 1
-          }
-        },
-        {
-          "type": "AddItemAction",
-          "item": {
-            "itemName": "GreenLeaf",
             "amount": 1
           }
         },

@@ -135,7 +135,7 @@ public class GameManager
 
 
     public bool isGameOver { get; private set; } = false;
-
+    public int CurrentDay_int=0;
     
     #region Book
 
@@ -404,6 +404,7 @@ public class GameManager
     public void GameOver()
     {
         isGameOver = false;
+        CurrentDay_int = CurrentDay;
         CurrentDay = 0;
         _inventory.ClearInventory();
         Characters.Clear();

@@ -61,6 +61,7 @@ public class Demo : MonoBehaviour
 
                
             });
+
             if (Managers.Back.GetCurrencyData("AD") == 0)
             {
                 Managers.Ad.RunRewardedAd(() =>

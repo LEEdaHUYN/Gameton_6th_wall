@@ -57,7 +57,7 @@ public class Inventory
             return;
         }
         GetItemList[item.GetName].UseItem(character);
-        item.SetAmount(item.GetAmount() - amount);
+        SubItem(item, amount);
     }
     public Item FindByItemName(string name)
     {

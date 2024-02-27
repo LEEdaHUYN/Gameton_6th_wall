@@ -97,16 +97,17 @@ using Object = UnityEngine.Object;
             Managers.Resource.Load<Item>("Hand", (success) =>
             {
                 _itemInventory.Add(success);
-                foreach (var item in  Managers.Game.GetInventoryList().OfType<EatItem>())
-                {
-                    if (item.GetName is "CanFood" or "Water")
-                    {
-                        continue;
-                    }
-                
-                    _itemInventory.Add(item);
-                }
+         
             });
+            foreach (var item in  Managers.Game.GetInventoryList().OfType<EatItem>())
+            {
+                if (item.GetName is "CanFood" or "Water")
+                {
+                    continue;
+                }
+                
+                _itemInventory.Add(item);
+            }
          
         }
 

@@ -3377,6 +3377,20 @@
         {
           "type": "AddItemAction",
           "item": {
+            "itemName": "WhiteLeaf",
+            "amount": 1
+          }
+        },
+        {
+          "type": "AddItemAction",
+          "item": {
+            "itemName": "GreenLeaf",
+            "amount": 1
+          }
+        },
+        {
+          "type": "AddItemAction",
+          "item": {
             "itemName": "PurpleLeaf",
             "amount": 1
           }
@@ -5672,6 +5686,20 @@
           "type": "AddItemAction",
           "item": {
             "itemName": "CanFood",
+            "amount": 1
+          }
+        },
+        {
+          "type": "AddItemAction",
+          "item": {
+            "itemName": "WhiteLeaf",
+            "amount": 1
+          }
+        },
+        {
+          "type": "AddItemAction",
+          "item": {
+            "itemName": "GreenLeaf",
             "amount": 1
           }
         },

@@ -26,7 +26,7 @@
             }
 
             // Create a 320x50 banner at top of the screen
-            _bannerView = new BannerView(_adUnitBannerId, AdSize.Leaderboard, AdPosition.Top);
+            _bannerView = new BannerView(_adUnitBannerId, AdSize.Banner, AdPosition.Top);
         }
         public void LoadAdBanner()
         {
